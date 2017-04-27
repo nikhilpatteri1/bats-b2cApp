@@ -41,8 +41,9 @@
 
                         <div class="umdHeaderIconsVehicle acSmallFonts">Tracker SIM Phone Number</div>
                         <div class="umdInputDiv">
-                            <input type="text" name="t_sim_cn" class="" required 
-                                placeholder="8855449966" ng-model="data[$index].t_sim_cn"
+                            <input type="number" name="t_sim_cn" class="" required 
+                                placeholder="Please enter Sim contact no." oninput="if(value.length>10)value=value.slice(0,10)" 
+                                 ng-model="data[$index].t_sim_cn"
                                 ng-class="{'umdFilledInputBox' : signupStep2Form.form.t_sim_cn.$invalid}">
                         </div>
                     </div>
