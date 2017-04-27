@@ -154,13 +154,19 @@ angular.module('replayroutedetail', [])
         console.log($scope.timeSlots);
 
         $scope.getHistory = function (timeSlot) {
+			 
+			$scope.replaySlot = timeSlot;
+			console.log(timeSlot);
             var inputParam = { 'devid': dataFromReplay.devid, 'sts': timeSlot.sts, 'ets': timeSlot.ets };
             BatsServices.history(inputParam).success(function (response) {
-                console.log(JSON.stringify(response));
+                //console.log(JSON.stringify(response));
 				$scope.historyVal = response;
-				console.log($scope.historyVal);				
+				 oldStep = {step: 1,tick:100};
+				 $scope.end = false;
+				//console.log($scope.historyVal);				
 				//displayHistory();
 				if($scope.historyVal.values != "" ){
+					 
 					displayHistory();
 				}
 				else{
@@ -198,16 +204,16 @@ angular.module('replayroutedetail', [])
 		$scope.noData=false;
 		var lat_tot = 0, lg_tot = 0, lat_avg = 0, lg_avg = 0;
 		var histData = $scope.historyVal.values; 
-		console.log(histData);
+		//console.log(histData);
 		//histData=histData.sort(SortByts);
 		var hist_len = histData.length;
-		console.log(histData.length);
+		//console.log(histData.length);
 		var polyPathArray = [];
 		$scope.plottedData=[];
 		var coordinates = [];		
 		
 		for(var inc = 0; inc < hist_len; inc++){			
-			console.log(histData[inc].lat,histData[inc].long,histData[inc].Velocity,histData[inc].ts);
+			//console.log(histData[inc].lat,histData[inc].long,histData[inc].Velocity,histData[inc].ts);
 		  	executeHisory(histData[inc].lat,histData[inc].long,histData[inc].Velocity,histData[inc].ts,
 		  			function(historyStatus){
                 // console.log(JSON.stringify(historyStatus));
@@ -222,7 +228,7 @@ angular.module('replayroutedetail', [])
 				polyPathArray.push(arr);
 				
 				$scope.plottedData.push(plottedObj);
-				console.log($scope.plottedData.length);
+				//console.log($scope.plottedData.length);
 				/*
 				 * if($scope.plottedData.length <= 1){
 				 * swal({title:"Vehicle in stationary"}); }
@@ -327,7 +333,7 @@ angular.module('replayroutedetail', [])
 	    // display
          
        setinterval = setTimeout(function() {
-		    alert("setinterval");
+		   
  	        $scope.animate(50);
 			
  	    }, 2000);
