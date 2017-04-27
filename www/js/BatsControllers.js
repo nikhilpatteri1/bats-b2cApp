@@ -12,7 +12,7 @@ angular.module('batscontrollers', [
 ])
 
   .controller('BatsCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $state, PageConfig, Constants,
-    $ionicPopup, $interval, BatsServices) {
+    $ionicPopup, $interval, BatsServices, ionicToast) {
 
     $scope.openSetting = false;
     $scope.openSettingBar = function () {

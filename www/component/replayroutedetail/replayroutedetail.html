@@ -9,7 +9,7 @@
     
              <div class="umdHeaderIconsVehicle lgBackgroundWhite acSmallFonts acGreyFont">Please select your vehicle type</div>
             <ion-list class="rrdIonList">
-                <ion-radio class="rrdRadioLabels" ng-repeat="timeSlot in timeSlots" ng-model="data.timeSlot" ng-value="timeSlot" ng-click="getHistory(timeSlot)">
+                <ion-radio class="rrdRadioLabels" ng-repeat="timeSlot in timeSlots"  ng-model="data.timeSlot" ng-value="timeSlot" ng-click="getHistory(timeSlot)">
                     <div class="acSmallFonts">{{timeSlot.sts | date:'HH:MM'}}</div>
                     <div class="acSmallFonts">to</div>
                     <div class="acSmallFonts">{{timeSlot.ets | date:'HH:MM'}}</div>
