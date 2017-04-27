@@ -19,10 +19,11 @@ angular.module('updatemarkerdetails', [])
     $scope.updateTracker = function(data, form){
        if(form.$valid){
            let inputParam = data;
+           inputParam.devtype = data.vehicle_model;
             BatsServices.modifyMarker(inputParam).success(function (response) {
                 $scope.updateMarkerModal.show();
             }).error(function (error) {
-                ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
             })
        }
     }
