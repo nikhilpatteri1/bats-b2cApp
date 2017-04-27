@@ -1,52 +1,46 @@
 angular.module('eventhistoryfilter', [])
-.controller('EventFilterCtrl', function ($scope, $ionicModal, $timeout, BatsServices, ionicToast, Constants, $state, PageConfig) {
+    .controller('EventFilterCtrl', function ($scope, $ionicModal, $timeout, BatsServices, ionicToast, Constants, $state, PageConfig, _) {
 
-    $scope.filter = [];
-    $scope.allCheck = false;
-    $scope.gotoApplyFilter=function(data,form){
-            $state.go(PageConfig.EVENT_HISTORY_DETAIL); 
-    }
+        $scope.filter = [{'name' : 'Panic'},{'name' : 'Tamper Sim'},{'name' : 'Tamper Top'},{'name' : 'Battery'},{'name' : 'Overspeed'},
+            {'name' : 'Geofence'},{'name' : 'Sanity alarm'}, {'name' : 'Robbery / theft alarm'}, {'name' : 'Undefined'}];
+        $scope.allCheck = true;
+        $scope.gotoApplyFilter = function (data, form) {
+            $state.go(PageConfig.EVENT_HISTORY_DETAIL);
+        }
 
-    $scope.gotoEventHistoryDetail=function(){
-        $state.go(PageConfig.EVENT_HISTORY_DETAIL);
-    }
+        $scope.gotoEventHistoryDetail = function () {
+            $state.go(PageConfig.EVENT_HISTORY_DETAIL);
+        }
 
-    for(let i = 0;i<9 ; i++){
-        console.log($scope.filter[i]);
-        $scope.filter[i] = false;
-    }
-    
-    $scope.checkAll = function(allCheck){
-        console.log($scope.filter);
-        if(allCheck){
-            for(let i in $scope.filter){
-                console.log($scope.filter[i]);
-                $scope.filter[i] = true;
+        for (let i = 0; i < 9; i++) {
+            $scope.filter[i].value = true;
+        }
+
+        $scope.checkAll = function (allCheck) {
+            if (allCheck) {
+               
+                _.each($scope.filter, function(filter, i){$scope.filter[i].value = true;})
             }
-        }
-        else{
-             for(let i in $scope.filter){
-                $scope.filter[i] = false;
+            else {
+                _.each($scope.filter, function(filter, i){$scope.filter[i].value = false;})
             }
+            console.log($scope.allCheck)
         }
-    }
 
-    $scope.checkAllFor = function(){
-        let count = 0;
-         $scope.allCheck = true;
-        for(let i in $scope.filter){
-                if($scope.filter[i]){
-                    count++;
-                }
+        $scope.checkAllFor = function () {
+            console.log($scope.allCheck);
+            let count = 0;
+            $scope.allCheck = true;
+             $('#forCheckAll').attr('checked', true);
+            _.each($scope.filter, function(filter, i){
+                if ($scope.filter[i].value) {count++;}
+            })
+            if (count != $scope.filter.length) {
+                $scope.allCheck = false;
+                 $('#forCheckAll').attr('checked', false);
+            }
+            $scope.$apply;
+            console.log($scope.allCheck);
         }
-        console.log(count, $scope.filter, count === $scope.filter.length)
-        if(count != $scope.filter.length){
-            $scope.allCheck = false;
-        }
-        else{
-           
-        }
-         console.log(count, $scope.allCheck)
-    }
 
-})
+    })

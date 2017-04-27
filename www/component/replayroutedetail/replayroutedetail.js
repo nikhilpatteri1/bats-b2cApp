@@ -6,33 +6,12 @@ angular.module('replayroutedetail', [])
         dynamicMapHeight)-200+"px"};
 	console.log($scope.mapHeight);
 
-        // var map;
-        // var latLng = { lat: 12.850167, lng: 77.660329 };
-        // var mapOptions = {
-        //     center: latLng,
-        //     zoom: 22,
-        //     mapTypeId: google.maps.MapTypeId.ROADMAP
-        // };
-        // map = new google.maps.Map(document.getElementById("replay_map"), mapOptions);
-        // var dataFromReplay = UtilsFactory.getDataForReplay();
+		$scope.backToReplayRoute=function(){
+			 $state.go(PageConfig.REPLAY_ROUTE);
+		}
 
-        
-        // $scope.speedSlot = ["Slow", "Medium", "High"];
-        // $scope.timeSlots = dataFromReplay.values;
-        // console.log($scope.timeSlot);
 
-        // $scope.getHistory = function (timeSlot) {
-        //     var inputParam = { 'devid': dataFromReplay.devid, 'sts': timeSlot.sts, 'ets': timeSlot.ets };
-        //     BatsServices.history(inputParam).success(function (response) {
-        //         console.log(JSON.stringify(response));
-        //         // if (true) {
-        //         //     UtilsFactory.setDataForReplay(response.values);
-        //         //     $state.go(PageConfig.REPLAY_ROUTE_DETAILS);
-        //         // }
-        //     }).error(function (error) {
-        //         ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
-        //     })
-        // }
+
     $scope.showDatepicker=true;
 	$scope.showTimeSlot=false;
 	$scope.blankTable=true;

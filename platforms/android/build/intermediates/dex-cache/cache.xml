@@ -2,25 +2,25 @@
 <items version="2" >
 
     <item
-        jar="D:\jassi\ionic\Bats\platforms\android\libs\android-support-v4.jar"
-        jumboMode="false"
-        revision="25.0.2"
-        sha1="9b6a9a9078af571732159b904ad423b03b7cc786">
-        <dex dex="D:\jassi\ionic\Bats\platforms\android\build\intermediates\pre-dexed\debug\android-support-v4-dc8648cf652c0359f1f37982bc571bb34a4f167e.jar" />
-    </item>
-    <item
-        jar="D:\jassi\ionic\Bats\platforms\android\libs\gcm.jar"
+        jar="D:\Bydesign\ionic\bats-android\bats-android\platforms\android\libs\gcm.jar"
         jumboMode="false"
         revision="25.0.2"
         sha1="a6d7bce795a14c7f86111756c4ceb44b79de14aa">
-        <dex dex="D:\jassi\ionic\Bats\platforms\android\build\intermediates\pre-dexed\debug\gcm-bf176f2483fe55f7247f2c09229d7ba038cb49cc.jar" />
+        <dex dex="D:\Bydesign\ionic\bats-android\bats-android\platforms\android\build\intermediates\pre-dexed\debug\gcm-bee057ece13196fac38f13d00fe41fb911e8d152.jar" />
     </item>
     <item
-        jar="D:\jassi\ionic\Bats\platforms\android\build\intermediates\exploded-aar\android\CordovaLib\unspecified\debug\classes.jar"
+        jar="D:\Bydesign\ionic\bats-android\bats-android\platforms\android\libs\android-support-v4.jar"
         jumboMode="false"
         revision="25.0.2"
-        sha1="0686ed6f0ecb8e38c2c95bf9ddf5daa40eb80eec">
-        <dex dex="D:\jassi\ionic\Bats\platforms\android\build\intermediates\pre-dexed\debug\classes-1fa9e06ca1f30ddcdfb7b8ac41f4a76cc29f6a3d.jar" />
+        sha1="9b6a9a9078af571732159b904ad423b03b7cc786">
+        <dex dex="D:\Bydesign\ionic\bats-android\bats-android\platforms\android\build\intermediates\pre-dexed\debug\android-support-v4-58cb925afd026fbaaca2817e30ce7a8097559e23.jar" />
+    </item>
+    <item
+        jar="D:\Bydesign\ionic\bats-android\bats-android\platforms\android\build\intermediates\exploded-aar\android\CordovaLib\unspecified\debug\classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="c0aac1feab37d97ddb00d188e288da23b19620ba">
+        <dex dex="D:\Bydesign\ionic\bats-android\bats-android\platforms\android\build\intermediates\pre-dexed\debug\classes-77e2c7e7027a71a2452d420df6d3e7bc2e2e4e4d.jar" />
     </item>
 
 </items>

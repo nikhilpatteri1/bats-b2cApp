@@ -26,6 +26,10 @@ angular.module('updatemarkerdetails', [])
             })
        }
     }
+    
+    $scope.backToManageTracker=function(){
+     $state.go(PageConfig.MANAGE_TRACKER);
+}
 
     $scope.closeModal = function(){
         $scope.updateMarkerModal.hide();

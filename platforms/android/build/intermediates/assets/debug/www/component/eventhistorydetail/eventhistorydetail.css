@@ -1,13 +1,21 @@
 .ehd{
     border-bottom:1px solid #e7e7e7;
 }
-.ehdimage{
-       width: 43px;
-    margin-top: 6px;
-    border: 1px solid #ec1010;
+.ehdimageDiv{
+    width: 43px;
+    height: 43px;
     border-radius: 25px;
-    background: red;
-}    
+    background: green;
+    margin-top: 12px;
+    margin-left: 11px;
+}  
+
+.ehdimage{
+    width: 50px;
+    text-align: center;
+    margin-left: -8px;
+    margin-top: 5px;
+}     
 
 .latlongStyle{
     text-decoration: underline;
@@ -25,4 +33,17 @@
 .ehDateFormat{
     width: 75px;
         padding: 0px !important;
+}
+
+.ehdRowCol{
+    display: -webkit-inline-box;
+}
+
+.ehdRowCol .col-md-12{
+    width: 100%;
+    display: inline-flex;
+}
+
+.ehdLatLonPopup .popup-body{
+    text-align: center
 }

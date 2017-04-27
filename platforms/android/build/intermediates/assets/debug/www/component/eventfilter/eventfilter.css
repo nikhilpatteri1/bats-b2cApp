@@ -6,6 +6,9 @@
     width: 30px;
 }
 
+ .eventFilter .item-checkbox  .filterfWidth{
+    width: 25px !important;
+}
 .eventFilter .checkbox-icon:after{
     border-top-width: 0px;
     border-right-width: 0px;
@@ -15,6 +18,7 @@
     border-left-color: #00ba88;
     border-left-style: solid;
     border-left-width: 2px;
+    /*margin-top:15px;*/
 }
 
 .eventFilter .checkbox input:checked:before,
@@ -34,8 +38,17 @@
 
 .eventFilter .item-checkbox{
     padding-left: 15px;
+    font-size: 13px;
+        padding: 10px;
+    border-width: 0px;
+    font-weight: normal;
 }
 
+.eventFilter .colorForChecked {
+    
+    color:#ababab;
+    
+}
 
 .eventFilter .allCheck .checkbox input, 
 .eventFilter .allCheck .checkbox .checkbox-icon{
@@ -48,5 +61,9 @@
 .eventFilter .allCheck .checkbox-icon:before{
     margin-top: 2% !important;
     margin-left: 2% !important;
+}
+
+.fontForFilter{
+    font-size: 13px !important;
 }
     

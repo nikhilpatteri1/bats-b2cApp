@@ -9,7 +9,6 @@ angular.module('batsinterceptor', [])
         //       rejection.message = 'Server is temporarily down or you are not connected to the internet. Please try again in a while or check your connection.';
         //       $rootScope.$broadcast('SERVER_ERROR:SERVER_DOWN', rejection.message);
         //   }
-        console.log(rejection)
           if (rejection.data!==null && rejection.data!=undefined &&  (rejection.status == 400 || rejection.status == 500)) {
         	  if(rejection.data.err == 'Expired Session' || rejection.data.Err == 'Internal Server Error'){
         		  $rootScope.$broadcast(400, "Session has expired, please login to continue.");
@@ -19,12 +18,11 @@ angular.module('batsinterceptor', [])
           return $q.reject(rejection);
       },
       request: function(config) {
-    	// var token = window.localStorage.getItem(Constants.accessToken);
     	// config.headers.Authorization = 'Bearer ' + token;
 
   //  console.log(config)
     if(config.data)
-      config.data.token = $cookies.get(Constants.accessToken);
+      config.data.token = localStorage.getItem(Constants.accessToken);
       // console.log(config)
     	return config;
     }

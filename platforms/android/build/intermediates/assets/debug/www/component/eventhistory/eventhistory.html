@@ -2,6 +2,10 @@
     <ion-nav-buttons side="left">
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
     </ion-nav-buttons>
+     <ion-nav-buttons side="right">
+      <!--<button class="button button-icon button-clear " ng-click="gotoFilter()" ><img class="filterWidth" src="img/filter.png"></button> -->
+        <a class="button button-icon button-clear " href="#/bats/notification" ><img class="filterWidth" src="img/notification.png"></a>
+    </ion-nav-buttons>
     <ion-content class="lgBackgroundWhite" scroll="false">
         <div class="commonLeftMargin">
 
@@ -9,7 +13,7 @@
                 <div class="LoginHeading">
                     <form name="eventHistoryForm">
                         <div ng-show="data.selectedvehicle" class="floatlabeltxt show-hide inputFieldFontSize">Select Vehicle</div>
-                        <select ng-model="data.selectedvehicle" class="dropdown" name="selectedvehicle" required ng-options="v for v in dummyVehicle"
+                        <select ng-model="data.selectedvehicle" class="dropdown" name="selectedvehicle" required ng-options="v.devid for v in deviceList"
                             ng-class="{error: signupStep1Form.selectedvehicle.$invalid && Validate}">
                             <option value=""disabled selected>Select Vehicle</option>
                              </select>
@@ -17,16 +21,19 @@
                         <div class="space1">
                             <div class="floatlabeltxt show-hide inputFieldFontSize">Start Date</div>
                             <ion-list>
-                                <div class="item itemBorader" ion-datetime-picker ng-model="data.startdatetimeValue" aria-placeholder="Start Date">
-                                    {{datetimeValue| date: "yyyy-MM-dd H:mm:ss"}} <img class="calendericon" src="img/calender.png">
+                                <div class="item itemBorader" ion-datetime-picker ng-model="data.startdatetimeValue" aria-placeholder="Start Date" 
+                                only-valid="{'before': 'today', 'inclusive': true}" >
+                                    {{data.startdatetimeValue| date: "yyyy-MM-dd H:mm:ss"}} <img class="calendericon" src="img/calender.png">
                                 </div>
                             </ion-list>
                         </div>
                         <div class="space1">
                             <div class="floatlabeltxt show-hide inputFieldFontSize">End Date</div>
                             <ion-list>
-                                <div class="item itemBorader" ion-datetime-picker ng-model="data.enddatetimeValue" aria-placeholder="End Date">
-                                    {{startDatetimeValue| date: "yyyy-MM-dd H:mm:ss"}} <img class="calendericon" src="img/calender.png">
+                                <div class="item itemBorader" ion-datetime-picker ng-model="data.enddatetimeValue" aria-placeholder="End Date"
+                                only-valid="{'between': {'initial': data.startdatetimeValue,
+                                   'final': 'today'}, 'inclusive': true}">
+                                    {{data.enddatetimeValue| date: "yyyy-MM-dd H:mm:ss"}} <img class="calendericon" src="img/calender.png">
                                 </div>
                             </ion-list>
                         </div>

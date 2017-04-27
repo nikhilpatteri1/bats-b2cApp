@@ -9,8 +9,40 @@ angular.module('signupstep2', [])
     if(UtilsFactory.getSignUpData().length==0 && $scope._token == undefined ){
         $state.go(PageConfig.SIGNUP_STEP1)
     }
-    if(UtilsFactory.getEditMarkerDetails()){
-        $scope.data = UtilsFactory.getEditMarkerDetails();
+    console.log('$scope.editMarkerData')
+    if(UtilsFactory.getEditMarkerDetails().length!=0){
+        $scope.editMarkerData = UtilsFactory.getEditMarkerDetails();
+        console.log($scope.editMarkerData)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        $scope.data = [{'devid': $scope.editMarkerData.devid, 't_sim_provider': $scope.editMarkerData.sim_service_provider,
+            't_sim_cn' : $scope.editMarkerData.device_sim_cn }]
     }
     $scope.trackers = [{id: 1}];
     $scope.addTracker = function(){
@@ -23,8 +55,17 @@ angular.module('signupstep2', [])
         $scope.data[i] = {};
     }
 
+$scope.backToManageTracker=function(){
+    if( UtilsFactory.getEditMarkerDetails().length!=0){
+        UtilsFactory.setEditMarkerDetails([]);
+    }
+     $state.go(PageConfig.MANAGE_TRACKER);
+}
     $scope.gotoRegister = function(data, form){
         if(form.$valid){
+            if( UtilsFactory.getEditMarkerDetails().length!=0){
+                    UtilsFactory.setEditMarkerDetails([]);
+                } 
              if($scope._token!=undefined || $scope._token!=null){
                 var inputParam =  {'trackers' : data};
                 BatsServices.addnewdevices(inputParam).success(function (response) {

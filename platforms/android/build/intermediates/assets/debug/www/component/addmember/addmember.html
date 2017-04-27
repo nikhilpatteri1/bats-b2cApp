@@ -2,64 +2,56 @@
      <ion-nav-buttons side="left">
         <button class="button button-icon button-clear ion-arrow-left-c"  ng-click="backToManageMember()"></button>
     </ion-nav-buttons>
-    <ion-content class="lgBackgroundWhite">
+    <ion-content class="lgBackgroundWhite ionContentMargin">
         <div class="commonLeftMargin">
             <div class="amSmallFonts acGreyFont">Please Enter member details</div>
             <div class="containerLogin">
                 <div class="LoginHeading amPadding">
                     <form name="AddMemberForm.form">
                         <div class="space">
-                            <label ng-show="data.fName" class="floatlabeltxt show-hide inputFieldFontSize">First Name</label>
-                            <input placeholder="Enter First Name" type="text" ng-model="data.firstname" required name="fName" ng-class="{error: AddMemberForm.form.fName.$invalid && Validate}"
-                            />
+                            <label ng-if="data.firstname" class="floatlabeltxt show-hide inputFieldFontSize">First Name</label>
+                            <input placeholder="Enter First Name" type="text" ng-model="data.firstname" required 
+                                name="firstname" ng-class="{error: AddMemberForm.form.firstname.$invalid && Validate}"/>
                         </div>
 
                         <div class="space">
-                            <label ng-if="data.lName" class="floatlabeltxt show-hide inputFieldFontSize">Second Name</label>
-                            <input placeholder="Enter Second Name" type="text" name=" lName" ng-model="data.lName" required ng-class="{error: AddMemberForm.form.lName.$invalid && Validate}"
-                            />
+                            <label ng-if="data.lastname" class="floatlabeltxt show-hide inputFieldFontSize">Second Name</label>
+                            <input placeholder="Enter Second Name" type="text" name=" lastname" ng-model="data.lastname" required
+                                 ng-class="{error: AddMemberForm.form.lastname.$invalid && Validate}"/>
                         </div>
                         <div class="space">
                             <label ng-if="data.email" class="floatlabeltxt show-hide inputFieldFontSize">Email</label>
-                            <input placeholder="Enter Email" type="email" name="email" ng-model="data.email" required ng-class="{error: AddMemberForm.form.email.$invalid && Validate}"
-                            />
-                            <span class="red" ng-show="AddMemberForm.form.email.$dirty && AddMemberForm.form.email.$invalid">
-                            <span ng-show="AddMemberForm.form.email.$error.email">Invalid email address</span>
+                            <input placeholder="Enter Email" type="email" name="email" ng-model="data.email" required 
+                                ng-class="{error: AddMemberForm.form.email.$invalid && Validate}"/>
+                            <span class="red" ng-if="AddMemberForm.form.email.$dirty && AddMemberForm.form.email.$invalid">
+                            <span ng-if="AddMemberForm.form.email.$error.email">Invalid email address</span>
                             </span>
                         </div>
                         <div class="space">
-                            <label ng-show="data.phonenumber" class="floatlabeltxt show-hide inputFieldFontSize">Phone Number</label>
-                            <input placeholder="Enter Phone Number" oninput="if(value.length>10)value=value.slice(0,10)" type="number" name="phonenumber"
-                                ng-model="data.phonenumber" required ng-class="{error: AddMemberForm.form.phonenumber.$invalid && Validate }" />
+                            <label ng-if="data.contact_no" class="floatlabeltxt show-hide inputFieldFontSize">Phone Number</label>
+                            <input placeholder="Enter Phone Number" oninput="if(value.length>10)value=value.slice(0,10)" type="number" name="contact_no"
+                                ng-model="data.contact_no" required ng-class="{error: AddMemberForm.form.contact_no.$invalid && Validate }" />
 
                         </div>
                         <div class="space">
-                            <label ng-show="data.desc" class="floatlabeltxt show-hide inputFieldFontSize">Description</label>
-                            <input placeholder="Description" type="text" name="username" ng-model="data.desc" required ng-class="{error: AddMemberForm.form.username.$invalid && Validate}"
-                            />
-
+                            <label ng-if="data.desc" class="floatlabeltxt show-hide inputFieldFontSize">Description</label>
+                            <input placeholder="Description" type="text" name="desc" ng-model="data.desc" required 
+                                ng-class="{error: AddMemberForm.form.desc.$invalid && Validate}"/>
                         </div>
-                        <div class="space">
-                            <label ng-show="data.password" class="floatlabeltxt show-hide inputFieldFontSize">Create Member Password</label>
-                            <input placeholder="Create Passworde" type="password" name="password" ng-model="data.password" required ng-class="{error: AddMemberForm.form.password.$invalid && Validate}"
-                            />
-                            <!--<input placeholder="State" type="text" ng-model="state" required class="" />-->
+                        <div class="space" ng-if="!passwordHide">
+                            <label ng-if="data.password" class="floatlabeltxt show-hide inputFieldFontSize">Create Member Password</label>
+                            <input placeholder="Create Password" type="password" name="password" ng-model="data.password" required
+                                 ng-class="{error: AddMemberForm.form.password.$invalid && Validate}"/>
                         </div>
-
                     </form>
                 </div>
-
             </div>
             <label ng-if="Validate" class="red">All Fields are mendatory</label>
         </div>
     </ion-content>
-
-    <div class="bar bar-footer bar-balanced" ng-class="{'disableDiv': AddMemberForm.form.$invalid}" ng-click="gotoCreate(data,AddMemberForm.form)">
-        <div class="title">Create</div>
+    <div class="bar bar-footer bar-balanced" ng-class="{'disableDiv': AddMemberForm.form.$invalid}" 
+        ng-click="gotoCreate(data,AddMemberForm.form)">
+        <div ng-if="!passwordHide" class="title">Create</div>
+         <div ng-if="passwordHide" class="title">Update</div>
     </div>
-
-    <!--<div class="bar bar-footer bar-balanced" ng-if="updatrue" ng-class="{'disableDiv': AddMemberForm.form.$invalid}" ng-click="gotoUpdate(data,AddMemberForm.form)">
-        <div class="title">Update</div>
-    </div>-->
-
 </ion-view>
