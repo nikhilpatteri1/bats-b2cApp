@@ -1,15 +1,21 @@
 angular.module('managetracker', [])
 .controller('ManageTrackerCtrl', function($scope, $state, $ionicModal, $timeout, PageConfig, BatsServices, ionicToast,
-    Constants) {
+    Constants, UtilsFactory) {
 
-    let inputParam = {};
-    console.log("sadsad");
-    BatsServices.deviceList(inputParam).success(function (response) {
-        $scope.trackerList = response
-    }).error(function (error) {
-        ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+    function init(){
+        let inputParam = {};
+        BatsServices.deviceList(inputParam).success(function (response) {
+            $scope.trackerList = response
+        }).error(function (error) {
+            ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+        });
+    }
+    init();
+
+    $scope.$on('manageTrackerList', function(){
+        init();
     })
-  
+
     $scope.gotoHome = function(){
         $state.go(PageConfig.LIVE_TRACKING);
     }

@@ -2,7 +2,7 @@ angular.module('updatemarkerdetails', [])
 .controller('UpdateMarkerDetailsCtrl', function($scope, $state, $ionicModal, $timeout, PageConfig, Constants,
     $ionicPopup, UtilsFactory, ionicToast, BatsServices) {
         $scope.updatemarkerdetialsForm = {};
-       
+        $scope.data = {};
         if(UtilsFactory.getManageTrackerDetails().length==0){
             $state.go(PageConfig.MANAGE_TRACKER);
         }
@@ -19,8 +19,7 @@ angular.module('updatemarkerdetails', [])
     $scope.updateTracker = function(data, form){
        if(form.$valid){
            let inputParam = data;
-           inputParam.vehicle_model = "data"  
-        BatsServices.modifyMarker(inputParam).success(function (response) {
+            BatsServices.modifyMarker(inputParam).success(function (response) {
                 $scope.updateMarkerModal.show();
             }).error(function (error) {
                 ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);

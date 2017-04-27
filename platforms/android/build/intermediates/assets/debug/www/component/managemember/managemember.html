@@ -2,7 +2,10 @@
     <ion-nav-buttons side="left">
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
     </ion-nav-buttons>
-    <ion-content class="hmCards" scroll="true">
+     <ion-nav-buttons side="right">
+      <a class="button button-icon button-clear " href="#/bats/notification" ><img class="filterWidth" src="img/notification.png"></a>
+    </ion-nav-buttons>
+    <ion-content class="hmCards" scroll="true" ng-init="init();">
         <div class="card md-list" ng-repeat="member in memberList">
             <div class="row mmMargin">
               <b > Member {{$index+1}}</b>
@@ -15,15 +18,17 @@
             <div class="row">
                 <div class="col-md-6  acSmallFonts acGreyFont">{{member.email}}</div>
                 <div class="col-md-6 acSmallFonts acVehicleCompany ">
-                    <img class="batsIcon acEditIcon alignRight" src="img/pencil.png" ng-click="updateUser(member.uid)" /></div>
+                    <img class="batsIcon acEditIcon alignRight" src="img/pencil.png" ng-click="updateUser(member)" /></div>
             </div>
             <div class="row">
                 <div class="col-md-2 acSmallFonts acGreyFont">{{member.contact_no}}</div>
             </div>
         </div>
         <div class="addmemberButton">
-            <div class="suTrackerCard suAddTrackerDiv" ng-class="{'disableDiv': memberList.length>2}" ng-click="addNewMember()">
-                <i class="ion-ios-plus-empty suAddTrackerIcon"></i>Add Tracker</div>
+            <div class="suTrackerCard suAddTrackerDiv" ng-class="{'disableDivForTransparent': memberList.length>2}" 
+                ng-click="addNewMember()">
+                <i class="ion-ios-plus-empty suAddTrackerIcon"></i>Add Tracker
+            </div>
         </div>
     </ion-content>
 </ion-view>

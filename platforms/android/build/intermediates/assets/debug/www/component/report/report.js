@@ -1,12 +1,25 @@
 angular.module('report', [])
-    .controller('ReportCtrl', function ($scope, $ionicModal, $timeout,BatsServices) {
-
-        // $scope.gotoResetPassword=function(){
-        // console.log($scope.email);
-        // console.log($scope.userid);
-
-        // BatsServices.login({}).success(function (response) {
-        // }).error(function (error) {
-        // })
-        // }
+    .controller('ReportCtrl', function ($scope, $rootScope, $ionicModal, $timeout, BatsServices, ionicToast, PageConfig, Constants, $state,
+        UtilsFactory) {
+        //***************************** for fetching device list*****************************
+        let inputParam = {};
+        console.log("sadsad");
+        BatsServices.deviceList(inputParam).success(function (response) {
+            //console.log(JSON.stringify(response));
+            $scope.deviceList = response
+        }).error(function (error) {
+            ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+        })
+        // ***************** end of fetching devices *****************************
+        $rootScope.dateValue = new Date();
+        $rootScope.timeValue = new Date();
+        $rootScope.datetimeValue = new Date();
+        $scope.gotoReport = function (data, form) {
+            // BatsServices.deviceList(inputParam).success(function (response) {
+            //     //console.log(JSON.stringify(response));
+            //     $scope.deviceList = response
+            // }).error(function (error) {
+            //     ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+            // })
+        }
     })

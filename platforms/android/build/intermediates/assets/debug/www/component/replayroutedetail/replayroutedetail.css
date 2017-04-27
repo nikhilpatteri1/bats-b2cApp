@@ -1,15 +1,36 @@
-.rrdbcolor{
-    background-color: #fff
+.rrdRadioLabels{
+    width: 26%;
+    text-align: center;
+    border: none;
+    padding: 8px;
+    padding-bottom: 4px;
+}
+
+.rrdIonList .list{
+    display: flex;
+}
+
+.rrdIonList .item-radio .item-content {
+    padding: 0px;
+    background-color: white;
+}
+
+.rrdIonList .ion-checkmark:before {
+    content: "";
 }
 
 .rrdIonList .item-radio input:checked + .radio-content .item-content{
-    background-color: #fff;
-    border-bottom:8px solid #f37a1f; 
+    border-bottom: 2px solid #fe6135;
+}
+
+.rrdIonList .item-radio input:checked + .radio-content .item-content {
+    background: white;
 }
 
 .rrdIonList .item-radio input:checked + .radio-content .item-content .acGreyFont{
-    color: #000;
+    color: white;
 }
 
-.rrdspeedCtrlSection{ position: fixed; width: 250px;height: 90px;background: #fff;bottom: 20px;left:50%;z-index: 10}
-.rrdspeedCtrlSection label{text-align: left;margin-left:-100px;margin-bottom:15px; }
+/*.rrmapClass {
+
+}*/
