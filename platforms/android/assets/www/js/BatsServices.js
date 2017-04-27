@@ -5,6 +5,10 @@ angular.module('batsservices', [])
     this.login = function (inputData) {
         return $http.post(baseUrl + 'b2c/app/login', inputData);
     }
+    
+    this.logout = function (inputData) {
+        return $http.post(baseUrl + 'b2c/app/logout', inputData);
+    }
 
     this.changePassword = function (inputData) {
         return $http.post(baseUrl + 'b2capp/user/reset_pwd', inputData);
@@ -47,6 +51,10 @@ angular.module('batsservices', [])
         return $http.post(baseUrl + 'b2capp/device/list', inputData);
     }
 
+    this.activeDeviceList = function (inputData) {
+        return $http.post(baseUrl + 'b2capp/device/active_tracker_list', inputData);
+    }
+
     this.modifyMarker = function (inputData) {
         return $http.post(baseUrl + 'b2capp/device/modify', inputData);
     }
@@ -78,4 +86,8 @@ angular.module('batsservices', [])
     this.activateDevice = function (inputData) {
         return $http.post(baseUrl + 'b2capp/device/activate', inputData);
     }
+     this.notification = function (inputData) {
+        return $http.post(baseUrl + 'b2capp/device/alarmnotifications', inputData);
+    }
+    
 })

@@ -12,7 +12,9 @@ batsconstants.constant('Constants', {
     OPERATOR: ["Aircel","Airtel","BSNL","Idea","Jio","MTNL","MTS","Reliance GSM","Reliance Mobile","T24","Tata Docomo","Tata Indicom","Telenor","Vodafone","Videocon"],
 	TIME_INTERVAL:  3000,
 	TOST_POSITION : "top",
-	accessToken : "token"
+	accessToken : "token",
+	ACCESS_TYPE : "accessType",
+	USER_VO : "user_vo",
 });
    
 
@@ -38,10 +40,12 @@ batsconstants.constant('PageConfig', {
 	ADD_MEMBER:'bats.addmember',
 	EVENT_FILTER:'bats.eventfilter',	
 	LIVE_TRACKING_DEVICES : 'bats.livetrackingdevices',
-	REPLAY_ROUTE_DETAILS : 'bats.replayroutedetail'
+	REPLAY_ROUTE_DETAILS : 'bats.replayroutedetail',
+	NOTIFICATION : 'bats.notification'
 });
    
 
 batsconstants.constant('Messages', {
 	NOT_AUTHORIZED_MESSAGE : "Login to continue!",
+	MEMBER_NOT_AUTHORIZED_MESSAGE : "Login to continue with admin/user account!",
 });

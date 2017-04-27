@@ -1,9 +1,8 @@
 angular.module('batsconfig', [])
-  .config(function ($stateProvider, $urlRouterProvider, PageConfig, $httpProvider, Constants, $cookies) {
+  .config(function ($stateProvider, $urlRouterProvider, PageConfig, $httpProvider, Constants) {
 
     $httpProvider.interceptors.push("BatsInterceptor");
     $stateProvider
-
       .state('bats', {
         url: '/bats',
         abstract: true,
@@ -26,7 +25,7 @@ angular.module('batsconfig', [])
 
       .state(PageConfig.FORGOT_PASSWORD, {
         url: '/forgotpassword',
-        templateUrl: 'component/forgotpassword/forgotpassword.html',
+        templateUrl: 'component/forgotPassword/forgotPassword.html',
         controller: 'ForgotPasswordCtrl'
       })
 
@@ -34,7 +33,7 @@ angular.module('batsconfig', [])
         url: '/changepassword',
         views: {
           'menuContent': {
-            templateUrl: 'component/changepassword/changepassword.html',
+            templateUrl: 'component/changePassword/changePassword.html',
             controller: 'ChangePasswordCtrl'
           }
         }
@@ -42,13 +41,13 @@ angular.module('batsconfig', [])
 
       .state(PageConfig.SIGNUP_STEP1, {
         url: '/signupstep1',
-        templateUrl: 'component/signupstep1/signupstep1.html',
+        templateUrl: 'component/signupStep1/signupStep1.html',
         controller: 'SignupStep1Ctrl'
       })
 
       .state(PageConfig.SIGNUP_STEP2, {
         url: '/addnewdevices',
-        templateUrl: 'component/signupstep2/signupstep2.html',
+        templateUrl: 'component/signupStep2/signupStep2.html',
         controller: 'SignupStep2Ctrl'
       })
 
@@ -122,8 +121,6 @@ angular.module('batsconfig', [])
           }
         }
       })
-
-
 
       .state(PageConfig.LIVE_TRACKING, {
         url: '/livetracking',
@@ -209,13 +206,25 @@ angular.module('batsconfig', [])
             controller: 'ReplayRouteDetailCtrl'
           }
         }
+      })
+       .state(PageConfig.NOTIFICATION, {
+        url: '/notification',
+        views: {
+          'menuContent': {
+            templateUrl: 'component/notification/notification.html',
+            controller: 'NotificationCtrl'
+          }
+        }
       });
       
-        	var _token = $cookies.get(Constants.accessToken);
-        	if(_token == undefined || _token == null){
-        		$urlRouterProvider.otherwise('/start');
-        	}else{
-        		$urlRouterProvider.otherwise('/bats/livetracking');
-        	}
-        	
+      var _token = localStorage.getItem(Constants.accessToken)
+     if(_token == undefined || _token == null){
+        $urlRouterProvider.otherwise('/login');
+     }
+     else{
+        $urlRouterProvider.otherwise('/bats/livetracking');
+     }
+        		
+
+        
   });

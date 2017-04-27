@@ -7,29 +7,29 @@ angular.module('actioncarddirective', [])
 
     var actionController = function($scope, $state, $ionicModal, $rootScope, PageConfig, UtilsFactory, BatsServices,
         ionicToast, Constants) {
-        console.log($scope.tracker)
         $scope.getActionTemplateUrl = function(){
             return getTemplate();
         }
         
+       
         $scope.updatemarker = function(tracker){
             UtilsFactory.setManageTrackerDetails(tracker);
-            $state.go(PageConfig.UPDATE_MARKER_DETAILS)
+            $state.go(PageConfig.UPDATE_MARKER_DETAILS);
+        }
+
+        $scope.editmarker = function(tracker){
+            UtilsFactory.setEditMarkerDetails(tracker);
+            $state.go(PageConfig.SIGNUP_STEP2);
         }
 
         $scope.activateDevice = function(tracker){
             let inputParam = {'devlist': [tracker.devid]}
             BatsServices.activateDevice(inputParam).success(function (response) {
-                    // localStorage.setItem(Constants.accessToken, response.token);
-                    console.log(response)
-                    // $state.go(PageConfig.LIVE_TRACKING);
-                    
+                    $scope.$emit('manageTrackerList');
                 }).error(function (error) {
                     ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
                 })
         }
-        
-
     };
    
     return {
