@@ -1,0 +1,35 @@
+.steptextFollow{
+    font-size: 12px;
+    color: #adadad;
+    float: right;
+    margin-right: 10px;
+    margin-top: 14px;
+}
+
+.suTrackerCard{
+    padding: 12px;
+    padding-bottom: 0px;
+    padding-top: 5px;
+    margin-bottom: 10px;
+}
+
+.suTrackerDiv{
+    padding: 12px;
+    padding-bottom: 10px;
+}
+
+.suAddTrackerIcon{
+    padding: 8px 11px;
+    border: 1px solid #777777;
+    margin-right: 10px;
+}
+
+.suAddTrackerDiv{
+    margin-top: 30px;
+}
+
+.suPopupContent{
+    text-align: center;
+    font-size: 12px;
+    padding: 2px;
+}

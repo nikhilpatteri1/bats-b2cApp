@@ -1,0 +1,25 @@
+<div class="card md-list" >
+    <div class="row">
+            <div class="col-md-3">{{tracker.devid}}</div>
+            <div class="col-md-3 acActive acSmallFonts" 
+                ng-class="{'acGreyFont':tracker.active_status=='I', 'acYellowFont' :tracker.active_status=='P',
+                 'acGreenFont' : tracker.active_status=='A',}">{{tracker.status}}</div>
+    </div>
+    <div class="row acRemoveMargin">
+            <div class="col-md-2 acSmallFonts acBlueColor">Carrier Name</div>
+            <div class="col-md-2 acSmallFonts acGreyFont">{{tracker.device_sim_cn}}</div>
+            <img class="batsIcon acEditIcon" src="img/pencil.png" />
+    </div>
+    <div class="row">
+            <div class="col-md-2"><img class="batsIcon acTransform" src="img/car.png" /></div>
+            <div class="col-md-2 acSmallFonts acVehicleCompany">Nissan GTR | {{tracker.vehicle_num}}</div>
+    </div>
+     <div class="row">
+        <div class="col-md-2 acSmallFonts acGreyFont">Please update the details</div>
+     </div>
+    <div class="floatRight acButtonFooterDiv">
+        <button class="button button-balanced" ng-if="tracker.active_status=='I'" ng-click="activateDevice(tracker)">
+            Active</button>
+        <button class="button button-light" ng-click="updatemarker(tracker)">Update</button>
+    </div>
+</div>

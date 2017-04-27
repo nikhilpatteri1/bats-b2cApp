@@ -1,0 +1,152 @@
+
+/************************** start page specific css **************************/
+
+.stUserTag {
+	text-decoration: none;
+	color: #6e6e6e;
+	display: block;
+    margin-top: 15px;
+}
+
+.startUp {
+	background-color: #90B476;
+	height: 50%;
+}
+
+.container1 {
+	display: table;
+	height: 50%;
+	overflow: hidden;
+	width: 100% !important;
+}
+
+.helper { 
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.con { 
+	margin: 37px auto;
+	width: 100% !important;
+}
+
+.color1 {
+	border-top: #F6BA22 1px solid;
+}
+
+.color2 {
+	border-top: #739FD2 1px solid;
+}
+
+.color3 {
+	border-top: #CED80A 1px solid;
+}
+
+.paddingRemove {
+	padding: 0% !important;
+	margin-top: 0px !important;
+}
+
+.lgbutton {
+    margin-top: 20px;
+	width: 150px;
+	border-radius: 4px;
+}
+
+.topMArginStart{
+    margin-top:88px;
+}
+.con .item {
+	border: none;
+	border-bottom: #6e6e6e 1px solid;
+	margin-bottom: 6px;
+	margin-left: -16px;
+}
+
+.lgIcon {
+	width: 15px;
+	height: 15px;
+	margin-left: -14px;
+	margin-bottom: -7px;
+}
+
+.lgInputWidth input{
+	margin-bottom: -7px;
+}
+
+.lgFont {
+	padding-top: 6px !important;
+    padding-left: 6px !important;
+}
+
+
+.lgWelcome {
+	width: 35%;
+	position: relative !important;
+}
+
+@media all and (orientation:landscape ) {
+	.lgWelcome {
+		width: 50%;
+	}
+	.lgWlcmText {
+	    margin-top: 5px !important;
+	}
+	.con {
+	     margin: 0px auto; 
+	}
+	.lgbutton {
+	    margin-top: 10px;
+	    width: 160px;
+	    min-height: 32px;
+	    height: 35px;
+	    line-height: 0px;
+	}
+	.stUserTag {
+	    margin-top: 10px;
+	}
+	.lgButtonMarginTop{
+	    margin-top: -20px;
+	}
+}
+
+.lgWlcmText {
+	    color: black;
+    margin-top: 25%;
+    text-align: center;
+    font-size: 13px;
+}
+
+.lgWlcmText2 {
+	color: #6e6e6e;
+    margin: 0% 4% 1% 4%;
+    text-align: center;
+    font-size: 138%;
+    line-height: 28px;
+}
+
+.lgBackgroundWhite {
+	background-color: white;
+}
+
+.lgInputWidth{
+	    width: 90%;
+    margin-left: 5% !important;
+        margin-right: 5%;
+}
+#username::-webkit-input-placeholder, #password::-webkit-input-placeholder
+	{
+	color: #6e6e6e;
+}
+
+#username:-ms-input-placeholder, #password:-ms-input-placeholder {
+	color: #6e6e6e;
+}
+
+@media all and (orientation: portrait){
+	.stCon {
+    	margin-top: -40px;
+	}
+}
+

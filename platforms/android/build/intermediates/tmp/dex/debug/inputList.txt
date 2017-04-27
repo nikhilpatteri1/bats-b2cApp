@@ -1,0 +1,4 @@
+D:\jassi\ionic\Bats\platforms\android\build\intermediates\classes\debug
+D:\jassi\ionic\Bats\platforms\android\build\intermediates\pre-dexed\debug\gcm-bf176f2483fe55f7247f2c09229d7ba038cb49cc.jar
+D:\jassi\ionic\Bats\platforms\android\build\intermediates\pre-dexed\debug\classes-1fa9e06ca1f30ddcdfb7b8ac41f4a76cc29f6a3d.jar
+D:\jassi\ionic\Bats\platforms\android\build\intermediates\pre-dexed\debug\android-support-v4-dc8648cf652c0359f1f37982bc571bb34a4f167e.jar

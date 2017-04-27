@@ -1,0 +1,179 @@
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova
+END
+PluginEntry.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/PluginEntry.java
+END
+ICordovaClientCertRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/ICordovaClientCertRequest.java
+END
+CordovaInterfaceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/CordovaInterfaceImpl.java
+END
+PluginManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/PluginManager.java
+END
+ConfigXmlParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/ConfigXmlParser.java
+END
+CordovaPlugin.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/CordovaPlugin.java
+END
+CallbackContext.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/CallbackContext.java
+END
+CordovaArgs.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/CordovaArgs.java
+END
+Config.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/Config.java
+END
+ICordovaCookieManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/ICordovaCookieManager.java
+END
+CoreAndroid.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/CoreAndroid.java
+END
+CordovaResourceApi.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/CordovaResourceApi.java
+END
+ExposedJsApi.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/ExposedJsApi.java
+END
+CordovaPreferences.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/CordovaPreferences.java
+END
+PluginResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/PluginResult.java
+END
+CordovaClientCertRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/CordovaClientCertRequest.java
+END
+CordovaDialogsHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/CordovaDialogsHelper.java
+END
+NativeToJsMessageQueue.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/NativeToJsMessageQueue.java
+END
+CordovaWebViewImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/CordovaWebViewImpl.java
+END
+CordovaWebViewEngine.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/CordovaWebViewEngine.java
+END
+CordovaHttpAuthHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/CordovaHttpAuthHandler.java
+END
+LOG.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/LOG.java
+END
+Whitelist.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/Whitelist.java
+END
+CordovaBridge.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/CordovaBridge.java
+END
+CordovaInterface.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/CordovaInterface.java
+END
+AuthenticationToken.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/AuthenticationToken.java
+END
+CordovaWebView.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/CordovaWebView.java
+END
+CordovaActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/CordovaActivity.java
+END
+ICordovaHttpAuthHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/ICordovaHttpAuthHandler.java
+END

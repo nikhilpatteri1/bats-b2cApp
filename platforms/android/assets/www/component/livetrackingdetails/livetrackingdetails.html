@@ -1,0 +1,47 @@
+<ion-view view-title="">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </ion-nav-buttons>
+     <ion-nav-buttons side="right">
+       <a class="button button-icon button-clear " href="#/bats/notification" ><img class="filterWidth" src="img/notification.png"></a>
+    </ion-nav-buttons>
+    <ion-content class="lgBackgroundWhite" scroll="true" ng-init="init()">
+        <div class="lvddiv1 ">
+            <div class="row vsMargin removeMarginLeftRight">
+                <div class="col-md-5 lvdDivWidth lvdVehicleBack removePaddingLeftRight">
+                    <img class="batsIcon lvdTransform" ng-src="img/car.png" /></div>
+                    
+                <div class="col-md-7  lvdPedding lvdDivWidth lvdSmallFontsforVehicleName acVehicleCompany">
+                    {{data[0].vehicle_name}}<br> {{data[0].vehicle_num}}
+                    <!--{{vehicleStatistics.vehicle_name}} <br>{{vehicleStatistics.vehicle_num}}-->
+                
+
+                <div class="acGreyFont lvdSmallFontsforChildName">Traker id  {{data[0].devid}}</div> 
+                <div class="acGreyFont lvdSmallFontsforChildName">Tracker Sim Carrier </div>
+                <div class="acGreyFont lvdSmallFontsforChildName">Tracker Sim Ph no.</div>
+                </div>
+            </div>
+        </div>
+        <div class="lvdstatusBorder">
+            <div class="row removeMarginLeftRight">
+                <div class="col-md-2 lvdRightBorder lvdRemoveTopRow">
+                    <b>Status</b>
+                </div>
+                <div class="col lvdstatus lvdDivWidth lvdRemoveTopRow">
+
+                    <div class="lvdstatusColor" ng-style="{{getColorBack(divcolor)}}"></div>
+                    <span>{{barTxt}}</span>
+                     <!--ng-class="{'crossedGeofence' : status==0, 'crossSpeed' : status==1,
+                        'crossGeoAndSpeed' : status==2,'normalState' : status==3,'noResponceState' : status==4}"-->
+                </div>
+                <div class="col lvdDivWidth">
+                    <div class="lvdalignRight acGreyFont acSmallFonts"> Last Update<br> {{data[0].values.ts | eventTimeDate}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chart">
+        </div>
+        <div class=" lvdMarginLeft lvdSeedLimit">50 KmpH<br>Speed limit</div>
+    </ion-content>
+</ion-view>

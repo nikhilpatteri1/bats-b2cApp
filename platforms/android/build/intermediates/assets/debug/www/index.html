@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html ng-app="bats">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title></title>
+
+  <link rel="manifest" href="manifest.json">
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+  <!--cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
+  <!--<script src="lib/ionic/js/angular/angular.js"></script>-->
+
+  <!-- custom css -->
+  <link href="component/start/start.css" rel="stylesheet">
+  <link href="component/login/login.css" rel="stylesheet">
+  <link href="component/signupstep1/signupstep1.css" rel="stylesheet">
+  <link href="component/signupstep2/signupstep2.css" rel="stylesheet">
+  <link href="component/managetracker/managetracker.css" rel="stylesheet">
+  <link href="component/updatemarkerdetails/updatemarkerdetails.css" rel="stylesheet">
+  <link href="component/replayroute/replayroute.css" rel="stylesheet">
+  <link href="component/eventhistorydetail/eventhistorydetail.css" rel="stylesheet">
+  <link href="component/navigation/navigation.css" rel="stylesheet">
+  <link href="component/forgotpassword/forgotpassword.css" rel="stylesheet">
+  <link href="component/vehiclestatistic/vehiclestatistics.css" rel="stylesheet">
+  <link href="component/eventfilter/eventfilter.css" rel="stylesheet">
+  <link href="component/livetrackingdetails/livetrackingdetails.css" rel="stylesheet">
+  <link href="component/livetrackingdevices/livetrackingdevices.css" rel="stylesheet">
+  <link href="component/replayroutedetail/replayroutedetail.css" rel="stylesheet">
+  <link href="component/notification/notification.css" rel="stylesheet">
+  
+  
+  <!--third part css-->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/css/tooltipster.min.css" rel="stylesheet">
+  <link href="assets/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/angular-material.min.css" rel="stylesheet">
+  <link href="assets/font-awesome/font-awesome.min.css" rel="stylesheet">
+  <link href="assets/ion-place-autocomplete/ion-place-autocomplete.css" rel="stylesheet">
+  <link href="assets/ion-datetime-picker/ion-datetime-picker.min.css" rel="stylesheet">
+
+  <!--third part js-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/js/jquery.tooltipster.js"></script>
+  <script src="lib/angular/angular-cookies.min.js"></script>       
+  <script src="assets/spinner/angular-loading-spinner.js"></script>
+  <script src="assets/spinner/angular-spinner.min.js"></script>
+  <script src="assets/spinner/spin.min.js"></script>
+  <script src="assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script src="assets/underscore/underscore.min.js"></script>
+  <script src="assets/underscore/angular-underscore-module.js"></script>
+  <script src="assets/ion-datetime-picker/ion-datetime-picker.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2n_nKwxL85mrmKd5FLvZfAy8hFs1dJNE&sensor=true&libraries=places,geometry"></script>
+  <!--<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyB16sGmIekuGIvYOfNoW9T44377IU2d2Es&sensor=true&libraries=places,geometry"></script>-->
+  <script src="lib/ionic/js/angular/angularjs-google-maps.js"></script>
+  <script src="assets/ion-place-autocomplete/ion-place-autocomplete.js"></script>
+  <script src="lib/ionic-toast/dist/ionic-toast.bundle.min.js"></script>
+  <script src="assets/moment/moment.min.js"></script>
+  <script src="assets/highchart/highcharts.min.js"></script>
+  <script src="assets/highchart/highcharts-more.min.js"></script>
+  <script src="assets/highchart/solid-gauge.min.js"></script>
+  
+
+  
+  
+
+  <script src="lib/angular-gm/angularjs-google-maps.js"></script>
+
+
+  <!-- core js -->
+  <script src="js/BatsApp.js"></script>
+  <script src="js/BatsConst.js"></script>
+  <script src="js/BatsConfig.js"></script>
+  <script src="js/BatsServices.js"></script>
+  <script src="js/BatsInterceptor.js"></script>
+  <script src="js/BatsControllers.js"></script>
+  <script src="js/BatsFilters.js"></script>
+  <script src="js/BatsFactories.js"></script>
+  <script src="js/BatsDirective.js"></script>
+  <script src="js/Factories/UtilsFactories.js"></script>
+  <script src="js/Factories/ChartFactories.js"></script>
+  <script src="js/BatsDirective.js"></script>
+  <script src="js/Directive/actionCardDirective.js"></script>
+  <script src="js/Directive/commonDirective.js"></script>
+
+
+  <!-- component js -->
+  <script src="component/login/login.js"></script>
+  <script src="component/start/start.js"></script>
+  <script src="component/livetracking/livetracking.js"></script>
+  <script src="component/livetrackingdetails/livetrackingdetails.js"></script>
+  <script src="component/forgotpassword/forgotpassword.js"></script>
+  <script src="component/changepassword/changepassword.js"></script>
+  <script src="component/signupstep1/signupstep1.js"></script>
+  <script src="component/signupstep2/signupstep2.js"></script>
+  <script src="component/managetracker/managetracker.js"></script>
+  <script src="component/replayroute/replayroute.js"></script>
+  <script src="component/navigation/navigation.js"></script>
+  <script src="component/eventhistory/eventhistory.js"></script>
+   <script src="component/eventfilter/eventfilter.js"></script>
+  <script src="component/eventhistorydetail/eventhistorydetail.js"></script>
+  <script src="component/vehiclestatistic/vehiclestatistics.js"></script>
+  <script src="component/vehiclestatisticdetail/vehiclestatisticdetail.js"></script>
+  <script src="component/updatemarkerdetails/updatemarkerdetails.js"></script>
+  <script src="component/managemember/managemember.js"></script>
+  <script src="component/addmember/addmember.js"></script>
+  <script src="component/report/report.js"></script>
+  <script src="component/livetrackingdevices/livetrackingdevices.js"></script>
+  <script src="component/replayroutedetail/replayroutedetail.js"></script>
+   <script src="component/notification/notification.js"></script>
+
+
+</head>
+
+<body ng-controller="BatsCtrl" class="platform-android platform-cordova platform-webview">
+    <div class="" us-spinner="{radius:0, width:0, length: 0}"></div>
+    <ion-nav-view></ion-nav-view>
+</body>
+
+</html>

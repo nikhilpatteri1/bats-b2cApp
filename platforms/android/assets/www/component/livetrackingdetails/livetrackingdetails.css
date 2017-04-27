@@ -1,0 +1,94 @@
+.lvdstatusBorder{
+     border: 1px solid #b7b3b3;
+     height: 50px;
+     /*padding: 7px;*/
+}
+
+.lvdDivWidth{
+    width: 100%;  
+}
+.lvdstatusColor{
+    border:1px solid #ffffff;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    margin-top: 13px;
+}
+.lvdstatus{
+        display: -webkit-inline-box;
+}
+.lvdalignRight{
+    text-align: right;
+}
+.noResponceState{
+    background:#2d2d2d;
+}
+.crossGeoAndSpeed{
+    background:#ff0000;
+}
+.crossSpeed{
+    background:#ffd500;
+}
+.crossedGeofence{
+    background:#710e9f;
+}
+.normalState{
+    background:#7fbb01;
+}
+.lvdRightBorder{
+    border-right:1px solid #b7b3b3;
+}
+
+.lvdRemoveTopRow{
+    line-height: 42px;
+    margin-top: -5px;
+    margin-bottom: 5px;
+    padding-top: 0px;
+}
+.lvdTransform {
+    width: 50px;
+    height: 50px;
+    margin-left: 25px;
+    margin-top: 22px;
+}
+.lvdVehicleBack{
+    border-radius: 50px;
+    width: 135px;
+    height: 100px;
+    background: #ff7244;
+}
+
+.lvdPedding{
+        padding-left: 40px !important;
+}
+/*.lvd{
+        background: white;
+    margin: 14px;
+    border-radius: 5px;
+}*/
+.lvddiv1 {
+    background: white;
+    margin: 14px;
+    border-radius: 5px;
+}
+.lvdSmallFontsforVehicleName {
+    font-weight: 600;
+    line-height: 19px;
+}
+
+.lvdSmallFontsforChildName {
+    font-weight: 500 !important;
+        font-size: 13px;
+}
+.lvdSeedLimit{
+         border-radius: 24px;
+    height: 45px;
+    background: rgb(229, 232, 232);
+    width: 111px;
+    color: #867d7d;
+    text-align: center;
+}
+.lvdMarginLeft{
+    margin-left: 105px;
+}

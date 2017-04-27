@@ -1,0 +1,99 @@
+.containerLogin {
+	display: table;
+	
+	overflow: hidden;
+	width: 100% !important;
+}
+.LoginHeading{
+    display: table;
+    overflow: hidden;
+    width: 100% !important;
+    margin-top: 30px;
+}
+.lableLogin{
+    font-size:16px;
+    color: #000000;
+}
+.helperLogin { 
+	display: table-cell;
+	vertical-align: left;
+
+}
+
+.commonLeftMargin{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.conLogin {
+	width: 20% !important;
+
+}
+.note{
+    font-size:15px;
+    color: #8a8a83;
+    margin-top: 15px;
+}
+
+.lgWelcomeLogin {
+	width: 198%;
+	position: relative !important;
+}
+
+.stButton {
+	margin-top: 20px;
+	width: 100%;
+	border-radius: 1px;
+    text-align: center
+}
+
+.button.button-balancedForgot {
+	background-color: rgba(255, 255, 255, 0.47);
+	border-color: rgba(255, 255, 255, 0.47);
+}
+.btnMaarginTop{
+    margin-top: 30px;
+}
+
+.stBtnMarginTop {
+    margin-top: 50px;
+}
+
+.inputFieldFontSize{
+    font-size: 13px;
+}
+.space{
+    margin-top : 15px;
+}
+.inputTextField{
+        font-size:14px !important; 
+            border: none;
+          border-bottom: 1px solid rgb(231, 231, 231) !important;
+           width: 100% !important;
+    
+}
+.errorMsg{
+    color:red;
+    margin-top: 29px;
+        font-size: 12px;
+}
+
+.toolkitStyle{
+    width:18px;
+}
+
+.topMArgin{
+    margin-top:15px;
+}
+.red{
+    color:red;
+}
+
+.fpTooltipImg{
+        opacity: 1 !important;
+}
+.cpMArginTop{
+    margin-top: 0px !important;
+}
+.lgBackgroundGray {
+    background-color: #e7e7e7;
+}

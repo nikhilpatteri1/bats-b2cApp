@@ -1,0 +1,79 @@
+.vsTransform{
+    width: 46px;
+    height: 46px;
+}
+.vsdiv1{
+    background: white;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.vsDivWidth{
+    width: 100%;  
+    background: white;
+    border-radius: 5px;  
+}
+.vsMargin{
+        padding: 27px 0px 16px 0px;
+}
+.vsright{
+    font-size: 11px;
+    text-align: right;
+    display: block;
+}
+
+.vsSmallFonts {
+    font-weight: 600;
+    line-height: 17px;
+}
+.vsStatisticFont{
+    font-size: 29px;
+    padding: 7px;
+    padding-top: 16px;
+}
+.vsDistanceUnit{
+    font-size: 15px;
+    margin-left: -6px;
+}
+.alignRight{
+    text-align: right;
+}
+.hmCards .button1 {
+    /* width: 80px; */
+    min-height: 34px;
+    height: 34px;
+    line-height: 34px;
+    font-size: 21px;
+}
+
+/*.{.suAddTrackerDiv {
+    margin-top: 30px;
+}}*/
+
+.amSmallFonts {
+    font-size: 14px !important;
+    line-height: 17px;
+    margin-top: 10px;
+}
+.amPadding{
+    padding: 17px;
+    padding-top: 8px;
+    margin-top:5px !important;
+}
+
+.vsdSolidGaugeMarker{
+    text-align: center;
+    font-size: 10px;
+    font-weight: 200;
+    margin-top: -16px;
+    margin-left: 3px;
+}
+
+.vsdSolidGauge{
+    width: 100px;
+    height: 100px;
+}
+
+.vsdMarginRight{
+    margin-right: 5px;
+}

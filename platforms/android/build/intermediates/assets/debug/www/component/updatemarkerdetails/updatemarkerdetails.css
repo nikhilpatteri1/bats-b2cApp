@@ -1,0 +1,110 @@
+.umdBackground{
+    background-color : #eff1f0;
+}
+
+.umdHeading{
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+.umdcolPadding{
+    padding-left: 10px;
+}
+
+.umdFontDiv{
+    font-size: 12px;
+    padding-left: 10px;
+}
+
+.umdIonList .list, .umdFlex{
+    display: flex;
+}
+
+.umdIonList .item-radio .item-content {
+    padding: 0px;
+    background-color: #f0f1f3;
+}
+
+.umdIonList .ion-checkmark:before {
+    content: "";
+}
+
+.umdIonList .item-radio input:checked + .radio-content .item-content{
+    background-color: #00ba88;
+}
+
+.umdIonList .item-radio input:checked + .radio-content .item-content .acGreyFont{
+    color: white;
+}
+
+.umdRadioLabels{
+    width: 25%;
+    text-align: center;
+    padding: 0px;
+    margin: 7px;
+    border-radius: 4px;
+
+}
+
+.umdRadioLabelsBackground{
+    background-color: #f0f1f3;
+}
+
+.umdWhiteBackground{
+    background-color: white;
+}
+
+.umdIcons{
+    width: 32px;
+    height: 32px;
+}
+
+.umdIconsmargin{
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.umdHeaderIconsVehicle{
+    padding-top: 8px;
+    padding-left: 10px;
+}
+
+.umdInputBoxes{
+    border: 1px solid #e7e7e7 !important;
+    border-radius: 4px;
+    padding-top: 20px !important;
+    padding-right: 8px !important;
+    padding-bottom: 20px !important;
+    padding-left: 8px !important;
+}
+
+.umdInputDiv{
+    padding: 10px;
+    padding-top: 5px;
+}
+
+.umdFilledInputBox{
+    border-bottom: 1px solid #00ba88 !important;
+}
+
+.umdLabelBorder{
+    border: 1px solid #e7e7e7 !important;
+    border-radius: 4px;
+    line-height: 40px;
+    width: 65px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    text-align: center;
+}
+
+.umdSpeedLimit{
+    width: 118px !important;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.umdSpeedLimitSpan{
+    width: 150px;
+    padding-left: 7px;
+    font-size: 10px !important;
+}

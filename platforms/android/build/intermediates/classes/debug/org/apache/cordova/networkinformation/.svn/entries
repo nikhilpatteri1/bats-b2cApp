@@ -1,0 +1,54 @@
+8
+
+dir
+3864
+https://xp-dev.com/svn/maplesoftwares/trunk/Android_IOS/Lawzinger/platforms/android/build/intermediates/classes/debug/org/apache/cordova/networkinformation
+https://xp-dev.com/svn/maplesoftwares
+
+
+
+2015-12-22T11:42:43.385074Z
+2758
+sugat
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+69ee98bc-d23c-44a8-9c2a-20fd9043130c
+
+NetworkManager$1.class
+file
+
+
+
+
+2016-05-20T07:41:55.681000Z
+411c4b83962da176b646182824de178e
+2015-12-22T11:42:43.385074Z
+2758
+sugat
+has-props
+
+NetworkManager.class
+file
+
+
+
+
+2016-05-20T07:41:55.670000Z
+fd61718e1c0c9393a730e86e78c214ec
+2015-12-22T11:42:43.385074Z
+2758
+sugat
+has-props
+

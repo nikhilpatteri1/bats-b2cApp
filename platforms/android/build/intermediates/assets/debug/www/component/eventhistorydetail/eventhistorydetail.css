@@ -1,0 +1,28 @@
+.ehd{
+    border-bottom:1px solid #e7e7e7;
+}
+.ehdimage{
+       width: 43px;
+    margin-top: 6px;
+    border: 1px solid #ec1010;
+    border-radius: 25px;
+    background: red;
+}    
+
+.latlongStyle{
+    text-decoration: underline;
+    color: #1fb6ff;
+    font-size: 13px;
+}
+.speedstyle{
+    color:red;
+}
+.ehdRow{
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+.ehDateFormat{
+    width: 75px;
+        padding: 0px !important;
+}

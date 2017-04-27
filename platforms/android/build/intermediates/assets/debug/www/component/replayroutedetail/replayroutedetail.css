@@ -1,0 +1,15 @@
+.rrdbcolor{
+    background-color: #fff
+}
+
+.rrdIonList .item-radio input:checked + .radio-content .item-content{
+    background-color: #fff;
+    border-bottom:8px solid #f37a1f; 
+}
+
+.rrdIonList .item-radio input:checked + .radio-content .item-content .acGreyFont{
+    color: #000;
+}
+
+.rrdspeedCtrlSection{ position: fixed; width: 250px;height: 90px;background: #fff;bottom: 20px;left:50%;z-index: 10}
+.rrdspeedCtrlSection label{text-align: left;margin-left:-100px;margin-bottom:15px; }

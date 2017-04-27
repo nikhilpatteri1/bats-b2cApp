@@ -1,0 +1,49 @@
+.ehd{
+    border-bottom:1px solid #e7e7e7;
+}
+.ehdimageDiv{
+    width: 43px;
+    height: 43px;
+    border-radius: 25px;
+    background: green;
+    margin-top: 12px;
+    margin-left: 11px;
+}  
+
+.ehdimage{
+    width: 50px;
+    text-align: center;
+    margin-left: -8px;
+    margin-top: 5px;
+}     
+
+.latlongStyle{
+    text-decoration: underline;
+    color: #1fb6ff;
+    font-size: 13px;
+}
+.speedstyle{
+    color:red;
+}
+.ehdRow{
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+.ehDateFormat{
+    width: 75px;
+        padding: 0px !important;
+}
+
+.ehdRowCol{
+    display: -webkit-inline-box;
+}
+
+.ehdRowCol .col-md-12{
+    width: 100%;
+    display: inline-flex;
+}
+
+.ehdLatLonPopup .popup-body{
+    text-align: center
+}

@@ -1,0 +1,54 @@
+8
+
+dir
+3864
+https://xp-dev.com/svn/maplesoftwares/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/outputs/aar
+https://xp-dev.com/svn/maplesoftwares
+
+
+
+2015-12-22T11:42:43.385074Z
+2758
+sugat
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+69ee98bc-d23c-44a8-9c2a-20fd9043130c
+
+CordovaLib-debug.aar
+file
+
+
+
+
+2016-05-20T07:36:49.548000Z
+71ae067bd600878033ea77e221a1d085
+2015-12-22T11:42:43.385074Z
+2758
+sugat
+has-props
+
+CordovaLib-release.aar
+file
+
+
+
+
+2016-05-20T07:36:49.520000Z
+503f179ad2b41271c4a9c789e1552688
+2015-11-08T13:41:57.937838Z
+2229
+mohitabrol
+has-props
+

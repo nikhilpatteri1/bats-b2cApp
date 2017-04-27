@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/engine
+END
+SystemWebView.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/engine/SystemWebView.java
+END
+SystemWebViewEngine.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/engine/SystemWebViewEngine.java
+END
+SystemCookieManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/engine/SystemCookieManager.java
+END
+SystemExposedJsApi.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/engine/SystemExposedJsApi.java
+END
+SystemWebChromeClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/engine/SystemWebChromeClient.java
+END
+SystemWebViewClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/src/org/apache/cordova/engine/SystemWebViewClient.java
+END

@@ -1,0 +1,44 @@
+<ion-view view-title="Event History" hide-nav-bar="true">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </ion-nav-buttons>        
+    <ion-content class="lgBackgroundWhite navigation" scroll="false">
+        <div class="row no-padding" style="height:21%">
+            <div class="col col-10 no-padding">
+                <button style="color: black;" class="button button-icon button-clear ion-navicon btn-color" menu-toggle="left"></button>
+            </div>
+            <div class="col col-70 no-padding">
+                <div class="row">
+                    <div class="col col-80 no-padding">
+                        <label class=" item-input no-padding">
+                            <span class="input-label"><i class="ion-android-locate" style="float:right;color:steelblue;"></i></span>
+                            <input id="start" type="text" class="nav-input" placeholder="Your Location" gm-places-autocomplete ng-model="yourLocation"/>
+                        </label>
+                        <label class=" item-input no-padding">
+                            <span class="input-label"><i class="ion-android-pin" style="float:right;color:red;"></i></span>
+                            <input id="end" type="text" class="nav-input" placeholder="Drop Location" gm-places-autocomplete ng-model="dropLocation"/>
+                        </label>
+                    </div>
+                    <div class="col col-10 swap-icon">
+                        <span ng-click="swapLocation()"><i class="ion-arrow-swap"></i></span>
+                    </div>
+                </div>
+                <div ng-show="showDuration" class="row" style="padding-left:30px;">
+                    <div class="col col-80 no-padding durationText">
+                        <div >
+                            <span>{{totalDuration}}</span><span>({{totalDistance}})</span>
+                        </div>
+                    </div>
+                    <div class="col col-20 no-padding">
+                        <span ng-click="startNavigate()" class="input-label no-padding" style="color: orangered;">
+                            <i class="ion-ios-navigate" style="font-size: xx-large;"></i>
+                            <span style="font-size:13px;">Start</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="floating-panel" style="height:79%;"></div>
+        <div id="map" ng-init="initMap()"></div>
+    </ion-content>
+</ion-view>

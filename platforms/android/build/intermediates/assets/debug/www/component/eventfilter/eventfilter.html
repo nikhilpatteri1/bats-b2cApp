@@ -1,0 +1,30 @@
+<ion-view view-title="Event History">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-android-close " ng-click="gotoEventHistoryDetail()" ></button>
+    </ion-nav-buttons>
+    <ion-content class="lgBackgroundWhite eventFilter">
+        <form name="filterForm.form">
+            <div class="allCheck">
+                <ion-checkbox ng-model="allCheck" ng-click="checkAll(allCheck)">
+                    <div>All</div>
+                </ion-checkbox>
+            </div>
+        <ion-list>
+            <ion-checkbox ng-model="filter[0]" ng-click="checkAllFor()"><div>Panic</div></ion-checkbox>
+            <ion-checkbox ng-model="filter[1]" ng-click="checkAllFor()"><div>Tamper Sim</div></ion-checkbox>
+            <ion-checkbox ng-model="filter[2]" ng-click="checkAllFor()"><div>Tamper Top</div></ion-checkbox>
+            <ion-checkbox ng-model="filter[3]" ng-click="checkAllFor()"><div>Battery</div></ion-checkbox>
+            <ion-checkbox ng-model="filter[4]" ng-click="checkAllFor()"><div>Overspeed</div></ion-checkbox>
+            <ion-checkbox ng-model="filter[5]" ng-click="checkAllFor()"><div>Geofence</div></ion-checkbox>
+            <ion-checkbox ng-model="filter[6]" ng-click="checkAllFor()"><div>Sanity alarm</div></ion-checkbox>
+            <ion-checkbox ng-model="filter[7]" ng-click="checkAllFor()"><div>Robbery / theft alarm</div></ion-checkbox>
+            <ion-checkbox ng-model="filter[8]" ng-click="checkAllFor()"><div>Undefined alarm_type</div></ion-checkbox>
+        </ion-list>
+    </ion-content>
+    <div class="bar bar-footer bar-balanced" ng-class="{'disableDiv': filterForm.form.$invalid}" ng-click="gotoApplyFilter(data, filterForm.form)">
+        <div class="title">Apply Filter</div>
+    </div>
+</ion-view>

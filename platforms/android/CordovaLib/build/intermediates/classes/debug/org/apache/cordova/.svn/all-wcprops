@@ -1,0 +1,431 @@
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova
+END
+CordovaActivity$3.class
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$3.class
+END
+CordovaDialogsHelper$Result.class
+K 25
+svn:wc:ra_dav:version-url
+V 177
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$Result.class
+END
+NativeToJsMessageQueue$LoadUrlBridgeMode.class
+K 25
+svn:wc:ra_dav:version-url
+V 190
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode.class
+END
+CordovaDialogsHelper$4.class
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$4.class
+END
+NativeToJsMessageQueue$JsMessage.class
+K 25
+svn:wc:ra_dav:version-url
+V 182
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$JsMessage.class
+END
+CordovaWebView.class
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebView.class
+END
+NativeToJsMessageQueue$BridgeMode.class
+K 25
+svn:wc:ra_dav:version-url
+V 183
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$BridgeMode.class
+END
+PluginResult.class
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginResult.class
+END
+CordovaDialogsHelper$1.class
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$1.class
+END
+NativeToJsMessageQueue.class
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue.class
+END
+CordovaDialogsHelper.class
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper.class
+END
+CordovaArgs.class
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaArgs.class
+END
+PluginEntry.class
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginEntry.class
+END
+CoreAndroid$3.class
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$3.class
+END
+CordovaHttpAuthHandler.class
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaHttpAuthHandler.class
+END
+CordovaWebViewImpl$2.class
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$2.class
+END
+CoreAndroid.class
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid.class
+END
+AuthenticationToken.class
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/AuthenticationToken.class
+END
+ExposedJsApi.class
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ExposedJsApi.class
+END
+CallbackContext.class
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CallbackContext.class
+END
+CordovaWebViewImpl$EngineClient.class
+K 25
+svn:wc:ra_dav:version-url
+V 181
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient.class
+END
+CordovaActivity.class
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity.class
+END
+NativeToJsMessageQueue$OnlineEventsBridgeMode$1.class
+K 25
+svn:wc:ra_dav:version-url
+V 197
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$1.class
+END
+ICordovaHttpAuthHandler.class
+K 25
+svn:wc:ra_dav:version-url
+V 173
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ICordovaHttpAuthHandler.class
+END
+CordovaWebViewEngine.class
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewEngine.class
+END
+CordovaDialogsHelper$7.class
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$7.class
+END
+CordovaDialogsHelper$5.class
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$5.class
+END
+ICordovaCookieManager.class
+K 25
+svn:wc:ra_dav:version-url
+V 171
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ICordovaCookieManager.class
+END
+CoreAndroid$4.class
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$4.class
+END
+PluginManager.class
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginManager.class
+END
+CordovaPreferences.class
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaPreferences.class
+END
+ICordovaClientCertRequest.class
+K 25
+svn:wc:ra_dav:version-url
+V 175
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ICordovaClientCertRequest.class
+END
+CordovaInterface.class
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaInterface.class
+END
+CordovaActivity$4$1.class
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$4$1.class
+END
+CordovaWebViewImpl$EngineClient$1.class
+K 25
+svn:wc:ra_dav:version-url
+V 183
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient$1.class
+END
+NativeToJsMessageQueue$NoOpBridgeMode.class
+K 25
+svn:wc:ra_dav:version-url
+V 187
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$NoOpBridgeMode.class
+END
+CordovaDialogsHelper$8.class
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$8.class
+END
+Whitelist$URLPattern.class
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Whitelist$URLPattern.class
+END
+NativeToJsMessageQueue$OnlineEventsBridgeMode$2.class
+K 25
+svn:wc:ra_dav:version-url
+V 197
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$2.class
+END
+Whitelist.class
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Whitelist.class
+END
+CoreAndroid$1.class
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$1.class
+END
+NativeToJsMessageQueue$LoadUrlBridgeMode$1.class
+K 25
+svn:wc:ra_dav:version-url
+V 192
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode$1.class
+END
+CordovaResourceApi$OpenForReadResult.class
+K 25
+svn:wc:ra_dav:version-url
+V 186
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaResourceApi$OpenForReadResult.class
+END
+CordovaBridge.class
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaBridge.class
+END
+CordovaInterfaceImpl.class
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaInterfaceImpl.class
+END
+CordovaDialogsHelper$6.class
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$6.class
+END
+CordovaWebViewImpl$1.class
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$1.class
+END
+CordovaDialogsHelper$9.class
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$9.class
+END
+CordovaWebViewEngine$EngineView.class
+K 25
+svn:wc:ra_dav:version-url
+V 181
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewEngine$EngineView.class
+END
+PluginResult$Status.class
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginResult$Status.class
+END
+CordovaClientCertRequest.class
+K 25
+svn:wc:ra_dav:version-url
+V 174
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaClientCertRequest.class
+END
+CordovaDialogsHelper$2.class
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$2.class
+END
+NativeToJsMessageQueue$OnlineEventsBridgeMode$OnlineEventsBridgeModeDelegate.class
+K 25
+svn:wc:ra_dav:version-url
+V 226
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$OnlineEventsBridgeModeDelegate.class
+END
+CordovaActivity$2.class
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$2.class
+END
+CordovaWebViewImpl.class
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl.class
+END
+CordovaWebViewImpl$EngineClient$1$1.class
+K 25
+svn:wc:ra_dav:version-url
+V 185
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient$1$1.class
+END
+CoreAndroid$5.class
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$5.class
+END
+CordovaWebViewEngine$Client.class
+K 25
+svn:wc:ra_dav:version-url
+V 177
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewEngine$Client.class
+END
+LOG.class
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/LOG.class
+END
+CoreAndroid$2.class
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$2.class
+END
+BuildConfig.class
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/BuildConfig.class
+END
+CordovaActivity$4.class
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$4.class
+END
+Config.class
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Config.class
+END
+NativeToJsMessageQueue$OnlineEventsBridgeMode.class
+K 25
+svn:wc:ra_dav:version-url
+V 195
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode.class
+END
+CordovaInterfaceImpl$ActivityResultHolder.class
+K 25
+svn:wc:ra_dav:version-url
+V 191
+/svn/maplesoftwares/!svn/ver/2494/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaInterfaceImpl$ActivityResultHolder.class
+END
+CordovaActivity$1.class
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$1.class
+END
+ConfigXmlParser.class
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ConfigXmlParser.class
+END
+CordovaResourceApi.class
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaResourceApi.class
+END
+CordovaPlugin.class
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaPlugin.class
+END
+CordovaDialogsHelper$3.class
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$3.class
+END
+CordovaWebViewImpl$3.class
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$3.class
+END

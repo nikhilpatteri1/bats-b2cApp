@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/build/intermediates/classes/debug/com/plugin/gcm
+END
+GCMIntentService.class
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/build/intermediates/classes/debug/com/plugin/gcm/GCMIntentService.class
+END
+PushHandlerActivity.class
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/build/intermediates/classes/debug/com/plugin/gcm/PushHandlerActivity.class
+END
+PushPlugin.class
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/build/intermediates/classes/debug/com/plugin/gcm/PushPlugin.class
+END
+CordovaGCMBroadcastReceiver.class
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/maplesoftwares/!svn/ver/2758/trunk/Android_IOS/Lawzinger/platforms/android/build/intermediates/classes/debug/com/plugin/gcm/CordovaGCMBroadcastReceiver.class
+END
