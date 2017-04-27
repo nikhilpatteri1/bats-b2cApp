@@ -1,6 +1,6 @@
 <ion-view view-title="">
-    <ion-content class="lgBackgroundWhite" scroll="false">
-        <div class="commonLeftMargin">
+    <ion-content  scroll="false">
+        <div class="commonLeftMargin lgBackgroundWhite">
             <div class="containerLogin">
                 <div class="helperLogin">
                     <ul class="conLogin topMArgin">
@@ -26,8 +26,7 @@
                 <div class="LoginHeading">
                     <form name="loginForm" novalidate>
                         <label ng-if="data.userid" class="floatlabeltxt show-hide inputFieldFontSize">User Id</label>
-                        <input placeholder="User Id" type="text" ng-model="data.userid" required class="inputTextField"
-                            name="user" ng-class="{error: loginForm.user.$invalid && Validate}">
+                        <input placeholder="User Id" type="text" ng-model="data.userid" required class="inputTextField" name="user" ng-class="{error: loginForm.user.$invalid && Validate}">
                         </input>
                         <!--<span class="red" ng-if="loginForm.email.$dirty && loginForm.user.$invalid">
                                 <span ng-if="loginForm.user.$error.required">Email is required</span>
@@ -46,17 +45,19 @@
                 <div class="space">
                     <div class="note acSmallFonts">Note: Enter user id and password generated after the Registration</div>
                 </div>
-                <ul>
-                    <li>
-                        <button ng-disabled="loginForm.$invalid" ng-click="gotoHome(data, loginForm)" 
-                        class="button button-balanced stButton btnMaarginTop">Login to BATS</button>
-                    </li>
-                    <li>
-                        <div ng-click="gotoFogotPassword()" class=" button-balancedForgot stButton">Forgot Password</div>
-                    </li>
-                </ul>
             </div>
         </div>
         </div>
+        <div class="commonLeftMargin lgButtomBackgroundImage">
+            <ul>
+                <li>
+                    <button ng-disabled="loginForm.$invalid" ng-click="gotoHome(data, loginForm)" class="button button-balanced stButton btnMaarginTop">Login to BATS</button>
+                </li>
+                <li>
+                    <div ng-click="gotoFogotPassword()" class=" button-balancedForgot stButton">Forgot Password</div>
+                </li>
+            </ul>
+        </div>
+
     </ion-content>
 </ion-view>

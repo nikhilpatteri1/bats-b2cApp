@@ -37,10 +37,10 @@ angular.module('navigation', [])
 
     $scope.onChangeHandler = function() {
       calculateAndDisplayRoute(directionsService, directionsDisplay, distanceMatrixService);
+      disableTap();
     };
-    // document.getElementById('start').addEventListener('change', onChangeHandler);
-    // document.getElementById('end').addEventListener('change', onChangeHandler);
   };
+
 
   //function to swap your and drop location
   $scope.swapLocation = function(){
@@ -52,24 +52,24 @@ angular.module('navigation', [])
 
   //function for navigate button click
   $scope.startNavigate = function(){
-        showMap();
+    var startloc = document.getElementById('start').value;
+    var endloc = document.getElementById('end').value;
+    if(ionic.Platform.isAndroid() || ionic.Platform.isWebView()){
+      var link = ""+"http://maps.google.com/maps?saddr="+startloc+" &daddr="+endloc;
+      window.location = link;
+    }
+    if(ionic.Platform.isIOS() || ionic.Platform.isIPad()){
+      var link = ""+"http://maps.apple.com/maps?saddr="+startloc+"&daddr="+endloc;
+      window.location = link;
+    }
   };
 
-  function showMap(){
-          var startloc = document.getElementById('start').value;
-          var endloc = document.getElementById('end').value;
-          if(ionic.Platform.isAndroid() || ionic.Platform.isWebView()){
-            var link = ""+"http://maps.google.com/maps?saddr="+startloc+" &daddr="+endloc;
-            window.location = link;
-          }
-          if(ionic.Platform.isIOS() || ionic.Platform.isIPad()){
-            var link = ""+"http://maps.apple.com/maps?saddr="+startloc+"&daddr="+endloc;
-            window.location = link;
-          }
+  function disableTap() {
+    var container = document.getElementsByClassName('pac-container');
+    angular.element(container).attr('data-tap-disabled', 'true');
   }
 
   function setDurationText(){
-    // console.log("calling clear");
     $scope.totalDistance = defaultDistText;
     $scope.totalDuration = defaultDurtext;
     if(!$scope.$$phase){
@@ -88,7 +88,6 @@ angular.module('navigation', [])
       if (status === 'OK') {
         directionsDisplay.setDirections(response);
       } else {
-        //window.alert('Directions request failed due to ' + status);
         setDurationText();
         console.log('Directions request failed due to ' + status);
       }

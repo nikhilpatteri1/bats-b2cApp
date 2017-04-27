@@ -4,11 +4,16 @@ angular.module('signupstep2', [])
 
     $scope.simCarriers = Constants.OPERATOR;
     $scope.data = [];
-    console.log($scope.data)
     $scope.signupStep2Form = {};
-    $scope._token = window.localStorage.getItem(Constants.accessToken);
+    $scope._token = localStorage.getItem(Constants.accessToken);
     if(UtilsFactory.getSignUpData().length==0 && $scope._token == undefined ){
         $state.go(PageConfig.SIGNUP_STEP1)
+    }
+    if(UtilsFactory.getEditMarkerDetails().length!=0){
+        $scope.editMarkerData = UtilsFactory.getEditMarkerDetails();
+        console.log($scope.editMarkerData)
+        $scope.data = [{'devid': $scope.editMarkerData.devid, 't_sim_provider': $scope.editMarkerData.sim_service_provider,
+            't_sim_cn' : $scope.editMarkerData.device_sim_cn }]
     }
     $scope.trackers = [{id: 1}];
     $scope.addTracker = function(){

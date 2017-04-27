@@ -3,6 +3,9 @@
         <button class="button button-icon button-clear ion-navicon"
         	menu-toggle="left"></button>
     </ion-nav-buttons>
+     <ion-nav-buttons side="right">
+       <a class="button button-icon button-clear " href="#/bats/notification" ><img class="filterWidth" src="img/notification.png"></a>
+    </ion-nav-buttons>
     <ion-content >
         <form name="updatemarkerdetialsForm.form" novalidate>
             <div class="umdBackground">
@@ -18,25 +21,25 @@
             <div>
                 <div class="umdHeaderIconsVehicle acSmallFonts">Please select your vehicle type</div>
                 <ion-list class="umdIonList">
-                    <ion-radio class="umdRadioLabels" ng-model="data.devtype" ng-value="'car'">
+                    <ion-radio class="umdRadioLabels" ng-model="data.vehicle_model" ng-value="'car'">
                     <div class="umdIconsmargin">
                         <img class="umdIcons" src="img/car.png" />
                     </div>
                     <div class="acSmallFonts acGreyFont">CAR</div>
                     </ion-radio>
-                    <ion-radio class="umdRadioLabels" ng-model="data.devtype" ng-value="'bike'">
+                    <ion-radio class="umdRadioLabels" ng-model="data.vehicle_model" ng-value="'bike'">
                         <div class="umdIconsmargin">
                             <img class="umdIcons" src="img/bike.png" />
                         </div>
                         <div class="acSmallFonts acGreyFont">BIKE</div>
                     </ion-radio>
-                    <ion-radio class="umdRadioLabels" ng-model="data.devtype" ng-value="'truck'">
+                    <ion-radio class="umdRadioLabels" ng-model="data.vehicle_model" ng-value="'truck'">
                         <div class="umdIconsmargin">
                             <img class="umdIcons" src="img/truck.png" />
                         </div>
                         <div class="acSmallFonts acGreyFont">TRUCK</div>
                     </ion-radio>
-                    <ion-radio class="umdRadioLabels" ng-model="data.devtype" ng-value="'bus'">
+                    <ion-radio class="umdRadioLabels" ng-model="data.vehicle_model" ng-value="'bus'">
                         <div class="umdIconsmargin acGreyFont">
                             <img class="umdIcons" src="img/bus.png" />
                         </div>

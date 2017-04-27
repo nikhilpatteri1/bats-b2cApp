@@ -1,7 +1,40 @@
 angular.module('livetracking', [])
-.controller('LiveTrackingCtrl', function($scope, $ionicModal, $timeout) {
-    
-    
+.controller('LiveTrackingCtrl', function($scope, $ionicModal, $timeout, UtilsFactory, $state, PageConfig, BatsServices,ionicToast,$interval) {
+     var dynamicMapHeight=window.screen.availHeight;
+    $scope.mapHeight={height:dynamicMapHeight+"px"};
+	console.log($scope.mapHeight);
+
+	var reqTime=12;
+    // $scope.token = $localStorage.data;
+    $scope.deviceloaded=true;
+   
+    $scope.showTrafficLayerBtn = false;
+    $scope.hideTrafficLayerBtn = true;
+
+	$scope.headings;
+	var map;
+    var directionDisplay;
+    var directionsService;
+    var stepDisplay;
+    var markers = [];
+    var marker = new Array();
+    var myPolygon;
+    var position;
+    var polyline;
+    var poly2 ;
+    var speed = 0.000005,
+    wait = 1;
+    var infowindow = null;
+    var timerHandle = null;
+    var storedltlng={};
+    var trafficLayer = new google.maps.TrafficLayer();
+    var Colors = ["#FF0000", "#00FF00", "#0000FF"];
+    var svg = new Array();
+    var icons = new Array();
+    var vehicleType;
+    var multiBounds;
+    var myPlace = {lat: 12.850167, lng: 77.660329};
+	
 	
 	//bike
     var bike = new Array();
@@ -32,34 +65,685 @@ angular.module('livetracking', [])
     bus[3] = { path : "M21.320,63.168 L18.322,63.168 C17.969,63.168 17.682,62.881 17.682,62.528 L17.682,62.080 C17.682,61.727 17.969,61.440 18.322,61.440 L21.320,61.440 C21.673,61.440 21.960,61.727 21.960,62.080 L21.960,62.528 C21.960,62.881 21.673,63.168 21.320,63.168 ZM7.742,63.168 L4.744,63.168 C4.391,63.168 4.104,62.881 4.104,62.528 L4.104,62.080 C4.104,61.727 4.391,61.440 4.744,61.440 L7.742,61.440 C8.095,61.440 8.382,61.727 8.382,62.080 L8.382,62.528 C8.382,62.881 8.095,63.168 7.742,63.168 Z", fillColor:"rgb(255, 28, 28)"};
 	//=============== ~animation funcitons =====================
 
-  $scope.initMap = function() {
-        var directionsService = new google.maps.DirectionsService;
-        var directionsDisplay = new google.maps.DirectionsRenderer;
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 7,
-          center: {lat: 41.85, lng: -87.65}
-        });
-        
-        directionsDisplay.setMap(map);
+    $scope.httpLoading=false;
 
-        var onChangeHandler = function() {
-          calculateAndDisplayRoute(directionsService, directionsDisplay);
+	$scope.initialize=function () {
+	var $map = $('#map_canvas');
+	infowindow = new google.maps.InfoWindow({  
+	    size: new google.maps.Size(150,50)
+	});
+	var styleMap = [{"featureType":"administrative","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#bee4f4"},{"visibility":"on"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"on"},{"hue":"#ff0000"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"on"},{"hue":"#ff0000"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"transit","elementType":"labels","stylers":[{"visibility":"on"},{"hue":"#ff0000"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#46bcec"},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"color":"#000000"}]}]; 
+	var myOptions = {
+		zoom: 16,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+	// console.log(document.getElementById("map_canvas"));
+	map = new google.maps.Map(document.getElementById("map"), myOptions);
+	
+	
+	address = 'India';
+	// address = 'Trinidad and Tobago'
+	geocoder = new google.maps.Geocoder();
+	geocoder.geocode( { 'address': address}, function(results, status) {
+	    map.fitBounds(results[0].geometry.viewport);
+	});	
+		 // Instantiate a directions service.
+		    directionsService = new google.maps.DirectionsService();
+		 // Create a renderer for directions and bind it to the map.
+	        var rendererOptions = {
+	            map: map
+	        };
+	        directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+		    polyline = new google.maps.Polyline({
+		        path: [],
+		        strokeColor: '#FF0000',
+		        strokeWeight: 0
+		    });
+		    poly2 = new google.maps.Polyline({
+		        path: [],
+		        strokeColor: '#FF0000',
+		        strokeWeight: 0
+		    });
+		    /*
+			 * google map default zoom_changed event
+			 * */
+		    $scope.zoomlevel=0;
+			google.maps.event.addListener(map, 'zoom_changed', function() {
+				setTimeout(function(){
+					$scope.zoomlevel = map.getZoom();
+					}, 80);
+			});
+			 
+			
+			
+			function wheelEvent( event ) {  
+			/*	console.log($scope.zoomlevel);
+				console.log($scope.deviceId);*/
+				if(typeof $scope.deviceId !='undefined' && $scope.deviceId !=""){
+					if ($scope.zoomlevel < 16 || $scope.zoomlevel > 17) {
+//						console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ZOOM & DEVICEID<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+//						console.log($scope.zoomlevel);
+						$scope.singleDeviceZoomed = false;
+						if (angular.isDefined(singleDeviceInterval)) {
+							$interval.cancel(singleDeviceInterval);
+						} else if (angular.isDefined(multiDeviceInterval)) {
+							$interval.cancel(multiDeviceInterval);
+						}
+					}
+				}			
+		    }
+		    
+		    // $map[0].addEventListener( 'mousewheel', wheelEvent, true );
+		    // $map[0].addEventListener( 'DOMMouseScroll', wheelEvent, true );
+		  };
+		  
+		  
+		  google.maps.event.addDomListener(window, 'load', $scope.initialize);
+
+
+		  $scope.resizeMap = function(){
+    	$("#map_canvas").css("position", 'fixed').
+        css('top', 0).
+        css('left', 0).
+        css("width", '100%'). 
+    	css("height",'100%');
+    	$(".count_label").css("position", 'fixed').css('top', '20px').css('left', '5px').css('margin-top', '45px');
+    	$(".traffic_layer_btn").css("position", 'fixed').css('top', '10px').css('left', '130px');
+    	//console.log("resize");
+    	google.maps.event.trigger(map, 'resize');
+    }
+    
+    
+    $scope.shrinkMap=function(){
+    	$("#map_canvas").css("position", 'absolute').
+        css('top', 0).
+        css('left', 0).
+        css("width", '100%').
+    	css("height",'100%');
+    	$(".count_label").css("position", 'absolute').css('top', 0).css('left', '15px').css('margin-top','10%');
+    	$(".traffic_layer_btn").css("position", 'absolute').css('top', '10px').css('left', '130px');
+    	google.maps.event.trigger(map, 'resize');
+    }
+	var iconImg;
+    function createMarker(latlng, deviceID,vehNo,vehModel, html,type,devtype) {
+	svg = new Array();
+	icons = new Array();
+	if(devtype == "car"){
+	    svg = car;
+	}
+	else if(devtype == "truck")
+	{
+	    svg = truck;
+	}
+	else if(devtype == "bike"){
+	    svg = bike;
+	}
+	else if(devtype == "bus"){
+	    svg = bus; 
+	}
+	else{
+		svg = car;
+	}
+	var contentString; 
+	for(let i in svg){
+
+	    icons[i] = {path : svg[i].path, 
+	    		fillColor : svg[i].fillColor, 
+	    		scale: .9, 
+	    		strokeColor: 'white', 
+		    strokeWeight: .10, 
+		    fillOpacity: 1, 
+		    offset: '5%',
+		    rotation: Number($scope.headings),
+		    anchor: new google.maps.Point(16, 16) // orig 10,50 back of car, 10,0 front of car, 10,25 center of car
+	    };
+	}
+	var geocoder = new google.maps.Geocoder();		
+	geocoder.geocode({latLng: latlng}, function(responses){     
+	    if (responses && responses.length > 0) 
+	    {     	   
+		if(html.length==0){
+		    html=responses[0].formatted_address;
+		    contentString  = '<b><label>Device ID:</label> '+deviceID+'</b><br><br><b><label>Vehicle No:</label> '+vehNo+'</b><br><br><b><label>Vehicle Model:</label> '+vehModel+'</b><br><br>'+html+'<br><br><button class="btn btn-primary btn-sm" id="infoClick" data-deviceID="'+deviceID+'">show detail</button>';	
+		}		        	   		                    
+	    } 
+	    else 
+	    {       
+		// swal('Not getting Any address for given latitude and longitude.');
+	    }   
+	});
+	if(html.length!=0){
+	    contentString  = '<b><label>Device ID:</label> '+deviceID+'</b><br><br><b><label>Vehicle No:</label> '+vehNo+'</b><br><br><b><label>Vehicle Model:</label> '+vehModel+'</b><br><br>'+html+'<br><br><button class="btn btn-primary btn-sm" id="infoClick" data-deviceID="'+deviceID+'">show detail</button>';
+	}
+	
+	for (let i in svg){
+	    marker[i] = new google.maps.Marker({
+		position: latlng,
+		map: map,
+		title: deviceID,
+		icon: icons[i],
+		zIndex: Math.round(latlng.lat() * -100000) << 5,
+		myname : deviceID
+	    });
+	    markers.push(marker[i]);
+	    var damymarker = marker[i];
+	    google.maps.event.addListener(damymarker, 'click', function() {
+		   	 
+		    infowindow.setContent(contentString); 
+		    //infowindow.setZIndex(1000000);
+		    infowindow.open(map,damymarker);
+		   
+		});
+	}
+	return marker;
+    }
+	// Sets the map on all markers in the array.
+    function setMapOnAll(map) {
+	for (let i = 0; i < markers.length; i++) {
+	    markers[i].setMap(map);
+	}
+	markers = [];
+    }
+    
+    function setPolygonNull(){
+    	myPolygon.setMap(null);
+    }
+	
+    $(document).on('click','#infoClick',function(event){
+	event.stopImmediatePropagation();
+	if(typeof $scope.deviceId=='undefined' || $(this).attr("data-deviceID")!= ""){
+	    $scope.open("lg",$(this).attr("data-deviceID"));
+	}
+	else{
+	    $scope.open("lg",$scope.deviceId);	
+	}
+    });	 
+
+$scope.calcRoute = function(dataVal) {
+		/**
+		 * check for storedltlng object is initialized or not if initalized
+		 * follow the next step else intialize the storedltlng check for
+		 * storedltlng key "lat" value is not equal to current data values lat
+		 * if not allow movement of vehichle operation else update start and end
+		 * with same current data lat and lng ex: dataVal[0].values.lat and .lng
+		 * for both start and end
+		 */
+		if(typeof storedltlng.lat!='undefined'){
+			if(storedltlng.lat!=dataVal[0].values.lat){
+				if(dataVal[0].values.type==4){
+//					console.log("--------------------Different lat lng of "+dataVal[0].values.type+" ------------------------------");
+//					console.log("start : ",storedltlng.lat,"end :",dataVal[0].values.lat);
+					vehichleRouting(dataVal,storedltlng.lat,storedltlng.lng,storedltlng.lat,storedltlng.lng);
+				}
+				
+				else{
+//					console.log("--------------------Different lat lng------------------------------");
+//					console.log("start : ",storedltlng.lat,"end :",dataVal[0].values.lat);
+					vehichleRouting(dataVal,storedltlng.lat,storedltlng.lng,dataVal[0].values.lat,dataVal[0].values.long);
+			        storedltlng.lat=dataVal[0].values.lat;
+					storedltlng.lng=dataVal[0].values.long;
+				}
+			}
+			else{
+				var startLat=dataVal[0].values.lat;
+				var startLng=dataVal[0].values.long;
+				var endLat=dataVal[0].values.lat;
+				var endLng=dataVal[0].values.long;
+				vehichleRouting(dataVal,startLat,startLng,endLat,endLng)
+//				console.log("-----------------EQUAL / SAME LAT------------------------")
+//				console.log("start : ",storedltlng.lat,"end :",dataVal[0].values.lat);
+			
+			}
+		}		
+		else{
+			storedltlng.lat=dataVal[0].values.lat;
+			storedltlng.lng=dataVal[0].values.long;
+			var startLat=dataVal[0].values.lat;
+			var startLng=dataVal[0].values.long;
+			var endLat=dataVal[0].values.lat;
+			var endLng=dataVal[0].values.long;
+			vehichleRouting(dataVal,startLat,startLng,endLat,endLng)
+		}
+	 
+	};
+
+	function vehichleRouting(dataVal,startLat,startLng,endLat,endLng){
+	    // console.log(startLat,startLng,endLat,endLng);
+	    if (timerHandle) {
+		clearTimeout(timerHandle);
+	    }
+	    setMapOnAll(null);
+		console.log(polyline);
+		if(polyline != undefined && poly2 != undefined)
+		{
+		
+	    polyline.setMap(null);
+	    poly2.setMap(null);
+	    directionsDisplay.setMap(null);
+	    polyline = new google.maps.Polyline({
+		path: [],
+		strokeColor: '#FFFFFF',
+		strokeWeight: 0
+	    });
+	    poly2 = new google.maps.Polyline({
+		path: [],
+		strokeColor: '#FFFFFF',
+		strokeWeight: 0
+	    });
+        // Create a renderer for directions and bind it to the map.
+        var rendererOptions = {
+            map: map
         };
-      
+        directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+
+        var start = new google.maps.LatLng({lat: Number(startLat), lng: Number(startLng)}); // document.getElementById("start").value;
+        var end = new google.maps.LatLng({lat: Number(endLat), lng: Number(endLng)}); // document.getElementById("end").value;
+        var travelMode = google.maps.DirectionsTravelMode.DRIVING;
+
+        var request = {
+            origin: start,
+            destination: end,
+            travelMode: travelMode
+        };
+
+        // Route the directions and pass the response to a
+        // function to create markers for each step.
+        directionsService.route(request, function (response, status) {
+            // console.log(response.routes[0]);
+            if (status == google.maps.DirectionsStatus.OK) {
+                // directionsDisplay.setDirections(response);
+
+                var bounds = new google.maps.LatLngBounds();
+                var route = response.routes[0];
+                startLocation = new Object();
+                endLocation = new Object();
+
+                // For each route, display summary information.
+                var path = response.routes[0].overview_path;
+                var legs = response.routes[0].legs;
+                for (i = 0; i < legs.length; i++) {
+                    if (i === 0) {
+                        startLocation.latlng = legs[i].start_location;
+                        startLocation.address = legs[i].start_address;												   
+                          createMarker(legs[i].start_location,dataVal[i].devid,dataVal[i].vehicle_num,dataVal[i].vehicle_model,legs[i].start_address,dataVal[i].values.type,dataVal[i].devtype);
+                      }
+                      endLocation.latlng = legs[i].end_location;
+                      endLocation.address = legs[i].end_address;
+                      var steps = legs[i].steps;
+                    // console.log(JSON.stringify(steps));
+                    for (j = 0; j < steps.length; j++) {
+                        var nextSegment = steps[j].path;
+                        for (k = 0; k < nextSegment.length; k++) {
+                            polyline.getPath().push(nextSegment[k]);
+                            bounds.extend(nextSegment[k]);
+                        }
+                    }
+                }
+                polyline.setMap(map);
+                map.fitBounds(bounds);
+                map.setZoom($scope.singleDeviceZoomLevel); 
+                startAnimation();                
+            }
+        });
+		}
+		else{
+			//nothing
+		}
+	}
+
+
+var step = 50; // 5; // metres  
+	var tick = 1000; // milliseconds
+	var eol;
+	var k = 0;
+	var stepnum = 0;
+	var speed = "";
+	var lastVertex = 1;
+
+	// =============== animation functions ======================
+	function updatePoly(d) {
+	    // Spawn a new polyline every 20 vertices, because updating a 100-vertex
+		// poly is too slow
+	    if (poly2.getPath().getLength() > 20) {
+	        poly2 = new google.maps.Polyline([polyline.getPath().getAt(lastVertex - 1)]);
+	        // map.addOverlay(poly2)
+	    }
+
+	    if (polyline.GetIndexAtDistance(d) < lastVertex + 2) {
+	        if (poly2.getPath().getLength() > 1) {
+	            poly2.getPath().removeAt(poly2.getPath().getLength() - 1);
+	        }
+	        poly2.getPath().insertAt(poly2.getPath().getLength(), polyline.GetPointAtDistance(d));
+	    } else {
+	        poly2.getPath().insertAt(poly2.getPath().getLength(), endLocation.latlng);
+	    }
+	}
+
+	$scope.animate = function(d) {
+	    if (d > eol) {        
+		map.panTo(endLocation.latlng);
+		for(i in svg){marker[i].setPosition(endLocation.latlng);}
+		return;
+	    }
+	    var p = polyline.GetPointAtDistance(d);
+	    map.panTo(p);
+	    var lastPosn = marker[0].getPosition();
+	    for(let i in svg){marker[i].setPosition(p);}
+	    var heading = google.maps.geometry.spherical.computeHeading(lastPosn, p);
+	    $scope.headings = heading;
+		//localStorage.setItem("heading",heading);
+	    for(let i in svg){icons[i].rotation = heading;}
+	    for(let i in svg){marker[i].setIcon(icons[i]);}
+	    updatePoly(d);
+	    // timerHandle = setTimeout("animate(" + (d + step) + ")", tick);
+	    
+	    timerHandle = setTimeout(function() {
+	        $scope.animate(d + step);
+	    }, tick);
+	}
+
+	function startAnimation() {
+	    eol = polyline.Distance();
+	    map.setCenter(polyline.getPath().getAt(0));
+	    poly2 = new google.maps.Polyline({
+	        path: [polyline.getPath().getAt(0)],
+	        strokeColor: "#0000FF",
+	        strokeWeight: 0
+	    });
+	    
+	    setTimeout(function() {
+	        $scope.animate(50);
+	    }, 2000);
+	    
+
+	}
+
+
+	// === first support methods that don't (yet) exist in v3
+	google.maps.LatLng.prototype.distanceFrom = function (newLatLng) {
+	    var EarthRadiusMeters = 6378137.0; // meters
+	    var lat1 = this.lat();
+	    var lon1 = this.lng();
+	    var lat2 = newLatLng.lat();
+	    var lon2 = newLatLng.lng();
+	    var dLat = (lat2 - lat1) * Math.PI / 180;
+	    var dLon = (lon2 - lon1) * Math.PI / 180;
+	    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+	    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+	    var d = EarthRadiusMeters * c;
+	    return d;
+	}
+
+	google.maps.LatLng.prototype.latRadians = function () {
+	    return this.lat() * Math.PI / 180;
+	}
+
+	google.maps.LatLng.prototype.lngRadians = function () {
+	    return this.lng() * Math.PI / 180;
+	}
+
+	// === A method which returns the length of a path in metres ===
+	google.maps.Polygon.prototype.Distance = function () {
+	    var dist = 0;
+	    for (var i = 1; i < this.getPath().getLength(); i++) {
+	        dist += this.getPath().getAt(i).distanceFrom(this.getPath().getAt(i - 1));
+	    }
+	    return dist;
+	}
+
+	// === A method which returns a GLatLng of a point a given distance along
+	// the path ===
+	// === Returns null if the path is shorter than the specified distance ===
+	google.maps.Polygon.prototype.GetPointAtDistance = function (metres) {
+	    // some awkward special cases
+	    if (metres == 0) return this.getPath().getAt(0);
+	    if (metres < 0) return null;
+	    if (this.getPath().getLength() < 2) return null;
+	    var dist = 0;
+	    var olddist = 0;
+	    for (var i = 1;
+	    (i < this.getPath().getLength() && dist < metres); i++) {
+	        olddist = dist;
+	        dist += this.getPath().getAt(i).distanceFrom(this.getPath().getAt(i - 1));
+	    }
+	    if (dist < metres) {
+	        return null;
+	    }
+	    var p1 = this.getPath().getAt(i - 2);
+	    var p2 = this.getPath().getAt(i - 1);
+	    var m = (metres - olddist) / (dist - olddist);
+	    return new google.maps.LatLng(p1.lat() + (p2.lat() - p1.lat()) * m, p1.lng() + (p2.lng() - p1.lng()) * m);
+	}
+
+	// === A method which returns an array of GLatLngs of points a given
+	// interval along the path ===
+	google.maps.Polygon.prototype.GetPointsAtDistance = function (metres) {
+	    var next = metres;
+	    var points = [];
+	    // some awkward special cases
+	    if (metres <= 0) return points;
+	    var dist = 0;
+	    var olddist = 0;
+	    for (var i = 1;
+	    (i < this.getPath().getLength()); i++) {
+	        olddist = dist;
+	        dist += this.getPath().getAt(i).distanceFrom(this.getPath().getAt(i - 1));
+	        while (dist > next) {
+	            var p1 = this.getPath().getAt(i - 1);
+	            var p2 = this.getPath().getAt(i);
+	            var m = (next - olddist) / (dist - olddist);
+	            points.push(new google.maps.LatLng(p1.lat() + (p2.lat() - p1.lat()) * m, p1.lng() + (p2.lng() - p1.lng()) * m));
+	            next += metres;
+	        }
+	    }
+	    return points;
+	}
+
+	// === A method which returns the Vertex number at a given distance along
+	// the path ===
+	// === Returns null if the path is shorter than the specified distance ===
+	google.maps.Polygon.prototype.GetIndexAtDistance = function (metres) {
+	    // some awkward special cases
+	    if (metres == 0) return this.getPath().getAt(0);
+	    if (metres < 0) return null;
+	    var dist = 0;
+	    var olddist = 0;
+	    for (var i = 1;
+	    (i < this.getPath().getLength() && dist < metres); i++) {
+	        olddist = dist;
+	        dist += this.getPath().getAt(i).distanceFrom(this.getPath().getAt(i - 1));
+	    }
+	    if (dist < metres) {
+	        return null;
+	    }
+	    return i;
+	}
+	// === Copy all the above functions to GPolyline ===
+	google.maps.Polyline.prototype.Distance = google.maps.Polygon.prototype.Distance;
+	google.maps.Polyline.prototype.GetPointAtDistance = google.maps.Polygon.prototype.GetPointAtDistance;
+	google.maps.Polyline.prototype.GetPointsAtDistance = google.maps.Polygon.prototype.GetPointsAtDistance;
+	google.maps.Polyline.prototype.GetIndexAtDistance = google.maps.Polygon.prototype.GetIndexAtDistance;
+	
+	/*
+	 * -----------------------------------------the end for vehicle icon
+	 * movement---------------------------------------------------------------
+	 * 
+	 */
+$scope.singleDeviceZoomLevel=16;
+	$scope.multipleDeviceZoomLevel=3;
+	$scope.mars = 10;
+	$scope.isZoomed = true;// reCenter button for group based
+	$scope.singleDeviceZoomed = true;// reCenter button for single device
+										// based
+	$scope.deviceList = [];
+	var speedValue=0;									
+	var devIDval="";
+	var speedlimit="";
+	
+	//$scope.chart;
+	var chart;
+	
+	// Count of vehicle count
+	var multiDeviceInterval, singleDeviceInterval;
+	$scope.multiDevice = false;
+	$scope.singleDevice = false;
+	$scope.carCount = 0;
+	$scope.jeepCount = 0;
+	$scope.bikeCount = 0;
+	$scope.busCount = 0;
+	$scope.truckCount = 0;
+	
+
+   if(window.localStorage.getItem("choice")==undefined || 
+        window.localStorage.getItem("choice")==null){
+      $state.go(PageConfig.LIVE_TRACKING_DEVICES);
+    }else{
+      $scope.selectedDevice =  window.localStorage.getItem("choice");
+
+
+	getTracker();
+	singleDeviceInterval = $interval(getTracker,reqTime * 1000);
+    
     }
 
+
+
+	
+
+	function getTracker(){
+		var obj = [];
+		
+		 var inputParam = {"devlist" : [$scope.selectedDevice]};
+     	  BatsServices.currentData(inputParam).success(function (response) {
+          console.log(response.length);
+		  console.log(response);
+
+		UtilsFactory.setLivetrackingDetails(response);
+		  $scope.multiDevice = false;
+				if(response[0].values !=""){
+					console.log("response true");					
+					$scope.singleDevice = true;
+					$scope.divcolor = response[0].values.type;
+					$scope.vehicleName = response[0].vehicle_name;
+					speedValue=response[0].values.Velocity;					 
+					speedlimit=response[0].speed_limit;				
+					// request for geofence plotting
+					// vechile count updation based on type
+					$scope.carCount = 0;
+					$scope.bikeCount = 0;
+					$scope.busCount = 0;
+					$scope.truckCount = 0;
+					if(response[0].devtype=="car"){				
+						$scope.carCount = 1;
+					}
+					else if(response[0].devtype=="bus"){
+						$scope.busCount = 1;
+					}else if(response[0].devtype=="truck"){
+						$scope.truckCount = 1;
+					}else if(response[0].devtype=="bike"){
+						$scope.bikeCount = 1;
+					}
+					else{$scope.carCount = 0;
+        					$scope.bikeCount = 0;
+        					$scope.busCount = 0;
+        					$scope.truckCount = 0;
+					}
+					$scope.speedSpeedOmeter=speedValue;
+					$scope.vehnoSpeedOmeter=response[0].vehicle_num;
+					$scope.speedlimitSpeedOmeter=speedlimit;
+					$scope.dateTimeSpeedOmeter=getDateTime(response[0].values.ts);
+					$scope.calcRoute(response);
+			}
+			else{
+				$scope.singleDevice = false;
+				$scope.carCount = 0;
+				$scope.bikeCount = 0;
+				$scope.busCount = 0;
+				$scope.truckCount = 0;
+				ionicToast.show('Device of id '+response[0].devid+' is not updating kindly check it');
+			}
+	
+		
+	}).error(function (error) {
+          ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+      })
+	//}
+}
+
+
+	function getDateTime(ts){
+		var d = new Date(Number(ts));
+		// console.log(d.getDate()+"-"+d.getMonth()+"-"+d.getFullYear());
+		var monthVal = d.getMonth() + 1;
+		// Hours part from the timestamp
+		var hours = d.getHours();
+		// Minutes part from the timestamp
+		var minutes = "0" + d.getMinutes();
+		// Seconds part from the timestamp
+		var seconds = "0" + d.getSeconds();
+
+		// Will display time in 10:30:23 format
+		var formattedTime = hours + ':'
+				+ minutes.substr(-2) + ':'
+				+ seconds.substr(-2);
+		return formattedTime+","+d.getDate() + "/" + monthVal + "/"
+				+ d.getFullYear();
+	}
+
+	
+		$scope.getColorBack =function(div){
+//			console.log(div)
+			
+			if(div=="0"){
+				setTimeout(function() {
+				$scope.singleImg_url="../images/mapIcon/geofenceStatus.png";
+				//$(".barStyleSingle").css("background-color", "#f44336");
+				$scope.barTxt= "Crossed Geofence";
+				$(".barStyle").css("background-color", "#710e9f");
+				
+				},7000);
+			}
+			else if(div=="1"){
+				$scope.singleImg_url="../images/mapIcon/speed-limit.png";
+				$scope.barTxt= "Crossed Speed";
+				$(".ltwrap_type").css("background-color", "#ffd500");
+				//$(".barStyleSingle").css("background-color", "#ffde01");
+			}
+			else if(div=="2"){
+				$scope.singleImg_url="../images/mapIcon/warning.png";
+				$scope.barTxt= "Crossed Geofence and Speed";
+				$(".ltwrap_type").css("background-color", "#ff0000");
+				//$(".barStyleSingle").css("background-color", "#e59305");
+			}
+			else if(div== "3"){
+				$scope.singleImg_url="../images/mapIcon/normal.png";
+				$scope.barTxt= "Normal State";
+				$(".ltwrap_type").css("background-color", "#7fbb01");
+				//$(".barStyleSingle").css("background-color", "#000000");
+			}
+			else if(div== "4"){
+				$scope.singleImg_url="../images/mapIcon/no-response.png";
+				$scope.barTxt= "No-Response State";
+				$(".ltwrap_type").css("background-color", "#2d2d2d");
+				//$(".barStyleSingle").css("background-color", "#0540E5");
+			}
+		}
     
-      function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-        directionsService.route({
-          origin: document.getElementById('start').value,
-          destination: document.getElementById('end').value,
-          travelMode: 'DRIVING'
-        }, function(response, status) {
-          if (status === 'OK') {
-            directionsDisplay.setDirections(response);
-          } else {
-            window.alert('Directions request failed due to ' + status);
-          }
-        });
-      }
-})
+	
+	
+	
+	
+	
+	$scope.ab = function(){
+		$state.go(PageConfig.LIVE_TRACKING_DETAILS);
+	} 
+	
+
+	
+});
+
+/*
+ * ----------------------------------------------------- end of map controller
+ * ----------------------------------------------------------------------
+ */
+

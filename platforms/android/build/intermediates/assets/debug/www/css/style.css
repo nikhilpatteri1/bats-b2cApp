@@ -45,11 +45,6 @@
     color : white;
 }
 
-
-.floatRight{
-    float: right;
-}
-
 .hmCards .button{
     width: 80px;
     min-height: 34px;
@@ -76,7 +71,6 @@
 }
 
 .acEditIcon{
-    margin-left: -15px;
     margin-top: -2px;
 }
 
@@ -101,6 +95,11 @@
     padding-bottom: 0px;
 }
 
+.removePaddingLeftRight{
+    padding-left: 0px !important;  
+    padding-right: 0px !important;
+}
+
 .floatLeft{
     float: left;
 }
@@ -108,6 +107,27 @@
 .floatRight{
     float: right;
 }
+
+a:focus, a:hover {
+    color: #474747 !important;
+    text-decoration: none !important;
+}
+
+
+/****************************** CSS for loader**********************/
+
+.loading-container{
+	top: -76% !important;
+}
+
+.loading-container .loading img{
+	width: 30%;
+} 
+
+.loading-container .loading {
+    background-color: transparent;
+}
+
 /******************************************************************************/
 .error{
      border-bottom:1px solid red !important;
@@ -173,6 +193,16 @@
    background-image: linear-gradient(180deg, #99e3cf , #99e3cf 50%, transparent 50%) !important;
 }
 
+
+.disableDivForTransparent{
+    color : #ababab;
+    pointer-events: none;
+}
+
+.disableDivForTransparent i{
+    border-color : #ababab;
+}
+
 .ionContentMargin {
     margin-bottom: 44px !important;
 } 
@@ -180,6 +210,88 @@
 .stModalView {
 	    height: 313px;
 }
+
+
+.liveTrackreCenter {
+	position: absolute;
+    z-index: 100000000000;
+    top: 470px;
+    /* left: 162px; */
+    right: 12px;
+    background: #fff;
+    /*color: #1909F3;*/
+    font-size: 1.2em;
+    /*font-weight: 900;*/
+    padding: 10px;
+}
+.liveTrackRecenterA{
+        transform: rotate(270deg);
+    display: inline-block;
+    padding: 4px 8px 4px 11px;
+    color: #3197fb;
+}
+.liveTrackParking{ 
+right: 70%;
+}
+
+.liveTrackBelowbtn{
+    top: 86%;
+    left: 7%;
+    width: 94%;
+    position: absolute;
+    background: #fff;    
+    font-size: 1.2em;
+    /*padding: 10px;*/ 
+}
+
+.liveTrackTable{
+    display: flex;
+    padding: 0px;
+    margin: 0px;
+    padding-left: 5px; 
+    
+}
+
+.liveTrackTable div{
+    padding-right: 25px !important; 
+}
+
+.ltkmdetail{
+        background: chocolate;
+    color: #fff;
+    border-radius: 74px;
+    /* padding: 14px; */
+    /* padding-top: 24px; */
+    margin-top: 9px;
+    padding: 9px 0px 9px 20px;
+    margin-left: -20px;
+}
+.ltArrow{
+    margin: 17px 122px;
+
+}
+
+.ltStatusinline{
+    display: inline-block;
+    }
+
+.ltwrap_type {
+	    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    float: left;
+    background-color: #000;
+    margin-left: -30px;
+    margin-top: 4px;
+}
+.ltstatusTxt{
+        margin-right: -150px;
+    }
+
+.ltstatusUpTxt{
+    margin-left: -29px;
+    margin-bottom: 4px;
+    }
 
 
 /***************************************CSS for All Modals Design********************************/
@@ -284,8 +396,9 @@
 }
 
 .modalTopImage{
-    margin-left: 25%;
+    margin-left: 29%;
     margin-top: 20px;
+    width: 109px;
 }
 
 .popup, .popup-buttons button{
@@ -305,7 +418,8 @@
         
 .sidemenubar-header{
     height: 110px;
-    background-image: linear-gradient(0deg, #b2b2b2, #ff6a44 50%, transparent 50%) !important;
+    background-image: url('img/menu/menuBG.png');
+   /*//  linear-gradient(0deg, #b2b2b2, #ff6a44 50%, transparent 50%) !important;*/
 }
 
 .menuHeaderDivFont{
