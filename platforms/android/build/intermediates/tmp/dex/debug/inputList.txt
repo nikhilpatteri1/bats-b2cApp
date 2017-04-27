@@ -1,4 +1,4 @@
-D:\jassi\ionic\Bats\platforms\android\build\intermediates\classes\debug
-D:\jassi\ionic\Bats\platforms\android\build\intermediates\pre-dexed\debug\gcm-bf176f2483fe55f7247f2c09229d7ba038cb49cc.jar
-D:\jassi\ionic\Bats\platforms\android\build\intermediates\pre-dexed\debug\classes-1fa9e06ca1f30ddcdfb7b8ac41f4a76cc29f6a3d.jar
-D:\jassi\ionic\Bats\platforms\android\build\intermediates\pre-dexed\debug\android-support-v4-dc8648cf652c0359f1f37982bc571bb34a4f167e.jar
+D:\Bydesign\ionic\bats-android\bats-android\platforms\android\build\intermediates\classes\debug
+D:\Bydesign\ionic\bats-android\bats-android\platforms\android\build\intermediates\pre-dexed\debug\gcm-bee057ece13196fac38f13d00fe41fb911e8d152.jar
+D:\Bydesign\ionic\bats-android\bats-android\platforms\android\build\intermediates\pre-dexed\debug\classes-77e2c7e7027a71a2452d420df6d3e7bc2e2e4e4d.jar
+D:\Bydesign\ionic\bats-android\bats-android\platforms\android\build\intermediates\pre-dexed\debug\android-support-v4-58cb925afd026fbaaca2817e30ce7a8097559e23.jar
