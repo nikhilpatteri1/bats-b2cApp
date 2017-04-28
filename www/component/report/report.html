@@ -27,7 +27,7 @@
                         </div>
                     </form>
                 </div>
-                <button ng-click="gotoReport(data,ReportForm)" class="button button-balanced stButton btnMaarginTop1">Download</button>
+                <button ng-click="gotoReport(data,ReportForm)"  ng-disabled="ReportForm.$invalid" class="button button-balanced stButton btnMaarginTop1">Download</button>
             </div>
         </div>
 

@@ -37,7 +37,7 @@
                         </div>
                     </form>
                 </div>
-                <button ng-click="gotoVehicleStatistics(data,vehicleStatiticsForm)" class="button button-balanced stButton btnMaarginTop1">Submit</button>
+                <button ng-click="gotoVehicleStatistics(data,vehicleStatiticsForm)"  ng-disabled="vehicleStatiticsForm.$invalid"  class="button button-balanced stButton btnMaarginTop1">Submit</button>
             </div>
         </div>
 
