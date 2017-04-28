@@ -1,5 +1,6 @@
 angular.module('livetracking', [])
-.controller('LiveTrackingCtrl', function($scope, $ionicModal, $timeout, UtilsFactory, $state, PageConfig, BatsServices,ionicToast,$interval) {
+.controller('LiveTrackingCtrl', function($scope, $ionicModal, $timeout, UtilsFactory, $state, PageConfig, BatsServices,
+	ionicToast,$interval, Constants) {
      var dynamicMapHeight=window.screen.availHeight;
     $scope.mapHeight={height:dynamicMapHeight+"px"};
 	console.log($scope.mapHeight);
@@ -116,22 +117,22 @@ angular.module('livetracking', [])
 			 
 			
 			
-			function wheelEvent( event ) {  
-			/*	console.log($scope.zoomlevel);
-				console.log($scope.deviceId);*/
-				if(typeof $scope.deviceId !='undefined' && $scope.deviceId !=""){
-					if ($scope.zoomlevel < 16 || $scope.zoomlevel > 17) {
-//						console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ZOOM & DEVICEID<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-//						console.log($scope.zoomlevel);
-						$scope.singleDeviceZoomed = false;
-						if (angular.isDefined(singleDeviceInterval)) {
-							$interval.cancel(singleDeviceInterval);
-						} else if (angular.isDefined(multiDeviceInterval)) {
-							$interval.cancel(multiDeviceInterval);
-						}
-					}
-				}			
-		    }
+// 			function wheelEvent( event ) {  
+// 			/*	console.log($scope.zoomlevel);
+// 				console.log($scope.deviceId);*/
+// 				if(typeof $scope.deviceId !='undefined' && $scope.deviceId !=""){
+// 					if ($scope.zoomlevel < 16 || $scope.zoomlevel > 17) {
+// //						console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ZOOM & DEVICEID<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+// //						console.log($scope.zoomlevel);
+// 						$scope.singleDeviceZoomed = false;
+// 						if (angular.isDefined(singleDeviceInterval)) {
+// 							$interval.cancel(singleDeviceInterval);
+// 						} else if (angular.isDefined(multiDeviceInterval)) {
+// 							$interval.cancel(multiDeviceInterval);
+// 						}
+// 					}
+// 				}			
+// 		    }
 		    
 		    // $map[0].addEventListener( 'mousewheel', wheelEvent, true );
 		    // $map[0].addEventListener( 'DOMMouseScroll', wheelEvent, true );
@@ -584,7 +585,7 @@ $scope.singleDeviceZoomLevel=16;
 	var chart;
 	
 	// Count of vehicle count
-	var multiDeviceInterval, singleDeviceInterval;
+	var singleDeviceInterval;
 	$scope.multiDevice = false;
 	$scope.singleDevice = false;
 	$scope.carCount = 0;
@@ -611,6 +612,8 @@ $scope.singleDeviceZoomLevel=16;
 	
 
 	function getTracker(){
+		console.log($state);
+		if($state.is==PageConfig.LIVE_TRACKING){
 		var obj = [];
 		
 		 var inputParam = {"devlist" : [$scope.selectedDevice]};
@@ -667,7 +670,10 @@ $scope.singleDeviceZoomLevel=16;
 	}).error(function (error) {
           ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
       })
-	//}
+	}
+	else{
+		$interval.cancel(singleDeviceInterval);
+	}
 }
 
 

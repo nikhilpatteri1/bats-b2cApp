@@ -19,6 +19,10 @@ angular.module('eventhistorydetail', [])
       })
     }
 
+    $scope.backToEventHistory=function(){
+       $state.go(PageConfig.EVENT_HISTORY);
+    }
+
     $scope.showAlert = function (lat,long) {
       var lat = parseFloat(lat);
       var lng = parseFloat(long);

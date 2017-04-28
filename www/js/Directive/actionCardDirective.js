@@ -19,6 +19,7 @@ angular.module('actioncarddirective', [])
 
         $scope.editmarker = function(tracker){
             UtilsFactory.setEditMarkerDetails(tracker);
+            console.log(UtilsFactory.getEditMarkerDetails())
             $state.go(PageConfig.SIGNUP_STEP2);
         }
 

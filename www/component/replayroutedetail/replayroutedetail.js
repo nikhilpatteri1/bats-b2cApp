@@ -6,33 +6,12 @@ angular.module('replayroutedetail', [])
         dynamicMapHeight)-200+"px"};
 	console.log($scope.mapHeight);
 
-        // var map;
-        // var latLng = { lat: 12.850167, lng: 77.660329 };
-        // var mapOptions = {
-        //     center: latLng,
-        //     zoom: 22,
-        //     mapTypeId: google.maps.MapTypeId.ROADMAP
-        // };
-        // map = new google.maps.Map(document.getElementById("replay_map"), mapOptions);
-        // var dataFromReplay = UtilsFactory.getDataForReplay();
+		$scope.backToReplayRoute=function(){
+			 $state.go(PageConfig.REPLAY_ROUTE);
+		}
 
-        
-        // $scope.speedSlot = ["Slow", "Medium", "High"];
-        // $scope.timeSlots = dataFromReplay.values;
-        // console.log($scope.timeSlot);
 
-        // $scope.getHistory = function (timeSlot) {
-        //     var inputParam = { 'devid': dataFromReplay.devid, 'sts': timeSlot.sts, 'ets': timeSlot.ets };
-        //     BatsServices.history(inputParam).success(function (response) {
-        //         console.log(JSON.stringify(response));
-        //         // if (true) {
-        //         //     UtilsFactory.setDataForReplay(response.values);
-        //         //     $state.go(PageConfig.REPLAY_ROUTE_DETAILS);
-        //         // }
-        //     }).error(function (error) {
-        //         ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
-        //     })
-        // }
+
     $scope.showDatepicker=true;
 	$scope.showTimeSlot=false;
 	$scope.blankTable=true;
@@ -59,6 +38,7 @@ angular.module('replayroutedetail', [])
   var eol;
   var marker = new Array();
   var k=0;
+  var setinterval;
 
   var svg = new Array();
   svg[0] = { path :"M26.068,7.719 C27.423,21.657 26.941,35.659 26.801,49.660 C26.765,52.945 23.953,55.681 20.511,55.727 C16.978,55.770 13.462,55.778 9.929,55.738 C6.486,55.697 3.672,52.944 3.640,49.660 C3.516,35.659 3.113,21.657 4.657,7.719 C5.083,4.446 7.639,1.760 10.572,1.739 C13.630,1.721 16.881,1.721 20.018,1.739 C23.034,1.760 25.695,4.446 26.068,7.719 L26.068,7.719 Z",fillColor : "rgb(237, 237, 237)"};
@@ -174,16 +154,30 @@ angular.module('replayroutedetail', [])
         console.log($scope.timeSlots);
 
         $scope.getHistory = function (timeSlot) {
+			 
+			$scope.replaySlot = timeSlot;
+			console.log(timeSlot);
             var inputParam = { 'devid': dataFromReplay.devid, 'sts': timeSlot.sts, 'ets': timeSlot.ets };
             BatsServices.history(inputParam).success(function (response) {
-                console.log(JSON.stringify(response));
+                //console.log(JSON.stringify(response));
 				$scope.historyVal = response;
-				console.log($scope.historyVal);
-				if (response.values !="" ){
+				 oldStep = {step: 1,tick:100};
+				 $scope.end = false;
+				//console.log($scope.historyVal);				
+				//displayHistory();
+				if($scope.historyVal.values != "" ){
+					 
 					displayHistory();
 				}
 				else{
-					//ionicToast.show('Stationary Vehicle');
+					
+					ionicToast.show('No history avilable for this Vehicle');
+					clearMap();
+					for(i in svg){marker[i].setMap(null);}
+					if (setinterval) {
+						clearTimeout(timerHandle);
+						}
+
 				}
 				
                 // if (true) {
@@ -196,236 +190,11 @@ angular.module('replayroutedetail', [])
         }
 	
 	
-	/**
-	 * add selected device for fetching history
-	 */
-	// $scope.fetchDeviceDetailHistory=function(devID){
-	// 	$scope.showDatepicker=false;
-	// 	$scope.showTimeSlot=false;
-	// 	$('.md-datepicker-input').prop('readonly', true);
-	// 	dev.devid=devID;
-	// 	$scope.yoData=false; 
-	// 	$scope.myDate = "";
-	// 	$('#trvelRouteHstTime').val("");
-	// 	$scope.initialize();
-	// 	 var dt=new Date()
-	// 		$('#trvelRouteHstTime').val(showTime(dt));
-	// 		dateChange(dt);
-	// };
+	  
 	
-	/*$(document).on('click', '#trvelRouteHstTimePic', function(){
-	    
-	});*/
 	
-	$scope.openCal = function(){
-		//console.log("1");
-		$('#trvelRouteHstTimePic').datetimepicker({
-		    
-			/*
-			 * inline: true, sideBySide: true,
-			 */
-			format: 'DD/MM/YYYY',
-			maxDate: 'now',        		
-			ignoreReadonly:true,
-	            }).on("dp.change",function (e) {
-	            	// $("#startDateMaxKm").blur();
-	            	// closeResult();
-	            	dateChange(e.date._d);
-	            });
-		// startDateMaxKmError.style.display = 'none';
-	}
 	
-	function dateChange(date){
-		//$scope.MyDate = date;
-    	$scope.myDateChange();
-    	$scope.activeMenu = '5';
-	}
 	
-	function showTime (ts) {
-		// console.log(ts);
-		var d = new Date(Number(ts));
-		var day = d.getDate();
-		var month = d.getMonth()+1;
-		var year = d.getFullYear();
-		var hours = d.getHours();
-		var minutes = d.getMinutes();
-		var ampm = hours >= 12 ? 'pm' : 'am';
-		hours = hours % 12;
-		hours = hours ? hours : 12; // the hour '0' should be '12'
-		minutes = minutes < 10 ? '0' + minutes : minutes;
-		var strTime = day+"/"+month+"/"+year;
-		// console.log(strTime);
-		return strTime;
-	};
-	
-	function startDate(getStartDateMinMax){
-		var datetimeVal=getStartDateMinMax;
-		/* strArra=datetimeVal.split(" "); */
-		var dateArray=datetimeVal.split("/");
-		var newStDate = dateArray[1] + "/" + dateArray[0] + "/" + dateArray[2];
-		var sts=new Date(newStDate);
-		return sts.getTime();
-	}
-	
-	// $scope.myDateChange=function(){
-	// 	$scope.yoData=false;
-	// 	$scope.httpLoading=true;
-	// 	$scope.initialize();
-	// 	$scope.showTimeSlot=true;
-	// 	// check for vehicle history available slots
-	// 	$scope.slotCheckjson={};
-	// 	$scope.slotCheckjson.token=$scope.token;
-	// 	$scope.slotCheckjson.devid=dev.devid;
-	// 	$scope.slotCheckjson.slots=[];
-		
-	// 	$scope.slotCheckjson.slots.push({"sts":getTimestamp(0,0,0),"ets":getTimestamp(5,59,59)},
-	// 		{"sts":getTimestamp(6,0,0),"ets":getTimestamp(11,59,59)},
-	// 		{"sts":getTimestamp(12,0,0),"ets":getTimestamp(17,59,59)},
-	// 		{"sts":getTimestamp(18,0,0),"ets":getTimestamp(23,59,59)});
-	// 	$http({
-	// 		method:'POST',
-	// 		url:apiURL+'device/history_data_exist',
-	// 		data:JSON.stringify($scope.slotCheckjson),	
-	// 		headers:{'Content-Type' : 'application/json'}
-	// 	}).success(function(data) {
-	// 	   // console.log(data.values);
-	// 	    $scope.slotA=data.values[0].data ? '1' : '0';
-	// 	    $scope.slotB=data.values[1].data ? '1' : '0';
-	// 	    $scope.slotC=data.values[2].data ? '1' : '0';
-	// 	    $scope.slotD=data.values[3].data ? '1' : '0';
-	// 	    if(data.values[0].data!=true && data.values[1].data!=true&&data.values[2].data!=true&&data.values[3].data!=true){						
-	// 		$scope.showTimeSlot=false;
-	// 		swal({title:"No history available for the selected date"});
-	// 		$scope.no_history=false;
-	// 	    }
-	// 	    else{
-	// 		$scope.no_history=true;
-	// 		$scope.showTimeSlot=true;
-	// 	    }
-	// 	}).error(function(data, status, headers,config) {
-	// 	    if (data.err == "Expired Session") {
-	// 		$('#updateDeviceModal').modal('hide');
-	// 		expiredSession();
-	// 		$localStorage.$reset();
-	// 	    } else if (data.err == "Invalid User") {
-	// 		$('#updateDeviceModal').modal('hide');
-	// 		invalidUser();
-	// 		$localStorage.$reset();
-	// 	    }
-	// 	    //console.log(data);
-	// 	   // console.log(status);
-	// 	    //console.log(headers);
-	// 	   // console.log(config);
-	// 	}).finally(function(){		
-	// 		$scope.httpLoading=false;
-	// 	});
-		
-	// };
-	
-	/**
-	 * 1 for 00:00 - 05:59 2 for 06:00 - 11:59 3 for 12:00 - 17:59 4 for
-	 * 18:00 - 23:59
-	 */
-	// $scope.slotHistory=function(slot_num,noDataVal){
-	//     oldStep = {step: 1,tick:100};
-	//     $scope.end = false;
-	//     $scope.replayPlayPause ={"slot_num" : slot_num, "noDataVal": noDataVal};
-	// 	if(noDataVal!=0){
-	// 		// $scope.no_history=true;
-	// 		if(slot_num==1){			
-	// 		historyApiCall(getTimestamp(0,0,0),getTimestamp(5,59,59));
-	// 	}
-	// 	else if(slot_num==2){			
-	// 		historyApiCall(getTimestamp(6,0,0),getTimestamp(11,59,59));
-	// 	}
-	// 	else if(slot_num==3){			
-	// 		historyApiCall(getTimestamp(12,0,0),getTimestamp(17,59,59));
-	// 	}
-	// 	else if(slot_num==4){			
-	// 		historyApiCall(getTimestamp(18,0,0),getTimestamp(23,59,59));
-	// 	}
-	// 		}
-	// 	else{swal("Kindly check for available slot(s)");
-	// 	// $scope.no_history=false;
-	// 	}
-		
-	// };
-	function getTimestamp(hr,mins,sec){		
-		var trvelRouteHstTime=document.getElementById('trvelRouteHstTime').value;
-		var selectDateTS=startDate(trvelRouteHstTime);
-		var timeStamp=new Date(selectDateTS);
-		timeStamp.setHours(hr);
-		timeStamp.setMinutes(mins);
-		timeStamp.setSeconds(sec);
-		return timeStamp.getTime();
-	}
-	// $scope.showHistory = function(mydate) {
-	// 	var sts=new Date(mydate).getTime();
-	// 	var d=new Date(mydate);
-	// 	d.setHours(23);
-	// 	d.setMinutes(59);
-	// 	d.setSeconds(59);
-	// 	var ets=d.getTime();
-	// 	//console.log(ets);
-	// 	historyApiCall(sts,ets);
-	// };
-	// function historyApiCall(sts,ets){
-	// 	$scope.httpLoading=true;
-	// 	// $("#loading_icon").show();
-	// 	$scope.deviceHistoryjson = {};
-	// 	$scope.deviceHistoryjson.token = $scope.token;
-	// 	$scope.deviceHistoryjson.devid = dev.devid;
-	// 	$scope.deviceHistoryjson.sts = sts;
-	// 	$scope.deviceHistoryjson.ets = ets;
-	// 	$http({
-	// 		method : 'POST',
-	// 		url : apiURL + 'device/history',
-	// 		data : JSON
-	// 		.stringify($scope.deviceHistoryjson),
-	// 		headers : {
-	// 		    'Content-Type' : 'application/json'
-	// 		}
-	// 	}).success(function(data) {
-	// 	    $scope.histData = data;
-	// 	    if($scope.histData.values.length>=1){
-	// 		$scope.httpLoading=false;
-	// 		displayHistory();				
-	// 	    }
-	// 	    else{
-	// 		$scope.httpLoading=false;
-	// 		// $("#loading_icon").hide();
-	// 		$scope.yoData=false;
-	// 		// $scope.noData=true;
-	// 		$scope.initialize();
-	// 		swal("Kindly check for available slot(s)");
-	// 		$scope.activeMenu=5;
-	// 	    }
-	// 	})
-	// 	.error(function(data, status, headers,config) {
-	// 	    if (data.err == "Expired Session") {
-	// 		$('#updateDeviceModal').modal('hide');
-	// 		expiredSession();
-	// 		$localStorage.$reset();
-	// 	    } else if (data.err == "Invalid User") {
-	// 		$('#updateDeviceModal').modal('hide');
-	// 		invalidUser();
-	// 		$localStorage.$reset();
-	// 	    }
-	// 	    //console.log(data);
-	// 	    //console.log(status);
-	// 	   // console.log(headers);
-	// 	    //console.log(config);
-	// 	}).finally(function(){		
-	// 	    $scope.httpLoading=false;
-	// 	});
-	// }
-	// function checkMaploaded(){
-	// 	if($scope.historyMap){
-	// 	    $interval.cancel(maploadedInterval);		
-	// 	}
-	// 	else{			
-	// 	}
-	// }
 	/**
 	 * 1) Plot on Map History Path 2) Display on Table
 	 * -----------------------------------------------------------------------
@@ -435,17 +204,16 @@ angular.module('replayroutedetail', [])
 		$scope.noData=false;
 		var lat_tot = 0, lg_tot = 0, lat_avg = 0, lg_avg = 0;
 		var histData = $scope.historyVal.values; 
-
-		console.log(histData);
+		//console.log(histData);
 		//histData=histData.sort(SortByts);
 		var hist_len = histData.length;
-		console.log(histData.length);
+		//console.log(histData.length);
 		var polyPathArray = [];
 		$scope.plottedData=[];
 		var coordinates = [];		
 		
 		for(var inc = 0; inc < hist_len; inc++){			
-			console.log(histData[inc].lat,histData[inc].long,histData[inc].Velocity,histData[inc].ts);
+			//console.log(histData[inc].lat,histData[inc].long,histData[inc].Velocity,histData[inc].ts);
 		  	executeHisory(histData[inc].lat,histData[inc].long,histData[inc].Velocity,histData[inc].ts,
 		  			function(historyStatus){
                 // console.log(JSON.stringify(historyStatus));
@@ -460,7 +228,7 @@ angular.module('replayroutedetail', [])
 				polyPathArray.push(arr);
 				
 				$scope.plottedData.push(plottedObj);
-				console.log($scope.plottedData.length);
+				//console.log($scope.plottedData.length);
 				/*
 				 * if($scope.plottedData.length <= 1){
 				 * swal({title:"Vehicle in stationary"}); }
@@ -473,12 +241,13 @@ angular.module('replayroutedetail', [])
 		  	});
 		  	
 		  }
-		if($scope.plottedData.length <= 1){
-			ionicToast.show('Stationary Vehicle');
-		}
-		else{
-			// nothing
-		}
+		// if($scope.plottedData.length <= 1){
+		// 	ionicToast.show('No history avilable for this Vehicle');
+			
+		// }
+		// else{
+		// 	// nothing
+		// }
 		function executeHisory(latitude,longitude,velocity,timestamp,mapHistory){
 			// if(velocity>5){
 				var historyStatus={"latitude":latitude,"longitude":longitude,"velocity":velocity,"timestamp":timestamp};
@@ -529,7 +298,9 @@ angular.module('replayroutedetail', [])
 		poly2.setMap(null);
 	}
 	 function startAnimation() {   	  
-         if (timerHandle) clearInterval(timerHandle);
+         if (timerHandle) {
+		clearTimeout(timerHandle);
+	    }
          eol=poly.Distance();
          map.setCenter(poly.getPath().getAt(0));
          // map.addOverlay(new
@@ -561,8 +332,10 @@ angular.module('replayroutedetail', [])
          // setTimeout("animate(50)",2000); // Allow time for the initial map
 	    // display
          
-         setTimeout(function() {
+       setinterval = setTimeout(function() {
+		   
  	        $scope.animate(50);
+			
  	    }, 2000);
 	 }
 	 function updatePoly(d) {
@@ -781,17 +554,7 @@ angular.module('replayroutedetail', [])
 	 * get Date formatted date based on TIMESTAMP
 	 * -----------------------------------------------------------------------
 	 */
-	$scope.showTime = function(ts) {
-		 var d = new Date(Number(ts));	 	
-	 	  var hours = d.getHours();
-	 	  var minutes = d.getMinutes();
-	 	  var ampm = hours >= 12 ? 'pm' : 'am';
-	 	  hours = hours % 12;
-	 	  hours = hours ? hours : 12; // the hour '0' should be '12'
-	 	  minutes = minutes < 10 ? '0'+minutes : minutes;
-	 	  var strTime = hours + ':' + minutes + ' ' + ampm;
-	 	  return strTime;
-	};
+	
 	
 	
 	$scope.givelt=function(lt,lg){
