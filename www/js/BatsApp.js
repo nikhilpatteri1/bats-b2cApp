@@ -56,5 +56,31 @@ angular.module('bats', ['ionic', 'batsconstants', 'batsconfig', 'batsinterceptor
 		    }
     }
 	});
+
+  $ionicPlatform.registerBackButtonAction(function (event) {
+	    if($state.current.name==pageConfig.LIVE_TRACKING || $state.current.name==pageConfig.START || 
+	    		$state.current.name==pageConfig.LOGIN){
+	    	var confirmPopup = $ionicPopup.confirm({
+				title: "Exit", 
+				template: "Are you sure want to exit ?",
+				cancelText: "No",
+				scope: $rootScope,
+		        okText:  "Yes",
+			});
+	    	   confirmPopup.then(function(res) {
+	    	     if(res) {
+	    	    	 navigator.app.exitApp();
+	    	     } 
+	    	   });
+	    }
+	    else if($state.current.name==pageConfig.MANAGE_TRACKER || $state.current.name==pageConfig.REPLAY_ROUTE
+        || $state.current.name==pageConfig.VEHICLE_STATISTICS || $state.current.name==pageConfig.NAVIGATION
+        || $state.current.name==pageConfig.REPORT || $state.current.name==pageConfig.MANAGE_MEMBER){
+	    	$state.go(pageConfig.LIVE_TRACKING);
+	    }
+	    else{
+	    	navigator.app.backHistory();
+	    }
+	  }, 100);
 })
 

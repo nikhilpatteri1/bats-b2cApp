@@ -3,7 +3,20 @@ angular.module('livetracking', [])
 	ionicToast,$interval, Constants) {
      var dynamicMapHeight=window.screen.availHeight;
     $scope.mapHeight={height:dynamicMapHeight+"px"};
-	console.log($scope.mapHeight);
+	console.log($scope.mapHeight, localStorage.getItem("choice"));
+
+	if(localStorage.getItem("choice")==undefined || localStorage.getItem("choice")==null){
+      	$state.go(PageConfig.LIVE_TRACKING_DEVICES);
+    }else{
+      	$scope.selectedDevice =  localStorage.getItem("choice");
+		getTracker();
+		singleDeviceInterval = $interval(getTracker,reqTime * 1000, 1, false);
+    
+    }
+
+	$scope.gotoLivetrackingDevice = function(){
+		$state.go(PageConfig.LIVE_TRACKING_DEVICES)
+	}
 
 	var reqTime=12;
     // $scope.token = $localStorage.data;
@@ -595,17 +608,7 @@ $scope.singleDeviceZoomLevel=16;
 	$scope.truckCount = 0;
 	
 
-   if(window.localStorage.getItem("choice")==undefined || 
-        window.localStorage.getItem("choice")==null){
-      $state.go(PageConfig.LIVE_TRACKING_DEVICES);
-    }else{
-      $scope.selectedDevice =  window.localStorage.getItem("choice");
-
-
-	getTracker();
-	singleDeviceInterval = $interval(getTracker,reqTime * 1000);
-    
-    }
+   
 
 
 
