@@ -12,7 +12,8 @@ angular.module('login', [])
 
     $scope.regex = '/^[a-zA-Z0-9]+$/';
     $scope.Validate = false;
-        $scope.gotoHome = function(data, form){
+
+    $scope.gotoHome = function(data, form){
             $scope.Validate = true;
             let inputParam = {'user_id':data.userid, 'password':data.password }
                 BatsServices.login(inputParam).success(function (response) {
