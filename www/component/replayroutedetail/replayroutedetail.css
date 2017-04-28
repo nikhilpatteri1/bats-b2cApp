@@ -12,8 +12,8 @@
 
 .rrdIonList .item-radio .item-content {
     padding: 0px;
-    background-color: white;
-}
+    background-color: #eee;
+} 
 
 .rrdIonList .ion-checkmark:before {
     content: "";
@@ -43,7 +43,14 @@
     width: 50%;
     border: 1px solid #000;
     border-radius: 4px;
+    margin-left: 12px;
 }
+
+.rrimages{
+    display: inline-block;
+    width: 28px;
+}
+
 .rrdspeedCtrlSection i {
     padding-right: 22px;
 }

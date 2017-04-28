@@ -8,8 +8,8 @@
     <ion-content class="hmCards" >
     
              <div class="umdHeaderIconsVehicle lgBackgroundWhite acSmallFonts acGreyFont">Please select your vehicle type</div>
-            <ion-list class="rrdIonList">
-                <ion-radio class="rrdRadioLabels" ng-repeat="timeSlot in timeSlots" ng-disabled="timeSlot.data == false"  ng-model="data.timeSlot" ng-value="timeSlot" ng-click="getHistory(timeSlot)">
+            <ion-list class="rrdIonList" ng-style=" timeSlots.data == false && { 'background-color': '#eaeaea' }">
+                <ion-radio class="rrdRadioLabels" ng-repeat="timeSlot in timeSlots" ng-disabled="timeSlot.data == false"   ng-model="data.timeSlot" ng-value="timeSlot" ng-click="getHistory(timeSlot)">
                     <div class="acSmallFonts">{{timeSlot.sts | date:'HH:MM'}}</div>
                     <div class="acSmallFonts">to</div>
                     <div class="acSmallFonts">{{timeSlot.ets | date:'HH:MM'}}</div>
@@ -17,10 +17,14 @@
             </ion-list>
             <div id="replay_map" ng-style="mapHeight"  ng-init="initialize()"></div>
             <div class="rrdspeedCtrlSection">
-               
-                <i class="fa fa-play replayRoutePlay"  ng-if="play && !end" ng-click="updateSpeed(4);" aria-hidden="true"></i>
+                
+                <img src="img/play.png" class="rrimages" ng-if="play && !end" ng-click="updateSpeed(4);">
+                <img src="img/pause.png" class="rrimages" ng-if="!play && !end"  ng-click="updateSpeed(3);">
+                <img src="img/replay.png" class="rrimages" ng-click="getHistory(replaySlot)">
+
+                <!--<i class="fa fa-play replayRoutePlay"  ng-if="play && !end" ng-click="updateSpeed(4);" aria-hidden="true"></i>
                 <i class="fa fa-pause replayRoutePlay"  ng-if="!play && !end" ng-click="updateSpeed(3);" aria-hidden="true"></i>
-                <i class="fa  fa-reply replayRoutePlay"  ng-click="getHistory(replaySlot)" aria-hidden="true"></i>
+                <i class="fa  fa-reply replayRoutePlay"  ng-click="getHistory(replaySlot)" aria-hidden="true"></i>-->
                 <!--<ul>
                     <li class="spdCtrl activeCtrl" ng-click="updateSpeed(0)"><span class="txtSpan">Slow</span></li>
                     <li class="spdCtrl" ng-click="updateSpeed(1)"><span class="txtSpan">Medium</span></li>
