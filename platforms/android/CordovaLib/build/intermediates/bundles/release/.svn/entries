@@ -1,62 +1,0 @@
-8
-
-dir
-3864
-https://xp-dev.com/svn/maplesoftwares/trunk/Android_IOS/Lawzinger/platforms/android/CordovaLib/build/intermediates/bundles/release
-https://xp-dev.com/svn/maplesoftwares
-
-
-
-2015-11-08T13:41:57.937838Z
-2229
-mohitabrol
-
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-69ee98bc-d23c-44a8-9c2a-20fd9043130c
-
-AndroidManifest.xml
-file
-
-
-
-
-2016-05-20T07:36:38.790000Z
-8e98acc048fd6cf5aff4bb69d847adc5
-2015-11-08T13:41:57.937838Z
-2229
-mohitabrol
-
-aidl
-dir
-
-assets
-dir
-
-classes.jar
-file
-
-
-
-
-2016-05-20T07:36:39.582000Z
-7dae732685ab9c9870adfad9d67c9dc1
-2015-11-08T13:41:57.937838Z
-2229
-mohitabrol
-has-props
-
-res
-dir
-

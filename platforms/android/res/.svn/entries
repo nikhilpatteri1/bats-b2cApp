@@ -1,88 +1,0 @@
-8
-
-dir
-3864
-https://xp-dev.com/svn/maplesoftwares/trunk/Android_IOS/Lawzinger/platforms/android/res
-https://xp-dev.com/svn/maplesoftwares
-
-
-
-2015-12-22T11:42:43.385074Z
-2758
-sugat
-
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-69ee98bc-d23c-44a8-9c2a-20fd9043130c
-
-drawable-hdpi
-dir
-
-drawable-land-hdpi
-dir
-
-drawable-land-ldpi
-dir
-
-drawable-land-mdpi
-dir
-
-drawable-land-xhdpi
-dir
-
-drawable-land-xxhdpi
-dir
-
-drawable-land-xxxhdpi
-dir
-
-drawable-ldpi
-dir
-
-drawable-mdpi
-dir
-
-drawable-port-hdpi
-dir
-
-drawable-port-ldpi
-dir
-
-drawable-port-mdpi
-dir
-
-drawable-port-xhdpi
-dir
-
-drawable-port-xxhdpi
-dir
-
-drawable-port-xxxhdpi
-dir
-
-drawable-xhdpi
-dir
-
-drawable-xxhdpi
-dir
-
-drawable-xxxhdpi
-dir
-
-values
-dir
-
-xml
-dir
-

@@ -414,12 +414,11 @@ right: 70%;
 }
 
 /*************************************menu header bar css ******************************/
-
         
 .sidemenubar-header{
     height: 110px;
-    background-image: url('img/menu/menuBG.png');
-   /*//  linear-gradient(0deg, #b2b2b2, #ff6a44 50%, transparent 50%) !important;*/
+    background: url(../img/menu/menuBG.png) no-repeat 100% 100% !important;
+    background-size: 100% !important;
 }
 
 .menuHeaderDivFont{
