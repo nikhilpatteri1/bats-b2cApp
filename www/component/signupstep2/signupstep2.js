@@ -13,33 +13,6 @@ angular.module('signupstep2', [])
     if(UtilsFactory.getEditMarkerDetails().length!=0){
         $scope.editMarkerData = UtilsFactory.getEditMarkerDetails();
         console.log($scope.editMarkerData)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         
         $scope.data = [{'devid': $scope.editMarkerData.devid, 't_sim_provider': $scope.editMarkerData.sim_service_provider,
             't_sim_cn' : $scope.editMarkerData.device_sim_cn }]
@@ -71,7 +44,7 @@ $scope.backToManageTracker=function(){
                 BatsServices.addnewdevices(inputParam).success(function (response) {
                    $state.go(PageConfig.MANAGE_TRACKER);
                 }).error(function (error) {
-                    ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                    ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
                 })
              }
              else{
@@ -87,7 +60,7 @@ $scope.backToManageTracker=function(){
                         $state.go(PageConfig.LOGIN);
                     });
                 }).error(function (error) {
-                    ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                    ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
                 })
              }
            

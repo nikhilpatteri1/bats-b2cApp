@@ -30,7 +30,12 @@
 .rrdIonList .item-radio input:checked + .radio-content .item-content .acGreyFont{
     color: white;
 }
-
-/*.rrmapClass {
-
-}*/
+    
+.rrdspeedCtrlSection{
+    position: fixed;
+    bottom: 5%;
+    left: 40%;
+    }
+.rrdspeedCtrlSection i {
+    padding-right: 22px;
+}
