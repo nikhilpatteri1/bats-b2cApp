@@ -58,6 +58,7 @@ angular.module('replayroutedetail', [])
   var oldStep;
   // To Change Replay Speed level
   $scope.updateSpeed=function(choice){
+	  choice = parseInt(choice);
 	  console.log(choice);
 	  switch (choice) {
 	  	case 0:
@@ -156,7 +157,7 @@ angular.module('replayroutedetail', [])
 	var dataFromReplay = UtilsFactory.getDataForReplay();
     console.log(dataFromReplay);
         
-        $scope.speedSlot = ["Slow", "Medium", "High"];
+        //$scope.speedSlot = ["Slow", "Medium", "High"];
         $scope.timeSlots = dataFromReplay.values;
         console.log($scope.timeSlots);
 
@@ -285,7 +286,8 @@ angular.module('replayroutedetail', [])
     	    var length = 0;
             var point = null;
             for(var i=0;i<polyPathArray.length;i++){
-            	pts[i]=new google.maps.LatLng(polyPathArray[i].lat,polyPathArray[i].lng)
+            	pts[i]=new google.maps.LatLng(polyPathArray[i].lng,polyPathArray[i].lat)
+				console.log(polyPathArray[i].lng,polyPathArray[i].lat);
             	if(i>0){
             		length += pts[i-1].distanceFrom(pts[i]);
             		if (isNaN(length)) { alert("["+i+"] length="+length+" segment="+pts[i-1].distanceFrom(pts[i])) };

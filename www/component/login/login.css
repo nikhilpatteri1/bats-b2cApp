@@ -54,12 +54,23 @@
     margin-top: 30px;
 }
 
+.logintopmargin{
+        margin-top: 22px;
+}
+.startBackground{
+    background: url(../../img/menu/menuBG.png) no-repeat center center;
+}
+.LoginbtnMaarginTop{
+    margin-top: 80px;
+}
 .stBtnMarginTop {
     margin-top: 50px;
 }
 
 .inputFieldFontSize{
     font-size: 13px;
+     margin-bottom: 10px;
+
 }
 .space{
     margin-top : 15px;
@@ -103,4 +114,8 @@
     background-repeat: no-repeat;
     height: 50%;
     background-size: cover;
+}
+
+.lableMArgin{
+        margin-bottom: 9px;
 }

@@ -1,10 +1,11 @@
-<ion-view ng-click="" view-title="{{selectedDevice}}">
+<ion-view>
     <ion-nav-buttons side="left">
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
         <div>
             
         </div>
     </ion-nav-buttons>
+    <ion-nav-title ng-click="clickEvent()">{{selectedDevice}}</ion-nav-title>
      <ion-nav-buttons side="right">
       <!--<button class="button button-icon button-clear " ng-click="gotoFilter()" ><img class="filterWidth" src="img/filter.png"></button> -->
         <a class="button button-icon button-clear " href="#/bats/notification" ><img class="filterWidth" src="img/notification.png"></a>
