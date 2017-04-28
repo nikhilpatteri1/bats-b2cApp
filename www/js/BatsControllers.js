@@ -25,28 +25,31 @@ angular.module('batscontrollers', [
     }
 
     $rootScope.interlogout = function () { 
-        BatsServices.logout({}).success(function (response) {
-            if (localStorage.getItem(Constants.USER_VO)) {
-              localStorage.removeItem(Constants.USER_VO);
-            }
-            if (localStorage.getItem(Constants.accessToken)) {
-              localStorage.removeItem(Constants.accessToken);
-            }
-            if (localStorage.getItem("choice")) {
-              localStorage.removeItem("choice");
-            }
+        if (localStorage.getItem(Constants.USER_VO)) {
+            localStorage.removeItem(Constants.USER_VO);
+          }
+          if (localStorage.getItem(Constants.accessToken)) {
+            localStorage.removeItem(Constants.accessToken);
+          }
+          if (localStorage.getItem("choice")) {
+            localStorage.removeItem("choice");
+          }
 
-            if(localStorage.getItem(Constants.ACCESS_TYPE)){
-              localStorage.removeItem(Constants.ACCESS_TYPE)
-            }
-            $scope.menuLink = 1;
-            $state.go(PageConfig.LOGIN);
+          if(localStorage.getItem(Constants.ACCESS_TYPE)){
+            localStorage.removeItem(Constants.ACCESS_TYPE)
+          }
+          $scope.menuLink = 1;
+          $state.go(PageConfig.LOGIN);
+    }
+
+    function removeLogin(){
+           BatsServices.logout({}).success(function (response) {
+             $rootScope.interlogout();
         }).error(function (error) {
             ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
         })
         
     }
-
 
     $scope.logout = function () {
       var confirmPopup = $ionicPopup.confirm({
@@ -58,7 +61,7 @@ angular.module('batscontrollers', [
       });
       confirmPopup.then(function (res) {
         if (res) {
-          $rootScope.interlogout();
+          removeLogin();
         }
       });
     }
