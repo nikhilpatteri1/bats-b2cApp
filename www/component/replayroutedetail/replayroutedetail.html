@@ -18,7 +18,7 @@
             <div id="replay_map" ng-style="mapHeight"  ng-init="initialize()"></div>
             <div class="rrdspeedCtrlSection">
                
-                <i class="fa fa-play replayRoutePlay"  ng-if="!play && !end" ng-click="updateSpeed(4);" aria-hidden="true"></i>
+                <i class="fa fa-play replayRoutePlay"  ng-if="play && !end" ng-click="updateSpeed(4);" aria-hidden="true"></i>
                 <i class="fa fa-pause replayRoutePlay"  ng-if="!play && !end" ng-click="updateSpeed(3);" aria-hidden="true"></i>
                 <i class="fa  fa-reply replayRoutePlay"  ng-click="getHistory(replaySlot)" aria-hidden="true"></i>
                 <!--<ul>
@@ -27,8 +27,8 @@
                     <li class="spdCtrl" ng-click="updateSpeed(2)"><span class="txtSpan">High</span></li>
                 </ul> -->
                 
-                <select ng-model="data.selectedSpeed" ng-change="updateSpeed(value)" class="dropdown" name="selectedSpeed" required ng-options="v for v in speedSlot" >
-                            <option value="0">Slow</option>
+                <select ng-model="selected" ng-change="updateSpeed(selected)" class="dropdown" name="selectedSpeed" >
+                                <option selected value="0">Slow</option>
                                 <option value="1">Medium</option>
                                 <option value="2">High</option>
                             </select>

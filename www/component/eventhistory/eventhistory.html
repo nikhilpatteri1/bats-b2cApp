@@ -41,7 +41,8 @@
                 </div>
 
 
-                <button ng-click="gotoEventHistory(data,eventHistoryForm)" class="button button-balanced stButton btnMaarginTop1">Submit</button>
+                <button ng-click="gotoEventHistory(data,eventHistoryForm)" ng-disabled="eventHistoryForm.$invalid"
+                class="button button-balanced stButton btnMaarginTop1">Submit</button>
 
 
 
