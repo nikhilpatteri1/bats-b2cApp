@@ -414,25 +414,12 @@ right: 70%;
 }
 
 /*************************************menu header bar css ******************************/
-
-.image-background{
-    background: url(../img/menu/menuBG.png) no-repeat 100% 100% !important;
-    /*background-size: 100%;*/
-    background-repeat: no-repeat;
-    /*height: 50%;*/
-    background-size: cover;
-}
         
 .sidemenubar-header{
     height: 110px;
-    background: url('../img/menu/menuBG.png') !important;
-    background-repeat: no-repeat;
-   /*//  linear-gradient(0deg, #b2b2b2, #ff6a44 50%, transparent 50%) !important;*/
+    background: url(../img/menu/menuBG.png) no-repeat 100% 100% !important;
+    background-size: 100% !important;
 }
-
-/*.menu-background-image{
-    background-image: url('../img/menu/menuBG.png') !important;
-}*/
 
 .menuHeaderDivFont{
     font-size: 17px;
