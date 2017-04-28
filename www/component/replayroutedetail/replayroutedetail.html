@@ -9,7 +9,7 @@
     
              <div class="umdHeaderIconsVehicle lgBackgroundWhite acSmallFonts acGreyFont">Please select your vehicle type</div>
             <ion-list class="rrdIonList">
-                <ion-radio class="rrdRadioLabels" ng-repeat="timeSlot in timeSlots"  ng-model="data.timeSlot" ng-value="timeSlot" ng-click="getHistory(timeSlot)">
+                <ion-radio class="rrdRadioLabels" ng-repeat="timeSlot in timeSlots" ng-disabled="timeSlot.data == false"  ng-model="data.timeSlot" ng-value="timeSlot" ng-click="getHistory(timeSlot)">
                     <div class="acSmallFonts">{{timeSlot.sts | date:'HH:MM'}}</div>
                     <div class="acSmallFonts">to</div>
                     <div class="acSmallFonts">{{timeSlot.ets | date:'HH:MM'}}</div>
@@ -27,8 +27,9 @@
                     <li class="spdCtrl" ng-click="updateSpeed(2)"><span class="txtSpan">High</span></li>
                 </ul> -->
                 
-                <select ng-model="selected" ng-change="updateSpeed(selected)" class="dropdown" name="selectedSpeed" >
-                                <option selected value="0">Slow</option>
+                <select ng-model="selected" ng-change="updateSpeed(selected)" class="dropdown rrSelectWidth" name="selectedSpeed" >
+                                <option selected value="">Speed</option>
+                                <option value="0">Slow</option>
                                 <option value="1">Medium</option>
                                 <option value="2">High</option>
                             </select>
