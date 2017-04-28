@@ -53,7 +53,7 @@
                         </div>
                         <div class="space">
                             <div ng-show="data.password" class="floatlabeltxt show-hide inputFieldFontSize">Password</div>
-                            <input placeholder="Password"  type="password" ng-pattern="/^[a-zA-Z0-9]*$/"
+                            <input placeholder="Password"  type="password" ng-pattern="^(?=.*\d+)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%]{6,10}$"
                              name="password" ng-model="data.password"
                                 required ng-class="{error: signupStep1Form.form.password.$invalid && Validate }" />
                                  <span class="red" ng-if="data.password!=null && signupStep1Form.form.password.$invalid">

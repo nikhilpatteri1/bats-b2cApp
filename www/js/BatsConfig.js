@@ -5,6 +5,7 @@ angular.module('batsconfig', [])
     $stateProvider
       .state('bats', {
         url: '/bats',
+        cache: false,
         abstract: true,
         templateUrl: 'templates/menu.html',
         controller: 'BatsCtrl'
@@ -12,12 +13,14 @@ angular.module('batsconfig', [])
 
       .state(PageConfig.LOGIN, {
         url: '/login',
+        cache: false,
         templateUrl: 'component/login/login.html',
         controller: 'LoginCtrl'
       })
 
       .state(PageConfig.START, {
         url: '/start',
+        cache: false,
         templateUrl: 'component/start/start.html',
         controller: 'StartCtrl'
       })
@@ -25,12 +28,14 @@ angular.module('batsconfig', [])
 
       .state(PageConfig.FORGOT_PASSWORD, {
         url: '/forgotpassword',
+        cache: false,
         templateUrl: 'component/forgotpassword/forgotpassword.html',
         controller: 'ForgotPasswordCtrl'
       })
 
       .state(PageConfig.CHANGE_PASSWORD, {
         url: '/changepassword',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'component/changepassword/changePassword.html',
@@ -41,12 +46,14 @@ angular.module('batsconfig', [])
 
       .state(PageConfig.SIGNUP_STEP1, {
         url: '/signupstep1',
+        cache: false,
         templateUrl: 'component/signupstep1/signupstep1.html',
         controller: 'SignupStep1Ctrl'
       })
 
       .state(PageConfig.SIGNUP_STEP2, {
         url: '/addnewdevices',
+        cache: false,
         templateUrl: 'component/signupstep2/signupstep2.html',
         controller: 'SignupStep2Ctrl'
       })
@@ -54,6 +61,7 @@ angular.module('batsconfig', [])
 
       .state(PageConfig.EVENT_HISTORY, {
         url: '/eventhistory',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'component/eventhistory/eventhistory.html',
@@ -64,6 +72,7 @@ angular.module('batsconfig', [])
 
       .state(PageConfig.EVENT_HISTORY_DETAIL, {
         url: '/eventhistorydetail',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'component/eventhistorydetail/eventhistorydetail.html',
@@ -74,6 +83,7 @@ angular.module('batsconfig', [])
 
        .state(PageConfig.EVENT_FILTER, {
         url: '/eventhistoryfilter',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'component/eventfilter/eventfilter.html',
@@ -84,6 +94,7 @@ angular.module('batsconfig', [])
 
       .state(PageConfig.REPLAY_ROUTE, {
         url: '/replayroute',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'component/replayroute/replayroute.html',
@@ -94,6 +105,7 @@ angular.module('batsconfig', [])
 
       .state(PageConfig.VEHICLE_STATISTICS, {
         url: '/vehiclestatistics',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'component/vehiclestatistic/vehiclestatistics.html',
@@ -103,6 +115,7 @@ angular.module('batsconfig', [])
       })
       .state(PageConfig.NAVIGATION, {
         url: '/navigation',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'component/navigation/navigation.html',
@@ -114,6 +127,7 @@ angular.module('batsconfig', [])
 
       .state(PageConfig.VEHICLE_STATISTICS_DETAIL, {
         url: '/vehiclestatisticsdetail',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'component/vehiclestatisticdetail/vehiclestatisticdetail.html',
@@ -124,6 +138,7 @@ angular.module('batsconfig', [])
 
       .state(PageConfig.LIVE_TRACKING, {
         url: '/livetracking',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'component/livetracking/livetracking.html',
@@ -134,6 +149,7 @@ angular.module('batsconfig', [])
 
       .state(PageConfig.LIVE_TRACKING_DETAILS, {
         url: '/livetrackingdetails',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'component/livetrackingdetails/livetrackingdetails.html',
@@ -143,6 +159,7 @@ angular.module('batsconfig', [])
       })
       .state(PageConfig.MANAGE_TRACKER, {
         url: '/managetracker',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'component/managetracker/managetracker.html',
@@ -152,6 +169,7 @@ angular.module('batsconfig', [])
       })
       .state(PageConfig.UPDATE_MARKER_DETAILS, {
         url: '/updatemarkerdetails',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'component/updatemarkerdetails/updatemarkerdetails.html',
@@ -162,6 +180,7 @@ angular.module('batsconfig', [])
 
       .state(PageConfig.MANAGE_MEMBER, {
         url: '/managemember',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'component/managemember/managemember.html',
@@ -172,6 +191,7 @@ angular.module('batsconfig', [])
 
       .state(PageConfig.ADD_MEMBER, {
         url: '/addmember',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'component/addmember/addmember.html',
@@ -181,6 +201,7 @@ angular.module('batsconfig', [])
       })
       .state(PageConfig.REPORT, {
         url: '/report',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'component/report/report.html',
@@ -191,6 +212,7 @@ angular.module('batsconfig', [])
       
       .state(PageConfig.LIVE_TRACKING_DEVICES, {
         url: '/livetrackingdevices',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'component/livetrackingdevices/livetrackingdevices.html',
@@ -200,6 +222,7 @@ angular.module('batsconfig', [])
       })
       .state(PageConfig.REPLAY_ROUTE_DETAILS, {
         url: '/replayroutedetail',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'component/replayroutedetail/replayroutedetail.html',
@@ -209,6 +232,7 @@ angular.module('batsconfig', [])
       })
        .state(PageConfig.NOTIFICATION, {
         url: '/notification',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'component/notification/notification.html',

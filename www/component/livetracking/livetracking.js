@@ -1,18 +1,22 @@
 angular.module('livetracking', [])
 .controller('LiveTrackingCtrl', function($scope, $ionicModal, $timeout, UtilsFactory, $state, PageConfig, BatsServices,
 	ionicToast,$interval, Constants) {
-     var dynamicMapHeight=window.screen.availHeight;
-    $scope.mapHeight={height:dynamicMapHeight+"px"};
-	console.log($scope.mapHeight, localStorage.getItem("choice"));
-
-	if(localStorage.getItem("choice")==undefined || localStorage.getItem("choice")==null){
-      	$state.go(PageConfig.LIVE_TRACKING_DEVICES);
-    }else{
-      	$scope.selectedDevice =  localStorage.getItem("choice");
-		getTracker();
-		singleDeviceInterval = $interval(getTracker,reqTime * 1000, 1, false);
     
-    }
+
+	$scope.init = function(){
+		 var dynamicMapHeight=window.screen.availHeight;
+		$scope.mapHeight={height:dynamicMapHeight+"px"};
+		console.log($scope.mapHeight, localStorage.getItem("choice"));
+
+		if(localStorage.getItem("choice")==undefined || localStorage.getItem("choice")==null){
+			$state.go(PageConfig.LIVE_TRACKING_DEVICES);
+		}else{
+			$scope.selectedDevice =  localStorage.getItem("choice");
+			getTracker();
+			singleDeviceInterval = $interval(getTracker,reqTime * 1000, 1, false);
+		
+		}
+	}
 
 	$scope.gotoLivetrackingDevice = function(){
 		$state.go(PageConfig.LIVE_TRACKING_DEVICES)
