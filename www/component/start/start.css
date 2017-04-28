@@ -13,15 +13,17 @@
 	height: 50%;
 }
 
-.container1 {
+.container2 {
 	display: table;
 	height: 50%;
 	overflow: hidden;
 	width: 100% !important;
+	background: url('../../img/menu/menuBG.png') no-repeat center center;
+	background-size: cover;
 }
 
 .helper { 
-	display: table-cell;
+	/*display: table-cell;*/
 	vertical-align: middle;
 	text-align: center;
 }
