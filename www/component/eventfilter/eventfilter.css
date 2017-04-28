@@ -50,15 +50,15 @@
     
 }
 
-.eventFilter .allCheck .checkbox input, 
-.eventFilter .allCheck .checkbox .checkbox-icon{
+.eventFilter .allChecked .checkbox input, 
+.eventFilter .allChecked .checkbox .checkbox-icon{
         border:1px solid #00ba88;
             width: 22px;
     height: 22px;
     border-radius: 3px;
 }
 
-.eventFilter .allCheck .checkbox-icon:before{
+.eventFilter .allChecked .checkbox-icon:before{
     margin-top: 2% !important;
     margin-left: 2% !important;
 }
