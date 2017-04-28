@@ -219,7 +219,7 @@ angular.module('batsconfig', [])
       
       var _token = localStorage.getItem(Constants.accessToken)
      if(_token == undefined || _token == null){
-        $urlRouterProvider.otherwise('/login');
+        $urlRouterProvider.otherwise('/start');
      }
      else{
         $urlRouterProvider.otherwise('/bats/livetracking');
