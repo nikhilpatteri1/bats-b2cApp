@@ -28,6 +28,10 @@ angular.module('signupstep2', [])
         $scope.data[i] = {};
     }
 
+
+$scope.backToStep1=function(){
+    $state.go(PageConfig.SIGNUP_STEP1);
+}
 $scope.backToManageTracker=function(){
     if( UtilsFactory.getEditMarkerDetails().length!=0){
         UtilsFactory.setEditMarkerDetails([]);
