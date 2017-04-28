@@ -33,7 +33,7 @@ angular.module('batsconfig', [])
         url: '/changepassword',
         views: {
           'menuContent': {
-            templateUrl: 'component/changePassword/changePassword.html',
+            templateUrl: 'component/changepassword/changePassword.html',
             controller: 'ChangePasswordCtrl'
           }
         }
