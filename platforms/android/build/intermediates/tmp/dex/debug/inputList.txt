@@ -1,4 +1,0 @@
-D:\Bydesign\ionic\bats-android\bats-android\platforms\android\build\intermediates\classes\debug
-D:\Bydesign\ionic\bats-android\bats-android\platforms\android\build\intermediates\pre-dexed\debug\gcm-bee057ece13196fac38f13d00fe41fb911e8d152.jar
-D:\Bydesign\ionic\bats-android\bats-android\platforms\android\build\intermediates\pre-dexed\debug\classes-77e2c7e7027a71a2452d420df6d3e7bc2e2e4e4d.jar
-D:\Bydesign\ionic\bats-android\bats-android\platforms\android\build\intermediates\pre-dexed\debug\android-support-v4-58cb925afd026fbaaca2817e30ce7a8097559e23.jar
