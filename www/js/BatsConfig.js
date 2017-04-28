@@ -25,7 +25,7 @@ angular.module('batsconfig', [])
 
       .state(PageConfig.FORGOT_PASSWORD, {
         url: '/forgotpassword',
-        templateUrl: 'component/forgotPassword/forgotPassword.html',
+        templateUrl: 'component/forgotpassword/forgotpassword.html',
         controller: 'ForgotPasswordCtrl'
       })
 
@@ -41,13 +41,13 @@ angular.module('batsconfig', [])
 
       .state(PageConfig.SIGNUP_STEP1, {
         url: '/signupstep1',
-        templateUrl: 'component/signupStep1/signupStep1.html',
+        templateUrl: 'component/signupstep1/signupstep1.html',
         controller: 'SignupStep1Ctrl'
       })
 
       .state(PageConfig.SIGNUP_STEP2, {
         url: '/addnewdevices',
-        templateUrl: 'component/signupStep2/signupStep2.html',
+        templateUrl: 'component/signupstep2/signupstep2.html',
         controller: 'SignupStep2Ctrl'
       })
 
