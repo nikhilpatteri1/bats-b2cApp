@@ -16,31 +16,29 @@ angular.module('eventhistoryfilter', [])
             $scope.filter[i].value = true;
         }
 
-        $scope.checkAll = function (allCheck) {
-            if (allCheck) {
-               
+        $scope.checkAll = function(allCheck){
+            if(allCheck){
                 _.each($scope.filter, function(filter, i){$scope.filter[i].value = true;})
             }
             else {
                 _.each($scope.filter, function(filter, i){$scope.filter[i].value = false;})
             }
-            console.log($scope.allCheck)
-        }
+        };
 
-        $scope.checkAllFor = function () {
-            console.log($scope.allCheck);
+        $scope.checkAllFor = function(){
             let count = 0;
             $scope.allCheck = true;
-             $('#forCheckAll').attr('checked', true);
             _.each($scope.filter, function(filter, i){
-                if ($scope.filter[i].value) {count++;}
+                if ($scope.filter[i].value){
+                    count++;
+                }
             })
-            if (count != $scope.filter.length) {
+            if(count != $scope.filter.length){
                 $scope.allCheck = false;
-                 $('#forCheckAll').attr('checked', false);
+            }else{
+                $scope.allCheck = true;
             }
             $scope.$apply;
-            console.log($scope.allCheck);
-        }
+        };
 
     })

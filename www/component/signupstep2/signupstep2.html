@@ -9,7 +9,10 @@
                 </div>
             </div>
             <div class="containerLogin">
-                <div ng-if="_token==undefined" class="steptextFollow">Step 1 of 2</div>
+                <div ng-if="_token==undefined" ><button class="button button-icon ion-arrow-left-c buttonColor"
+                 ng-click="backToStep1()"></button>
+                <span class="steptextFollow">Step 1 of 2</span>
+                </div>
             </div>
         </div>
         <div ng-if="_token!=undefined || editMarkerData.devid"class="bar bar-header bar-light">
