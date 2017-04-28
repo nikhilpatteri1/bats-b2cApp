@@ -34,8 +34,16 @@
 .rrdspeedCtrlSection{
     position: fixed;
     bottom: 5%;
-    left: 40%;
+    left: 24%;
+    background: #ffffff;
+    padding: 5% 8%;
     }
+
+.rrSelectWidth{
+    width: 50%;
+    border: 1px solid #000;
+    border-radius: 4px;
+}
 .rrdspeedCtrlSection i {
     padding-right: 22px;
 }

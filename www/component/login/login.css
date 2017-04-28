@@ -54,6 +54,15 @@
     margin-top: 30px;
 }
 
+.logintopmargin{
+        margin-top: 22px;
+}
+.startBackground{
+    background: url(../../img/menu/menuBG.png) no-repeat center center;
+}
+.LoginbtnMaarginTop{
+    margin-top: 80px;
+}
 .stBtnMarginTop {
     margin-top: 50px;
 }
