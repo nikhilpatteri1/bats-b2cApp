@@ -60,6 +60,8 @@
 
 .inputFieldFontSize{
     font-size: 13px;
+     margin-bottom: 10px;
+
 }
 .space{
     margin-top : 15px;
@@ -103,4 +105,8 @@
     background-repeat: no-repeat;
     height: 50%;
     background-size: cover;
+}
+
+.lableMArgin{
+        margin-bottom: 9px;
 }
