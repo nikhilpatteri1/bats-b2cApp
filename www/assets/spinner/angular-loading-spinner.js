@@ -12,7 +12,7 @@
                 scope.$watch(scope.isLoading, function (loading)
                 {
                     $rootScope.spinnerActive = loading;
-                    if(loading){
+                    if(loading && !$state.is(PageConfig.LIVE_TRACKING)){
                     		$ionicLoading.show({
                         		noBackdrop: false,
                         	    template: "<img src='img/newLoading.gif' />",

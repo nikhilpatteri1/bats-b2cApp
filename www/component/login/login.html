@@ -24,7 +24,7 @@
 
             <div class="containerLogin">
                 <div class="LoginHeading">
-                    <form name="loginForm" novalidate ng-submit="gotoHome()">
+                    <form name="loginForm" novalidate>
                         <label ng-if="data.userid" class="floatlabeltxt show-hide inputFieldFontSize">User Id</label>
                         <input placeholder="User Id" type="text" ng-model="data.userid" required class="inputTextField" name="user" ng-class="{error: loginForm.user.$invalid && Validate}">
                         </input>
