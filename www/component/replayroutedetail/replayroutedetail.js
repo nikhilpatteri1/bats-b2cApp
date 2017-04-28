@@ -58,6 +58,7 @@ angular.module('replayroutedetail', [])
   var oldStep;
   // To Change Replay Speed level
   $scope.updateSpeed=function(choice){
+	  choice = parseInt(choice);
 	  console.log(choice);
 	  switch (choice) {
 	  	case 0:
