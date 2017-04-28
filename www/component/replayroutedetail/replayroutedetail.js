@@ -58,45 +58,52 @@ angular.module('replayroutedetail', [])
   var oldStep;
   // To Change Replay Speed level
   $scope.updateSpeed=function(choice){
+	  console.log(choice);
 	  switch (choice) {
 	  	case 0:
 	  	  //console.log(oldStep)
 		    oldStep = {step: 1,tick:100};
 			step=5;
 			tick=100;
+			console.log("0");
 			break;
 		case 1:
 		    //console.log(oldStep)
 		    oldStep = {step: 10,tick:50};
 			step=10;
 			tick=50;
+			console.log("1");
 			break;
 		case 2:
 		    //console.log(oldStep)
 		    oldStep = {step: 50,tick:10};
 			step=50;
 			tick=10;
+			console.log("2");
 			break;	
 		case 3:
 			step=0;
 			tick=1000;
 			$scope.play = true;
+			console.log("3");
 			break;
 		case 4:
 		    //console.log(oldStep)
 		   	step=oldStep.step;
 			tick=oldStep.tick;
 			$scope.play = false;
+			console.log("4");
 			break;
 		}
   }
-	var latLng = { lat: 12.850167, lng: 77.660329 };
+	//var latLng = { lat: 12.850167, lng: 77.660329 };
+	//$scope.initialize();
 	// function initialize() {
 	$scope.initialize=function () {	
         console.log("map");
 		var styleMap = [{"featureType":"administrative","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#bee4f4"},{"visibility":"on"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"on"},{"hue":"#ff0000"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"on"},{"hue":"#ff0000"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"transit","elementType":"labels","stylers":[{"visibility":"on"},{"hue":"#ff0000"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#46bcec"},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"color":"#000000"}]}];
 	    var myOptions = {
-            center: latLng,
+           
 	        zoom: 20,
 	        /*maxZoom : 20,*/
 	        mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -109,28 +116,28 @@ angular.module('replayroutedetail', [])
 
 	    });	
 	    map = new google.maps.Map(document.getElementById("replay_map"), myOptions);
-	    // google.maps.event.addListenerOnce(map, 'idle', function(){
-	    //     // do something only the first time the map is loaded
-	    // 	// console.log("map loaded");
-	    // });
-	    // google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
-	    //     // this part runs when the mapobject is created and rendered
-	    // 	// console.log("Map Loaded");
-	    //     google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
-	    //         // this part runs when the mapobject shown for the first
-		//     // time
-	    //     	// console.log("Map with tiles and polylines loaded one
-		// 	// time");
+	    google.maps.event.addListenerOnce(map, 'idle', function(){
+	        // do something only the first time the map is loaded
+	    	// console.log("map loaded");
+	    });
+	    google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
+	        // this part runs when the mapobject is created and rendered
+	    	// console.log("Map Loaded");
+	        google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
+	            // this part runs when the mapobject shown for the first
+		    // time
+	        	// console.log("Map with tiles and polylines loaded one
+			// time");
 	        	
-	    //     	// console.log("Hide Loading");
-	    //     });
-	    // });
-	    // google.maps.event.addListener(map, 'tilesloaded', function() {
-	    // 	  // Visible tiles loaded!
-	    // 	// console.log("map loaded with tiles every time");
-	    // 	// $("#loading_icon").hide();
-	    // 	// $scope.httpLoading=true;
-	    // 	});
+	        	// console.log("Hide Loading");
+	        });
+	    });
+	    google.maps.event.addListener(map, 'tilesloaded', function() {
+	    	  // Visible tiles loaded!
+	    	// console.log("map loaded with tiles every time");
+	    	// $("#loading_icon").hide();
+	    	// $scope.httpLoading=true;
+	    	});
 	    poly = new google.maps.Polyline({
 	        path: [],
 	        strokeColor: '#97dcc9',
@@ -145,28 +152,30 @@ angular.module('replayroutedetail', [])
 	}
 	
     google.maps.event.addDomListener(window, 'load', $scope.initialize);
-
+	console.log(map);
 	var dataFromReplay = UtilsFactory.getDataForReplay();
     console.log(dataFromReplay);
         
-        $scope.speedSlot = ["Slow", "Medium", "High"];
+        //$scope.speedSlot = ["Slow", "Medium", "High"];
         $scope.timeSlots = dataFromReplay.values;
         console.log($scope.timeSlots);
 
         $scope.getHistory = function (timeSlot) {
-			 
+			oldStep = {step: 1,tick:100};
+			$scope.initialize();
+			$scope.end = false;
 			$scope.replaySlot = timeSlot;
 			console.log(timeSlot);
             var inputParam = { 'devid': dataFromReplay.devid, 'sts': timeSlot.sts, 'ets': timeSlot.ets };
             BatsServices.history(inputParam).success(function (response) {
                 //console.log(JSON.stringify(response));
 				$scope.historyVal = response;
-				 oldStep = {step: 1,tick:100};
-				 $scope.end = false;
+				
+				 
 				//console.log($scope.historyVal);				
 				//displayHistory();
 				if($scope.historyVal.values != "" ){
-					 
+					
 					displayHistory();
 				}
 				else{
@@ -200,6 +209,7 @@ angular.module('replayroutedetail', [])
 	 * -----------------------------------------------------------------------
 	 */
 	function displayHistory() {
+		console.log(map);
 		$scope.yoData=true;
 		$scope.noData=false;
 		var lat_tot = 0, lg_tot = 0, lat_avg = 0, lg_avg = 0;
@@ -267,6 +277,7 @@ angular.module('replayroutedetail', [])
 			// date");
 		}
 		else{
+			console.log(map);
 			clearMap();
 //			console.log(JSON.stringify(polyPathArray));
 			 bounds = new google.maps.LatLngBounds();
@@ -274,7 +285,8 @@ angular.module('replayroutedetail', [])
     	    var length = 0;
             var point = null;
             for(var i=0;i<polyPathArray.length;i++){
-            	pts[i]=new google.maps.LatLng(polyPathArray[i].lat,polyPathArray[i].lng)
+            	pts[i]=new google.maps.LatLng(polyPathArray[i].lng,polyPathArray[i].lat)
+				console.log(polyPathArray[i].lng,polyPathArray[i].lat);
             	if(i>0){
             		length += pts[i-1].distanceFrom(pts[i]);
             		if (isNaN(length)) { alert("["+i+"] length="+length+" segment="+pts[i-1].distanceFrom(pts[i])) };
@@ -291,6 +303,7 @@ angular.module('replayroutedetail', [])
     	    map.setZoom(16);
             map.fitBounds(bounds);
             startAnimation();  
+			console.log(map);
 		}
 	}
 	function clearMap(){
@@ -303,6 +316,7 @@ angular.module('replayroutedetail', [])
 	    }
          eol=poly.Distance();
          map.setCenter(poly.getPath().getAt(0));
+		 console.log(map);
          // map.addOverlay(new
 	    // google.maps.Marker(polyline.getAt(0),G_START_ICON));
          // map.addOverlay(new

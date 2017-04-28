@@ -612,8 +612,7 @@ $scope.singleDeviceZoomLevel=16;
 	
 
 	function getTracker(){
-		console.log($state);
-		if($state.is==PageConfig.LIVE_TRACKING){
+		if($state.is(PageConfig.LIVE_TRACKING)){
 		var obj = [];
 		
 		 var inputParam = {"devlist" : [$scope.selectedDevice]};
