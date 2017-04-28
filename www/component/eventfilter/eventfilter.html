@@ -9,8 +9,8 @@
     
     <ion-content class="lgBackgroundWhite eventFilter " scroll="false">
         <form name="filterForm.form"  >
-            <div class="allCheck">
-                <ion-checkbox id="forCheckAll" checked="allCheck" ng-model="allCheck" ng-click="checkAll(allCheck)">
+            <div class="allChecked">
+                <ion-checkbox  ng-checked="allCheck" ng-model="allCheckbox" ng-click="checkAll(allCheckbox)">
                     <div class="fontForFilter"><img class="filterfWidth" src="img/filter.png">Filter</div>
                 </ion-checkbox>
                
@@ -19,7 +19,7 @@
                 <ion-checkbox ng-model="filter.value" ng-click="checkAllFor()">
                     <div ng-class="{'colorForChecked' : !filter.value}">{{filter.name}}</div>
                 </ion-checkbox>
-                            </ion-list>
+            </ion-list>
       </form>
     </ion-content>
     <div class="bar bar-footer bar-balanced" ng-class="{'disableDiv': filterForm.form.$invalid}" ng-click="gotoApplyFilter(data, filterForm.form)">

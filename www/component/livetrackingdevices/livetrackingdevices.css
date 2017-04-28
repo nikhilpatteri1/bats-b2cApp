@@ -2,17 +2,10 @@
     content: '';
     height: 22px;
     width: 22px;
-    background: #f7f7f7 url(../../img/car.png) no-repeat 0px 0px;
+    background: #f7f7f7 url(../../img/select.png) no-repeat 0px 0px;
     background-size: 22px;
 }
 
-.ltdHome .ion-checkmark {
-    content: '';
-    height: 22px;
-    width: 22px;
-    background: #f7f7f7 url(../../img/car.png) no-repeat 0px 0px;
-    background-size: 22px;
-}
 
 .ltdHome .radio-content i{
     left: 0;

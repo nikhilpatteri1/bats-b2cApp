@@ -5,7 +5,16 @@
     margin-right: 10px;
     margin-top: 14px;
 }
-
+.steptextFollowLeft{
+    font-size: 12px;
+    color: #adadad;
+    float: left;
+    margin-right: 10px;
+    margin-top: 14px;
+}
+.buttonColor{
+    color:#ababab;
+}
 .suTrackerCard{
     padding: 12px;
     padding-bottom: 0px;

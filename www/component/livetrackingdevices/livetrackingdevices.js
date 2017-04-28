@@ -1,6 +1,6 @@
 angular.module('livetrackingdevices', [])
 .controller('LiveTrackingDevicesCtrl', function ($scope, $ionicModal, $timeout, BatsServices, PageConfig, 
-    UtilsFactory, $state, _) {
+    UtilsFactory, $state, _, ionicToast) {
 
     let inputParam = {};
     BatsServices.activeDeviceList(inputParam).success(function (response) {
@@ -29,7 +29,9 @@ angular.module('livetrackingdevices', [])
         ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
     })
 
-    
+    if(localStorage.getItem("choice")){
+        $scope.choice = localStorage.getItem("choice");
+    }
 
     $scope.gotoLiveTracking = function(choice){
         localStorage.setItem("choice", choice);
