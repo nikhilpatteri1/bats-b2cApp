@@ -43,9 +43,13 @@
                         </div>
                         <div class="space">
                             <div ng-show="data.phonenumber" class="floatlabeltxt show-hide inputFieldFontSize">Phone Number</div>
-                            <input placeholder="Phone Number" oninput="if(value.length>10)value=value.slice(0,10)" type="number"
-                             name="phonenumber" ng-model="data.phonenumber"
+                            <input placeholder="Phone Number" oninput="if(value.length>10)value=value.slice(0,10)" ng-minlength="10" 
+                                ng-maxlength="10"  type="number"
+                                name="phonenumber" ng-model="data.phonenumber"
                                 required ng-class="{error: signupStep1Form.form.phonenumber.$invalid && Validate }" />
+                                 <span class="red" ng-if="data.phonenumber!=null && signupStep1Form.form.phonenumber.$invalid">
+                            phone number should be 10 digits
+                            </span>
                         </div>
                         <div class="space">
                             <div ng-show="data.password" class="floatlabeltxt show-hide inputFieldFontSize">Password</div>
@@ -77,14 +81,15 @@
                 </div>
 
             </div>
-            <div ng-if="signupStep1Form.form.$invalid && Validate" class="red">All Fields are mendatory</div>
+            <div ng-if="signupStep1Form.form.$invalid && Validate " class="red">All Fields are mendatory</div>
+            <div ng-if="signupStep1Form.form.phonenumber.$invalid && Validate " class="red">phone number should be 10 digits</div>
         </div>
         <!--<div class="button button-balanced button-footer stButton" ng-disabled="signupStep1Form.$invalid" 
             ng-click="gotoNext(data, signupStep1Form)">
             <div class="title">Next</div>
         </div>-->
     </ion-content>
-    <div class="bar bar-footer bar-balanced" ng-class="{'disableDiv': signupStep1Form.form.$invalid}" ng-click="gotoNext(data, signupStep1Form.form)">
+    <div class="bar bar-footer bar-balanced"  ng-class="{'disableDiv': signupStep1Form.form.$invalid}" ng-click="gotoNext(data, signupStep1Form.form)">
         <div class="title">Next</div>
     </div>
 
