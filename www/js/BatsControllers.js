@@ -23,10 +23,13 @@ angular.module('batscontrollers', [
     $scope.sidebarLinkColor = function (selectedMenuPageNumber) {
       $scope.menuLink = selectedMenuPageNumber;
     }
-
+    var notificationCall;
     $rootScope.callNotification = function () {
-     
-     var notificationCall =  $interval(callNotificationinterval,20000);
+     notificationCall =  $interval(callNotificationinterval,20000);
+    }
+
+    if(notificationCall==undefined){
+      $rootScope.callNotification();
     }
 
     function callNotificationinterval (){

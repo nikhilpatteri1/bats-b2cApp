@@ -4,14 +4,12 @@
         return {
             link: function (scope, elm, attrs)
             {
-                $rootScope.spinnerActive = false;
                 scope.isLoading = function () {
                     return $http.pendingRequests.length > 0;
                 };
-
+                console.log($http.cofig)
                 scope.$watch(scope.isLoading, function (loading)
                 {
-                    $rootScope.spinnerActive = loading;
                     if(loading && !$state.is(PageConfig.LIVE_TRACKING)){
                     		$ionicLoading.show({
                         		noBackdrop: false,
