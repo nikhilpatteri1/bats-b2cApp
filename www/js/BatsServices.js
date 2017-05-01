@@ -89,5 +89,9 @@ angular.module('batsservices', [])
      this.notification = function (inputData) {
         return $http.post(baseUrl + 'b2capp/device/alarmnotifications', inputData);
     }
+
+    this.editTracker = function (inputData) {
+        return $http.post(baseUrl + 'b2capp/device/sim_update', inputData);
+    }
     
 })

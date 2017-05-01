@@ -5,4 +5,9 @@ angular.module('notification', [])
             console.log(navigator)
              navigator.app.backHistory();
         }
+
+        if(UtilsFactory.getNotificationDetails()){
+            console.log(UtilsFactory.getNotificationDetails());
+            $scope.notificationData = UtilsFactory.getNotificationDetails();
+        }
     })

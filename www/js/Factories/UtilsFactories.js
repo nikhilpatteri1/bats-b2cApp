@@ -9,6 +9,7 @@ angular.module('utilsfactory', [])
         var dataForReplay = [];
         var dateVehicleStatistics = [];
          var livetrackingDetails = [];
+         var notificationDetails = [];
 
         return {
             setSignUpData: function (data) {
@@ -66,6 +67,13 @@ angular.module('utilsfactory', [])
             },
             getLivetrackingDetails :function(){
                 return livetrackingDetails;
+            },
+
+             setNotificationDetails: function(data){
+                notificationDetails = data;
+            },
+            getNotificationDetails :function(){
+                return notificationDetails;
             }
 
         }

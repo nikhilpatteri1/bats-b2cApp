@@ -12,43 +12,64 @@ angular.module('batscontrollers', [
 ])
 
   .controller('BatsCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $state, PageConfig, Constants,
-    $ionicPopup, $interval, BatsServices, ionicToast) {
+    $ionicPopup, $interval, BatsServices, ionicToast, UtilsFactory) {
 
     $scope.openSetting = false;
     $scope.openSettingBar = function () {
-        $scope.openSetting = !$scope.openSetting;
+      $scope.openSetting = !$scope.openSetting;
     }
 
     $scope.menuLink = 1;
     $scope.sidebarLinkColor = function (selectedMenuPageNumber) {
-        $scope.menuLink = selectedMenuPageNumber;
+      $scope.menuLink = selectedMenuPageNumber;
     }
 
-    $rootScope.interlogout = function () { 
-        if (localStorage.getItem(Constants.USER_VO)) {
-            localStorage.removeItem(Constants.USER_VO);
-          }
-          if (localStorage.getItem(Constants.accessToken)) {
-            localStorage.removeItem(Constants.accessToken);
-          }
-          if (localStorage.getItem("choice")) {
-            localStorage.removeItem("choice");
-          }
-
-          if(localStorage.getItem(Constants.ACCESS_TYPE)){
-            localStorage.removeItem(Constants.ACCESS_TYPE)
-          }
-          $scope.menuLink = 1;
-          $state.go(PageConfig.LOGIN);
+    $rootScope.callNotification = function () {
+     
+     var notificationCall =  $interval(callNotificationinterval,20000);
     }
 
-    function removeLogin(){
-           BatsServices.logout({}).success(function (response) {
-             $rootScope.interlogout();
+    function callNotificationinterval (){
+      console.log(localStorage.getItem(Constants.accessToken));
+      if(localStorage.getItem(Constants.accessToken)!=null){
+        BatsServices.notification({}).success(function (response) {
+          $scope.notificationData = response;
+          UtilsFactory.setNotificationDetails(response);
         }).error(function (error) {
-            ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+          console.log(error.err);
         })
-        
+      }
+      else{
+        $interval.cancel(notificationCall);
+      }
+    }
+
+
+    $rootScope.interlogout = function () {
+      if (localStorage.getItem(Constants.USER_VO)) {
+        localStorage.removeItem(Constants.USER_VO);
+      }
+      if (localStorage.getItem(Constants.accessToken)) {
+        localStorage.removeItem(Constants.accessToken);
+      }
+      if (localStorage.getItem("choice")) {
+        localStorage.removeItem("choice");
+      }
+
+      if (localStorage.getItem(Constants.ACCESS_TYPE)) {
+        localStorage.removeItem(Constants.ACCESS_TYPE)
+      }
+      $scope.menuLink = 1;
+      $state.go(PageConfig.LOGIN);
+    }
+
+    function removeLogin() {
+      BatsServices.logout({}).success(function (response) {
+        $rootScope.interlogout();
+      }).error(function (error) {
+        ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+      })
+
     }
 
     $scope.logout = function () {
