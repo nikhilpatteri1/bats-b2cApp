@@ -1,11 +1,11 @@
 angular.module('livetrackingdetails', [])
-	.controller('LiveTrackingDetailsCtrl', function ($scope, $ionicModal, UtilsFactory, $timeout, BatsServices, $state, PageConfig) {
+	.controller('LiveTrackingDetailsCtrl', function ($scope, $ionicModal, UtilsFactory, $timeout, BatsServices, $state, PageConfig, ChartFactory) {
 
 		// if (UtilsFactory.getLivetrackingDetails().length == 0) {
 		// $state.go(PageConfig.LIVE_TRACKING)
 		// }
-
-
+//  ChartFactory.solidGaugeChartData.data("widgetId2", "#fbbf16", parseInt(45), 0, 200, "Avg");
+ 
 		$scope.init = function () {
 			$scope.selectedDevice =  localStorage.getItem("choice");
 			console.log($scope.selectedDevice);
@@ -31,6 +31,7 @@ angular.module('livetrackingdetails', [])
 				$scope.statusType = 'No Responce';
 			}
 			$scope.ts = $scope.data[0].values.ts;//$filter('asda')(value)
+			
 		}
 
 	
