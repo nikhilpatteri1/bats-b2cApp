@@ -10,6 +10,7 @@ angular.module('utilsfactory', [])
         var dateVehicleStatistics = [];
          var livetrackingDetails = [];
          var notificationDetails = [];
+         var historyFilterList = [];
 
         return {
             setSignUpData: function (data) {
@@ -74,6 +75,12 @@ angular.module('utilsfactory', [])
             },
             getNotificationDetails :function(){
                 return notificationDetails;
+            },
+            getHistoryFilterList : function(){
+                return historyFilterList;
+            },
+            setHistoryFilterList : function(data){
+                historyFilterList = data;
             }
 
         }

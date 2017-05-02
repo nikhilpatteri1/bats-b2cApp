@@ -1,5 +1,5 @@
 angular.module('eventhistoryfilter', [])
-    .controller('EventFilterCtrl', function ($scope, $ionicModal, $timeout, BatsServices, ionicToast, Constants, $state, PageConfig, _) {
+    .controller('EventFilterCtrl', function ($scope, $ionicModal, $timeout, BatsServices, ionicToast, Constants, $state, PageConfig, _, UtilsFactory) {
 
         $scope.filter = [{'name' : 'Panic','type' : '0'},{'name' : 'Tamper Sim','type' : '1'},{'name' : 'Tamper Top','type' : '2'},
             {'name' : 'Battery','type' : '3'},{'name' : 'Overspeed','type' : '4'},{'name' : 'Geofence','type' : '5'},
@@ -15,6 +15,7 @@ angular.module('eventhistoryfilter', [])
             })
             $state.go(PageConfig.EVENT_HISTORY_DETAIL);
             console.log("arr: "+$scope.selectedFilters);
+            UtilsFactory.setHistoryFilterList($scope.selectedFilters);
         }
 
         $scope.gotoEventHistoryDetail = function () {

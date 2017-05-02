@@ -8,7 +8,9 @@ angular.module('eventhistorydetail', [])
     $scope.gotoFilter = function () {
       $state.go(PageConfig.EVENT_FILTER);
     }
-        $scope.init = function(){
+
+    $scope.filterList = UtilsFactory.getHistoryFilterList();
+    $scope.init = function(){
       let inputParam = UtilsFactory.getEventHistoryList();
       console.log("inputParam");
       console.log(inputParam);
