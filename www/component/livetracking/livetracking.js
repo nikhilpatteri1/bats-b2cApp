@@ -610,13 +610,6 @@ $scope.singleDeviceZoomLevel=16;
 	$scope.bikeCount = 0;
 	$scope.busCount = 0;
 	$scope.truckCount = 0;
-	
-
-   
-
-
-
-	
 
 	function getTracker(){
 		if($state.is(PageConfig.LIVE_TRACKING)){

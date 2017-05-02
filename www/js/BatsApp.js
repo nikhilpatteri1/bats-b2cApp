@@ -58,8 +58,7 @@ angular.module('bats', ['ionic', 'batsconstants', 'batsconfig', 'batsinterceptor
 	});
 
   $ionicPlatform.registerBackButtonAction(function (event) {
-	    if( $state.current.name==PageConfig.START || 
-	    		$state.current.name==PageConfig.LOGIN){
+	    if( $state.current.name==PageConfig.START ){
 	    	var confirmPopup = $ionicPopup.confirm({
 				title: "Exit", 
 				template: "Are you sure want to exit ?",
@@ -73,6 +72,10 @@ angular.module('bats', ['ionic', 'batsconstants', 'batsconfig', 'batsinterceptor
 	    	     } 
 	    	   });
 	    }
+      else if($state.current.name==PageConfig.SIGNUP_STEP1 ||  
+	    		$state.current.name==PageConfig.LOGIN){
+	        $state.go(PageConfig.START);
+      }
 	    // else ($state.current.name==PageConfig.MANAGE_TRACKER || $state.current.name==PageConfig.REPLAY_ROUTE
       //   || $state.current.name==PageConfig.VEHICLE_STATISTICS || $state.current.name==PageConfig.NAVIGATION
       //   || $state.current.name==PageConfig.REPORT || $state.current.name==PageConfig.MANAGE_MEMBER){
