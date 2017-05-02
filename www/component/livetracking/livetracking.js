@@ -184,6 +184,7 @@ angular.module('livetracking', [])
     }
 	var iconImg;
     function createMarker(latlng, deviceID,vehNo,vehModel, html,type,devtype) {
+		console.log(latlng);
 	svg = new Array();
 	icons = new Array();
 	if(devtype == "car"){
@@ -278,6 +279,7 @@ angular.module('livetracking', [])
     });	 
 
 $scope.calcRoute = function(dataVal) {
+	console.log("calcRoute");
 		/**
 		 * check for storedltlng object is initialized or not if initalized
 		 * follow the next step else intialize the storedltlng check for
@@ -287,10 +289,14 @@ $scope.calcRoute = function(dataVal) {
 		 * for both start and end
 		 */
 		if(typeof storedltlng.lat!='undefined'){
+			console.log(storedltlng.lat);
 			if(storedltlng.lat!=dataVal[0].values.lat){
-				if(dataVal[0].values.type==4){
-//					console.log("--------------------Different lat lng of "+dataVal[0].values.type+" ------------------------------");
-//					console.log("start : ",storedltlng.lat,"end :",dataVal[0].values.lat);
+				
+				console.log(dataVal[0].values.type);
+				if(dataVal[0].values.type == 4){
+					
+					console.log("--------------------Different lat lng of "+dataVal[0].values.type+" ------------------------------");
+				    console.log("start : ",storedltlng.lat,"end :",dataVal[0].values.lat);
 					vehichleRouting(dataVal,storedltlng.lat,storedltlng.lng,storedltlng.lat,storedltlng.lng);
 				}
 				
@@ -308,8 +314,8 @@ $scope.calcRoute = function(dataVal) {
 				var endLat=dataVal[0].values.lat;
 				var endLng=dataVal[0].values.long;
 				vehichleRouting(dataVal,startLat,startLng,endLat,endLng)
-//				console.log("-----------------EQUAL / SAME LAT------------------------")
-//				console.log("start : ",storedltlng.lat,"end :",dataVal[0].values.lat);
+				console.log("-----------------EQUAL / SAME LAT------------------------")
+				console.log("start : ",storedltlng.lat,"end :",dataVal[0].values.lat);
 			
 			}
 		}		
@@ -326,14 +332,14 @@ $scope.calcRoute = function(dataVal) {
 	};
 
 	function vehichleRouting(dataVal,startLat,startLng,endLat,endLng){
-	    // console.log(startLat,startLng,endLat,endLng);
+	     console.log(startLat,startLng,endLat,endLng);
 	    if (timerHandle) {
 		clearTimeout(timerHandle);
 	    }
 	    setMapOnAll(null);
 		console.log(polyline);
-		if(polyline != undefined && poly2 != undefined)
-		{
+		// if(polyline != undefined && poly2 != undefined)
+		// {
 		
 	    polyline.setMap(null);
 	    poly2.setMap(null);
@@ -357,7 +363,7 @@ $scope.calcRoute = function(dataVal) {
         var start = new google.maps.LatLng({lat: Number(startLat), lng: Number(startLng)}); // document.getElementById("start").value;
         var end = new google.maps.LatLng({lat: Number(endLat), lng: Number(endLng)}); // document.getElementById("end").value;
         var travelMode = google.maps.DirectionsTravelMode.DRIVING;
-
+		console.log(start,end);
         var request = {
             origin: start,
             destination: end,
@@ -367,7 +373,8 @@ $scope.calcRoute = function(dataVal) {
         // Route the directions and pass the response to a
         // function to create markers for each step.
         directionsService.route(request, function (response, status) {
-            // console.log(response.routes[0]);
+            console.log(response);
+			console.log(status);
             if (status == google.maps.DirectionsStatus.OK) {
                 // directionsDisplay.setDirections(response);
 
@@ -381,6 +388,7 @@ $scope.calcRoute = function(dataVal) {
                 var legs = response.routes[0].legs;
                 for (i = 0; i < legs.length; i++) {
                     if (i === 0) {
+						console.log("create marker");
                         startLocation.latlng = legs[i].start_location;
                         startLocation.address = legs[i].start_address;												   
                           createMarker(legs[i].start_location,dataVal[i].devid,dataVal[i].vehicle_num,dataVal[i].vehicle_model,legs[i].start_address,dataVal[i].values.type,dataVal[i].devtype);
@@ -403,10 +411,11 @@ $scope.calcRoute = function(dataVal) {
                 startAnimation();                
             }
         });
-		}
-		else{
-			//nothing
-		}
+		
+		// }
+		// else{
+		// 	//nothing
+		// }
 	}
 
 
@@ -645,7 +654,11 @@ $scope.singleDeviceZoomLevel=16;
 					}else if(response[0].devtype=="bike"){
 						$scope.bikeCount = 1;
 					}
-					else{$scope.carCount = 0;
+					else if(response[0].devtype==""){
+						$scope.carCount = 1;
+					}
+					else{
+						$scope.carCount = 0;
         					$scope.bikeCount = 0;
         					$scope.busCount = 0;
         					$scope.truckCount = 0;
