@@ -58,7 +58,7 @@ angular.module('bats', ['ionic', 'batsconstants', 'batsconfig', 'batsinterceptor
 	});
 
   $ionicPlatform.registerBackButtonAction(function (event) {
-	    if($state.current.name==PageConfig.LIVE_TRACKING || $state.current.name==PageConfig.START || 
+	    if( $state.current.name==PageConfig.START || 
 	    		$state.current.name==PageConfig.LOGIN){
 	    	var confirmPopup = $ionicPopup.confirm({
 				title: "Exit", 
@@ -73,14 +73,15 @@ angular.module('bats', ['ionic', 'batsconstants', 'batsconfig', 'batsinterceptor
 	    	     } 
 	    	   });
 	    }
-	    else if($state.current.name==PageConfig.MANAGE_TRACKER || $state.current.name==PageConfig.REPLAY_ROUTE
-        || $state.current.name==PageConfig.VEHICLE_STATISTICS || $state.current.name==PageConfig.NAVIGATION
-        || $state.current.name==PageConfig.REPORT || $state.current.name==PageConfig.MANAGE_MEMBER){
-	    	$state.go(PageConfig.LIVE_TRACKING);
-	    }
+	    // else ($state.current.name==PageConfig.MANAGE_TRACKER || $state.current.name==PageConfig.REPLAY_ROUTE
+      //   || $state.current.name==PageConfig.VEHICLE_STATISTICS || $state.current.name==PageConfig.NAVIGATION
+      //   || $state.current.name==PageConfig.REPORT || $state.current.name==PageConfig.MANAGE_MEMBER){
 	    else{
-	    	navigator.app.backHistory();
+      	$state.go(PageConfig.LIVE_TRACKING);
 	    }
+	    // else{
+	    // 	navigator.app.backHistory();
+	    // }
 	  }, 100);
 })
 
