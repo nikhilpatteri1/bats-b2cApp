@@ -260,22 +260,26 @@ right: 70%;
     
 }
 
-.liveTrackTable div:first-child{
+/*.liveTrackTable div{
     padding-right: 5% !important; 
-}
+}*/
+/*.liveTrackTable div .satate{
+    padding: 0px;
+    margin: 0px 30px;
+    }*/
 
 .ltkmdetail{
-        background: chocolate;
+            background: chocolate;
     color: #fff;
     border-radius: 74px;
     /* padding: 14px; */
     /* padding-top: 24px; */
     margin-top: 9px;
-    padding: 9px 0px 9px 20px;
-    margin-left: -20px;
+    padding: 9px 8px 9px 8px;
+    margin-left: -30px;
 }
 .ltArrow{
-    margin: 17px 122px;
+    margin: 17px 100px;
 
 }
 
@@ -289,7 +293,7 @@ right: 70%;
     border-radius: 50%;
     float: left;
     background-color: #000;
-    margin-left: -30px;
+    /*margin-left: -30px;*/
     margin-top: 4px;
 }
 .ltstatusTxt{
@@ -297,7 +301,7 @@ right: 70%;
     }
 
 .ltstatusUpTxt{
-    margin-left: -29px;
+    /*margin-left: -29px;*/
     margin-bottom: 4px;
     }
 
