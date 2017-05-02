@@ -1,8 +1,8 @@
-<ion-view >
+<ion-view>
     <ion-nav-buttons side="left">
         <button class="button button-icon button-clear ion-arrow-left-c" ng-click="backToLivetracking()"></button>
     </ion-nav-buttons>
-    <ion-nav-title >{{selectedDevice}}</ion-nav-title>
+    <ion-nav-title>{{selectedDevice}}</ion-nav-title>
     <ion-nav-buttons side="right">
         <a class="button button-icon button-clear " href="#/bats/notification"><img class="filterWidth" src="img/notification.png"></a>
     </ion-nav-buttons>
@@ -39,6 +39,9 @@
             </div>
         </div>
         <div class="chart">
+            <!--<round-progress max="max" current="current" color="#45ccce" bgcolor="#eaeaea" radius="100" stroke="20" semi="true"
+                rounded="true" clockwise="false" responsive="false" duration="800" animation="easeInOutQuart" animation-delay="0"></round-progress>-->
+            <div id="widgetId2" class="vsdSolidGauge"></div>
         </div>
         <div class=" lvdMarginLeft lvdSeedLimit">50 KmpH<br>Speed limit</div>
     </ion-content>
