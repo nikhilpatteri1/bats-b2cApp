@@ -4,7 +4,9 @@ angular.module('eventhistoryfilter', [])
         $scope.filter = [{'name' : 'Panic','type' : '0'},{'name' : 'Tamper Sim','type' : '1'},{'name' : 'Tamper Top','type' : '2'},
             {'name' : 'Battery','type' : '3'},{'name' : 'Overspeed','type' : '4'},{'name' : 'Geofence','type' : '5'},
             {'name' : 'Sanity alarm','type' : '6'}, {'name' : 'Robbery / theft alarm','type' : '8'}, {'name' : 'Undefined','type' : '9'}];
-        $scope.allCheck = true;
+        $scope.formVal = {
+            allCheck : true
+        };
         $scope.gotoApplyFilter = function (data, form) {
             console.log("applied: "+data);
             $scope.selectedFilters = [];
@@ -23,8 +25,8 @@ angular.module('eventhistoryfilter', [])
             $scope.filter[i].value = true;
         }
 
-        $scope.checkAll = function(allCheck){
-            if(allCheck){
+        $scope.checkAll = function(){
+            if($scope.formVal.allCheck){
                 _.each($scope.filter, function(filter, i){$scope.filter[i].value = true;})
             }
             else {
@@ -34,16 +36,16 @@ angular.module('eventhistoryfilter', [])
 
         $scope.checkAllFor = function(){
             let count = 0;
-            $scope.allCheck = true;
+            $scope.formVal.allCheck = true;
             _.each($scope.filter, function(filter, i){
                 if ($scope.filter[i].value){
                     count++;
                 }
             })
             if(count != $scope.filter.length){
-                $scope.allCheck = false;
+                $scope.formVal.allCheck = false;
             }else{
-                $scope.allCheck = true;
+                $scope.formVal.allCheck = true;
             }
             $scope.$apply;
         };
