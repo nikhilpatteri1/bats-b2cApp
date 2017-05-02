@@ -279,8 +279,10 @@ right: 70%;
     margin-left: -30px;
 }
 .ltArrow{
-    margin: 17px 100px;
-
+    margin: 17px 80px;
+}
+.ltSelectDevArr{
+margin-left: 10%;
 }
 
 .ltStatusinline{
