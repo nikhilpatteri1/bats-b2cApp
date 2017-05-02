@@ -427,6 +427,8 @@ right: 70%;
     height: 110px;
     background: url(../img/menu/menuBG.png) no-repeat 100% 100% !important;
     background-size: 100% !important;
+          border-bottom: 1px solid #f7a060 !important;
+
 }
 
 .menuHeaderDivFont{
