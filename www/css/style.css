@@ -223,14 +223,14 @@ a:focus, a:hover {
 .liveTrackreCenter {
 	position: absolute;
     z-index: 100000000000;
-    top: 470px;
+    top: 384px;
     /* left: 162px; */
     right: 12px;
     background: #fff;
     /*color: #1909F3;*/
     font-size: 1.2em;
     /*font-weight: 900;*/
-    padding: 10px;
+    padding: 4px;
 }
 .liveTrackRecenterA{
         transform: rotate(270deg);
@@ -260,8 +260,8 @@ right: 70%;
     
 }
 
-.liveTrackTable div{
-    padding-right: 25px !important; 
+.liveTrackTable div:first-child{
+    padding-right: 5% !important; 
 }
 
 .ltkmdetail{
