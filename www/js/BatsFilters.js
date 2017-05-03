@@ -15,7 +15,7 @@ angular.module('batsfilters', [])
 
 .filter('filterAlarm', function() {
     return function(eventHistoryValues, filterList){
-        // console.log("values:"+eventHistoryValues+" "+filterList);
+        console.log("values:"+eventHistoryValues+" "+filterList);
         var output = [];
         if(eventHistoryValues && filterList){
             // console.log("inside filter: "+eventHistoryValues+" filter: "+filterList);
