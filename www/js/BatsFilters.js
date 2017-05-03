@@ -15,19 +15,19 @@ angular.module('batsfilters', [])
 
 .filter('filterAlarm', function() {
     return function(eventHistoryValues, filterList){
-        // console.log("values:"+eventHistoryValues+" "+filterList);
         var output = [];
         if(eventHistoryValues && filterList){
-            // console.log("inside filter: "+eventHistoryValues+" filter: "+filterList);
-            angular.forEach(eventHistoryValues, function (input) {
-                // console.log("outside if: "+angular.toJson(input));
-                if(filterList.indexOf(input.alarm_type) !== -1){
-                    output.push(input);
-                    // console.log("inside if: "+angular.toJson(input));
+            for(var i=0;i<eventHistoryValues.length;i++){
+                var item = eventHistoryValues[i];
+                for(var j=0;j<filterList.length;j++){
+                    var filterItem = filterList[j];
+                    if(filterItem==item.alarm_type){
+                        output.push(item);
+                        break;
+                    }
                 }
-            });
+            }
         }
-        // console.log("returning: "+angular.toJson(output));
         return output;
     }
 })
