@@ -9,17 +9,20 @@ angular.module('eventhistorydetail', [])
       $state.go(PageConfig.EVENT_FILTER);
     }
 
-    if (UtilsFactory.getNotificationDetails()) {
-      console.log(UtilsFactory.getNotificationDetails());
-      $scope.notificationData = UtilsFactory.getNotificationDetails();
-      $scope.count = $scope.notificationData.lenght;
-      console.log($scope.count);
-    }
-    $scope.filterList = UtilsFactory.getHistoryFilterList();
+    // if (UtilsFactory.getNotificationDetails()) {
+    //   console.log(UtilsFactory.getNotificationDetails());
+    //   $scope.notificationData = UtilsFactory.getNotificationDetails();
+    //   $scope.count = $scope.notificationData.lenght;
+    //   console.log($scope.count);
+    // }
+    // $scope.filterList = UtilsFactory.getHistoryFilterList();
     $scope.init = function () {
+      if(UtilsFactory.getHistoryFilterList().length != 0){
+        $scope.filterList = UtilsFactory.getHistoryFilterList();
+      }else{
+        $scope.filterList = [0,1,2,3,4,5,6,7,8,9];
+      }
       let inputParam = UtilsFactory.getEventHistoryList();
-      console.log("inputParam");
-      console.log(inputParam);
       BatsServices.eventHistory(inputParam).success(function (response) {
         $scope.eventHistoryValues = response.values;
       }).error(function (error) {

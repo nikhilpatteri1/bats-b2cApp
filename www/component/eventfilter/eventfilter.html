@@ -17,7 +17,7 @@
                
             </div>
             <ion-list class="fontForFilter" ng-repeat="filter in filter track by $index">
-                <ion-checkbox ng-model="filter.value" ng-click="checkAllFor()">
+                <ion-checkbox ng-model="filter.value" ng-checked="filter.value" ng-click="checkAllFor()">
                     <div ng-class="{'colorForChecked' : !filter.value}">{{filter.name}}</div>
                 </ion-checkbox>
             </ion-list>
