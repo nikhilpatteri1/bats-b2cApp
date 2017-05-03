@@ -4,7 +4,8 @@
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
       <button class="button button-icon button-clear " ng-click="gotoFilter()" ><img class="filterWidth" src="img/filter.png"></button> 
-        <a class="button button-icon button-clear " href="#/bats/notification" ><img class="filterWidth" src="img/notification.png"></a>
+        <a class="button button-icon button-clear " href="#/bats/notification" ><img class="filterWidth" src="img/notification.png">
+        <span class="badge badge-dark badgePosition">{{count}}</span></a>
     </ion-nav-buttons>
     <ion-content class="lgBackgroundWhite" ng-init="init()">
 
@@ -16,7 +17,9 @@
                             ng-src="{{event.alarm_type=='0' ? 'img/eventH/panic.png' : (event.alarm_type=='1' ? 'img/eventH/sim-tamper.png' :
                             (event.alarm_type=='2' ? 'img/eventH/tamper-top.png' : (event.alarm_type=='3' ? 'img/eventH/battery.png' : (event.alarm_type=='4' ?
                             'img/eventH/overspeed.png' : (event.alarm_type=='5' ? 'img/eventH/geofence.png' :(event.alarm_type=='6' ? 'img/eventH/sanity.png' 
-                            :(event.alarm_type=='8' ? 'img/eventH/theft.png' :(event.alarm_type=='9' ? 'img/eventH/invalid.png':'img/eventH/warning.png'))))))))}}">
+                            :(event.alarm_type=='7' ? 'img/eventH/warning.png':(event.alarm_type=='8' ? 'img/eventH/theft.png' :
+                            (event.alarm_type=='9' ? 'img/eventH/invalid.png':'img/eventH/warning.png')))))))))}}">
+                            <!--image for alarm_type 7 should be replaced-->
                     </div>
                     <div class="col-md-7">
                         <div class="row latlongStyle" ng-click="showAlert(event.lat,event.long)">

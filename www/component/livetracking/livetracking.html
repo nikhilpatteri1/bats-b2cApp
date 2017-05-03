@@ -2,31 +2,35 @@
     <ion-nav-buttons side="left">
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
         <div>
-            
+
         </div>
     </ion-nav-buttons>
     <ion-nav-title ng-click="gotoLivetrackingDevice()">{{selectedDevice}}<i class="ion-chevron-down ltSelectDevArr"></i></ion-nav-title>
-     <ion-nav-buttons side="right">
-      <!--<button class="button button-icon button-clear " ng-click="gotoFilter()" ><img class="filterWidth" src="img/filter.png"></button> -->
-        <a class="button button-icon button-clear " href="#/bats/notification" ><img class="filterWidth" src="img/notification.png">
-        <span class="badge badge-dark badgePosition" 
-    			>1</span>
-                </a>
+    <ion-nav-buttons side="right">
+        <!--<button class="button button-icon button-clear " ng-click="gotoFilter()" ><img class="filterWidth" src="img/filter.png"></button> -->
+        <a class="button button-icon button-clear " href="#/bats/notification"><img class="filterWidth" src="img/notification.png">
+            <span class="badge badge-dark badgePosition">1</span>
+        </a>
     </ion-nav-buttons>
     <ion-content class="hmCards" scroll="false" ng-init="init()">
         <div id="map" ng-style="mapHeight" ng-init="initialize()"></div>
+<<<<<<< HEAD
         <span class="liveTrackreCenter" ng-click="reCenterDevice()" ng-hide="singleDeviceZoomed">
+=======
+        <span class="liveTrackreCenter" ng-click="reCenterDevice()">
+>>>>>>> 30a75b49da6a8fb3a1611836b6572cea80644c29
              <i class="ion-android-send liveTrackRecenterA" ></i>Recenter</span>
         <!--<span class="liveTrackreCenter liveTrackParking" >Parking<i class="ion-android-send liveTrackRecenterA"></i></span>-->
         <div class="row liveTrackBelowbtn">
             <div class="col-sm-12 liveTrackTable">
                 <div class="col-sm-2">
-                    <div class="ltkmdetail">{{speedSpeedOmeter}}kmh</div>  
+                    <div class="ltkmdetail">{{speedSpeedOmeter}}kmh</div>
                 </div>
                 <div class="col-sm-9">
                     <div>
-                        <p class="ltstatusUpTxt" >{{vehicleName}}</p>
-                        <span class="ltwrap_type" ng-style="{{getColorBack(divcolor)}}"></span><p class="ltstatusTxt">{{barTxt}}</p>
+                        <p class="ltstatusUpTxt">{{vehicleName}}</p>
+                        <span class="ltwrap_type" ng-style="{{getColorBack(divcolor)}}"></span>
+                        <p class="ltstatusTxt">{{barTxt}}</p>
                     </div>
                 </div>
                 <div class="col-sm-1 ltArrow">
@@ -35,8 +39,8 @@
             </div>
 
         </div>
-                                    
+
 
     </ion-content>
-    
+
 </ion-view>
