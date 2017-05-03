@@ -2,6 +2,10 @@ angular.module('livetracking', [])
 .controller('LiveTrackingCtrl', function($scope, $ionicModal, $timeout, UtilsFactory, $state, PageConfig, BatsServices,
 	ionicToast,$interval, Constants) {
     
+var reqTime=12;
+var singleDeviceInterval;
+$scope.singleDeviceZoomLevel=16;
+
 
 	$scope.init = function(){
 		 var dynamicMapHeight=window.screen.availHeight;
@@ -11,10 +15,13 @@ angular.module('livetracking', [])
 		if(localStorage.getItem("choice")==undefined || localStorage.getItem("choice")==null){
 			$state.go(PageConfig.LIVE_TRACKING_DEVICES);
 		}else{
+			console.log("Dtrue");
 			$scope.selectedDevice =  localStorage.getItem("choice");
+			
+			
 			getTracker();
-			singleDeviceInterval = $interval(getTracker,reqTime * 1000, 1, false);
-		
+			singleDeviceInterval = $interval(getTracker,reqTime * 1000);
+		 
 		}
 	}
 
@@ -22,13 +29,13 @@ angular.module('livetracking', [])
 		$state.go(PageConfig.LIVE_TRACKING_DEVICES)
 	}
 
-	var reqTime=12;
+	
     // $scope.token = $localStorage.data;
     $scope.deviceloaded=true;
    
     $scope.showTrafficLayerBtn = false;
     $scope.hideTrafficLayerBtn = true;
-
+	$scope.singleDeviceZoomed = true;
 	$scope.headings;
 	var map;
     var directionDisplay;
@@ -51,7 +58,7 @@ angular.module('livetracking', [])
     var icons = new Array();
     var vehicleType;
     var multiBounds;
-    var myPlace = {lat: 12.850167, lng: 77.660329};
+   // var myPlace = {lat: 12.850167, lng: 77.660329};
 	
 	
 	//bike
@@ -125,14 +132,27 @@ angular.module('livetracking', [])
 		    /*
 			 * google map default zoom_changed event
 			 * */
-		    $scope.zoomlevel=0;
+		    $scope.zoomlevel=16;
 			google.maps.event.addListener(map, 'zoom_changed', function() {
 				setTimeout(function(){
 					$scope.zoomlevel = map.getZoom();
-					}, 80);
+				}, 80);
+				if ($scope.zoomlevel < 16 || $scope.zoomlevel > 17) {
+						console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ZOOM & DEVICEID<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+						console.log($scope.zoomlevel);
+						$scope.singleDeviceZoomed = false;
+						//$interval.cancel(singleDeviceInterval);
+
+						// if (angular.isDefined(singleDeviceInterval)) {
+						// 	$interval.cancel(singleDeviceInterval);
+						// } 
+						//else if (angular.isDefined(multiDeviceInterval)) {
+						// 	$interval.cancel(multiDeviceInterval);
+						// }
+					}
 			});
 			 
-			
+		
 			
 // 			function wheelEvent( event ) {  
 // 			/*	console.log($scope.zoomlevel);
@@ -184,7 +204,7 @@ angular.module('livetracking', [])
     }
 	var iconImg;
     function createMarker(latlng, deviceID,vehNo,vehModel, html,type,devtype) {
-		console.log(latlng);
+				console.log(latlng);
 	svg = new Array();
 	icons = new Array();
 	if(devtype == "car"){
@@ -337,6 +357,9 @@ $scope.calcRoute = function(dataVal) {
 		clearTimeout(timerHandle);
 	    }
 	    setMapOnAll(null);
+//		setMapOnAll(null);
+	map.setZoom($scope.singleDeviceZoomLevel); 
+
 		console.log(polyline);
 		// if(polyline != undefined && poly2 != undefined)
 		// {
@@ -596,11 +619,11 @@ var step = 50; // 5; // metres
 	 * movement---------------------------------------------------------------
 	 * 
 	 */
-$scope.singleDeviceZoomLevel=16;
-	$scope.multipleDeviceZoomLevel=3;
+	
+	//$scope.multipleDeviceZoomLevel=3;
 	$scope.mars = 10;
 	$scope.isZoomed = true;// reCenter button for group based
-	$scope.singleDeviceZoomed = true;// reCenter button for single device
+	//$scope.singleDeviceZoomed = true;// reCenter button for single device
 										// based
 	$scope.deviceList = [];
 	var speedValue=0;									
@@ -621,6 +644,8 @@ $scope.singleDeviceZoomLevel=16;
 	$scope.truckCount = 0;
 
 	function getTracker(){
+		
+		$scope.singleDeviceZoomed = true;
 		if($state.is(PageConfig.LIVE_TRACKING)){
 		var obj = [];
 		
