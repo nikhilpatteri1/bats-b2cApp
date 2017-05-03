@@ -37,6 +37,8 @@ angular.module('batscontrollers', [
       if(localStorage.getItem(Constants.accessToken)!=null){
         BatsServices.notification({}).success(function (response) {
           $scope.notificationData = response;
+          $rootScope.count=$scope.notificationData.length;
+         // console.log($rootScope.count);
           UtilsFactory.setNotificationDetails(response);
         }).error(function (error) {
           console.log(error.err);

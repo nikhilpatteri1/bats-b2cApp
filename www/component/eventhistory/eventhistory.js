@@ -12,18 +12,30 @@ angular.module('eventhistory', [])
             ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
         })
         // ***************** end of fetching devices *****************************
- $scope.data = {};
+
+        if (UtilsFactory.getNotificationDetails()) {
+            console.log(UtilsFactory.getNotificationDetails());
+            $scope.notificationData = UtilsFactory.getNotificationDetails();
+            $scope.count = $scope.notificationData.length;
+            console.log($scope.count);
+            if($scope.count==undefined){
+                $scope.count=0;
+            }
+        }
+
+
+        $scope.data = {};
         // $rootScope.dateValue = new Date();
         // $rootScope.timeValue = new Date();
         $scope.data.startdatetimeValue = new Date();
-        $scope.data.enddatetimeValue=new Date();
+        $scope.data.enddatetimeValue = new Date();
         // $scope.startDatetimeValue = new Date();
-       
+
         //  { "token" :<token>, "devid": <devid>, "sts" : <time in msec>, "ets" : <time in msec> }
 
 
         $scope.gotoEventHistory = function (data, form) {
-            if(form.$valid){
+            if (form.$valid) {
                 if (data.startdatetimeValue == undefined) {
                     data.startdatetimeValue = new Date();
                 }
@@ -37,7 +49,7 @@ angular.module('eventhistory', [])
                 UtilsFactory.setEventHistoryList(inputParam);
                 $state.go(PageConfig.EVENT_HISTORY_DETAIL);
             }
-            
+
         }
 
 

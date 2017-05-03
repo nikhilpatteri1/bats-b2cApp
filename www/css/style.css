@@ -135,6 +135,11 @@ a:focus, a:hover {
     width: 18px;
     padding-left: 6px !important;
 }
+
+.badgePositionHide{
+    background-color:  rgba(255,255,255,.15) !important;
+    
+}
 /******************************************************************************/
 .error{
      border-bottom:1px solid red !important;

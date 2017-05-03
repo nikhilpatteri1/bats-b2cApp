@@ -5,11 +5,10 @@
      <ion-nav-buttons side="right">
       <!--<button class="button button-icon button-clear " ng-click="gotoFilter()" ><img class="filterWidth" src="img/filter.png"></button> -->
         <a class="button button-icon button-clear " href="#/bats/notification" ><img class="filterWidth" src="img/notification.png">
-        <span class="badge badge-dark badgePosition">1</span></a>
+        <span class="badge badge-dark badgePosition" ng-class="{'badgePositionHide':count=='0','badgePosition':count!='0'}">{{count}}</span></a>
     </ion-nav-buttons>
     <ion-content class="lgBackgroundWhite" scroll="false">
         <div class="commonLeftMargin">
-
             <div class="containerLogin">
                 <div class="LoginHeading">
                     <form name="eventHistoryForm">
@@ -18,7 +17,6 @@
                             ng-class="{error: signupStep1Form.selectedvehicle.$invalid && Validate}">
                             <option value=""disabled selected>Select Vehicle</option>
                              </select>
-
                         <div class="space1">
                             <div class="floatlabeltxt show-hide inputFieldFontSize">Start Date</div>
                             <ion-list>

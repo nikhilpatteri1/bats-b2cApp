@@ -1,5 +1,5 @@
 angular.module('eventhistorydetail', [])
-.controller('EventHistoryDetailCtrl', function ($scope, $rootScope, $ionicPopup, $state, $ionicModal, $timeout, PageConfig, UtilsFactory, _, 
+  .controller('EventHistoryDetailCtrl', function ($scope, $rootScope, $ionicPopup, $state, $ionicModal, $timeout, PageConfig, UtilsFactory, _,
     BatsServices, ionicToast, Constants) {
 
     if (UtilsFactory.getEventHistoryList().length == 0) {
@@ -9,23 +9,29 @@ angular.module('eventhistorydetail', [])
       $state.go(PageConfig.EVENT_FILTER);
     }
 
+    if (UtilsFactory.getNotificationDetails()) {
+      console.log(UtilsFactory.getNotificationDetails());
+      $scope.notificationData = UtilsFactory.getNotificationDetails();
+      $scope.count = $scope.notificationData.lenght;
+      console.log($scope.count);
+    }
     $scope.filterList = UtilsFactory.getHistoryFilterList();
-    $scope.init = function(){
+    $scope.init = function () {
       let inputParam = UtilsFactory.getEventHistoryList();
       console.log("inputParam");
       console.log(inputParam);
       BatsServices.eventHistory(inputParam).success(function (response) {
         $scope.eventHistoryValues = response.values;
       }).error(function (error) {
-          ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+        ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
       })
     }
 
-    $scope.backToEventHistory=function(){
-       $state.go(PageConfig.EVENT_HISTORY);
+    $scope.backToEventHistory = function () {
+      $state.go(PageConfig.EVENT_HISTORY);
     }
 
-    $scope.showAlert = function (lat,long) {
+    $scope.showAlert = function (lat, long) {
       var lat = parseFloat(lat);
       var lng = parseFloat(long);
       var latlng = new google.maps.LatLng(lat, lng);
@@ -35,8 +41,8 @@ angular.module('eventhistorydetail', [])
           if (results[1]) {
             var alertPopup = $ionicPopup.alert({
               title: '',
-              template:  results[1].formatted_address,
-              cssClass:'ehdLatLonPopup'
+              template: results[1].formatted_address,
+              cssClass: 'ehdLatLonPopup'
             });
             alertPopup.then(function (res) {
             });
