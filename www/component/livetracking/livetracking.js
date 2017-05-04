@@ -107,12 +107,12 @@ $scope.singleDeviceZoomLevel=16;
 	map = new google.maps.Map(document.getElementById("map"), myOptions);  
 	  
 	
-	// address = 'India';
-	// // address = 'Trinidad and Tobago'
-	// geocoder = new google.maps.Geocoder();
-	// geocoder.geocode( { 'address': address}, function(results, status) {
-	//     map.fitBounds(results[0].geometry.viewport);
-	//  });	
+	address = 'India';
+	// address = 'Trinidad and Tobago'
+	geocoder = new google.maps.Geocoder();
+	geocoder.geocode( { 'address': address}, function(results, status) {
+	    map.fitBounds(results[0].geometry.viewport);
+	 });	
 		 // Instantiate a directions service.
 		    directionsService = new google.maps.DirectionsService();
 		 // Create a renderer for directions and bind it to the map.
@@ -142,7 +142,7 @@ $scope.singleDeviceZoomLevel=16;
 						console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ZOOM & DEVICEID<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 						console.log($scope.zoomlevel);
 						$scope.singleDeviceZoomed = false;
-						$interval.cancel(singleDeviceInterval);
+						//$interval.cancel(singleDeviceInterval);
 
 						// if (angular.isDefined(singleDeviceInterval)) {
 						// 	$interval.cancel(singleDeviceInterval);
