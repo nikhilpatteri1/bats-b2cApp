@@ -85,10 +85,20 @@
          border-radius: 24px;
     height: 45px;
     background: rgb(229, 232, 232);
-    width: 111px;
+    /*width: 111px;*/
     color: #867d7d;
     text-align: center;
 }
 .lvdMarginLeft{
     margin-left: 105px;
+}
+.chart{
+    height:200px;
+}
+.chart-container{
+    width: 100%;
+    height: 200px;
+}
+.speed-limit-text{
+    text-align: center;
 }
