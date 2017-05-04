@@ -104,15 +104,15 @@ $scope.singleDeviceZoomLevel=16;
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 	// console.log(document.getElementById("map_canvas"));
-	map = new google.maps.Map(document.getElementById("map"), myOptions);
-	
+	map = new google.maps.Map(document.getElementById("map"), myOptions);  
+	  
 	
 	// address = 'India';
 	// // address = 'Trinidad and Tobago'
 	// geocoder = new google.maps.Geocoder();
 	// geocoder.geocode( { 'address': address}, function(results, status) {
 	//     map.fitBounds(results[0].geometry.viewport);
-	// });	
+	//  });	
 		 // Instantiate a directions service.
 		    directionsService = new google.maps.DirectionsService();
 		 // Create a renderer for directions and bind it to the map.
