@@ -8,6 +8,7 @@ $scope.singleDeviceZoomLevel=16;
 
 
 	$scope.init = function(){
+		$scope.initialize();
 		 var dynamicMapHeight=window.screen.availHeight;
 		$scope.mapHeight={height:dynamicMapHeight+"px"};
 		console.log($scope.mapHeight, localStorage.getItem("choice"));
