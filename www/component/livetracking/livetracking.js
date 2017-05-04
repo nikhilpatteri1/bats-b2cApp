@@ -93,7 +93,7 @@ $scope.singleDeviceZoomLevel=16;
     $scope.httpLoading=false;
 
 	$scope.initialize=function () {
-	var $map = $('#map_canvas');
+	var $map = $('#map');
 	infowindow = new google.maps.InfoWindow({  
 	    size: new google.maps.Size(150,50)
 	});
@@ -106,12 +106,12 @@ $scope.singleDeviceZoomLevel=16;
 	map = new google.maps.Map(document.getElementById("map"), myOptions);
 	
 	
-	address = 'India';
-	// address = 'Trinidad and Tobago'
-	geocoder = new google.maps.Geocoder();
-	geocoder.geocode( { 'address': address}, function(results, status) {
-	    map.fitBounds(results[0].geometry.viewport);
-	});	
+	// address = 'India';
+	// // address = 'Trinidad and Tobago'
+	// geocoder = new google.maps.Geocoder();
+	// geocoder.geocode( { 'address': address}, function(results, status) {
+	//     map.fitBounds(results[0].geometry.viewport);
+	// });	
 		 // Instantiate a directions service.
 		    directionsService = new google.maps.DirectionsService();
 		 // Create a renderer for directions and bind it to the map.
@@ -141,7 +141,7 @@ $scope.singleDeviceZoomLevel=16;
 						console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ZOOM & DEVICEID<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 						console.log($scope.zoomlevel);
 						$scope.singleDeviceZoomed = false;
-						//$interval.cancel(singleDeviceInterval);
+						$interval.cancel(singleDeviceInterval);
 
 						// if (angular.isDefined(singleDeviceInterval)) {
 						// 	$interval.cancel(singleDeviceInterval);
@@ -202,6 +202,21 @@ $scope.singleDeviceZoomLevel=16;
     	$(".traffic_layer_btn").css("position", 'absolute').css('top', '10px').css('left', '130px');
     	google.maps.event.trigger(map, 'resize');
     }
+	
+	$scope.reCenterDevice = function() {
+		console.log("Single Device Re Center");
+		map.setZoom(16);
+		console.log(marker[0].getPosition());
+		map.panTo(marker[0].getPosition());
+		$scope.singleDeviceZoomed = true;
+		// if (angular.isDefined(singleDeviceInterval)) {
+		// 	$interval.cancel(singleDeviceInterval);
+		// } else if (angular.isDefined(multiDeviceInterval)) {
+		// 	$interval.cancel(multiDeviceInterval);
+		// }		
+		singleDeviceInterval = $interval(getTracker, reqTime * 1000);
+	};
+	
 	var iconImg;
     function createMarker(latlng, deviceID,vehNo,vehModel, html,type,devtype) {
 				console.log(latlng);
@@ -645,7 +660,7 @@ var step = 50; // 5; // metres
 
 	function getTracker(){
 		
-		$scope.singleDeviceZoomed = true;
+		//$scope.singleDeviceZoomed = true;
 		if($state.is(PageConfig.LIVE_TRACKING)){
 		var obj = [];
 		
