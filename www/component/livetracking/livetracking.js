@@ -6,6 +6,16 @@ var reqTime=12;
 var singleDeviceInterval;
 $scope.singleDeviceZoomLevel=16;
 
+ if (UtilsFactory.getNotificationDetails()) {
+      console.log(UtilsFactory.getNotificationDetails());
+      $scope.notificationData = UtilsFactory.getNotificationDetails();
+      $scope.count = $scope.notificationData.length;
+      console.log($scope.count);
+      if ($scope.count == undefined) {
+        $scope.count = 0;
+        $scope.notificationData = [];
+      }
+    }
 
 	$scope.init = function(){
 		$scope.initialize(); 
