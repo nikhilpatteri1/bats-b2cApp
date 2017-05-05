@@ -93,12 +93,28 @@
     margin-left: 105px;
 }
 .chart{
-    height:200px;
-}
-.chart-container{
-    width: 100%;
-    height: 200px;
+    height: 150px;
+    padding-top: 40px;
+    position: relative;
+    margin: 20px auto;
+    font-size: 40px;
+    text-align: center;
 }
 .speed-limit-text{
     text-align: center;
+}
+.progress{
+    height: 30px !important;
+    background-color: white !important;
+    position: absolute;
+    color: #bbb;
+    font-weight: 100;
+    line-height: 1;
+}
+.speed-text{
+    top: auto;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 35.7143px;
 }
