@@ -5,14 +5,18 @@ angular.module('notification', [])
             console.log(navigator)
              navigator.app.backHistory();
         }
-
+        $scope.noData=true;
+        console.log(UtilsFactory.getNotificationDetails());
         if(UtilsFactory.getNotificationDetails()){
             console.log(UtilsFactory.getNotificationDetails());
             $scope.notificationData = UtilsFactory.getNotificationDetails();
             $scope.count=$scope.notificationData.length;
+            $scope.noData=false;
             console.log($scope.count);
-            if($scope.count==undefined){
+            if($scope.count==undefined||$scope.count==0){
+              $scope.count=0;
               $scope.notificationData=[];
+              $scope.noData=true;
             }
         }
 

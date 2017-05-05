@@ -1,0 +1,12 @@
+.imageCss{
+    width: 200px;
+    margin: 0 auto;
+
+    display: -webkit-box;
+}
+.ngdata{
+    text-align: center;
+}
+.alignCenter{
+margin-top: 33%;
+}
