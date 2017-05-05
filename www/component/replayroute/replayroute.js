@@ -32,11 +32,23 @@ angular.module('replayroute', [])
             if(form.$valid){
                 let inputParam = {"devid" : data.selectedvehicle.devid,"slots" : getSlotes(data.startdatetimeValue)};
                 BatsServices.historyExist(inputParam).success(function (response) {
-                    //console.log(JSON.stringify(response));
-                    if(true){
+                    console.log(JSON.stringify(response));
+                    // if(true){
+                    //     UtilsFactory.setDataForReplay(response);
+                    //     $state.go(PageConfig.REPLAY_ROUTE_DETAILS);
+                    // }
+
+                   
+                    if(response.values[0].data == true || response.values[1].data == true|| response.values[2].data == true ||response.values[3].data == true ){
                         UtilsFactory.setDataForReplay(response);
                         $state.go(PageConfig.REPLAY_ROUTE_DETAILS);
                     }
+                    else{
+                         ionicToast.show("No data avialable");
+                    }
+
+
+
                     
                 }).error(function (error) {
                     ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);

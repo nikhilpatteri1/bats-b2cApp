@@ -107,6 +107,12 @@ angular.module('replayroutedetail', [])
 			break;
 		}
   }
+
+
+  angular.element(document).ready(function () {
+	$scope.initialize(); 
+});
+
 	//var latLng = { lat: 12.850167, lng: 77.660329 };
 	//$scope.initialize();
 	// function initialize() {
