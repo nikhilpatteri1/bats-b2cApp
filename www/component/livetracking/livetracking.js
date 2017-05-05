@@ -245,7 +245,7 @@ $scope.singleDeviceZoomLevel=16;
 	    {     	   
 		if(html.length==0){
 		    html=responses[0].formatted_address;
-		    contentString  = '<b><label>Device ID:</label> '+deviceID+'</b><br><br><b><label>Vehicle No:</label> '+vehNo+'</b><br><br><b><label>Vehicle Model:</label> '+vehModel+'</b><br><br>'+html+'<br><br><button class="btn btn-primary btn-sm" id="infoClick" data-deviceID="'+deviceID+'">show detail</button>';	
+		    contentString  = '<b><label>Device ID:</label> '+deviceID+'</b><br><br><b><label>Vehicle No:</label> '+vehNo+'</b><br><br><b><label>Vehicle Model:</label> '+vehModel+'</b><br><br>'+html+'<br><br>';	
 		}		        	   		                    
 	    } 
 	    else 
@@ -254,7 +254,7 @@ $scope.singleDeviceZoomLevel=16;
 	    }   
 	});
 	if(html.length!=0){
-	    contentString  = '<b><label>Device ID:</label> '+deviceID+'</b><br><br><b><label>Vehicle No:</label> '+vehNo+'</b><br><br><b><label>Vehicle Model:</label> '+vehModel+'</b><br><br>'+html+'<br><br><button class="btn btn-primary btn-sm" id="infoClick" data-deviceID="'+deviceID+'">show detail</button>';
+	    contentString  = '<b><label>Device ID:</label> '+deviceID+'</b><br><br><b><label>Vehicle No:</label> '+vehNo+'</b><br><br><b><label>Vehicle Model:</label> '+vehModel+'</b><br><br>'+html+'<br><br>';
 	}
 	
 	for (let i in svg){
