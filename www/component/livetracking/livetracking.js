@@ -16,8 +16,8 @@ angular.module('livetracking', [])
 				$scope.count = 0;
 			}
 		}
-<<<<<<< HEAD
-	}
+
+	
 
 	$scope.gotoLivetrackingDevice = function(){
 		$state.go(PageConfig.LIVE_TRACKING_DEVICES)
@@ -260,7 +260,7 @@ angular.module('livetracking', [])
 					$scope.zoomlevel = map.getZoom();
 				}, 80);
 				if ($scope.zoomlevel < 16 || $scope.zoomlevel > 17) {
-<<<<<<< HEAD
+
 						console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ZOOM & DEVICEID<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 						console.log($scope.zoomlevel);
 						$scope.singleDeviceZoomed = false;
@@ -273,20 +273,7 @@ angular.module('livetracking', [])
 						// 	$interval.cancel(multiDeviceInterval);
 						// }
 					}
-=======
-					console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ZOOM & DEVICEID<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-					console.log($scope.zoomlevel);
-					$scope.singleDeviceZoomed = false;
-					//$interval.cancel(singleDeviceInterval);
 
-					// if (angular.isDefined(singleDeviceInterval)) {
-					// 	$interval.cancel(singleDeviceInterval);
-					// } 
-					//else if (angular.isDefined(multiDeviceInterval)) {
-					// 	$interval.cancel(multiDeviceInterval);
-					// }
-				}
->>>>>>> 4235a12bdbb3c467bca074ed904fe325c59dc787
 			});
 
 
