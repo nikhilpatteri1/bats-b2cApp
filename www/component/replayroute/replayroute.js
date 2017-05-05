@@ -44,7 +44,7 @@ angular.module('replayroute', [])
                         $state.go(PageConfig.REPLAY_ROUTE_DETAILS);
                     }
                     else{
-                         ionicToast.show("No data avialable");
+                         ionicToast.show("No data avialable for the Selected date");
                     }
 
 
