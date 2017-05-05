@@ -1,6 +1,15 @@
 angular.module('managetracker', [])
 .controller('ManageTrackerCtrl', function($scope, $state, $ionicModal, $timeout, PageConfig, BatsServices, ionicToast,
     Constants, UtilsFactory) {
+ if (UtilsFactory.getNotificationDetails()) {
+            console.log(UtilsFactory.getNotificationDetails());
+            $scope.notificationData = UtilsFactory.getNotificationDetails();
+            $scope.count = $scope.notificationData.length;
+            console.log($scope.count);
+            if($scope.count==undefined){
+                $scope.count=0;
+            }
+        }
 
     function init(){
         let inputParam = {};

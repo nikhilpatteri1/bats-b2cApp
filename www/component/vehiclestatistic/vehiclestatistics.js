@@ -13,6 +13,19 @@ angular.module('vehiclestatistics', [])
         })
         // ***************** end of fetching devices *****************************
        // $rootScope.dateValue = new Date();
+
+ if (UtilsFactory.getNotificationDetails()) {
+            console.log(UtilsFactory.getNotificationDetails());
+            $scope.notificationData = UtilsFactory.getNotificationDetails();
+            $scope.count = $scope.notificationData.length;
+            console.log($scope.count);
+            if($scope.count==undefined){
+                $scope.count=0;
+            }
+        }
+
+
+
         $scope.data.startdatetimeValue = new Date();
         $scope.data.enddatetimeValue = new Date();
         $scope.gotoVehicleStatistics = function (data, form) {

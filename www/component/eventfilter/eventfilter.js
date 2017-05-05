@@ -42,12 +42,16 @@ angular.module('eventhistoryfilter', [])
             UtilsFactory.setHistoryFilterList($scope.selectedFilters);
         }
 
-        if (UtilsFactory.getNotificationDetails()) {
+         if (UtilsFactory.getNotificationDetails()) {
             console.log(UtilsFactory.getNotificationDetails());
             $scope.notificationData = UtilsFactory.getNotificationDetails();
-            $scope.count = $scope.notificationData.lenght;
+            $scope.count = $scope.notificationData.length;
             console.log($scope.count);
+            if($scope.count==undefined){
+                $scope.count=0;
+            }
         }
+
 
 
         $scope.gotoEventHistoryDetail = function () {

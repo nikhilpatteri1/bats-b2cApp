@@ -3,7 +3,16 @@ angular.module('managemember', [])
          Constants, $state, PageConfig, $rootScope) {
         
         $scope.data = {};
-        
+         if (UtilsFactory.getNotificationDetails()) {
+            console.log(UtilsFactory.getNotificationDetails());
+            $scope.notificationData = UtilsFactory.getNotificationDetails();
+            $scope.count = $scope.notificationData.length;
+            console.log($scope.count);
+            if($scope.count==undefined){
+                $scope.count=0;
+            }
+        }
+
         $scope.init = function(){
             BatsServices.userList({}).success(function (response) {
                 $scope.memberList = response;
