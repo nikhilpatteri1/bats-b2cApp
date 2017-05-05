@@ -4,19 +4,31 @@ angular.module('livetrackingdetails', [])
 		// if (UtilsFactory.getLivetrackingDetails().length == 0) {
 		// $state.go(PageConfig.LIVE_TRACKING)
 		// }
-//  ChartFactory.solidGaugeChartData.data("widgetId2", "#fbbf16", parseInt(45), 0, 200, "Avg");
- 
+		//  ChartFactory.solidGaugeChartData.data("widgetId2", "#fbbf16", parseInt(45), 0, 200, "Avg");
+
+		if (UtilsFactory.getNotificationDetails()) {
+			console.log(UtilsFactory.getNotificationDetails());
+			$scope.notificationData = UtilsFactory.getNotificationDetails();
+			$scope.count = $scope.notificationData.length;
+			console.log($scope.count);
+			if ($scope.count == undefined) {
+				$scope.count = 0;
+			}
+		}
+
+
+
 		$scope.init = function () {
-			$scope.selectedDevice =  localStorage.getItem("choice");
+			$scope.selectedDevice = localStorage.getItem("choice");
 			console.log($scope.selectedDevice);
-			if(UtilsFactory.getLivetrackingDetails().length!=0){
+			if (UtilsFactory.getLivetrackingDetails().length != 0) {
 				$scope.data = UtilsFactory.getLivetrackingDetails();
 			}
-			$scope.values=$scope.data[0];
-		//	$scope.v=$scope.values.devtype;
-			console.log("vehicle data: "+angular.toJson($scope.values.speed_limit));
+			$scope.values = $scope.data[0];
+			//	$scope.v=$scope.values.devtype;
+			console.log("vehicle data: " + angular.toJson($scope.values.speed_limit));
 			console.log($scope.values);
-			$scope.status=$scope.data[0].values.type;
+			$scope.status = $scope.data[0].values.type;
 			if ($scope.status == 0) {
 				$scope.statusType = 'Geofence Cross';
 			}
@@ -34,8 +46,8 @@ angular.module('livetrackingdetails', [])
 			}
 			$scope.ts = $scope.data[0].values.ts;//$filter('asda')(value)
 
-			angular.element(document).ready(function() {
-				var chart = {      
+			angular.element(document).ready(function () {
+				var chart = {
 					type: 'solidgauge'
 				};
 				var title = null;
@@ -56,7 +68,7 @@ angular.module('livetrackingdetails', [])
 				var tooltip = {
 					enabled: false
 				};
-					
+
 				// the value axis
 				var yAxis = {
 					stops: [
@@ -79,8 +91,8 @@ angular.module('livetrackingdetails', [])
 					title: {
 						text: 'Speed'
 					}
-				};	  
-				
+				};
+
 				var plotOptions = {
 					solidgauge: {
 						dataLabels: {
@@ -90,7 +102,7 @@ angular.module('livetrackingdetails', [])
 						}
 					}
 				};
-				
+
 				var credits = {
 					enabled: false
 				};
@@ -107,18 +119,18 @@ angular.module('livetrackingdetails', [])
 						valueSuffix: ' km/h'
 					}
 				}];
-					
-				var json = {};   
-				json.chart = chart; 
-				json.title = title;       
-				json.pane = pane; 
-				json.tooltip = tooltip; 
-				json.yAxis = yAxis; 
-				json.credits = credits; 
-				json.series = series;     
-				$('#container-speed').highcharts(json);     
-				
-				var chartFunction = function() {
+
+				var json = {};
+				json.chart = chart;
+				json.title = title;
+				json.pane = pane;
+				json.tooltip = tooltip;
+				json.yAxis = yAxis;
+				json.credits = credits;
+				json.series = series;
+				$('#container-speed').highcharts(json);
+
+				var chartFunction = function () {
 					// Speed
 					var chart = $('#container-speed').highcharts();
 					var point;
@@ -131,12 +143,12 @@ angular.module('livetrackingdetails', [])
 					}
 				};
 				setInterval(chartFunction, 2000);
-			});	
+			});
 		}
 		$scope.backToLivetracking = function () {
-		$state.go(PageConfig.LIVE_TRACKING)
-	}
-})
+			$state.go(PageConfig.LIVE_TRACKING)
+		}
+	})
 // 	$scope.Options = {
 
 //     chart: {
@@ -146,11 +158,11 @@ angular.module('livetrackingdetails', [])
 //         plotBorderWidth: 0,
 //         plotShadow: false
 //     },
-    
+
 //     title: {
 //         text: 'Speedometer'
 //     },
-    
+
 //     pane: {
 //         startAngle: -150,
 //         endAngle: 150,
@@ -183,12 +195,12 @@ angular.module('livetrackingdetails', [])
 //             innerRadius: '103%'
 //         }]
 //     },
-       
+
 //     // the value axis
 //     yAxis: {
 //         min: 0,
 //         max: 200,
-        
+
 //         minorTickInterval: 'auto',
 //         minorTickWidth: 1,
 //         minorTickLength: 10,
@@ -259,7 +271,7 @@ angular.module('livetrackingdetails', [])
 //    var tooltip = {
 //       enabled: false
 //    };
-      
+
 //    // the value axis
 //    var yAxis = {
 //       stops: [
@@ -283,7 +295,7 @@ angular.module('livetrackingdetails', [])
 //          text: 'Speed'
 //       }
 //    };	  
-   
+
 //    var plotOptions = {
 //       solidgauge: {
 //          dataLabels: {
@@ -293,7 +305,7 @@ angular.module('livetrackingdetails', [])
 //          }
 //       }
 //    };
-   
+
 //    var credits = {
 //       enabled: false
 //    };
@@ -310,7 +322,7 @@ angular.module('livetrackingdetails', [])
 //          valueSuffix: ' km/h'
 //       }
 //    }];
-	  
+
 //    var json = {};   
 //    json.chart = chart; 
 //    json.title = title;       
@@ -320,8 +332,8 @@ angular.module('livetrackingdetails', [])
 //    json.credits = credits; 
 //    json.series = series;     
 //    $('#container-speed').highcharts(json);   
-   
-   
+
+
 //    // the value axis
 //    yAxis = {
 //       stops: [
@@ -345,7 +357,7 @@ angular.module('livetrackingdetails', [])
 //          text: 'RPM'
 //       }
 //    };	  
-   
+
 //    series = [{
 //       name: 'RPM',
 //       data: [1],
@@ -358,11 +370,11 @@ angular.module('livetrackingdetails', [])
 //          valueSuffix: ' revolutions/min'
 //       }
 //    }];
-   
+
 //    json.yAxis = yAxis;   
 //    json.series = series;     
 //    $('#container-rpm').highcharts(json);  
-   
+
 //    var chartFunction = function() {
 //       // Speed
 //       var chart = $('#container-speed').highcharts();
@@ -396,7 +408,7 @@ angular.module('livetrackingdetails', [])
 //          point.update(newVal);
 //       }
 //    };   
-   
+
 //    // Bring life to the dials
 //    setInterval(chartFunction, 2000);
 // });

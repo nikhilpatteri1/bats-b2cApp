@@ -1,7 +1,16 @@
 angular.module('vehiclestatisticsdetail', [])
 .controller('VehicleStatisticsDetailCtrl', function($scope,$rootScope, $state, $ionicModal, $timeout, PageConfig, 
     UtilsFactory, Constants, ChartFactory) {
-    
+     if (UtilsFactory.getNotificationDetails()) {
+            console.log(UtilsFactory.getNotificationDetails());
+            $scope.notificationData = UtilsFactory.getNotificationDetails();
+            $scope.count = $scope.notificationData.length;
+            console.log($scope.count);
+            if($scope.count==undefined){
+                $scope.count=0;
+            }
+        }
+
     
     if(UtilsFactory.getVehicleStatitics().length==0){
         $state.go(PageConfig.VEHICLE_STATISTICS)

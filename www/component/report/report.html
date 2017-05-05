@@ -4,7 +4,7 @@
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
         <a class="button button-icon button-clear " href="#/bats/notification"><img class="filterWidth" src="img/notification.png">
-        <span class="badge badge-dark badgePosition">1</span></a>
+        <span class="badge badge-dark badgePosition"  ng-class="{'badgePositionHide':count=='0','badgePosition':count!='0'}">{{count}}</span></a>
     </ion-nav-buttons>
     <ion-content class="lgBackgroundWhite">
         <div class="commonLeftMargin">

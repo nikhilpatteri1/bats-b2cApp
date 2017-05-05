@@ -22,4 +22,15 @@ angular.module('report', [])
             //     ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
             // })
         }
+
+         if (UtilsFactory.getNotificationDetails()) {
+            console.log(UtilsFactory.getNotificationDetails());
+            $scope.notificationData = UtilsFactory.getNotificationDetails();
+            $scope.count = $scope.notificationData.length;
+            console.log($scope.count);
+            if($scope.count==undefined){
+                $scope.count=0;
+            }
+        }
+
     })
