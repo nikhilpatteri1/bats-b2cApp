@@ -30,6 +30,10 @@ $scope.singleDeviceZoomLevel=16;
 		$state.go(PageConfig.LIVE_TRACKING_DEVICES)
 	}
 
+	angular.element(document).ready(function () {
+	$scope.initialize(); 
+});
+
 	
     // $scope.token = $localStorage.data;
     $scope.deviceloaded=true;
@@ -107,12 +111,13 @@ $scope.singleDeviceZoomLevel=16;
 	map = new google.maps.Map(document.getElementById("map"), myOptions);  
 	  
 	
-	address = 'India';
-	// address = 'Trinidad and Tobago'
-	geocoder = new google.maps.Geocoder();
-	geocoder.geocode( { 'address': address}, function(results, status) {
-	    map.fitBounds(results[0].geometry.viewport);
-	 });	
+	// address = 'India';
+	// // address = 'Trinidad and Tobago'
+	// geocoder = new google.maps.Geocoder();
+	// geocoder.geocode( { 'address': address}, function(results, status) {
+	//     map.fitBounds(results[0].geometry.viewport);
+	//  });	
+
 		 // Instantiate a directions service.
 		    directionsService = new google.maps.DirectionsService();
 		 // Create a renderer for directions and bind it to the map.
@@ -142,7 +147,7 @@ $scope.singleDeviceZoomLevel=16;
 						console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ZOOM & DEVICEID<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 						console.log($scope.zoomlevel);
 						$scope.singleDeviceZoomed = false;
-						//$interval.cancel(singleDeviceInterval);
+						$interval.cancel(singleDeviceInterval);
 
 						// if (angular.isDefined(singleDeviceInterval)) {
 						// 	$interval.cancel(singleDeviceInterval);
@@ -154,27 +159,7 @@ $scope.singleDeviceZoomLevel=16;
 			});
 			 
 		
-			
-// 			function wheelEvent( event ) {  
-// 			/*	console.log($scope.zoomlevel);
-// 				console.log($scope.deviceId);*/
-// 				if(typeof $scope.deviceId !='undefined' && $scope.deviceId !=""){
-// 					if ($scope.zoomlevel < 16 || $scope.zoomlevel > 17) {
-// //						console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ZOOM & DEVICEID<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-// //						console.log($scope.zoomlevel);
-// 						$scope.singleDeviceZoomed = false;
-// 						if (angular.isDefined(singleDeviceInterval)) {
-// 							$interval.cancel(singleDeviceInterval);
-// 						} else if (angular.isDefined(multiDeviceInterval)) {
-// 							$interval.cancel(multiDeviceInterval);
-// 						}
-// 					}
-// 				}			
-// 		    }
-		    
-		    // $map[0].addEventListener( 'mousewheel', wheelEvent, true );
-		    // $map[0].addEventListener( 'DOMMouseScroll', wheelEvent, true );
-		  };
+  };
 		  
 		  
 		  google.maps.event.addDomListener(window, 'load', $scope.initialize);
@@ -221,6 +206,7 @@ $scope.singleDeviceZoomLevel=16;
 	var iconImg;
     function createMarker(latlng, deviceID,vehNo,vehModel, html,type,devtype) {
 				console.log(latlng);
+				
 	svg = new Array();
 	icons = new Array();
 	if(devtype == "car"){
@@ -673,7 +659,17 @@ var step = 50; // 5; // metres
 		UtilsFactory.setLivetrackingDetails(response);
 		  $scope.multiDevice = false;
 				if(response[0].values !=""){
-					console.log("response true");					
+					console.log("response true");
+					// var myPlace = {lat: Number(response[0].values.lat), lng: Number(response[0].values.long)};
+
+					// angular.element(document).ready(function () {
+					// 	var map = new google.maps.Map(document.getElementById('map'), {
+					// 	zoom: 16,
+					// 	center: myPlace,
+					// 	mapTypeId: google.maps.MapTypeId.ROADMAP
+					// 	});
+					// 	directionsDisplay.setMap(map);
+					// });					
 					$scope.singleDevice = true;
 					$scope.divcolor = response[0].values.type;
 					$scope.vehicleName = response[0].vehicle_name;
@@ -709,6 +705,12 @@ var step = 50; // 5; // metres
 					$scope.speedlimitSpeedOmeter=speedlimit;
 					$scope.dateTimeSpeedOmeter=getDateTime(response[0].values.ts);
 					$scope.calcRoute(response);
+					
+					
+
+					
+
+
 			}
 			else{
 				$scope.singleDevice = false;
