@@ -10,6 +10,7 @@ angular.module('managemember', [])
             console.log($scope.count);
             if($scope.count==undefined){
                 $scope.count=0;
+                $scope.notificationData=[];
             }
         }
 

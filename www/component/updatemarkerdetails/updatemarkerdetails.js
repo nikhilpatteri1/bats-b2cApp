@@ -22,6 +22,7 @@ angular.module('updatemarkerdetails', [])
             console.log($scope.count);
             if($scope.count==undefined){
                 $scope.count=0;
+                $scope.notificationData=[];
             }
         }
 
