@@ -19,7 +19,7 @@ angular.module('eventhistorydetail', [])
         $scope.notificationData = [];
       }
     }
-
+    $scope.noData = false;
     // $scope.filterList = UtilsFactory.getHistoryFilterList();
     $scope.init = function () {
       if (UtilsFactory.getHistoryFilterList().length != 0) {
@@ -30,6 +30,9 @@ angular.module('eventhistorydetail', [])
       let inputParam = UtilsFactory.getEventHistoryList();
       BatsServices.eventHistory(inputParam).success(function (response) {
         $scope.eventHistoryValues = response.values;
+        if ($scope.eventHistoryValues.length == 0) {
+          $scope.noData = true;
+        }
       }).error(function (error) {
         ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
       })
