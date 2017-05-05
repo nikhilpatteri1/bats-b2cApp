@@ -10,6 +10,14 @@ angular.module('replayroutedetail', [])
 			 $state.go(PageConfig.REPLAY_ROUTE);
 		}
 
+$scope.availableOptions = [
+     { name: 'slow', value: '0' }, 
+     { name: 'medium', value: '1' }, 
+     { name: 'high', value: '2' }
+   ];
+   $scope.data = {selectedOption : $scope.availableOptions[0].value};
+
+
 
  if (UtilsFactory.getNotificationDetails()) {
             console.log(UtilsFactory.getNotificationDetails());

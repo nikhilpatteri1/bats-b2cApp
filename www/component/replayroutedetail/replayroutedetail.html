@@ -32,12 +32,13 @@
                     <li class="spdCtrl" ng-click="updateSpeed(2)"><span class="txtSpan">High</span></li>
                 </ul> -->
                 
-                <select ng-model="selected" ng-change="updateSpeed(selected)" class="dropdown rrSelectWidth" name="selectedSpeed" >
-                                <!--<option  value="">Speed</option>-->
+                <!--<select ng-model="selected" ng-init="selected = options[0]" ng-change="updateSpeed(selected)" class="dropdown rrSelectWidth" name="selectedSpeed" >
+                                <option  value="">Speed</option>
                                 <option selected value="0">Slow</option>
                                 <option value="1">Medium</option>
                                 <option value="2">High</option>
-                            </select>
+                            </select>-->
+                             <select ng-model="data.selectedOption" required ng-options="option.value as option.name for option in availableOptions" ng-change="updateSpeed(data.selectedOption)"></select>
             </div> 
 
 
