@@ -8,7 +8,7 @@ angular.module('batscontrollers', [
   'managemember', 'livetrackingdevices', 'eventhistoryfilter',
   'replayroutedetail', 'notification',
   'ion-datetime-picker', 'ion-place-tools', 'ionic-toast',
-  'underscore', 'ngLoadingSpinner', 'gm'
+  'underscore', 'ngLoadingSpinner', 'gm','angular-svg-round-progressbar'
 ])
 
   .controller('BatsCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $state, PageConfig, Constants,
