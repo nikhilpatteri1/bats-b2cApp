@@ -247,8 +247,14 @@ $scope.availableOptions = [
 		$scope.plottedData=[];
 		var coordinates = [];		
 		
-		for(var inc = 0; inc < hist_len; inc++){			
-			//console.log(histData[inc].lat,histData[inc].long,histData[inc].Velocity,histData[inc].ts);
+
+		console.log("data"+ histData[0].lat,histData[0].long);
+		console.log("data"+histData[hist_len-1].lat,histData[hist_len-1].long);
+
+		for(var inc = 0; inc < hist_len; inc++){
+
+			
+
 		  	executeHisory(histData[inc].lat,histData[inc].long,histData[inc].Velocity,histData[inc].ts,
 		  			function(historyStatus){
                 // console.log(JSON.stringify(historyStatus));
@@ -309,6 +315,23 @@ $scope.availableOptions = [
 			var pts=[];
     	    var length = 0;
             var point = null;
+
+			var myLatLng = {"lat":polyPathArray[0].lng,"lng":polyPathArray[0].lat};
+			var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+         icon: 'img/startFlag.png',
+		 scale:0.8
+        });
+
+		var myLatLng = {"lat":polyPathArray[polyPathArray.length-1].lng,"lng":polyPathArray[polyPathArray.length-1].lat};
+			var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+		   icon: 'img/finishFlag.png'
+        });
+
+
             for(var i=0;i<polyPathArray.length;i++){
             	pts[i]=new google.maps.LatLng(polyPathArray[i].lng,polyPathArray[i].lat)
 				console.log(polyPathArray[i].lng,polyPathArray[i].lat);
