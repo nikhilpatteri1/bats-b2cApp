@@ -6,7 +6,7 @@ angular.module('livetracking', [])
 		var singleDeviceInterval;
 		$scope.singleDeviceZoomLevel = 16;
 
-		// nitification module 
+		// nitification module  
 		if (UtilsFactory.getNotificationDetails()) {
 			console.log(UtilsFactory.getNotificationDetails());
 			$scope.notificationData = UtilsFactory.getNotificationDetails();
