@@ -16,7 +16,7 @@ angular.module('eventhistorydetail', [])
       console.log($scope.count);
       if ($scope.count == undefined) {
         $scope.count = 0;
-        $scope.notificationData=[];
+        $scope.notificationData = [];
       }
     }
 
@@ -34,6 +34,43 @@ angular.module('eventhistorydetail', [])
         ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
       })
     }
+
+
+    $scope.chexkAlarmType = function (alarm_type) {
+      console.log("geeta its me alarm type" + alarm_type);
+      if (alarm_type == 0) {
+        $scope.alarmType = "Panic";
+      }
+      else if (alarm_type == 1) {
+        $scope.alarmType = "Tamper Sim";
+      }
+      else if (alarm_type == 2) {
+        $scope.alarmType = "Tamper Top";
+      }
+      else if (alarm_type == 3) {
+        $scope.alarmType = "Battery ";
+      }
+      else if (alarm_type == 4) {
+        $scope.alarmType = "Overspeed";
+      }
+      else if (alarm_type == 5) {
+        $scope.alarmType = "Geofence";
+      }
+      else if (alarm_type == 6) {
+        $scope.alarmType = "Sanity alarm";
+      }
+      else if (alarm_type == 7) {
+        $scope.alarmType = "CONNECTION TO TRACKER INTERRUPTED";
+      }
+      else if (alarm_type == 8) {
+        $scope.alarmType = "Robbery / theft alarm";
+      }
+      else if (alarm_type == 9) {
+        $scope.alarmType = "Warning";
+      }
+      console.log(alarm_type + $scope.alarmType);
+    }
+
 
     $scope.backToEventHistory = function () {
       $state.go(PageConfig.EVENT_HISTORY);

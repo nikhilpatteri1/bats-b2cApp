@@ -11,6 +11,9 @@ angular.module('notification', [])
             $scope.notificationData = UtilsFactory.getNotificationDetails();
             $scope.count=$scope.notificationData.length;
             console.log($scope.count);
+            if($scope.count==undefined){
+              $scope.notificationData=[];
+            }
         }
 
          $scope.showAlert = function (lat,long) {

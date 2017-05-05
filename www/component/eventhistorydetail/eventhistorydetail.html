@@ -25,8 +25,8 @@
                         <div class="row latlongStyle" ng-click="showAlert(event.lat,event.long)">
                             {{event.lat}} , {{event.long}}
                         </div>
-                        <div class="row acSmallFonts">
-                            <div class="">{{Overspped}}</div>
+                        <div class="row acSmallFonts" >
+                            <div class="" ng-class="[chexkAlarmType(event.alarm_type)]">{{alarmType}}</div>
                             <div class="col-md-2 speedstyle">{{event.Velocity}}</div>
                         </div>
                     </div>
