@@ -17,7 +17,6 @@ angular.module('livetracking', [])
 			}
 		}
 
-	
 
 	$scope.gotoLivetrackingDevice = function(){
 		$state.go(PageConfig.LIVE_TRACKING_DEVICES)
