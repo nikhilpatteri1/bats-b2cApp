@@ -5,7 +5,7 @@
     <ion-nav-title>{{selectedDevice}}</ion-nav-title>
     <ion-nav-buttons side="right">
         <a class="button button-icon button-clear " href="#/bats/notification"><img class="filterWidth" src="img/notification.png">
-        <span class="badge badge-dark badgePosition" ng-class="{'badgePositionHide':count=='0','badgePosition':count!='0'}">{{count}}</span></a>
+            <span class="badge badge-dark badgePosition" ng-class="{'badgePositionHide':count=='0','badgePosition':count!='0'}">{{count}}</span></a>
     </ion-nav-buttons>
     <ion-content class="lgBackgroundWhite" scroll="true" ng-init="init()">
         <div class="lvddiv1 ">
@@ -39,11 +39,15 @@
                 </div>
             </div>
         </div>
-        <div class="chart">
-            <div class="progress ng-cloak speed-text">{{data[0].values.Velocity}}<br>>Current Speed</div>
-            <round-progress max="100" current="data[0].values.Velocity" color="#45ccce" bgcolor="#eaeaea" radius="100" stroke="15" semi="true"
-                rounded="true" clockwise="true" responsive="false" duration="800" aria-valuemin="0" aria-valuemax="100" animation="easeInOutQuart" animation-delay="0"></round-progress>
-            <div id="widgetId2" class="vsdSolidGauge"></div>
+        <div class="">
+            <div class="chart">
+                <div class="progress ng-cloak speed-text textInsideGauge largeFont">{{data[0].values.Velocity}}<br><span class="kmphSize">KmpH</span>
+                    <br><span class="acGreyFont kmphSize ">Current Speed</span></div>
+                <round-progress max="100" current="data[0].values.Velocity" color="#45ccce" bgcolor="#eaeaea" radius="100" stroke="15" semi="true"
+                    rounded="true" clockwise="true" responsive="false" duration="800" aria-valuemin="0" aria-valuemax="100" animation="easeInOutQuart"
+                    animation-delay="0"></round-progress>
+                <div id="widgetId2" class="vsdSolidGauge"></div>
+            </div>
         </div>
         <div class="speed-limit-text">
             <div class="lvdSeedLimit ">{{data[0].speed_limit}} KmpH<br>Speed limit</div>
