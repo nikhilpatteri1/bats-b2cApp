@@ -3,7 +3,7 @@ angular.module('replayroutedetail', [])
      Constants, ionicToast) {
          var dynamicMapHeight=window.screen.availHeight;
     $scope.mapHeight={height:parseInt(
-        dynamicMapHeight)-200+"px"};
+        dynamicMapHeight)-133+"px"};
 	console.log($scope.mapHeight);
 
 		$scope.backToReplayRoute=function(){
@@ -317,18 +317,34 @@ $scope.availableOptions = [
             var point = null;
 
 			var myLatLng = {"lat":polyPathArray[0].lng,"lng":polyPathArray[0].lat};
+
+			var icon1 = {
+				url: 'img/startFlag.png', // url
+				scaledSize: new google.maps.Size(38, 38), // scaled size
+				// origin: new google.maps.Point(0,0), // origin
+				// anchor: new google.maps.Point(0, 0) // anchor
+			};
+
 			var marker = new google.maps.Marker({
           position: myLatLng,
           map: map,
-         icon: 'img/startFlag.png',
-		 scale:0.8
+         icon: icon1,
+		 scale:0.1
         });
+
+		var icon2 = {
+				url: 'img/finishFlag.png', // url
+				scaledSize: new google.maps.Size(38, 38), // scaled size
+				// origin: new google.maps.Point(0,0), // origin
+				// anchor: new google.maps.Point(0, 0) // anchor
+			};
+		
 
 		var myLatLng = {"lat":polyPathArray[polyPathArray.length-1].lng,"lng":polyPathArray[polyPathArray.length-1].lat};
 			var marker = new google.maps.Marker({
           position: myLatLng,
           map: map,
-		   icon: 'img/finishFlag.png'
+		   icon: icon2
         });
 
 
