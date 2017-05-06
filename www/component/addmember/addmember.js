@@ -20,7 +20,7 @@ angular.module('addmember', [])
     }
 
     $scope.gotoCreate=function(data,form){
-        let inputParam = { 'firstname': data.firstname, 'lastname': data.lastname,'email':data.email,
+        var inputParam = { 'firstname': data.firstname, 'lastname': data.lastname,'email':data.email,
             'contact_no':""+data.contact_no,'desc':data.desc,'password':data.password, 'uid':data.uid}
         if(!$scope.passwordHide){
             BatsServices.createUser(inputParam).success(function (response) {

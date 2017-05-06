@@ -2,7 +2,7 @@ angular.module('vehiclestatistics', [])
     .controller('VehicleStatisticsCtrl', function ($scope, BatsServices, ionicToast, $rootScope, $state, $ionicModal, $timeout, PageConfig, UtilsFactory,
      Constants) {
 
-        let inputParam = {};
+        var inputParam = {};
         $scope.data={};
         console.log("sadsad");
         BatsServices.deviceList(inputParam).success(function (response) {
@@ -40,7 +40,7 @@ angular.module('vehiclestatistics', [])
             var startDate = moment(data.startdatetimeValue).valueOf();
             var endDate = moment(data.enddatetimeValue).valueOf();
             //console.log($scope.userid);
-            let inputParam = { 'devid': data.selectedvehicle.devid, 'sts': startDate, 'ets': endDate }
+            var inputParam = { 'devid': data.selectedvehicle.devid, 'sts': startDate, 'ets': endDate }
             console.log(inputParam);
             BatsServices.vehicleStatistics(inputParam).success(function (response) {
                 console.log(response);

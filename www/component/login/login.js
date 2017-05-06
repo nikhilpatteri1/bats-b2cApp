@@ -18,10 +18,10 @@ angular.module('login', [])
 
     $scope.gotoHome = function(data, form){
             $scope.Validate = true;
-            let inputParam = {'user_id':data.userid, 'password':data.password }
+            var inputParam = {'user_id':data.userid, 'password':data.password }
                 BatsServices.login(inputParam).success(function (response) {
                     localStorage.setItem(Constants.accessToken, response.token);
-                    let type = response.token.charAt(9);
+                    var type = response.token.charAt(9);
                     if(type==0){type = "factory";}
                     else if(type==1){type = "admin";}
                     else if(type==2){type = "member";}

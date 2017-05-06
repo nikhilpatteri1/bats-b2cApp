@@ -24,7 +24,7 @@ angular.module('actioncarddirective', [])
         }
 
         $scope.activateDevice = function(tracker){
-            let inputParam = {'devlist': [tracker.devid]}
+            var inputParam = {'devlist': [tracker.devid]}
             BatsServices.activateDevice(inputParam).success(function (response) {
                     $scope.$emit('manageTrackerList');
                 }).error(function (error) {

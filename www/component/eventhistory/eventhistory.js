@@ -3,7 +3,7 @@ angular.module('eventhistory', [])
         UtilsFactory) {
 
         // $scope.dummyVehicle = ["BDT_LT_17-001", "BDT_LT_17-002","BDT_LT_17-003", "BDT_LT_17-004"];
-        let inputParam = {};
+        var inputParam = {};
         console.log("sadsad");
         BatsServices.deviceList(inputParam).success(function (response) {
             //console.log(JSON.stringify(response));
@@ -46,7 +46,7 @@ angular.module('eventhistory', [])
 
                 var startDate = moment(data.startdatetimeValue).valueOf();
                 var endDate = moment(data.enddatetimeValue).valueOf();
-                let inputParam = { 'devid': data.selectedvehicle.devid, 'sts': startDate, 'ets': endDate }
+                var inputParam = { 'devid': data.selectedvehicle.devid, 'sts': startDate, 'ets': endDate }
                 UtilsFactory.setEventHistoryList(inputParam);
                 $state.go(PageConfig.EVENT_HISTORY_DETAIL);
             }

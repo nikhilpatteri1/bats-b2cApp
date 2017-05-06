@@ -2,7 +2,7 @@ angular.module('report', [])
     .controller('ReportCtrl', function ($scope, $rootScope, $ionicModal, $timeout, BatsServices, ionicToast, PageConfig, Constants, $state,
         UtilsFactory) {
         //***************************** for fetching device list*****************************
-        let inputParam = {};
+        var inputParam = {};
         console.log("sadsad");
         BatsServices.deviceList(inputParam).success(function (response) {
             //console.log(JSON.stringify(response));

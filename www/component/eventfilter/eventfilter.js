@@ -12,7 +12,7 @@ angular.module('eventhistoryfilter', [])
 
         if(UtilsFactory.getHistoryFilterList().length!=0){
             $scope.selectedFilters = UtilsFactory.getHistoryFilterList();
-            for (let i = 0; i < 10; i++) {
+            for (var i = 0; i < 10; i++) {
                 $scope.filter[i].value = false;
             }
             if($scope.selectedFilters.length<10){
@@ -73,7 +73,7 @@ angular.module('eventhistoryfilter', [])
         };
 
         $scope.checkAllFor = function () {
-            let count = 0;
+            var count = 0;
             $scope.formVal.allCheck = true;
             _.each($scope.filter, function (filter, i) {
                 if ($scope.filter[i].value) {

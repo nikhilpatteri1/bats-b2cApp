@@ -5,7 +5,7 @@ angular.module('changepassword', [])
             // console.log($scope.userid);"currentpassword" : <present pwd>, "newpassword": <New pwd >, 
             $scope.result = false;
            // var token = '6tmpVy4wk1FIIB7m';//localStorage.getItem('token');                     
-            let inputParam = { 'currentpassword': data.currentPass, 'newpassword': data.newPassword};
+            var inputParam = { 'currentpassword': data.currentPass, 'newpassword': data.newPassword};
             BatsServices.changePassword(inputParam).success(function (response) {
                 var alertPopup = $ionicPopup.alert({
                     title: '',

@@ -27,7 +27,7 @@ angular.module('eventhistorydetail', [])
       } else {
         $scope.filterList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
       }
-      let inputParam = UtilsFactory.getEventHistoryList();
+      var inputParam = UtilsFactory.getEventHistoryList();
       BatsServices.eventHistory(inputParam).success(function (response) {
         $scope.eventHistoryValues = response.values;
         if ($scope.eventHistoryValues.length == 0) {

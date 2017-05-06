@@ -13,7 +13,7 @@ angular.module('forgotpassword', [])
     $scope.gotoResetPassword = function (data, form) {
         // console.log($scope.email);
         // console.log($scope.userid);
-        let inputParam = { 'email': data.email }
+        var inputParam = { 'email': data.email }
         BatsServices.forgotPassword(inputParam).success(function (response) {
              $scope.forgotpassword.show();
                 

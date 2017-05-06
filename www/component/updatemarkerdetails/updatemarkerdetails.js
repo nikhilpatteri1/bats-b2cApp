@@ -28,7 +28,7 @@ angular.module('updatemarkerdetails', [])
 
     $scope.updateTracker = function(data, form){
        if(form.$valid){
-           let inputParam = data;
+           var inputParam = data;
            inputParam.devtype = data.vehicle_model;
             BatsServices.modifyMarker(inputParam).success(function (response) {
                 $scope.updateMarkerModal.show();

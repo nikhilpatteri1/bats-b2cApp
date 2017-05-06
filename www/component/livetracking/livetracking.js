@@ -236,7 +236,7 @@ $scope.singleDeviceZoomLevel=16;
 		svg = car;
 	}
 	var contentString; 
-	for(let i in svg){
+	for(var i in svg){
 
 	    icons[i] = {path : svg[i].path, 
 	    		fillColor : svg[i].fillColor, 
@@ -267,7 +267,7 @@ $scope.singleDeviceZoomLevel=16;
 	    contentString  = '<b><label>Device ID:</label> '+deviceID+'</b><br><br><b><label>Vehicle No:</label> '+vehNo+'</b><br><br><b><label>Vehicle Model:</label> '+vehModel+'</b><br><br>'+html+'<br><br>';
 	}
 	
-	for (let i in svg){
+	for (var i in svg){
 	    marker[i] = new google.maps.Marker({
 		position: latlng,
 		map: map,
@@ -290,7 +290,7 @@ $scope.singleDeviceZoomLevel=16;
     }
 	// Sets the map on all markers in the array.
     function setMapOnAll(map) {
-	for (let i = 0; i < markers.length; i++) {
+	for (var i = 0; i < markers.length; i++) {
 	    markers[i].setMap(map);
 	}
 	markers = [];
@@ -490,12 +490,12 @@ var step = 50; // 5; // metres
 	    var p = polyline.GetPointAtDistance(d);
 	    map.panTo(p);
 	    var lastPosn = marker[0].getPosition();
-	    for(let i in svg){marker[i].setPosition(p);}
+	    for(var i in svg){marker[i].setPosition(p);}
 	    var heading = google.maps.geometry.spherical.computeHeading(lastPosn, p);
 	    $scope.headings = heading;
 		//localStorage.setItem("heading",heading);
-	    for(let i in svg){icons[i].rotation = heading;}
-	    for(let i in svg){marker[i].setIcon(icons[i]);}
+	    for(var i in svg){icons[i].rotation = heading;}
+	    for(var i in svg){marker[i].setIcon(icons[i]);}
 	    updatePoly(d);
 	    // timerHandle = setTimeout("animate(" + (d + step) + ")", tick);
 	    

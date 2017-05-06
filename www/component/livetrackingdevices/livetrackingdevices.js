@@ -2,7 +2,7 @@ angular.module('livetrackingdevices', [])
 .controller('LiveTrackingDevicesCtrl', function ($scope, $ionicModal, $timeout, BatsServices, PageConfig, 
     UtilsFactory, $state, _, ionicToast) {
 
-    let inputParam = {};
+    var inputParam = {};
     BatsServices.activeDeviceList(inputParam).success(function (response) {
         $scope.trackerList = response;
         _.each($scope.trackerList, function(tracker,i){

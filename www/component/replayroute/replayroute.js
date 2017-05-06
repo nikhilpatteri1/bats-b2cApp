@@ -17,7 +17,7 @@ angular.module('replayroute', [])
         }
 
         function init(){
-            let inputParam = {};
+            var inputParam = {};
             BatsServices.deviceList(inputParam).success(function (response) {
                 //console.log(JSON.stringify(response));
                 $scope.deviceList = response
@@ -30,7 +30,7 @@ angular.module('replayroute', [])
 
         $scope.gotoReplayRoute = function (data, form) {
             if(form.$valid){
-                let inputParam = {"devid" : data.selectedvehicle.devid,"slots" : getSlotes(data.startdatetimeValue)};
+                var inputParam = {"devid" : data.selectedvehicle.devid,"slots" : getSlotes(data.startdatetimeValue)};
                 BatsServices.historyExist(inputParam).success(function (response) {
                     console.log(JSON.stringify(response));
                     // if(true){

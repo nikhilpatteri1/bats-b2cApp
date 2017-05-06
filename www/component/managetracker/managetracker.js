@@ -13,7 +13,7 @@ angular.module('managetracker', [])
         }
 
     function init(){
-        let inputParam = {};
+        var inputParam = {};
         BatsServices.deviceList(inputParam).success(function (response) {
             $scope.trackerList = response
         }).error(function (error) {
