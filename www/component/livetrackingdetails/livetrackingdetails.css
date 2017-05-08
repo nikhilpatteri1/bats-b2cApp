@@ -20,6 +20,7 @@
 }
 .lvdstatus{
         display: -webkit-inline-box;
+        padding-left: 10%;
 }
 .lvdalignRight{
     text-align: right;
@@ -52,8 +53,8 @@
 .lvdTransform {
     width: 50px;
     height: 50px;
-    margin-left: 23px;
-    margin-top: 22px;
+    margin-left: 25px;
+    margin-top: 25px;
 }
 .lvdVehicleBack{
     border-radius: 50px;

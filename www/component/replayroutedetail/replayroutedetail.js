@@ -353,7 +353,9 @@ $scope.availableOptions = [
 				console.log(polyPathArray[i].lng,polyPathArray[i].lat);
             	if(i>0){
             		length += pts[i-1].distanceFrom(pts[i]);
-            		if (isNaN(length)) { alert("["+i+"] length="+length+" segment="+pts[i-1].distanceFrom(pts[i])) };
+            		if (isNaN(length)) {
+						console.log("["+i+"] length="+length+" segment="+pts[i-1].distanceFrom(pts[i]));
+					};
             	}
             	bounds.extend(pts[i]);
             	point = pts[parseInt(i/2)];
