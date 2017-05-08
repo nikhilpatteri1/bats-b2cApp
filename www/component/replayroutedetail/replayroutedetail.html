@@ -8,21 +8,23 @@
     </ion-nav-buttons>
     <ion-content class="hmCards" >
     
-             <div class="umdHeaderIconsVehicle lgBackgroundWhite acSmallFonts acGreyFont">Please select your vehicle type</div>
+             <div class="umdHeaderIconsVehicle lgBackgroundWhite acSmallFonts acGreyFont">Please select the time slot</div>
             <ion-list class="rrdIonList" ng-style=" timeSlots.data == false && { 'background-color': '#eaeaea' }">
-                <ion-radio class="rrdRadioLabels" ng-repeat="timeSlot in timeSlots" ng-disabled="timeSlot.data == false"   ng-model="data.timeSlot" ng-value="timeSlot" ng-click="getHistory(timeSlot)">
+                <ion-radio class="rrdRadioLabels" ng-repeat="timeSlot in timeSlots" ng-disabled="!timeSlot.data" ng-class="!timeSlot.data ? 'halfOpacity' : 'zeroOpacity'"  ng-model="data.timeSlot" ng-value="timeSlot" ng-click="getHistory(timeSlot)">
                     <div class="acSmallFonts">{{timeSlot.sts | date:'HH:MM'}}</div>
                     <div class="acSmallFonts">to</div>
                     <div class="acSmallFonts">{{timeSlot.ets | date:'HH:MM'}}</div>
                 </ion-radio>
             </ion-list>
             <div id="replay_map" ng-style="mapHeight"  ></div>
-            <div class="rrdspeedCtrlSection">
-                
+            <div class="rrdspeedCtrlSection row">
+                <div class="col col-25">
                 <img src="img/play.png" class="rrimages" ng-if="play && !end" ng-click="updateSpeed(4);">
                 <img src="img/pause.png" class="rrimages" ng-if="!play && !end"  ng-click="updateSpeed(3);">
+                </div>
+                <div class="col col-25">
                 <img src="img/replay.png" class="rrimages" ng-click="getHistory(replaySlot)">
-
+                </div>
                 <!--<i class="fa fa-play replayRoutePlay"  ng-if="play && !end" ng-click="updateSpeed(4);" aria-hidden="true"></i>
                 <i class="fa fa-pause replayRoutePlay"  ng-if="!play && !end" ng-click="updateSpeed(3);" aria-hidden="true"></i>
                 <i class="fa  fa-reply replayRoutePlay"  ng-click="getHistory(replaySlot)" aria-hidden="true"></i>-->
@@ -38,7 +40,9 @@
                                 <option value="1">Medium</option>
                                 <option value="2">High</option>
                             </select>-->
-                             <select ng-model="data.selectedOption" required ng-options="option.value as option.name for option in availableOptions" ng-change="updateSpeed(data.selectedOption)"></select>
+                <div class="col col-50">
+                             <select ng-model="data.selectedOption" required ng-options="option.value as option.name for option in availableOptions" ng-change="updateSpeed(data.selectedOption)" style="width:100%;"></select>
+                </div>
             </div> 
 
 
