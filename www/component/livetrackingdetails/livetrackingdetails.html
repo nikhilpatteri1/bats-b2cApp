@@ -23,12 +23,11 @@
             </div>
         </div>
         <div class="lvdstatusBorder">
-            <div class="row removeMarginLeftRight">
-                <div class="col-md-2 lvdRightBorder lvdRemoveTopRow">
+            <div class="row removeMarginLeftRight addTopMargin">
+                <div class="col-md-2 lvdRightBorder lvdRemoveTopRow ">
                     <b>Status</b>
                 </div>
                 <div class="col lvdstatus lvdDivWidth lvdRemoveTopRow">
-
                     <div class="lvdstatusColor" ng-class="{'crossedGeofence' : status==0, 'crossSpeed' : status==1,
                         'crossGeoAndSpeed' : status==2,'normalState' : status==3,'noResponceState' : status==4}"></div>
                     <span>{{statusType}} </span>

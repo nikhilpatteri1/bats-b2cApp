@@ -12,7 +12,7 @@
                 <div class="LoginHeading">
                     <form name="replayRouteForm">
                         <label ng-show="data.selectedvehicle" class="floatlabeltxt show-hide inputFieldFontSize">Select Vehicle</label>
-                        <select ng-model="data.selectedvehicle" class="dropdown" name="selectedvehicle" required ng-options="v.devid for v in deviceList"
+                        <select ng-model="data.selectedvehicle" class="dropdown" name="selectedvehicle" required ng-options="v.vehicle_num for v in deviceList"
                             ng-class="{error: signupStep1Form.selectedvehicle.$invalid && Validate}">
                          <option value=""disabled selected>Select Vehicle</option>
                          </select>

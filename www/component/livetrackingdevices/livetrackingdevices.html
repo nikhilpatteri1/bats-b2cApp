@@ -7,7 +7,7 @@
         <ion-list  >
             <div ng-repeat="tracker in trackerList">
             <ion-radio class=""ng-model="choice" ng-click="gotoLiveTracking(choice)" ng-value="tracker.devid" >
-                 <div class="">{{tracker.devid}}</div>
+                 <div class="">{{tracker.vehicle_name}}</div>
                  <span class="acSmallFonts">{{tracker.devid}}</span>
                  <span class="floatRight ltdMainStatusSpan">
                     <span class="acSmallFonts ltdMarginForSpan acGreyFont">{{tracker.statusType}}</span>

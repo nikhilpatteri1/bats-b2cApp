@@ -4,12 +4,14 @@
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
         <a class="button button-icon button-clear " href="#/bats/notification"><img class="filterWidth" src="img/notification.png">
-        <span class="badge badge-dark badgePosition"  ng-class="{'badgePositionHide':count=='0','badgePosition':count!='0'}">{{count}}</span></a>
+            <span class="badge badge-dark badgePosition" ng-class="{'badgePositionHide':count=='0','badgePosition':count!='0'}">{{count}}</span></a>
     </ion-nav-buttons>
     <ion-content class="hmCards " scroll="true">
         <div class="vsdiv1 ">
             <div class="row vsMargin removeMarginLeftRight">
-                <div class="col-md-2"><img class="batsIcon vsTransform" src="img/car.png" /></div>
+                <div class="col-md-2">
+                    <img class="batsIcon vsTransform" ng-src="{{vehicleStatistics.devtype=='bike' ? 'img/bike.png' : (vehicleStatistics.devtype=='truck' ? 'img/truck.png' :
+                (vehicleStatistics.devtype=='bus' ? 'img/bus.png' : 'img/car.png'))}}" /></div>
                 <div class="col-md-2 vsSmallFonts acVehicleCompany">
                     <!--NISSAN SUNNY{{}} <br> KA05 BD 5968{{}}-->
                     {{vehicleStatistics.vehicle_name}} <br>{{vehicleStatistics.vehicle_num}}
@@ -34,48 +36,48 @@
             </div>
         </div>
 
-            <div class="vsdiv1 ">
-                <div class="row removeMarginLeftRight">
-                    <div class="col-md-6 vsDivWidth">
-                        <div class="vsStatisticFont"><span>{{vehicleStatistics.min_speed | number : 0 }}</span>
-                            <span class="vsDistanceUnit">KmpH</span>
-                             <div class="acGreyFont acSmallFonts">Minimum</div>
-                        </div>
+        <div class="vsdiv1 ">
+            <div class="row removeMarginLeftRight">
+                <div class="col-md-6 vsDivWidth">
+                    <div class="vsStatisticFont"><span>{{vehicleStatistics.min_speed | number : 0 }}</span>
+                        <span class="vsDistanceUnit">KmpH</span>
+                        <div class="acGreyFont acSmallFonts">Minimum</div>
                     </div>
-                    <div class="col-md-6">
-                        <div id="widgetId1" class="vsdSolidGauge"></div>
-                   
+                </div>
+                <div class="col-md-6">
+                    <div id="widgetId1" class="vsdSolidGauge"></div>
+
                 </div>
             </div>
         </div>
 
 
-            <div class="vsdiv1 ">
-                <div class="row removeMarginLeftRight">
-                    <div class="col-md-6 vsDivWidth">
-                        <div class="vsStatisticFont"><span>{{vehicleStatistics.max_speed | number : 0}}</span>
-                            <span class="vsDistanceUnit">KmpH</span>
-                             <div class="acGreyFont acSmallFonts">Maximum</div>
-                        </div>
+        <div class="vsdiv1 ">
+            <div class="row removeMarginLeftRight">
+                <div class="col-md-6 vsDivWidth">
+                    <div class="vsStatisticFont"><span>{{vehicleStatistics.max_speed | number : 0}}</span>
+                        <span class="vsDistanceUnit">KmpH</span>
+                        <div class="acGreyFont acSmallFonts">Maximum</div>
                     </div>
-                    <div class="col-md-6" >
-                        <div id="widgetId2" class="vsdSolidGauge" ></div>
-                    
+                </div>
+                <div class="col-md-6">
+                    <div id="widgetId2" class="vsdSolidGauge"></div>
+
                 </div>
             </div>
         </div>
 
-            <div class="vsdiv1 ">
-                 <div class="row removeMarginLeftRight">
-                    <div class="col-md-6 vsDivWidth">
-                        <div class="vsStatisticFont"><span>{{vehicleStatistics.avg_speed | number : 0}}</span>
-                            <span class="vsDistanceUnit">KmpH</span>
-                             <div class="acGreyFont acSmallFonts">Average</div>
-                        </div>
+        <div class="vsdiv1 ">
+            <div class="row removeMarginLeftRight">
+                <div class="col-md-6 vsDivWidth">
+                    <div class="vsStatisticFont"><span>{{vehicleStatistics.avg_speed | number : 0}}</span>
+                        <span class="vsDistanceUnit">KmpH</span>
+                        <div class="acGreyFont acSmallFonts">Average</div>
                     </div>
-                    <div class="col-md-6">
-                      <div id="widgetId3" class="vsdSolidGauge" ></div>
-                    
+                </div>
+                <div class="col-md-6">
+                    <div id="widgetId3" class="vsdSolidGauge"></div>
+
                 </div>
             </div>
         </div>

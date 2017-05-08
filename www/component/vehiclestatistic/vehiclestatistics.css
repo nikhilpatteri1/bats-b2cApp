@@ -1,6 +1,7 @@
 .vsTransform{
     width: 46px;
     height: 46px;
+    
 }
 .vsdiv1{
     background: white;
@@ -76,4 +77,9 @@
 
 .vsdMarginRight{
     margin-right: 5px;
+}   
+.circleBack{ width: 104px;
+    height: 102px;
+    background: orangered;
+    border-radius: 67px;
 }

@@ -40,7 +40,7 @@ angular.module('eventhistorydetail', [])
 
 
     $scope.chexkAlarmType = function (alarm_type) {
-      console.log("geeta its me alarm type" + alarm_type);
+     // console.log("geeta its me alarm type" + alarm_type);
       if (alarm_type == 0) {
         $scope.alarmType = "Panic";
         $scope.imageSrc = 'img/eventH/panic.png';

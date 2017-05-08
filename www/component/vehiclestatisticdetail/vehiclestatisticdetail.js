@@ -18,9 +18,9 @@ angular.module('vehiclestatisticsdetail', [])
     }
     $scope.vehicleStatistics = UtilsFactory.getVehicleStatitics();
     $scope.startEndDate= UtilsFactory.getDateVehicleStatistics();
-    console.log($scope.startEndDate);
+  //  console.log($scope.startEndDate+"hi im device "+ $scope.vehicleStatistics.devtype);
     $scope.startdate=moment($scope.startEndDate.sts).format('DD/MM/YYYY, HH:MM');
-    console.log($scope.startdate);
+  //  console.log($scope.startdate);
      $scope.enddate=moment($scope.startEndDate.ets).format('DD/MM/YYYY, HH:MM');
     console.log($scope.enddate);
     ChartFactory.solidGaugeChart.data("widgetId1", "#00ba88", parseInt($scope.vehicleStatistics.min_speed), 0, 200, "Min");

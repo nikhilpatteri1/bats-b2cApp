@@ -3,6 +3,9 @@
      height: 50px;
      /*padding: 7px;*/
 }
+.addTopMargin{
+    margin-top: 1px;
+}
 
 .lvdDivWidth{
     width: 100%;  
@@ -49,7 +52,7 @@
 .lvdTransform {
     width: 50px;
     height: 50px;
-    margin-left: 25px;
+    margin-left: 23px;
     margin-top: 22px;
 }
 .lvdVehicleBack{
