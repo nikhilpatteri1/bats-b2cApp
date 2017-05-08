@@ -54,13 +54,15 @@ angular.module('navigation', [])
   $scope.startNavigate = function(){
     var startloc = document.getElementById('start').value;
     var endloc = document.getElementById('end').value;
-    if(ionic.Platform.isAndroid() || ionic.Platform.isWebView()){
-      var link = ""+"http://maps.google.com/maps?saddr="+startloc+" &daddr="+endloc;
-      window.location = link;
-    }
-    if(ionic.Platform.isIOS() || ionic.Platform.isIPad()){
-      var link = ""+"http://maps.apple.com/maps?saddr="+startloc+"&daddr="+endloc;
-      window.location = link;
+    if(startloc!='' && endloc!=''){
+      if(ionic.Platform.isAndroid() || ionic.Platform.isWebView()){
+        var link = ""+"http://maps.google.com/maps?saddr="+startloc+" &daddr="+endloc;
+        window.location = link;
+      }
+      if(ionic.Platform.isIOS() || ionic.Platform.isIPad()){
+        var link = ""+"http://maps.apple.com/maps?saddr="+startloc+"&daddr="+endloc;
+        window.location = link;
+      }
     }
   };
 
