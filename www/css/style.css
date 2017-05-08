@@ -132,7 +132,7 @@ a:focus, a:hover {
     background-color: chocolate !important;
     top: -34px !important;
     left: 8px;
-    width: 18px;
+    /*width: 18px;*/
     padding-left: 6px !important;
 }
 
