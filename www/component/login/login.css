@@ -124,3 +124,13 @@
 .lableMArgin{
         margin-bottom: 9px;
 }
+.leftMargin{
+    margin-left: 20px;
+}
+.leftMargin1{
+    margin-left: 15px;
+         line-height: 0px; 
+}
+.lineheight{
+    line-height: 30px !important;
+}

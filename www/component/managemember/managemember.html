@@ -8,27 +8,28 @@
     </ion-nav-buttons>
     <ion-content class="hmCards" scroll="true" ng-init="init();">
         <div class="card md-list" ng-repeat="member in memberList">
-            <div class="row mmMargin">
-              <b > Member {{$index+1}}</b>
+            <div class="row mmMargin acGreyFont">
+              <div class="col col-90"> Member {{$index+1}}</div>
+              <div class="col col-10 acSmallFonts acVehicleCompany ">
+                    <img class="batsIcon acEditIcon alignRight" src="img/pencil.png" ng-click="updateUser(member)" /></div>
             </div>
-            <div class="row acRemoveMargin ">
-                <div class="col-md-2   acGreyFont">{{member.firstname}} {{member.lastname}}</div>
+            <div class="row acRemoveMargin leftMargin ">
+                <div class="leftMargin" ><b>{{member.firstname}} {{member.lastname}}</b></div>
                 <!--<div class="col-md-2 acSmallFonts acGreyFont">{{tracker.device_sim_cn}}</div>
                 <img class="batsIcon acEditIcon alignRight" src="img/pencil.png" />-->
             </div>
             <div class="row">
-                <div class="col-md-6  acSmallFonts acGreyFont">{{member.email}}</div>
-                <div class="col-md-6 acSmallFonts acVehicleCompany ">
-                    <img class="batsIcon acEditIcon alignRight" src="img/pencil.png" ng-click="updateUser(member)" /></div>
+                <div class="col col-90  acSmallFonts leftMargin1 ">{{member.email}}</div>
+                
             </div>
             <div class="row">
-                <div class="col-md-2 acSmallFonts acGreyFont">{{member.contact_no}}</div>
+                <div class="col col-100 acSmallFonts leftMargin1 lineheight">{{member.contact_no}}</div>
             </div>
         </div>
         <div class="addmemberButton">
             <div class="suTrackerCard suAddTrackerDiv" ng-class="{'disableDivForTransparent': memberList.length>2}" 
                 ng-click="addNewMember()">
-                <i class="ion-ios-plus-empty suAddTrackerIcon"></i>Add Tracker
+                <i class="ion-ios-plus-empty suAddTrackerIcon"></i>Add Member
                 <div class="addMemberSubTitle acSmallFonts acGreyFont ">You can add upto 3 Member</div>
             </div>
         </div>
