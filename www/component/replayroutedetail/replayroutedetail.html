@@ -17,7 +17,7 @@
                 </ion-radio>
             </ion-list>
             <div id="replay_map" ng-style="mapHeight"  ></div>
-            <div class="rrdspeedCtrlSection row">
+            <div ng-show="showReplayMenu" class="rrdspeedCtrlSection row">
                 <div class="col col-25">
                 <img src="img/play.png" class="rrimages" ng-if="play && !end" ng-click="updateSpeed(4);">
                 <img src="img/pause.png" class="rrimages" ng-if="!play && !end"  ng-click="updateSpeed(3);">

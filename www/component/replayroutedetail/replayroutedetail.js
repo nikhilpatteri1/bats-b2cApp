@@ -10,6 +10,8 @@ angular.module('replayroutedetail', [])
 			 $state.go(PageConfig.REPLAY_ROUTE);
 		}
 
+$scope.showReplayMenu = false;
+
 $scope.availableOptions = [
      { name: 'slow', value: '0' }, 
      { name: 'medium', value: '1' }, 
@@ -186,6 +188,8 @@ $scope.availableOptions = [
         console.log($scope.timeSlots);
 
         $scope.getHistory = function (timeSlot) {
+			console.log("timeslot: "+timeSlot);
+			$scope.showReplayMenu = true;
 			oldStep = {step: 1,tick:100};
 			$scope.initialize();
 			$scope.end = false;
