@@ -16,11 +16,24 @@
     margin-left: -8px;
     margin-top: 5px;
 }     
-
+.buttonForHistor{
+       background-color: white;
+    border-color: #1fb6ff;
+    color: #1fb6ff;
+    border: 1px solid;
+    /* padding: 7px; */
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 6px;
+    font-size: 11px;
+}
 .latlongStyle{
     text-decoration: underline;
     color: #1fb6ff;
     font-size: 13px;
+}
+.leftPaddingZero{
+    padding-left: 0px !important;
 }
 .speedstyle{
     color:red;

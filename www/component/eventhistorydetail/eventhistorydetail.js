@@ -54,7 +54,7 @@ angular.module('eventhistorydetail', [])
         $scope.imageSrc = 'img/eventH/tamper-top.png';
       }
       else if (alarm_type == 3) {
-        $scope.alarmType = "Battery ";
+        $scope.alarmType = "Battery Low";
         $scope.imageSrc = 'img/eventH/battery.png';
       }
       else if (alarm_type == 4) {
@@ -74,7 +74,7 @@ angular.module('eventhistorydetail', [])
         $scope.imageSrc = 'img/eventH/warning.png';
       }
       else if (alarm_type == 8) {
-        $scope.alarmType = "Robbery / theft alarm";
+        $scope.alarmType = "Vehicle Moved / Theft ";
         $scope.imageSrc = 'img/eventH/theft.png';
       }
       else if (alarm_type == 9) {

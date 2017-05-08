@@ -3,36 +3,43 @@
         <button class="button button-icon button-clear ion-arrow-left-c" ng-click="backToEventHistory()"></button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-      <button class="button button-icon button-clear " ng-click="gotoFilter()" ><img class="filterWidth" src="img/filter.png"></button> 
-        <a class="button button-icon button-clear " href="#/bats/notification" ><img class="filterWidth" src="img/notification.png">
-        <span class="badge badge-dark badgePosition"  ng-class="{'badgePositionHide':count=='0','badgePosition':count!='0'}">{{count}}</span></a>
+        <button class="button button-icon button-clear " ng-click="gotoFilter()"><img class="filterWidth" src="img/filter.png"></button>
+        <a class="button button-icon button-clear " href="#/bats/notification"><img class="filterWidth" src="img/notification.png">
+            <span class="badge badge-dark badgePosition" ng-class="{'badgePositionHide':count=='0','badgePosition':count!='0'}">{{count}}</span></a>
     </ion-nav-buttons>
     <ion-content class="lgBackgroundWhite" ng-init="init()">
 
-        <div class="ehd" ng-repeat="event in eventHistoryValues | filterAlarm : filterList"> 
+        <div class="ehd" ng-repeat="event in eventHistoryValues | filterAlarm : filterList">
             <div class="row ehdRow ehdRowCol">
-                <div class="col-md-12">
-                    <div class="col-md-2">
-                        <img class="ehdimage" ng-src="{{imageSrc}}">
+
+                <div class="col col-20">
+                    <img class="ehdimage" ng-src="{{imageSrc}}">
+                </div>
+                <div class="col col-50">
+                    <div class="row" ng-class="[chexkAlarmType(event.alarm_type)]">{{alarmType}}
+                        <!--<div class="row latlongStyle" ng-click="showAlert(event.lat,event.long)">
+                            {{event.lat}} , {{event.long}}-->
                     </div>
-                    <div class="col-md-7">
-                        <div class="row latlongStyle" ng-click="showAlert(event.lat,event.long)">
-                            {{event.lat}} , {{event.long}}
-                        </div>
-                        <div class="row acSmallFonts" >
-                            <div class="" ng-class="[chexkAlarmType(event.alarm_type)]">{{alarmType}}</div>
-                            <div class="col-md-2 speedstyle">{{event.Velocity}}</div>
-                        </div>
+                    <div class="row ">
+                        <!--<div class="" ng-class="[chexkAlarmType(event.alarm_type)]">{{alarmType}}</div>-->
+                        <div class="leftPaddingZero">{{event.Velocity}} KmpH</div>
                     </div>
-                    <div class="col-md-3 acSmallFonts acGreyFont ehDateFormat">
+                </div>
+                <div class="col col-30">
+                    <div class=" acSmallFonts acGreyFont ehDateFormat">
                         {{event.ts | eventTime}}
+                    </div>
+                    <div class="">
+                         <button ng-click="showAlert(event.lat,event.long)" 
+                class="buttonForHistor ">Location</button>
                     </div>
                 </div>
             </div>
+
             <!---->
         </div>
-         <div ng-if="noData" class="alignCenter" >
-            <img class="imageCss" src="img/no-data.png" >
+        <div ng-if="noData" class="alignCenter">
+            <img class="imageCss" src="img/no-data.png">
             <div class="ngdata">No Data Availble</div>
         </div>
     </ion-content>
