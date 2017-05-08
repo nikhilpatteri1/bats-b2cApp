@@ -251,10 +251,12 @@ right: 70%;
     top: 86%;
     left: 7%;
     width: 94%;
+    bottom: 3%;
     position: absolute;
     background: #fff;    
     font-size: 1.2em;
     /*padding: 10px;*/ 
+    box-shadow: 1px 1px 6px 2px grey;
 }
 
 .liveTrackTable{
@@ -277,15 +279,15 @@ right: 70%;
 .ltkmdetail{
             background: chocolate;
     color: #fff;
-    border-radius: 74px;
+    border-radius: 20px;
     /* padding: 14px; */
     /* padding-top: 24px; */
     margin-top: 9px;
-    padding: 9px 8px 9px 8px;
-    margin-left: -30px;
+    padding: 1px 8px 1px 8px;
+    /*margin-left: -30px;*/
 }
 .ltArrow{
-    margin: 7% 1%;
+    margin: 5% 1%;
 }
 .ltSelectDevArr{
 margin-left: 10%;
@@ -303,16 +305,20 @@ margin-left: 10%;
     background-color: #000;
     /*margin-left: -30px;*/
     margin-top: 4px;
+    margin-right: 5px;
 }
 .ltstatusTxt{
-        margin-right: -150px;
+        /*margin-right: -150px;*/
+        font-size: 14px;
     }
 
 .ltstatusUpTxt{
     /*margin-left: -29px;*/
+    font-size:18px;
+    font-weight: bold;
     margin-bottom: 4px;
     }
-
+    
 
 /***************************************CSS for All Modals Design********************************/
 
