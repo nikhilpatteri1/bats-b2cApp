@@ -1,6 +1,6 @@
 .lvdstatusBorder{
      border: 1px solid #b7b3b3;
-     height: 50px;
+     /*height: 50px;*/
      /*padding: 7px;*/
 }
 .addTopMargin{
@@ -16,7 +16,7 @@
     width: 16px;
     height: 16px;
     margin-right: 5px;
-    margin-top: 13px;
+    margin-top: 2px;
 }
 .lvdstatus{
         display: -webkit-inline-box;
@@ -45,16 +45,19 @@
 }
 
 .lvdRemoveTopRow{
-    line-height: 42px;
+    /*line-height: 42px;
     margin-top: -5px;
     margin-bottom: 5px;
+    padding-top: 0px;*/
+        /* line-height: 13px; */
+    margin-top: 11px;
+    /* margin-bottom: 5px; */
     padding-top: 0px;
 }
 .lvdTransform {
-    width: 50px;
-    height: 50px;
-    margin-left: 25px;
-    margin-top: 25px;
+    width: 100px;
+    height: 100px;
+   
 }
 .lvdVehicleBack{
     border-radius: 50px;
