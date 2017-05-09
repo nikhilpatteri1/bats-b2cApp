@@ -2,24 +2,24 @@ angular.module('livetracking', [])
 .controller('LiveTrackingCtrl', function($scope, $ionicModal, $timeout, UtilsFactory, $state, PageConfig, BatsServices,
 	ionicToast,$interval, Constants) {
     
-var reqTime=12;
-var singleDeviceInterval;
-$scope.singleDeviceZoomLevel=16;
+	var reqTime=12;
+	var singleDeviceInterval;
+	$scope.singleDeviceZoomLevel=16;
 
- if (UtilsFactory.getNotificationDetails()) {
-      console.log(UtilsFactory.getNotificationDetails());
-      $scope.notificationData = UtilsFactory.getNotificationDetails();
-      $scope.count = $scope.notificationData.length;
-      console.log($scope.count);
-      if ($scope.count == undefined) {
-        $scope.count = 0;
-        $scope.notificationData = [];
-      }
-    }
+	if (UtilsFactory.getNotificationDetails()) {
+		console.log(UtilsFactory.getNotificationDetails());
+		$scope.notificationData = UtilsFactory.getNotificationDetails();
+		$scope.count = $scope.notificationData.length;
+		console.log($scope.count);
+		if ($scope.count == undefined) {
+			$scope.count = 0;
+			$scope.notificationData = [];
+		}
+	}
 
 	$scope.init = function(){
 		$scope.initialize(); 
-		 var dynamicMapHeight=window.screen.availHeight;
+		var dynamicMapHeight=window.screen.availHeight;
 		$scope.mapHeight={height:parseInt(dynamicMapHeight)-43+"px"};
 		console.log($scope.mapHeight, localStorage.getItem("choice"));
 
@@ -32,17 +32,17 @@ $scope.singleDeviceZoomLevel=16;
 			
 			getTracker();
 			singleDeviceInterval = $interval(getTracker,reqTime * 1000);
-		 
+			
 		}
-	}
+	};
 
 	$scope.gotoLivetrackingDevice = function(){
 		$state.go(PageConfig.LIVE_TRACKING_DEVICES)
-	}
+	};
 
-	angular.element(document).ready(function () {
-	$scope.initialize(); 
-});
+	angular.element(document).ready(function(){
+		$scope.initialize(); 
+	});
 
 	
     // $scope.token = $localStorage.data;
@@ -108,75 +108,71 @@ $scope.singleDeviceZoomLevel=16;
     $scope.httpLoading=false;
 
 	$scope.initialize=function () {
-	var $map = $('#map');
-	infowindow = new google.maps.InfoWindow({  
-	    size: new google.maps.Size(150,50)
-	});
-	var styleMap = [{"featureType":"administrative","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#bee4f4"},{"visibility":"on"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"on"},{"hue":"#ff0000"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"on"},{"hue":"#ff0000"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"transit","elementType":"labels","stylers":[{"visibility":"on"},{"hue":"#ff0000"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#46bcec"},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"color":"#000000"}]}]; 
-	var myOptions = {
-		zoom: 16,
-		mapTypeId: google.maps.MapTypeId.ROADMAP,
-		zoomControl: false
-	};
-	// console.log(document.getElementById("map_canvas"));
-	map = new google.maps.Map(document.getElementById("map"), myOptions);  
-	  
-	
-	// address = 'India';
-	// // address = 'Trinidad and Tobago'
-	// geocoder = new google.maps.Geocoder();
-	// geocoder.geocode( { 'address': address}, function(results, status) {
-	//     map.fitBounds(results[0].geometry.viewport);
-	//  });	
-
-		 // Instantiate a directions service.
-		    directionsService = new google.maps.DirectionsService();
-		 // Create a renderer for directions and bind it to the map.
-	        var rendererOptions = {
-	            map: map
-	        };
-	        directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
-		    polyline = new google.maps.Polyline({
-		        path: [],
-		        strokeColor: '#FF0000',
-		        strokeWeight: 0
-		    });
-		    poly2 = new google.maps.Polyline({
-		        path: [],
-		        strokeColor: '#FF0000',
-		        strokeWeight: 0
-		    });
-		    /*
-			 * google map default zoom_changed event
-			 * */
-		    $scope.zoomlevel=16;
-			google.maps.event.addListener(map, 'zoom_changed', function() {
-				setTimeout(function(){
-					$scope.zoomlevel = map.getZoom();
-				}, 80);
-				if ($scope.zoomlevel < 16 || $scope.zoomlevel > 17) {
-						console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ZOOM & DEVICEID<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-						console.log($scope.zoomlevel);
-						$scope.singleDeviceZoomed = false;
-						$interval.cancel(singleDeviceInterval);
-
-						// if (angular.isDefined(singleDeviceInterval)) {
-						// 	$interval.cancel(singleDeviceInterval);
-						// } 
-						//else if (angular.isDefined(multiDeviceInterval)) {
-						// 	$interval.cancel(multiDeviceInterval);
-						// }
-					}
-			});
-			 
+		var $map = $('#map');
+		infowindow = new google.maps.InfoWindow({  
+			size: new google.maps.Size(150,50)
+		});
+		var styleMap = [{"featureType":"administrative","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#bee4f4"},{"visibility":"on"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"on"},{"hue":"#ff0000"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"on"},{"hue":"#ff0000"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"transit","elementType":"labels","stylers":[{"visibility":"on"},{"hue":"#ff0000"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#46bcec"},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"color":"#000000"}]}]; 
+		var myOptions = {
+			zoom: 16,
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			zoomControl: false
+		};
+		// console.log(document.getElementById("map_canvas"));
 		
-  };
-		  
-		  
-		  google.maps.event.addDomListener(window, 'load', $scope.initialize);
+		map = new google.maps.Map(document.getElementById("map"), myOptions);  
+		
+		// address = 'India';
+		// // address = 'Trinidad and Tobago'
+		// geocoder = new google.maps.Geocoder();
+		// geocoder.geocode( { 'address': address}, function(results, status) {
+		//     map.fitBounds(results[0].geometry.viewport);
+		//  });	
 
+			// Instantiate a directions service.
+		directionsService = new google.maps.DirectionsService();
+	// Create a renderer for directions and bind it to the map.
+		var rendererOptions = {
+			map: map
+		};
+		directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+		polyline = new google.maps.Polyline({
+			path: [],
+			strokeColor: '#FF0000',
+			strokeWeight: 0
+		});
+		poly2 = new google.maps.Polyline({
+			path: [],
+			strokeColor: '#FF0000',
+			strokeWeight: 0
+		});
+		/*
+		* google map default zoom_changed event
+		* */
+		$scope.zoomlevel=16;
+		google.maps.event.addListener(map, 'zoom_changed', function() {
+			setTimeout(function(){
+				$scope.zoomlevel = map.getZoom();
+			}, 80);
+			if ($scope.zoomlevel < 16 || $scope.zoomlevel > 17) {
+					console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ZOOM & DEVICEID<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+					console.log($scope.zoomlevel);
+					$scope.singleDeviceZoomed = false;
+					$interval.cancel(singleDeviceInterval);
 
-		  $scope.resizeMap = function(){
+					// if (angular.isDefined(singleDeviceInterval)) {
+					// 	$interval.cancel(singleDeviceInterval);
+					// } 
+					//else if (angular.isDefined(multiDeviceInterval)) {
+					// 	$interval.cancel(multiDeviceInterval);
+					// }
+			}
+		});
+	};
+
+	google.maps.event.addDomListener(window, 'load', $scope.initialize);
+
+	$scope.resizeMap = function(){
     	$("#map_canvas").css("position", 'fixed').
         css('top', 0).
         css('left', 0).
@@ -186,9 +182,8 @@ $scope.singleDeviceZoomLevel=16;
     	$(".traffic_layer_btn").css("position", 'fixed').css('top', '10px').css('left', '130px');
     	//console.log("resize");
     	google.maps.event.trigger(map, 'resize');
-    }
-    
-    
+    };
+
     $scope.shrinkMap=function(){
     	$("#map_canvas").css("position", 'absolute').
         css('top', 0).
@@ -198,8 +193,8 @@ $scope.singleDeviceZoomLevel=16;
     	$(".count_label").css("position", 'absolute').css('top', 0).css('left', '15px').css('margin-top','10%');
     	$(".traffic_layer_btn").css("position", 'absolute').css('top', '10px').css('left', '130px');
     	google.maps.event.trigger(map, 'resize');
-    }
-	
+    };
+
 	$scope.reCenterDevice = function() {
 		console.log("Single Device Re Center");
 		map.setZoom(16);
@@ -215,104 +210,101 @@ $scope.singleDeviceZoomLevel=16;
 	};
 	
 	var iconImg;
-    function createMarker(latlng, deviceID,vehNo,vehModel, html,type,devtype) {
-				console.log(latlng);
-				
-	svg = new Array();
-	icons = new Array();
-	if(devtype == "car"){
-	    svg = car;
-	}
-	else if(devtype == "truck")
-	{
-	    svg = truck;
-	}
-	else if(devtype == "bike"){
-	    svg = bike;
-	}
-	else if(devtype == "bus"){
-	    svg = bus; 
-	}
-	else{
-		svg = car;
-	}
-	var contentString; 
-	for(var i in svg){
-
-	    icons[i] = {path : svg[i].path, 
-	    		fillColor : svg[i].fillColor, 
-	    		scale: .9, 
-	    		strokeColor: 'white', 
-		    strokeWeight: .10, 
-		    fillOpacity: 1, 
-		    offset: '5%',
-		    rotation: Number($scope.headings),
-		    anchor: new google.maps.Point(16, 16) // orig 10,50 back of car, 10,0 front of car, 10,25 center of car
-	    };
-	}
-	var geocoder = new google.maps.Geocoder();		
-	geocoder.geocode({latLng: latlng}, function(responses){     
-	    if (responses && responses.length > 0) 
-	    {     	   
-		if(html.length==0){
-		    html=responses[0].formatted_address;
-		    contentString  = '<b><label>Device ID:</label> '+deviceID+'</b><br><br><b><label>Vehicle No:</label> '+vehNo+'</b><br><br><b><label>Vehicle Model:</label> '+vehModel+'</b><br><br>'+html+'<br><br>';	
-		}		        	   		                    
-	    } 
-	    else 
-	    {       
-		// swal('Not getting Any address for given latitude and longitude.');
-	    }   
-	});
-	if(html.length!=0){
-	    contentString  = '<b><label>Device ID:</label> '+deviceID+'</b><br><br><b><label>Vehicle No:</label> '+vehNo+'</b><br><br><b><label>Vehicle Model:</label> '+vehModel+'</b><br><br>'+html+'<br><br>';
-	}
-	
-	for (var i in svg){
-	    marker[i] = new google.maps.Marker({
-		position: latlng,
-		map: map,
-		title: deviceID,
-		icon: icons[i],
-		zIndex: Math.round(latlng.lat() * -100000) << 5,
-		myname : deviceID
-	    });
-	    markers.push(marker[i]);
-	    var damymarker = marker[i];
-	    google.maps.event.addListener(damymarker, 'click', function() {
-		   	 
-		    infowindow.setContent(contentString); 
-		    //infowindow.setZIndex(1000000);
-		    infowindow.open(map,damymarker);
-		   
+    function createMarker(latlng, deviceID,vehNo,vehModel, html,type,devtype){
+		console.log(latlng);
+					
+		svg = new Array();
+		icons = new Array();
+		if(devtype == "car"){
+			svg = car;
+		}
+		else if(devtype == "truck")
+		{
+			svg = truck;
+		}
+		else if(devtype == "bike"){
+			svg = bike;
+		}
+		else if(devtype == "bus"){
+			svg = bus; 
+		}
+		else{
+			svg = car;
+		}
+		var contentString; 
+		for(var i in svg){
+			icons[i] = {path : svg[i].path, 
+					fillColor : svg[i].fillColor, 
+					scale: .9, 
+					strokeColor: 'white', 
+				strokeWeight: .10, 
+				fillOpacity: 1, 
+				offset: '5%',
+				rotation: Number($scope.headings),
+				anchor: new google.maps.Point(16, 16) // orig 10,50 back of car, 10,0 front of car, 10,25 center of car
+			};
+		}
+		var geocoder = new google.maps.Geocoder();		
+		geocoder.geocode({latLng: latlng}, function(responses){     
+			if (responses && responses.length > 0) 
+			{
+				if(html.length==0){
+					html=responses[0].formatted_address;
+					contentString  = '<b><label>Device ID:</label> '+deviceID+'</b><br><br><b><label>Vehicle No:</label> '+vehNo+'</b><br><br><b><label>Vehicle Model:</label> '+vehModel+'</b><br><br>'+html+'<br><br>';	
+				}		        	   		                    
+			} 
+			else 
+			{       
+			// swal('Not getting Any address for given latitude and longitude.');
+			}   
 		});
-	}
-	return marker;
-    }
+		if(html.length!=0){
+			contentString  = '<b><label>Device ID:</label> '+deviceID+'</b><br><br><b><label>Vehicle No:</label> '+vehNo+'</b><br><br><b><label>Vehicle Model:</label> '+vehModel+'</b><br><br>'+html+'<br><br>';
+		}
+		
+		for(var i in svg){
+			marker[i] = new google.maps.Marker({
+			position: latlng,
+			map: map,
+			title: deviceID,
+			icon: icons[i],
+			zIndex: Math.round(latlng.lat() * -100000) << 5,
+			myname : deviceID
+			});
+			markers.push(marker[i]);
+			var damymarker = marker[i];
+			google.maps.event.addListener(damymarker, 'click', function() {
+				infowindow.setContent(contentString); 
+				//infowindow.setZIndex(1000000);
+				infowindow.open(map,damymarker);
+			});
+		}
+		return marker;
+    };
 	// Sets the map on all markers in the array.
     function setMapOnAll(map) {
-	for (var i = 0; i < markers.length; i++) {
-	    markers[i].setMap(map);
-	}
-	markers = [];
-    }
+		for (var i = 0; i < markers.length; i++) {
+			markers[i].setMap(map);
+		}
+		markers = [];
+    };
     
     function setPolygonNull(){
     	myPolygon.setMap(null);
     }
 	
     $(document).on('click','#infoClick',function(event){
-	event.stopImmediatePropagation();
-	if(typeof $scope.deviceId=='undefined' || $(this).attr("data-deviceID")!= ""){
-	    $scope.open("lg",$(this).attr("data-deviceID"));
-	}
-	else{
-	    $scope.open("lg",$scope.deviceId);	
-	}
+		event.stopImmediatePropagation();
+		if(typeof $scope.deviceId=='undefined' || $(this).attr("data-deviceID")!= ""){
+			$scope.open("lg",$(this).attr("data-deviceID"));
+		}
+		else{
+			$scope.open("lg",$scope.deviceId);	
+		}
     });	 
 
-$scope.calcRoute = function(dataVal) {
-	console.log("calcRoute");
+	$scope.calcRoute = function(dataVal) {
+		console.log("calcRoute");
 		/**
 		 * check for storedltlng object is initialized or not if initalized
 		 * follow the next step else intialize the storedltlng check for
@@ -324,7 +316,6 @@ $scope.calcRoute = function(dataVal) {
 		if(typeof storedltlng.lat!='undefined'){
 			console.log(storedltlng.lat);
 			if(storedltlng.lat!=dataVal[0].values.lat){
-				
 				console.log(dataVal[0].values.type);
 				if(dataVal[0].values.type == 4){
 					
@@ -346,10 +337,9 @@ $scope.calcRoute = function(dataVal) {
 				var startLng=dataVal[0].values.long;
 				var endLat=dataVal[0].values.lat;
 				var endLng=dataVal[0].values.long;
-				vehichleRouting(dataVal,startLat,startLng,endLat,endLng)
+				vehichleRouting(dataVal,startLat,startLng,endLat,endLng);
 				console.log("-----------------EQUAL / SAME LAT------------------------")
 				console.log("start : ",storedltlng.lat,"end :",dataVal[0].values.lat);
-			
 			}
 		}		
 		else{
@@ -359,19 +349,20 @@ $scope.calcRoute = function(dataVal) {
 			var startLng=dataVal[0].values.long;
 			var endLat=dataVal[0].values.lat;
 			var endLng=dataVal[0].values.long;
-			vehichleRouting(dataVal,startLat,startLng,endLat,endLng)
+			vehichleRouting(dataVal,startLat,startLng,endLat,endLng);
 		}
 	 
 	};
 
 	function vehichleRouting(dataVal,startLat,startLng,endLat,endLng){
-	     console.log(startLat,startLng,endLat,endLng);
+	    console.log(startLat,startLng,endLat,endLng);
 	    if (timerHandle) {
-		clearTimeout(timerHandle);
+			clearTimeout(timerHandle);
 	    }
 	    setMapOnAll(null);
 //		setMapOnAll(null);
-	map.setZoom($scope.singleDeviceZoomLevel); 
+		angular.element(document).ready(function(){
+		map.setZoom($scope.singleDeviceZoomLevel); 
 
 		console.log(polyline);
 		// if(polyline != undefined && poly2 != undefined)
@@ -399,7 +390,7 @@ $scope.calcRoute = function(dataVal) {
         var start = new google.maps.LatLng({lat: Number(startLat), lng: Number(startLng)}); // document.getElementById("start").value;
         var end = new google.maps.LatLng({lat: Number(endLat), lng: Number(endLng)}); // document.getElementById("end").value;
         var travelMode = google.maps.DirectionsTravelMode.DRIVING;
-		console.log(start,end);
+		console.log("inside this- start: "+start+" end: "+end);
         var request = {
             origin: start,
             destination: end,
@@ -448,6 +439,7 @@ $scope.calcRoute = function(dataVal) {
             }
         });
 		
+		});
 		// }
 		// else{
 		// 	//nothing
@@ -455,7 +447,7 @@ $scope.calcRoute = function(dataVal) {
 	}
 
 
-var step = 50; // 5; // metres  
+	var step = 50; // 5; // metres  
 	var tick = 1000; // milliseconds
 	var eol;
 	var k = 0;
@@ -480,7 +472,7 @@ var step = 50; // 5; // metres
 	    } else {
 	        poly2.getPath().insertAt(poly2.getPath().getLength(), endLocation.latlng);
 	    }
-	}
+	};
 
 	$scope.animate = function(d) {
 	    if (d > eol) {        
@@ -503,7 +495,7 @@ var step = 50; // 5; // metres
 	    timerHandle = setTimeout(function() {
 	        $scope.animate(d + step);
 	    }, tick);
-	}
+	};
 
 	function startAnimation() {
 	    eol = polyline.Distance();
@@ -517,10 +509,7 @@ var step = 50; // 5; // metres
 	    setTimeout(function() {
 	        $scope.animate(50);
 	    }, 2000);
-	    
-
-	}
-
+	};
 
 	// === first support methods that don't (yet) exist in v3
 	google.maps.LatLng.prototype.distanceFrom = function (newLatLng) {
@@ -535,7 +524,7 @@ var step = 50; // 5; // metres
 	    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 	    var d = EarthRadiusMeters * c;
 	    return d;
-	}
+	};
 
 	google.maps.LatLng.prototype.latRadians = function () {
 	    return this.lat() * Math.PI / 180;
@@ -576,7 +565,7 @@ var step = 50; // 5; // metres
 	    var p2 = this.getPath().getAt(i - 1);
 	    var m = (metres - olddist) / (dist - olddist);
 	    return new google.maps.LatLng(p1.lat() + (p2.lat() - p1.lat()) * m, p1.lng() + (p2.lng() - p1.lng()) * m);
-	}
+	};
 
 	// === A method which returns an array of GLatLngs of points a given
 	// interval along the path ===
@@ -600,7 +589,7 @@ var step = 50; // 5; // metres
 	        }
 	    }
 	    return points;
-	}
+	};
 
 	// === A method which returns the Vertex number at a given distance along
 	// the path ===
@@ -620,7 +609,7 @@ var step = 50; // 5; // metres
 	        return null;
 	    }
 	    return i;
-	}
+	};
 	// === Copy all the above functions to GPolyline ===
 	google.maps.Polyline.prototype.Distance = google.maps.Polygon.prototype.Distance;
 	google.maps.Polyline.prototype.GetPointAtDistance = google.maps.Polygon.prototype.GetPointAtDistance;
@@ -657,18 +646,15 @@ var step = 50; // 5; // metres
 	$scope.truckCount = 0;
 
 	function getTracker(){
-		
 		//$scope.singleDeviceZoomed = true;
 		if($state.is(PageConfig.LIVE_TRACKING)){
-		var obj = [];
-		
-		 var inputParam = {"devlist" : [$scope.selectedDevice]};
-     	  BatsServices.currentData(inputParam).success(function (response) {
-          console.log(response.length);
-		  console.log(response);
-
-		UtilsFactory.setLivetrackingDetails(response);
-		  $scope.multiDevice = false;
+			var obj = [];
+			var inputParam = {"devlist" : [$scope.selectedDevice]};
+			BatsServices.currentData(inputParam).success(function (response) {
+				console.log(response.length);
+				console.log(response);
+				UtilsFactory.setLivetrackingDetails(response);
+				$scope.multiDevice = false;
 				if(response[0].values !=""){
 					console.log("response true");
 					// var myPlace = {lat: Number(response[0].values.lat), lng: Number(response[0].values.long)};
@@ -707,41 +693,36 @@ var step = 50; // 5; // metres
 					}
 					else{
 						$scope.carCount = 0;
-        					$scope.bikeCount = 0;
-        					$scope.busCount = 0;
-        					$scope.truckCount = 0;
+							$scope.bikeCount = 0;
+							$scope.busCount = 0;
+							$scope.truckCount = 0;
 					}
 					$scope.speedSpeedOmeter=speedValue;
+					console.log("speed: "+$scope.speedSpeedOmeter);
 					$scope.vehnoSpeedOmeter=response[0].vehicle_num;
 					$scope.speedlimitSpeedOmeter=speedlimit;
 					$scope.dateTimeSpeedOmeter=getDateTime(response[0].values.ts);
 					$scope.calcRoute(response);
-					
-					
-
-					
-
-
-			}
-			else{
-				$scope.singleDevice = false;
-				$scope.carCount = 0;
-				$scope.bikeCount = 0;
-				$scope.busCount = 0;
-				$scope.truckCount = 0;
-				ionicToast.show('Device of id '+response[0].devid+' is not updating kindly check it');
-			}
-	
-		
-	}).error(function (error) {
-          ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
-      })
-	}
-	else{
-		$interval.cancel(singleDeviceInterval);
-	}
-}
-
+				}
+				else{
+					$scope.speedSpeedOmeter= '0';
+					$scope.divcolor = '4';
+					$scope.vehicleName = response[0].vehicle_name;
+					$scope.singleDevice = false;
+					$scope.carCount = 0;
+					$scope.bikeCount = 0;
+					$scope.busCount = 0;
+					$scope.truckCount = 0;
+					ionicToast.show('Device of id '+response[0].devid+' is not updating kindly check it');
+				}
+			}).error(function (error) {
+				ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+			})
+		}
+		else{
+			$interval.cancel(singleDeviceInterval);
+		}
+	};
 
 	function getDateTime(ts){
 		var d = new Date(Number(ts));
@@ -760,60 +741,51 @@ var step = 50; // 5; // metres
 				+ seconds.substr(-2);
 		return formattedTime+","+d.getDate() + "/" + monthVal + "/"
 				+ d.getFullYear();
-	}
+	};
 
 	
-		$scope.getColorBack =function(div){
-//			console.log(div)
+	$scope.getColorBack =function(div){
+		if(div=="0"){
+			setTimeout(function() {
+			$scope.singleImg_url="../images/mapIcon/geofenceStatus.png";
+			//$(".barStyleSingle").css("background-color", "#f44336");
+			$scope.barTxt= "Crossed Geofence";
+			$(".barStyle").css("background-color", "#710e9f");
 			
-			if(div=="0"){
-				setTimeout(function() {
-				$scope.singleImg_url="../images/mapIcon/geofenceStatus.png";
-				//$(".barStyleSingle").css("background-color", "#f44336");
-				$scope.barTxt= "Crossed Geofence";
-				$(".barStyle").css("background-color", "#710e9f");
-				
-				},7000);
-			}
-			else if(div=="1"){
-				$scope.singleImg_url="../images/mapIcon/speed-limit.png";
-				$scope.barTxt= "Crossed Speed";
-				$(".ltwrap_type").css("background-color", "#ffd500");
-				//$(".barStyleSingle").css("background-color", "#ffde01");
-			}
-			else if(div=="2"){
-				$scope.singleImg_url="../images/mapIcon/warning.png";
-				$scope.barTxt= "Crossed Geofence and Speed";
-				$(".ltwrap_type").css("background-color", "#ff0000");
-				//$(".barStyleSingle").css("background-color", "#e59305");
-			}
-			else if(div== "3"){
-				$scope.singleImg_url="../images/mapIcon/normal.png";
-				$scope.barTxt= "Normal State";
-				$(".ltwrap_type").css("background-color", "#7fbb01");
-				//$(".barStyleSingle").css("background-color", "#000000");
-			}
-			else if(div== "4"){
-				$scope.singleImg_url="../images/mapIcon/no-response.png";
-				$scope.barTxt= "No-Response State";
-				$(".ltwrap_type").css("background-color", "#2d2d2d");
-				//$(".barStyleSingle").css("background-color", "#0540E5");
-			}
+			},7000);
 		}
-    
-	
-	
-	
-	
+		else if(div=="1"){
+			$scope.singleImg_url="../images/mapIcon/speed-limit.png";
+			$scope.barTxt= "Crossed Speed";
+			$(".ltwrap_type").css("background-color", "#ffd500");
+			//$(".barStyleSingle").css("background-color", "#ffde01");
+		}
+		else if(div=="2"){
+			$scope.singleImg_url="../images/mapIcon/warning.png";
+			$scope.barTxt= "Crossed Geofence and Speed";
+			$(".ltwrap_type").css("background-color", "#ff0000");
+			//$(".barStyleSingle").css("background-color", "#e59305");
+		}
+		else if(div== "3"){
+			$scope.singleImg_url="../images/mapIcon/normal.png";
+			$scope.barTxt= "Normal State";
+			$(".ltwrap_type").css("background-color", "#7fbb01");
+			//$(".barStyleSingle").css("background-color", "#000000");
+		}
+		else if(div== "4"){
+			$scope.singleImg_url="../images/mapIcon/no-response.png";
+			$scope.barTxt= "No-Response State";
+			$(".ltwrap_type").css("background-color", "#2d2d2d");
+			//$(".barStyleSingle").css("background-color", "#0540E5");
+		}
+	};
 	
 	$scope.ab = function(type){
 		if(type!='4' && type!=undefined){
 			console.log("type: "+type);
 			$state.go(PageConfig.LIVE_TRACKING_DETAILS);
 		}
-	} 
-	
-
+	};
 	
 });
 
