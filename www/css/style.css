@@ -252,7 +252,7 @@ right: 70%;
     left: 7%;
     width: 94%;
     bottom: 3%;
-    position: absolute;
+    position: fixed;
     background: #fff;    
     font-size: 1.2em;
     border-radius: 5px;
@@ -289,34 +289,31 @@ right: 70%;
     margin: 5% 1%;
 }
 .ltSelectDevArr{
-margin-left: 10%;
+    margin-left: 10%;
 }
 
 .ltStatusinline{
     display: inline-block;
-    }
+}
 
 .ltwrap_type {
-	    width: 15px;
-    height: 15px;
+	width: 12px;
+    height: 12px;
     border-radius: 50%;
     float: left;
-    background-color: #000;
-    /*margin-left: -30px;*/
     margin-top: 4px;
     margin-right: 5px;
 }
+
 .ltstatusTxt{
-        /*margin-right: -150px;*/
         font-size: 14px;
-    }
+}
 
 .ltstatusUpTxt{
-    /*margin-left: -29px;*/
     font-size:18px;
     font-weight: bold;
     margin-bottom: 4px;
-    }
+}
     
 
 /***************************************CSS for All Modals Design********************************/
