@@ -22,11 +22,11 @@
         <ion-item class="item-icon-right" ng-class='{"selected":menuLink==2}' ng-click='sidebarLinkColor(2)' 
           menu-toggle="left" direction="left" href="#/bats/navigation" ng-if="accessType!='member'">
           <i class="icon bats-icon menu-icon " ng-class="{'bats-navigation-icon' : menuLink!=2, 
-            'bats-livetracking-icon-active' : menuLink==2}"></i><div>Navigation</div>
+            'bats-navigation-icon-active' : menuLink==2}"></i><div>Navigation</div>
         </ion-item>
         <ion-item class="item-icon-right" ng-class='{"selected":menuLink==3}' ng-click='sidebarLinkColor(3)' 
           menu-toggle="left" direction="left" href="#/bats/replayroute" ng-if="accessType!='member'">
-          <i class="icon bats-icon menu-icon" ng-class="{'bats-replay-icon' : menuLink!=3, 
+          <i class="icon bats-icon menu-icon menu-iconWidthForReplay" ng-class="{'bats-replay-icon' : menuLink!=3, 
             'bats-replay-icon-active' : menuLink==3}"></i><div>Replay Route</div>
         </ion-item>
         <ion-item class="item-icon-right" ng-class='{"selected":menuLink==4}' ng-click='sidebarLinkColor(4)' 
@@ -41,7 +41,7 @@
         </ion-item>
         <ion-item class="item-icon-right" direction="left" href="#/bats/report" menu-toggle="left" 
           ng-click="sidebarLinkColor(6)" ng-class='{"selected":menuLink==6}' ng-if="accessType!='member'">
-          <i class="icon bats-icon menu-icon" ng-class="{'bats-reports-icon' : menuLink!=6, 
+          <i class="icon bats-icon menu-icon menu-iconWidthForReport" ng-class="{'bats-reports-icon' : menuLink!=6, 
             'bats-reports-icon-active' : menuLink==6}"></i><div>Reports</div>
         </ion-item>
         <ion-item class="item-icon-right" direction="left" ng-class='{"selected":menuLink==7}'
@@ -70,6 +70,12 @@
           <ion-item class="item-icon-right" direction="left" menu-toggle="left" ng-click="logout()">
             <i class="icon bats-icon menu-icon bats-logout-icon"></i><div>Logout</div>
           </ion-item>
+        </div>
+        <div class="logoAndVersion">
+          <div class="row">
+            <div class="col col-40 menuVersionLeftMargin">Version<br>V1.1</div>
+            <div class="col col-60"><img class="lgWelcomeLogin menufooterImg" src="img/logo-grey.png"></div>
+          </div>
         </div>
       </ion-list>
     </ion-content>  

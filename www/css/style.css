@@ -453,6 +453,18 @@ right: 70%;
 
 }
 
+.menufooterImg{
+        width: 110px !important;
+    /* height: 75px; */
+        margin-right: 11px;
+    float: right !important;
+}
+.logoAndVersion{
+    margin-top:25px;
+}
+.menuVersionLeftMargin{
+    margin-left: 25px;
+}
 .menuHeaderDivFont{
     font-size: 17px;
 }
@@ -487,7 +499,14 @@ right: 70%;
 	width: 27px;
 	left: 12px !important;
 }
+.menu-iconWidthForReplay{
+     width: 32px !important;
 
+}
+.menu-iconWidthForReport{
+     width: 28px !important;
+
+}
 .sidemenubar-content ion-item div{
     font-size: 14px;
     margin-left: 28px;
