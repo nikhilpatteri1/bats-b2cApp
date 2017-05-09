@@ -13,7 +13,7 @@
                 <div class="LoginHeading">
                     <form name="eventHistoryForm">
                         <div ng-show="data.selectedvehicle" class="floatlabeltxt show-hide inputFieldFontSize">Select Vehicle</div>
-                        <select ng-model="data.selectedvehicle" class="dropdown" name="selectedvehicle" ng-class="{acSmallFonts: v.vehicle_num}"
+                        <select ng-model="data.selectedvehicle" class="dropdown" name="selectedvehicle" 
                          required ng-options=" v.vehicle_num  for v in deviceList"
                             ng-class="{error: signupStep1Form.selectedvehicle.$invalid && Validate}">
                             <option value=""disabled selected>Select Vehicle</option>
