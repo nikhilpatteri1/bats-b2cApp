@@ -281,7 +281,6 @@ right: 70%;
     background: chocolate;
     color: #fff;
     border-radius: 20px;
-    margin-top: 12%;
     text-align: center;
     padding: 0px;
 }
@@ -306,13 +305,20 @@ right: 70%;
 }
 
 .ltstatusTxt{
-        font-size: 14px;
+    font-size: 14px;
+    font-weight: 300;
 }
 
 .ltstatusUpTxt{
     font-size:18px;
-    font-weight: bold;
+    font-weight: 500;
     margin-bottom: 4px;
+}
+
+.center_content{
+    display: inline-grid;
+    align-content: center;
+    align-items: center;
 }
     
 
