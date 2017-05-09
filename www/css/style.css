@@ -26,7 +26,9 @@
     width: 22px;
     height: 22px;
 }
-
+.zeroPadding{
+    padding:0px !important;
+}
 .acRemoveMargin{
     margin-top: 0px !important;
 }
