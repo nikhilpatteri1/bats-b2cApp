@@ -19,6 +19,9 @@ angular.module('notification', [])
         $scope.notificationData = [];
         $scope.noData = true;
       }
+      $scope.temp = 0;
+      UtilsFactory.setNotificationCount($scope.temp);
+      UtilsFactory.setNotificationDetails([]);
     }
 
     $scope.chexkAlarmType = function (alarm_type) {

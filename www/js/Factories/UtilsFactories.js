@@ -11,7 +11,7 @@ angular.module('utilsfactory', [])
          var livetrackingDetails = [];
          var notificationDetails = [];
          var historyFilterList = [];
-
+         var notificationCount;
         return {
             setSignUpData: function (data) {
                 signUpData = data;
@@ -81,6 +81,13 @@ angular.module('utilsfactory', [])
             },
             setHistoryFilterList : function(data){
                 historyFilterList = data;
+            }
+            ,
+            getNotificationCount : function(){
+                return notificationCount;
+            },
+            setNotificationCount : function(data){
+                notificationCount = data;
             }
 
         }

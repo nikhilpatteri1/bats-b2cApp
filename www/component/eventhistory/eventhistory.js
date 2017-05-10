@@ -16,14 +16,18 @@ angular.module('eventhistory', [])
         if (UtilsFactory.getNotificationDetails()) {
             console.log(UtilsFactory.getNotificationDetails());
             $scope.notificationData = UtilsFactory.getNotificationDetails();
-            $scope.count = $scope.notificationData.length;
+            $scope.count = UtilsFactory.getNotificationCount();
             console.log($scope.count);
             if($scope.count==undefined){
                 $scope.count=0;
                 $scope.notificationData=[];
             }
         }
-
+        // $scope.resetCount=function(){
+        //      alert("alert");
+        //      UtilsFactory.setNotificationCount(0);
+        //      UtilsFactory.setNotificationDetails();
+        // }
 
         $scope.data = {};
         // $rootScope.dateValue = new Date();

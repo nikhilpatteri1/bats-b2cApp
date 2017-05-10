@@ -9,7 +9,7 @@ angular.module('livetracking', [])
 	if (UtilsFactory.getNotificationDetails()) {
 		console.log(UtilsFactory.getNotificationDetails());
 		$scope.notificationData = UtilsFactory.getNotificationDetails();
-		$scope.count = $scope.notificationData.length;
+		$scope.count = UtilsFactory.getNotificationCount();
 		console.log($scope.count);
 		if ($scope.count == undefined) {
 			$scope.count = 0;

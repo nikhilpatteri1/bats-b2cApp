@@ -35,7 +35,7 @@ angular.module('login', [])
                         $rootScope.userName = JSON.parse(localStorage.getItem(Constants.USER_VO)).firstname;
                         $rootScope.email = JSON.parse(localStorage.getItem(Constants.USER_VO)).email;
                     }
-                    $state.go(PageConfig.LIVE_TRACKING);
+                    $state.go(PageConfig.MANAGE_TRACKER);
                 }).error(function (error) {
                     ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
                 })

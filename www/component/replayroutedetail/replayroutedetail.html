@@ -9,7 +9,8 @@
     <ion-content class="hmCards" >
         <div class="umdHeaderIconsVehicle lgBackgroundWhite acSmallFonts acGreyFont">Please select the time slot</div>
         <ion-list class="rrdIonList" ng-style=" timeSlots.data == false && { 'background-color': '#eaeaea' }">
-            <ion-radio class="rrdRadioLabels" ng-repeat="timeSlot in timeSlots" ng-disabled="!timeSlot.data" ng-class="!timeSlot.data ? 'halfOpacity' : 'zeroOpacity'"  ng-model="data.timeSlot" ng-value="timeSlot" ng-click="getHistory(timeSlot)">
+            <ion-radio class="rrdRadioLabels" ng-repeat="timeSlot in timeSlots" ng-disabled="!timeSlot.data" ng-class="!timeSlot.data ? 'halfOpacity' : 'zeroOpacity'"
+              ng-model="data.timeSlot" ng-value="timeSlot" ng-click="getHistory(timeSlot)">
                 <div class="acSmallFonts">{{timeSlot.sts | date:'HH:MM'}}</div>
                 <div class="acSmallFonts">to</div>
                 <div class="acSmallFonts">{{timeSlot.ets | date:'HH:MM'}}</div>
