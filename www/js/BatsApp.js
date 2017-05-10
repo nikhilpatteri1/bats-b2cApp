@@ -76,6 +76,9 @@ angular.module('bats', ['ionic', 'batsconstants', 'batsconfig', 'batsinterceptor
 	    		$state.current.name==PageConfig.LOGIN){
 	        $state.go(PageConfig.START);
       }
+       else if($state.current.name==PageConfig.LIVE_TRACKING){
+	       navigator.app.exitApp();// $state.go(PageConfig.START);
+      }
 	    // else ($state.current.name==PageConfig.MANAGE_TRACKER || $state.current.name==PageConfig.REPLAY_ROUTE
       //   || $state.current.name==PageConfig.VEHICLE_STATISTICS || $state.current.name==PageConfig.NAVIGATION
       //   || $state.current.name==PageConfig.REPORT || $state.current.name==PageConfig.MANAGE_MEMBER){
