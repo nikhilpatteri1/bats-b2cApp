@@ -1,13 +1,28 @@
 angular.module('signupstep1', [])
 .controller('SignupStep1Ctrl', function ($scope, $state, $ionicModal, $timeout, PageConfig, Constants, BatsServices,
 		UtilsFactory, $ionicPopup) {
-
-		$scope.countries = Constants.COUNTRIES
-		$scope.states = Constants.STATES
-		$scope.Validate = false;
+		
+		$scope.countries = Constants.COUNTRIES;
+		$scope.states = Constants.STATES;
 		$scope.signupStep1Form = {};
 		$scope.data = {};
-		
+
+		if(UtilsFactory.getSignUpData().length!=0){
+			var userDetails = UtilsFactory.getSignUpData();
+			$scope.data = {
+				fName: userDetails.firstname,
+				lName: userDetails.lastname,
+				email: userDetails.email,
+				phonenumber: userDetails.contact_no,
+				password: userDetails.password,
+				country: userDetails.country,
+				state: userDetails.state
+			};
+			$scope.Validate = true;
+		}else{
+			$scope.Validate = false;
+		}
+
 		$scope.gotoNext = function (data, form) {
 			$scope.Validate = true;	
 			if(form.$valid){
@@ -17,6 +32,4 @@ angular.module('signupstep1', [])
 				$state.go(PageConfig.SIGNUP_STEP2);
 			}
 		}
-
-
 	})

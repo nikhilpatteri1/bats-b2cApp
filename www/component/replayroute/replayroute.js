@@ -8,13 +8,18 @@ angular.module('replayroute', [])
          if (UtilsFactory.getNotificationDetails()) {
             console.log(UtilsFactory.getNotificationDetails());
             $scope.notificationData = UtilsFactory.getNotificationDetails();
-            $scope.count = UtilsFactory.getNotificationCount();
-            console.log($scope.count);
-            if($scope.count==undefined){
-                $scope.count=0;
+            $rootScope.count = UtilsFactory.getNotificationCount();
+            console.log($rootScope.count);
+            if($rootScope.count==undefined){
+                $rootScope.count=0;
                 $scope.notificationData=[];
             }
         }
+
+        // $rootScope.$on('counted', function(event, obj){
+        //     console.log("obj: "+obj+" event: "+event);
+        //     $scope.count = obj;
+        // });
 
         function init(){
             var inputParam = {};

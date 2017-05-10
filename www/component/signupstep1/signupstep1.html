@@ -23,13 +23,13 @@
                         <div class="space">
                             <div ng-show="data.fName" class="floatlabeltxt show-hide inputFieldFontSize">First Name</div>
                             <input placeholder="First Name" type="text" ng-model="data.fName" required name="fName" 
-                            ng-class="{error: signupStep1Form.form.fName.$invalid && Validate}"
+                            ng-class="{error: signupStep1Form.form.fName.$invalid && Validate}" maxlength="20"
                             />
                         </div>
                         <div class="space">
                             <div ng-if="data.lName" class="floatlabeltxt show-hide inputFieldFontSize">Last Name</div>
                             <input placeholder="Last Name" type="text" name=" lName" ng-model="data.lName" 
-                            required ng-class="{error: signupStep1Form.form.lName.$invalid && Validate}"
+                            required ng-class="{error: signupStep1Form.form.lName.$invalid && Validate}" maxlength="20"
                             />
                         </div>
                         <div class="space">
@@ -47,17 +47,17 @@
                                 ng-maxlength="10"  type="number"
                                 name="phonenumber" ng-model="data.phonenumber"
                                 required ng-class="{error: signupStep1Form.form.phonenumber.$invalid && Validate }" />
-                                 <span class="red" ng-if="data.phonenumber!=null && signupStep1Form.form.phonenumber.$invalid">
-                            phone number should be 10 digits
+                                 <span class="red" ng-if="signupStep1Form.form.phonenumber.$dirty && signupStep1Form.form.phonenumber.$invalid">
+                            Phone number should be 10 digits
                             </span>
                         </div>
                         <div class="space">
                             <div ng-show="data.password" class="floatlabeltxt show-hide inputFieldFontSize">Password</div>
-                            <input placeholder="Password"  type="password" ng-pattern="^(?=.*\d+)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%]{6,10}$"
+                            <input placeholder="Password"  type="password" autocomplete="new-password" ng-pattern="/^(?=.*\d+)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%]{6,25}$/"
                              name="password" ng-model="data.password"
                                 required ng-class="{error: signupStep1Form.form.password.$invalid && Validate }" />
-                                 <span class="red" ng-if="data.password!=null && signupStep1Form.form.password.$invalid">
-                            Password should be 8 letter < alphanumeric > 25 letter
+                                 <span class="red" ng-if="signupStep1Form.form.password.$dirty && signupStep1Form.form.password.$invalid">
+                            Password should be atleast 8 characters with a number
                             </span>
                         </div>
 

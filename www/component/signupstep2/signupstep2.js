@@ -9,7 +9,7 @@ angular.module('signupstep2', [])
         if (UtilsFactory.getSignUpData().length == 0 && $scope._token == undefined) {
             $state.go(PageConfig.SIGNUP_STEP1)
         }
-        console.log('$scope.editMarkerData')
+        console.log("edit marker data: "+$scope.editMarkerData);
         if (UtilsFactory.getEditMarkerDetails().length != 0) {
             $scope.editMarkerData = UtilsFactory.getEditMarkerDetails();
             console.log($scope.editMarkerData)
@@ -26,6 +26,7 @@ angular.module('signupstep2', [])
         }
 
         $scope.removeTracker = function (i) {
+            console.log("removing: "+i);
             $scope.trackers.splice(i, 1);
             $scope.data[i] = {};
         }
@@ -47,7 +48,7 @@ angular.module('signupstep2', [])
                 }
                 if ($scope._token != undefined || $scope._token != null) {
                     if ($scope.editMarkerData.devid == undefined) {
-                        console.log($scope.editMarkerData.devid);
+                        console.log("inside if: "+$scope.editMarkerData.devid);
                         var inputParam = { 'trackers': data };
                         BatsServices.addnewdevices(inputParam).success(function (response) {
                             $state.go(PageConfig.MANAGE_TRACKER);

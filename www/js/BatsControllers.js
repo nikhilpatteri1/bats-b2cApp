@@ -43,7 +43,17 @@ angular.module('batscontrollers', [
           }
          // console.log($rootScope.count);
           UtilsFactory.setNotificationDetails(response);
-          UtilsFactory.setNotificationCount( $scope.count);
+          UtilsFactory.setNotificationCount($scope.count);
+          console.log("count in ctrl"+$scope.count);
+          
+          //broadcasting notification count
+          $rootScope.$broadcast('counted',$scope.count);
+
+          //function to store notification count
+          $rootScope.$on('counted', function(event, obj){
+              console.log("obj: "+obj+" event: "+event);
+              $rootScope.count = obj;
+          });
           // window.location.reload();
           //  $state.reload();
         }).error(function (error) {

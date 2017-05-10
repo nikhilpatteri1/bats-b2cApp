@@ -22,7 +22,7 @@
         </div>
         <form name="signupStep2Form.form" novalidate>
             <div ng-if="editMarkerData.devid!=undefined" class="acSmallFonts suTrackerDiv">Please Add Purchased Tracker Details</div>
-            <div class="lgBackgroundWhite" ng-repeat="tracker in trackers">
+            <div class="lgBackgroundWhite" ng-repeat="tracker in trackers track by $index">
                 <div class="suTrackerCard">Tracker
                     <i ng-click="removeTracker($index)" ng-if="trackers.length>1" class="icon bats-icon floatRight ion-minus"></i>
                 </div>
@@ -30,7 +30,7 @@
                         <div class="umdHeaderIconsVehicle acSmallFonts">Tracker Id</div>
                         <div class="umdInputDiv">
                             <input type="text" name="devid" required 
-                                placeholder="Please enter the Tracker id" ng-model="data[$index].devid"
+                                placeholder="Please enter the Tracker id" ng-model="data[$index].devid" maxlength="25"
                                 ng-class="{'umdFilledInputBox' : signupStep2Form.form.devid.$invalid}">
                         </div>
                         <div class="umdHeaderIconsVehicle acSmallFonts">Tracker SIM Carrier</div>
