@@ -11,16 +11,16 @@ angular.module('notification', [])
     if (UtilsFactory.getNotificationDetails()) {
       console.log(UtilsFactory.getNotificationDetails());
       $scope.notificationData = UtilsFactory.getNotificationDetails();
-      $scope.count = $scope.notificationData.length;
+      $rootScope.count = UtilsFactory.getNotificationCount();
       $scope.noData = false;
-      console.log($scope.count);
-      if ($scope.count == undefined || $scope.count == 0) {
-        $scope.count = 0;
+      console.log($rootScope.count +" util factory  "+UtilsFactory.getNotificationCount());
+      if ($rootScope.count == undefined || $rootScope.count == 0) {
+        $rootScope.count = 0;
         $scope.notificationData = [];
         $scope.noData = true;
       }
       $scope.temp = 0;
-      UtilsFactory.setNotificationCount($scope.temp);
+      UtilsFactory.setNotificationCount(undefined);
       UtilsFactory.setNotificationDetails([]);
     }
 
@@ -66,7 +66,7 @@ angular.module('notification', [])
         $scope.alarmType = "Warning";
         $scope.imageSrc = 'img/eventH/invalid.png';
       }
-      console.log(alarm_type + $scope.alarmType);
+     // console.log(alarm_type + $scope.alarmType);
     }
 
 

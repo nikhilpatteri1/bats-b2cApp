@@ -8,7 +8,7 @@ angular.module('batscontrollers', [
   'managemember', 'livetrackingdevices', 'eventhistoryfilter',
   'replayroutedetail', 'notification',
   'ion-datetime-picker', 'ion-place-tools', 'ionic-toast',
-  'underscore', 'ngLoadingSpinner', 'gm','angular-svg-round-progressbar'
+  'underscore', 'ngLoadingSpinner', 'gm', 'angular-svg-round-progressbar'
 ])
 
   .controller('BatsCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $state, PageConfig, Constants,
@@ -25,34 +25,34 @@ angular.module('batscontrollers', [
     }
     var notificationCall;
     $rootScope.callNotification = function () {
-     notificationCall =  $interval(callNotificationinterval,20000);
+      notificationCall = $interval(callNotificationinterval, 20000);
     }
 
-    if(notificationCall==undefined){
+    if (notificationCall == undefined) {
       $rootScope.callNotification();
     }
 
-    function callNotificationinterval (){
+    function callNotificationinterval() {
       console.log(localStorage.getItem(Constants.accessToken));
-      if(localStorage.getItem(Constants.accessToken)!=null){
+      if (localStorage.getItem(Constants.accessToken) != null) {
         BatsServices.notification({}).success(function (response) {
           $scope.notificationData = response;
-          $scope.count=$scope.notificationData.length;
-          if( $scope.count==undefined|| $scope.count==[]){
-             $scope.count=0
+          $scope.count = $scope.notificationData.length;
+          if ($scope.count == undefined || $scope.count == []) {
+            $scope.count = 0
           }
-         // console.log($rootScope.count);
+          // console.log($rootScope.count);
           UtilsFactory.setNotificationDetails(response);
           UtilsFactory.setNotificationCount($scope.count);
-          console.log("count in ctrl"+$scope.count);
-          
+          console.log("count in ctrl " + $scope.count);
+
           //broadcasting notification count
-          $rootScope.$broadcast('counted',$scope.count);
+          $rootScope.$broadcast('counted',UtilsFactory.getNotificationCount());
 
           //function to store notification count
-          $rootScope.$on('counted', function(event, obj){
-              console.log("obj: "+obj+" event: "+event);
-              $rootScope.count = obj;
+          $rootScope.$on('counted', function (event, obj) {
+            //  console.log("obj: "+obj+" event: "+event);
+            $rootScope.count = obj;
           });
           // window.location.reload();
           //  $state.reload();
@@ -60,7 +60,7 @@ angular.module('batscontrollers', [
           console.log(error.err);
         })
       }
-      else{
+      else {
         $interval.cancel(notificationCall);
       }
     }

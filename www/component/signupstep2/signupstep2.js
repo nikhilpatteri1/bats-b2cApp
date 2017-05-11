@@ -47,8 +47,9 @@ angular.module('signupstep2', [])
                     UtilsFactory.setEditMarkerDetails([]);
                 }
                 if ($scope._token != undefined || $scope._token != null) {
-                    if ($scope.editMarkerData.devid == undefined) {
-                        console.log("inside if: "+$scope.editMarkerData.devid);
+                    console.log("inside if: "+$scope.editMarkerData+"devid"+data[0].devid);
+                    if ($scope.editMarkerData == undefined) {
+                        console.log("inside if: "+$scope.editMarkerData);
                         var inputParam = { 'trackers': data };
                         BatsServices.addnewdevices(inputParam).success(function (response) {
                             $state.go(PageConfig.MANAGE_TRACKER);
