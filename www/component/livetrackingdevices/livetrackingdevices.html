@@ -11,9 +11,9 @@
                  <span class="acSmallFonts">{{tracker.devid}}</span>
                  <span class="floatRight ltdMainStatusSpan">
                     <span class="acSmallFonts ltdMarginForSpan acGreyFont">{{tracker.statusType}}</span>
-                    <span class="ltdStatusSpan" ng-class="{'crossedGeofence' : tracker.alarm_type ==0, 
-                        'crossSpeed' : tracker.alarm_type ==1, 'crossGeoAndSpeed' : tracker.alarm_type ==2,
-                        'normalState' : tracker.alarm_type ==3,'noResponceState' : tracker.alarm_type ==4}">
+                    <span class="ltdStatusSpan" ng-class="{'crossedGeofence' : tracker.alarm_type =='0', 
+                        'crossSpeed' : tracker.alarm_type =='1', 'crossGeoAndSpeed' : tracker.alarm_type =='2',
+                        'normalState' : tracker.alarm_type =='3','noResponceState' : tracker.alarm_type =='4'}">
                     </span>
                 </span>
             </ion-radio>
