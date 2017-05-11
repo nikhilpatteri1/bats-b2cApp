@@ -7,10 +7,10 @@ angular.module('livetracking', [])
 	$scope.singleDeviceZoomLevel=16;
 
 	if (UtilsFactory.getNotificationDetails()) {
-		console.log(UtilsFactory.getNotificationDetails());
+		// console.log(UtilsFactory.getNotificationDetails());
 		$scope.notificationData = UtilsFactory.getNotificationDetails();
 		$scope.count = UtilsFactory.getNotificationCount();
-		console.log($scope.count);
+		// console.log($scope.count);
 		if ($scope.count == undefined) {
 			$scope.count = 0;
 			$scope.notificationData = [];
@@ -21,12 +21,12 @@ angular.module('livetracking', [])
 		$scope.initialize(); 
 		var dynamicMapHeight=window.screen.availHeight;
 		$scope.mapHeight={height:parseInt(dynamicMapHeight)-43+"px"};
-		console.log($scope.mapHeight, localStorage.getItem("choice"));
+		// console.log($scope.mapHeight, localStorage.getItem("choice"));
 
 		if(localStorage.getItem("choice")==undefined || localStorage.getItem("choice")==null){
 			$state.go(PageConfig.LIVE_TRACKING_DEVICES);
 		}else{
-			console.log("Dtrue");
+			// console.log("Dtrue");
 			$scope.selectedDevice =  localStorage.getItem("choice");
 			
 			
@@ -155,8 +155,8 @@ angular.module('livetracking', [])
 				$scope.zoomlevel = map.getZoom();
 			}, 80);
 			if ($scope.zoomlevel < 16 || $scope.zoomlevel > 17) {
-					console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ZOOM & DEVICEID<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-					console.log($scope.zoomlevel);
+					// console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ZOOM & DEVICEID<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+					// console.log($scope.zoomlevel);
 					$scope.singleDeviceZoomed = false;
 					$interval.cancel(singleDeviceInterval);
 
@@ -196,9 +196,9 @@ angular.module('livetracking', [])
     };
 
 	$scope.reCenterDevice = function() {
-		console.log("Single Device Re Center");
+		// console.log("Single Device Re Center");
 		map.setZoom(16);
-		console.log(marker[0].getPosition());
+		// console.log(marker[0].getPosition());
 		map.panTo(marker[0].getPosition());
 		$scope.singleDeviceZoomed = true;
 		// if (angular.isDefined(singleDeviceInterval)) {
@@ -211,7 +211,7 @@ angular.module('livetracking', [])
 	
 	var iconImg;
     function createMarker(latlng, deviceID,vehNo,vehModel, html,type,devtype){
-		console.log(latlng);
+		// console.log(latlng);
 					
 		svg = new Array();
 		icons = new Array();
@@ -304,7 +304,7 @@ angular.module('livetracking', [])
     });	 
 
 	$scope.calcRoute = function(dataVal) {
-		console.log("calcRoute");
+		// console.log("calcRoute");
 		/**
 		 * check for storedltlng object is initialized or not if initalized
 		 * follow the next step else intialize the storedltlng check for
@@ -314,13 +314,13 @@ angular.module('livetracking', [])
 		 * for both start and end
 		 */
 		if(typeof storedltlng.lat!='undefined'){
-			console.log(storedltlng.lat);
+			// console.log(storedltlng.lat);
 			if(storedltlng.lat!=dataVal[0].values.lat){
-				console.log(dataVal[0].values.type);
+				// console.log(dataVal[0].values.type);
 				if(dataVal[0].values.type == 4){
 					
-					console.log("--------------------Different lat lng of "+dataVal[0].values.type+" ------------------------------");
-				    console.log("start : ",storedltlng.lat,"end :",dataVal[0].values.lat);
+					// console.log("--------------------Different lat lng of "+dataVal[0].values.type+" ------------------------------");
+				    // console.log("start : ",storedltlng.lat,"end :",dataVal[0].values.lat);
 					vehichleRouting(dataVal,storedltlng.lat,storedltlng.lng,storedltlng.lat,storedltlng.lng);
 				}
 				
@@ -338,8 +338,8 @@ angular.module('livetracking', [])
 				var endLat=dataVal[0].values.lat;
 				var endLng=dataVal[0].values.long;
 				vehichleRouting(dataVal,startLat,startLng,endLat,endLng);
-				console.log("-----------------EQUAL / SAME LAT------------------------")
-				console.log("start : ",storedltlng.lat,"end :",dataVal[0].values.lat);
+				// console.log("-----------------EQUAL / SAME LAT------------------------")
+				// console.log("start : ",storedltlng.lat,"end :",dataVal[0].values.lat);
 			}
 		}		
 		else{
@@ -355,7 +355,7 @@ angular.module('livetracking', [])
 	};
 
 	function vehichleRouting(dataVal,startLat,startLng,endLat,endLng){
-	    console.log(startLat,startLng,endLat,endLng);
+	    // console.log(startLat,startLng,endLat,endLng);
 	    if (timerHandle) {
 			clearTimeout(timerHandle);
 	    }
@@ -364,7 +364,7 @@ angular.module('livetracking', [])
 		angular.element(document).ready(function(){
 		map.setZoom($scope.singleDeviceZoomLevel); 
 
-		console.log(polyline);
+		// console.log(polyline);
 		// if(polyline != undefined && poly2 != undefined)
 		// {
 		
@@ -390,7 +390,7 @@ angular.module('livetracking', [])
         var start = new google.maps.LatLng({lat: Number(startLat), lng: Number(startLng)}); // document.getElementById("start").value;
         var end = new google.maps.LatLng({lat: Number(endLat), lng: Number(endLng)}); // document.getElementById("end").value;
         var travelMode = google.maps.DirectionsTravelMode.DRIVING;
-		console.log("inside this- start: "+start+" end: "+end);
+		// console.log("inside this- start: "+start+" end: "+end);
         var request = {
             origin: start,
             destination: end,
@@ -400,8 +400,8 @@ angular.module('livetracking', [])
         // Route the directions and pass the response to a
         // function to create markers for each step.
         directionsService.route(request, function (response, status) {
-            console.log(response);
-			console.log(status);
+            // console.log(response);
+			// console.log(status);
             if (status == google.maps.DirectionsStatus.OK) {
                 // directionsDisplay.setDirections(response);
 
@@ -415,7 +415,7 @@ angular.module('livetracking', [])
                 var legs = response.routes[0].legs;
                 for (i = 0; i < legs.length; i++) {
                     if (i === 0) {
-						console.log("create marker");
+						// console.log("create marker");
                         startLocation.latlng = legs[i].start_location;
                         startLocation.address = legs[i].start_address;												   
                           createMarker(legs[i].start_location,dataVal[i].devid,dataVal[i].vehicle_num,dataVal[i].vehicle_model,legs[i].start_address,dataVal[i].values.type,dataVal[i].devtype);
@@ -651,12 +651,12 @@ angular.module('livetracking', [])
 			var obj = [];
 			var inputParam = {"devlist" : [$scope.selectedDevice]};
 			BatsServices.currentData(inputParam).success(function (response) {
-				console.log(response.length);
-				console.log(response);
+				// console.log(response.length);
+				// console.log(response);
 				UtilsFactory.setLivetrackingDetails(response);
 				$scope.multiDevice = false;
 				if(response[0].values !=""){
-					console.log("response true");
+					// console.log("response true");
 					// var myPlace = {lat: Number(response[0].values.lat), lng: Number(response[0].values.long)};
 
 					// angular.element(document).ready(function () {
@@ -672,6 +672,7 @@ angular.module('livetracking', [])
 					$scope.vehicleName = response[0].vehicle_name;
 					speedValue=response[0].values.Velocity;					 
 					speedlimit=response[0].speed_limit;				
+					$scope.showArrow = true;
 					// request for geofence plotting
 					// vechile count updation based on type
 					$scope.carCount = 0;
@@ -698,13 +699,14 @@ angular.module('livetracking', [])
 							$scope.truckCount = 0;
 					}
 					$scope.speedSpeedOmeter=speedValue;
-					console.log("speed: "+$scope.speedSpeedOmeter);
+					// console.log("speed: "+$scope.speedSpeedOmeter);
 					$scope.vehnoSpeedOmeter=response[0].vehicle_num;
 					$scope.speedlimitSpeedOmeter=speedlimit;
 					$scope.dateTimeSpeedOmeter=getDateTime(response[0].values.ts);
 					$scope.calcRoute(response);
 				}
 				else{
+					$scope.showArrow = false;
 					$scope.speedSpeedOmeter= '0';
 					$scope.divcolor = '4';
 					$scope.vehicleName = response[0].vehicle_name;
@@ -781,16 +783,10 @@ angular.module('livetracking', [])
 	};
 	
 	$scope.ab = function(type){
-		if(type!='4' && type!=undefined){
+		if(type){
 			console.log("type: "+type);
 			$state.go(PageConfig.LIVE_TRACKING_DETAILS);
 		}
 	};
 	
 });
-
-/*
- * ----------------------------------------------------- end of map controller
- * ----------------------------------------------------------------------
- */
-
