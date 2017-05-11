@@ -16,7 +16,7 @@
         <span class="liveTrackreCenter" ng-click="reCenterDevice()" ng-hide="singleDeviceZoomed">
                 <i class="ion-android-send liveTrackRecenterA" ></i>Recenter</span>
         <!--<span class="liveTrackreCenter liveTrackParking" >Parking<i class="ion-android-send liveTrackRecenterA"></i></span>-->
-        <div class="row liveTrackBelowbtn"  ng-click="ab(divcolor)">
+        <div class="row liveTrackBelowbtn"  ng-click="ab(showArrow)">
             <div class="col col-30 col-center">
                 <div class="ltkmdetail">
                     <span style="font-size:21px;">{{speedSpeedOmeter}}</span><span style="font-size:14px;padding-left:3px;">KmpH</span></div>
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="col col-10 col-center">
-                <span ng-show="divcolor!='4' && divcolor!=''"><i class="ion-chevron-right"></i></span>
+                <span ng-show="showArrow"><i class="ion-chevron-right"></i></span>
             </div>
         </div>
     </ion-content>
