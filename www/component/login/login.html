@@ -26,7 +26,8 @@
                 <div class="LoginHeading">
                     <form name="loginForm" novalidate>
                         <label ng-if="data.userid" class="floatlabeltxt show-hide inputFieldFontSize">User Id</label>
-                        <input placeholder="User Id" type="text" ng-model="data.userid" required class="inputTextField" maxlength="20" name="user" ng-class="{error: loginForm.user.$invalid && Validate}">
+                        <input placeholder="User Id" type="number" ng-model="data.userid" required class="inputTextField"
+                            maxlength="20" oninput="if(value.length>20)value=value.slice(0,20)" name="user" ng-class="{error: loginForm.user.$invalid && Validate}">
                         </input>
                         <!--<span class="red" ng-if="loginForm.email.$dirty && loginForm.user.$invalid">
                                 <span ng-if="loginForm.user.$error.required">Email is required</span>
@@ -34,10 +35,12 @@
                             </span>-->
                         <div class="space">
                             <label ng-if="data.password" class="floatlabeltxt show-hide inputFieldFontSize">Password</label>
-                            <input placeholder="Password" type="password" ng-model="data.password" required class="inputTextField" />
-                            <span class="red" ng-if="loginForm.email.$dirty && loginForm.user.$invalid">
-                                <span ng-if="loginForm.user.$error.required">Email is required</span>
-                            <span ng-if="loginForm.user.$invalid">Invalid email address</span>
+                            <input placeholder="Password" autocomplete="new-password" type="password" ng-model="data.password" name="password"
+                                ng-pattern="/^(?=.*\d+)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%]{8,25}$/" maxlength="25" required class="inputTextField" />
+                            <span class="red" ng-if="loginForm.password.$dirty && loginForm.password.$invalid">
+                                Invalid Password
+                                <!--<span ng-if="loginForm.user.$error.required">Email is required</span>-->
+                            <!--<span ng-if="loginForm.password.$invalid">Invalid Password</span>-->
                             </span>
                         </div>
                     </form>
@@ -52,7 +55,7 @@
             <div class="commonLeftMargin logintopmargin">
             <ul>
                 <li>
-                    <button ng-disabled="loginForm.$invalid" ng-click="gotoHome(data, loginForm)" class="button button-balanced stButton LoginbtnMaarginTop">Login to BATS</button>
+                    <button ng-disabled="loginForm.$invalid" ng-click="gotoHome(data, loginForm)" ng-enter="gotoHome(data, loginForm)" class="button button-balanced stButton LoginbtnMaarginTop">Login to BATS</button>
                 </li>
                 <li>
                     <div ng-click="gotoFogotPassword()" class=" button-balancedForgot stButton">Forgot Password</div>

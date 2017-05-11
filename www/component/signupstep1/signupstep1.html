@@ -53,7 +53,7 @@
                         </div>
                         <div class="space">
                             <div ng-show="data.password" class="floatlabeltxt show-hide inputFieldFontSize">Password</div>
-                            <input placeholder="Password"  type="password" autocomplete="new-password" ng-pattern="/^(?=.*\d+)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%]{6,25}$/"
+                            <input placeholder="Password"  type="password" autocomplete="new-password" ng-pattern="/^(?=.*\d+)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%]{8,25}$/"
                              name="password" ng-model="data.password"
                                 required ng-class="{error: signupStep1Form.form.password.$invalid && Validate }" />
                                  <span class="red" ng-if="signupStep1Form.form.password.$dirty && signupStep1Form.form.password.$invalid">
@@ -70,7 +70,7 @@
                              </select>
 
                         </div>
-                        <div class="space">
+                        <div class="space" style="margin-bottom:15px;">
                             <div ng-show="data.state" class="floatlabeltxt show-hide inputFieldFontSize">State</div>
                             <select ng-model="data.state" class="dropdown" name="selectedstate" required placeholder="State" 
                             ng-options="x for x in states"
