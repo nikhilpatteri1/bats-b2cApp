@@ -22,6 +22,7 @@ angular.module('livetrackingdevices', [])
                 $scope.trackerList[i].statusType = "Out of N/W";
             }else{
                 $scope.trackerList[i].statusType = "Out of N/W";
+                tracker.alarm_type = '4';
             }
         })
         
