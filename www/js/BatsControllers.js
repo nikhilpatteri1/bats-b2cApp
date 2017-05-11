@@ -51,7 +51,7 @@ angular.module('batscontrollers', [
 
           //function to store notification count
           $rootScope.$on('counted', function (event, obj) {
-            //  console.log("obj: "+obj+" event: "+event);
+              console.log("\n obj: "+ (obj)+" event: "+(event));
             $rootScope.count = obj;
           });
           // window.location.reload();

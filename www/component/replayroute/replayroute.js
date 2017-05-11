@@ -9,6 +9,7 @@ angular.module('replayroute', [])
             console.log(UtilsFactory.getNotificationDetails());
             $scope.notificationData = UtilsFactory.getNotificationDetails();
             $rootScope.count = UtilsFactory.getNotificationCount();
+            $scope.count1=$rootScope.count;
             console.log($rootScope.count+" util factory "+UtilsFactory.getNotificationCount());
             if($rootScope.count==undefined){
                 $rootScope.count=0;
