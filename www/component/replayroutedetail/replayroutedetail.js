@@ -191,7 +191,7 @@ angular.module('replayroutedetail', [])
 		$scope.initialize();
 		$scope.end = false;
 		$scope.replaySlot = timeSlot;
-		console.log("timeslot: "+angular.toJson(timeSlot));
+		console.log("timeslot: "+angular.toJson(timeSlot)+""+timeSlot.sts);
 		var inputParam = { 'devid': dataFromReplay.devid, 'sts': timeSlot.sts, 'ets': timeSlot.ets };
 		BatsServices.history(inputParam).success(function (response) {
 			$scope.historyVal = response;
