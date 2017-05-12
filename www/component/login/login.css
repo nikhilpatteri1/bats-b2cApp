@@ -134,3 +134,7 @@
 .lineheight{
     line-height: 30px !important;
 }
+
+.hide-button{
+    display: none;
+}

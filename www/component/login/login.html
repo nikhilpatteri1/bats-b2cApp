@@ -4,10 +4,7 @@
             <div class="containerLogin">
                 <div class="helperLogin">
                     <ul class="conLogin topMArgin">
-
                         <img class="lgWelcomeLogin" src="img/logo-login.png">
-
-
                     </ul>
                 </div>
                 <!-- <p class="appVersion susRight">{{appVersion}}</p> -->
@@ -24,7 +21,7 @@
 
             <div class="containerLogin">
                 <div class="LoginHeading">
-                    <form name="loginForm" novalidate>
+                    <form name="loginForm" novalidate ng-submit="gotoHome(data, loginForm)">
                         <label ng-if="data.userid" class="floatlabeltxt show-hide inputFieldFontSize">User Id</label>
                         <input placeholder="User Id" type="number" ng-model="data.userid" required class="inputTextField"
                             maxlength="20" oninput="if(value.length>20)value=value.slice(0,20)" name="user" ng-class="{error: loginForm.user.$invalid && Validate}">
@@ -43,6 +40,7 @@
                             <!--<span ng-if="loginForm.password.$invalid">Invalid Password</span>-->
                             </span>
                         </div>
+                        <input type="submit" class="hide-button"></input>
                     </form>
                 </div>
                 <div class="space">
@@ -51,14 +49,14 @@
             </div>
         </div>
         </div>
-        <div class=" lgButtomBackgroundImage">
+        <div class="lgButtomBackgroundImage">
             <div class="commonLeftMargin logintopmargin">
             <ul>
                 <li>
-                    <button ng-disabled="loginForm.$invalid" ng-click="gotoHome(data, loginForm)" ng-enter="gotoHome(data, loginForm)" class="button button-balanced stButton LoginbtnMaarginTop">Login to BATS</button>
+                    <button ng-disabled="loginForm.$invalid" ng-click="gotoHome(data, loginForm)" class="button button-balanced stButton LoginbtnMaarginTop">Login to BATS</button>
                 </li>
                 <li>
-                    <div ng-click="gotoFogotPassword()" class=" button-balancedForgot stButton">Forgot Password</div>
+                    <div ng-click="gotoFogotPassword()" class="button-balancedForgot stButton">Forgot Password</div>
                 </li>
             </ul>
             </div>
