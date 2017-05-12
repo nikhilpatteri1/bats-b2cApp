@@ -8,7 +8,7 @@ angular.module('batscontrollers', [
   'managemember', 'livetrackingdevices', 'eventhistoryfilter',
   'replayroutedetail', 'notification',
   'ion-datetime-picker', 'ion-place-tools', 'ionic-toast',
-  'underscore', 'ngLoadingSpinner', 'gm', 'angular-svg-round-progressbar','ngCordova'
+  'underscore', 'ngLoadingSpinner', 'gm', 'angular-svg-round-progressbar', 'ngCordova'
 ])
 
   .controller('BatsCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $state, PageConfig, Constants,
@@ -47,11 +47,11 @@ angular.module('batscontrollers', [
           console.log("count in ctrl " + $scope.count);
 
           //broadcasting notification count
-          $rootScope.$broadcast('counted',UtilsFactory.getNotificationCount());
+          $rootScope.$broadcast('counted', UtilsFactory.getNotificationCount());
 
           //function to store notification count
           $rootScope.$on('counted', function (event, obj) {
-              console.log("\n obj: "+ (obj)+" event: "+(event));
+            console.log("\n obj: " + (obj) + " event: " + (event));
             $rootScope.count = obj;
           });
           // window.location.reload();
@@ -92,6 +92,10 @@ angular.module('batscontrollers', [
       })
 
     }
+
+    $scope.$on('onReminderAdded', function (event, id, state, json) {
+      console.log('notification ADDED, id: ' + id + ' state:' + state + ' json:' + json);
+    });
 
     $scope.logout = function () {
       var confirmPopup = $ionicPopup.confirm({
