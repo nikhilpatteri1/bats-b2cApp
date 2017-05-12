@@ -18,8 +18,8 @@
                     {{data[0].vehicle_name}}<br> {{data[0].vehicle_num}}
                     <!--{{vehicleStatistics.vehicle_name}} <br>{{vehicleStatistics.vehicle_num}}-->
                     <div class="acGreyFont lvdSmallFontsforChildName">Traker id : {{data[0].devid}}</div>
-                    <div class="acGreyFont lvdSmallFontsforChildName">Tracker Sim Carrier: {{}} </div>
-                    <div class="acGreyFont lvdSmallFontsforChildName">Tracker Sim Ph no. : {{}}</div>
+                    <div class="acGreyFont lvdSmallFontsforChildName">Tracker Sim Carrier: {{deviceInfo.sim_service_provider}} </div>
+                    <div class="acGreyFont lvdSmallFontsforChildName">Tracker Sim Ph no. : {{deviceInfo.device_sim_cn}}</div>
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
                 <div id="widgetId2" class="vsdSolidGauge"></div>
             </div>
         </div>
-        <div class="speed-limit-text">
+        <div class="speed-limit-text marginBottom">
             <div class="lvdSeedLimit ">{{data[0].speed_limit}} KmpH<br>Speed limit</div>
         </div>
     </ion-content>

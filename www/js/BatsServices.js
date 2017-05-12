@@ -93,5 +93,8 @@ angular.module('batsservices', [])
     this.editTracker = function (inputData) {
         return $http.post(baseUrl + 'b2capp/device/sim_update', inputData);
     }
-    
+   
+     this.deviceInfo = function (inputData) {
+        return $http.post(baseUrl + 'b2capp/device/info', inputData);
+    }
 })

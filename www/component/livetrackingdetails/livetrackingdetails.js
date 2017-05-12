@@ -13,11 +13,20 @@ angular.module('livetrackingdetails', [])
 		}
 
 		$scope.init = function () {
+			var inputParam = {};
+			
 			$scope.selectedDevice = localStorage.getItem("choice");
 			console.log($scope.selectedDevice);
 			if (UtilsFactory.getLivetrackingDetails().length != 0) {
 				$scope.data = UtilsFactory.getLivetrackingDetails();
 			}
+			inputParam={'devid':$scope.data[0].devid};
+			 BatsServices.deviceInfo(inputParam).success(function (response) {
+                  $scope.deviceInfo = response
+				  console.log("device info "+angular.toJson($scope.deviceInfo));
+            }).error(function (error) {
+                ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+            })
 			$scope.values = $scope.data[0];
 			console.log("vehicle data: " + angular.toJson($scope.values.speed_limit));
 			console.log($scope.values);

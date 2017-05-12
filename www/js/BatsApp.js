@@ -1,6 +1,6 @@
 angular.module('bats', ['ionic', 'batsconstants', 'batsconfig', 'batsinterceptor', 'batsservices', 'batsdirective', 
   'batscontrollers', 'batsfilters', 'batsfactory'])
-.run(function($ionicPlatform, Constants, $rootScope, $state, ionicToast, PageConfig, Messages, $ionicPopup) {
+.run(function($ionicPlatform, Constants, $rootScope, $state, ionicToast, PageConfig, Messages, $ionicPopup, $cordovaLocalNotification) {
   $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);

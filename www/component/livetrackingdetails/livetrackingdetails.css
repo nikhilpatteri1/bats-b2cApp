@@ -60,6 +60,9 @@
     height: 100px;
    
 }
+.marginBottom{
+    margin-bottom: 30px
+}
 .lvdVehicleBack{
     border-radius: 50px;
     width: 135px;
