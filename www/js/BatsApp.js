@@ -13,7 +13,7 @@ angular.module('bats', ['ionic', 'batsconstants', 'batsconfig', 'batsinterceptor
         }, false);
       }
 
-      app.onReminderAdd = function (id, state, json) {
+      onReminderAdd = function (id, state, json) {
         $timeout(function () {
           $rootScope.$broadcast('onReminderAdded', id, state, json);
         }, 100);
