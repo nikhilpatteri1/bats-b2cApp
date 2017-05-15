@@ -16,13 +16,13 @@
                     <img class="ehdimage" ng-src="{{imageSrc}}">
                 </div>
                 <div class="col col-55">
-                    <div class="row" ng-class="[chexkAlarmType(event.alarm_type)]">{{alarmType}}
+                    <div class="row" ng-class="[chexkAlarmType(event.alarm_type,event.Velocity)]">{{alarmType}}
                         <!--<div class="row latlongStyle" ng-click="showAlert(event.lat,event.long)">
                             {{event.lat}} , {{event.long}}-->
                     </div>
                     <div class="row ">
                         <!--<div class="" ng-class="[chexkAlarmType(event.alarm_type)]">{{alarmType}}</div>-->
-                        <div class="leftPaddingZero">{{event.Velocity}} KmpH</div>
+                        <div class="leftPaddingZero" ng-class="{'redSpeed':redSpeed==1}">{{event.Velocity}} KmpH</div>
                     </div>
                 </div>
                 <div class="col col-25">

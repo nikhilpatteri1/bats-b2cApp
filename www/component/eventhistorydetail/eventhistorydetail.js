@@ -10,15 +10,16 @@ angular.module('eventhistorydetail', [])
     }
 
     if (UtilsFactory.getNotificationDetails()) {
-      console.log(UtilsFactory.getNotificationDetails());
+    //  console.log(UtilsFactory.getNotificationDetails());
       $scope.notificationData = UtilsFactory.getNotificationDetails();
       $scope.count = UtilsFactory.getNotificationCount();
-      console.log($scope.count);
+    //  console.log($scope.count);
       if ($scope.count == undefined) {
         $scope.count = 0;
         $scope.notificationData = [];
       }
     }
+    $scope.speed;
     $scope.noData = false;
     // $scope.filterList = UtilsFactory.getHistoryFilterList();
     $scope.init = function () {
@@ -30,6 +31,8 @@ angular.module('eventhistorydetail', [])
       var inputParam = UtilsFactory.getEventHistoryList();
       BatsServices.eventHistory(inputParam).success(function (response) {
         $scope.eventHistoryValues = response.values;
+        $scope.speed=response.speed_limit;
+         //console.log("\n gdgj" +$scope.speed+$scope.eventHistoryValues);
         if ($scope.eventHistoryValues.length == 0) {
           $scope.noData = true;
         }
@@ -39,8 +42,17 @@ angular.module('eventhistorydetail', [])
     }
 
 
-    $scope.chexkAlarmType = function (alarm_type) {
-     // console.log("geeta its me alarm type" + alarm_type);
+    $scope.chexkAlarmType = function (alarm_type, velocity) {
+     // console.log("gdgj" +$scope.speed);
+      if ( $scope.speed< velocity) {
+        $scope.redSpeed = 1;
+      //  console.log("red style applying " + $scope.redSpeed);
+      }
+      else{
+         $scope.redSpeed = 0;
+      }
+
+      // console.log("geeta its me alarm type" + alarm_type);
       if (alarm_type == 0) {
         $scope.alarmType = "Panic";
         $scope.imageSrc = 'img/eventH/panic.png';
@@ -81,7 +93,7 @@ angular.module('eventhistorydetail', [])
         $scope.alarmType = "Warning";
         $scope.imageSrc = 'img/eventH/invalid.png';
       }
-      console.log(alarm_type + $scope.alarmType);
+   //   console.log(alarm_type + $scope.alarmType + velocity + $scope.redSpeed);
     }
 
 

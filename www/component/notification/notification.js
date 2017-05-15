@@ -9,10 +9,11 @@ angular.module('notification', [])
     $scope.noData = true;
     console.log(UtilsFactory.getNotificationDetails());
     if (UtilsFactory.getNotificationDetails()) {
-      console.log(UtilsFactory.getNotificationDetails());
+      console.log("notification data "+UtilsFactory.getNotificationDetails());
       $scope.notificationData = UtilsFactory.getNotificationDetails();
       $rootScope.count = UtilsFactory.getNotificationCount();
       $scope.noData = false;
+      $scope.speed=$scope.notificationData.speed_limit;
       console.log($rootScope.count +" util factory  "+UtilsFactory.getNotificationCount());
       if ($rootScope.count == undefined || $rootScope.count == 0) {
         $rootScope.count = 0;
@@ -20,11 +21,20 @@ angular.module('notification', [])
         $scope.noData = true;
       }
       $scope.temp = 0;
+      
       UtilsFactory.setNotificationCount(undefined);
       UtilsFactory.setNotificationDetails([]);
     }
-
-    $scope.chexkAlarmType = function (alarm_type) {
+ $scope.speed;
+    $scope.chexkAlarmType = function (alarm_type, velocity) {
+      console.log("gdgj" +$scope.speed);
+      if ( $scope.speed< velocity) {
+        $scope.redSpeed = 1;
+        console.log("red style applying " + $scope.redSpeed);
+      }
+      else{
+         $scope.redSpeed = 0;
+      }
       // console.log("geeta its me alarm type" + alarm_type);
       if (alarm_type == 0) {
         $scope.alarmType = "Panic";

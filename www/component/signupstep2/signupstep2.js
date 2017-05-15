@@ -9,7 +9,7 @@ angular.module('signupstep2', [])
         if (UtilsFactory.getSignUpData().length == 0 && $scope._token == undefined) {
             $state.go(PageConfig.SIGNUP_STEP1)
         }
-        console.log("edit marker data: "+$scope.editMarkerData);
+        console.log("edit marker data: " + $scope.editMarkerData);
         if (UtilsFactory.getEditMarkerDetails().length != 0) {
             $scope.editMarkerData = UtilsFactory.getEditMarkerDetails();
             console.log($scope.editMarkerData)
@@ -26,9 +26,10 @@ angular.module('signupstep2', [])
         }
 
         $scope.removeTracker = function (i) {
-            console.log("removing: "+i);
+            console.log("removing: " + i);
             $scope.trackers.splice(i, 1);
-            $scope.data[i] = {};
+            // $scope.data[i] = {};
+            delete $scope.data[i];
         }
 
 
@@ -47,9 +48,9 @@ angular.module('signupstep2', [])
                     UtilsFactory.setEditMarkerDetails([]);
                 }
                 if ($scope._token != undefined || $scope._token != null) {
-                    console.log("inside if: "+$scope.editMarkerData+"devid"+data[0].devid);
+                    console.log("inside if: " + $scope.editMarkerData + "devid" + data[0].devid);
                     if ($scope.editMarkerData == undefined) {
-                        console.log("inside if: "+$scope.editMarkerData);
+                        console.log("inside if: " + $scope.editMarkerData);
                         var inputParam = { 'trackers': data };
                         BatsServices.addnewdevices(inputParam).success(function (response) {
                             $state.go(PageConfig.MANAGE_TRACKER);
@@ -58,8 +59,8 @@ angular.module('signupstep2', [])
                         })
                     }
                     else {
-                        console.log(" update " + $scope.editMarkerData.devid+ data[0].t_sim_provider+data[0].t_sim_cn);
-                        var inputParam = { 'devid':data[0].devid,'t_sim_provider':data[0].t_sim_provider ,'t_sim_cn':""+data[0].t_sim_cn};
+                        console.log(" update " + $scope.editMarkerData.devid + data[0].t_sim_provider + data[0].t_sim_cn);
+                        var inputParam = { 'devid': data[0].devid, 't_sim_provider': data[0].t_sim_provider, 't_sim_cn': "" + data[0].t_sim_cn };
                         BatsServices.editTracker(inputParam).success(function (response) {
                             $state.go(PageConfig.MANAGE_TRACKER);
                         }).error(function (error) {

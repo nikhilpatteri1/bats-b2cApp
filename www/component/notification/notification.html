@@ -14,7 +14,7 @@
                     <img class="ehdimage" ng-src="{{imageSrc}}">
                 </div>
                 <div class="col col-50">
-                    <div class="row" ng-class="[chexkAlarmType(notif.alarm_type)]">{{alarmType}}
+                    <div class="row" ng-class="[chexkAlarmType(notif.alarm_type,notif.Velocity)]">{{alarmType}}
                         <!--<div class="row latlongStyle" ng-click="showAlert(event.lat,event.long)">
                             {{event.lat}} , {{event.long}}-->
                     </div>
@@ -24,7 +24,7 @@
                     </div>
                     <div class="row ">
                         <!--<div class="" ng-class="[chexkAlarmType(event.alarm_type)]">{{alarmType}}</div>-->
-                        <div class="leftPaddingZero speedstyle acSmallFonts">{{notif.Velocity}} KmpH</div>
+                        <div class="leftPaddingZero speedstyle acSmallFonts"  ng-class="{'redSpeed':redSpeed==1}">{{notif.Velocity}} KmpH</div>
                     </div>
                 </div>
                 <div class="col col-30">

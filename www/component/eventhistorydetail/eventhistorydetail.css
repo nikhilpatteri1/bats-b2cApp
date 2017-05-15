@@ -27,6 +27,9 @@
     border-radius: 6px;
     font-size: 11px;
 }
+.redSpeed{
+    color:red !important;
+}
 .latlongStyle{
     text-decoration: underline;
     color: #1fb6ff;
