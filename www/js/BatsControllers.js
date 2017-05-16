@@ -33,7 +33,7 @@ angular.module('batscontrollers', [
     }
 
     function callNotificationinterval() {
-      console.log(localStorage.getItem(Constants.accessToken));
+    //  console.log(localStorage.getItem(Constants.accessToken));
       if (localStorage.getItem(Constants.accessToken) != null) {
         BatsServices.notification({}).success(function (response) {
           $scope.notificationData = response;
@@ -44,14 +44,14 @@ angular.module('batscontrollers', [
           // console.log($rootScope.count);
           UtilsFactory.setNotificationDetails(response);
           UtilsFactory.setNotificationCount($scope.count);
-          console.log("count in ctrl " + $scope.count);
+        //  console.log("count in ctrl " + $scope.count);
 
           //broadcasting notification count
           $rootScope.$broadcast('counted', UtilsFactory.getNotificationCount());
 
           //function to store notification count
           $rootScope.$on('counted', function (event, obj) {
-            console.log("\n obj: " + (obj) + " event: " + (event));
+          // console.log("\n obj: " + (obj) + " event: " + (event));
             $rootScope.count = obj;
           });
           // window.location.reload();
