@@ -22,9 +22,18 @@ angular.module('managetracker', [])
         }
         init();
 
+        $scope.countingForActivation=0;
         $scope.$on('manageTrackerList', function () {
+             console.log("im redirection from activation"+$scope.countingForActivation);
+           // $scope.countingForActivation=1;
             init();
-            callDeviceLIstAPI();//  init();
+            if($scope.countingForActivation>0){
+
+            }else{
+                 callDeviceLIstAPI();//  init();
+            }
+            $scope.countingForActivation++;
+           
         })
 
         //function for keep calling devicelist api after activate device and page is manage tracker
@@ -44,7 +53,7 @@ angular.module('managetracker', [])
                 var inputParam = {};
                 BatsServices.deviceList(inputParam).success(function (response) {
                     $scope.trackerList = response
-                    console.log("inside " + $scope.time);
+                    console.log("inside " + $scope.time+" interval lenght "+$interval.length);
                     if ($scope.time === 15) {
                         console.log("inside manage tracker interval end ");
                         $interval.cancel(deviceListAPi);
