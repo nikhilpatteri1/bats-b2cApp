@@ -1,10 +1,10 @@
 angular.module('report', [])
-    .controller('ReportCtrl', function ($scope, $rootScope, $ionicModal, $timeout, BatsServices, ionicToast, PageConfig, Constants, $state,
+    .controller('ReportCtrl', function ($scope, $rootScope, $ionicModal, $timeout,$ionicPopup, BatsServices, ionicToast, PageConfig, Constants, $state,
         UtilsFactory) {
         //***************************** for fetching device list*****************************
         var inputParam = {};
         console.log("sadsad");
-        BatsServices.deviceList(inputParam).success(function (response) {
+        BatsServices.activeDeviceList(inputParam).success(function (response) {
             //console.log(JSON.stringify(response));
             $scope.deviceList = response
         }).error(function (error) {
@@ -15,6 +15,14 @@ angular.module('report', [])
         $rootScope.timeValue = new Date();
         $rootScope.datetimeValue = new Date();
         $scope.gotoReport = function (data, form) {
+            var alertPopup = $ionicPopup.alert({
+                            title: '',
+                            template: '<div class="suPopupContent">This feature not implemented </div>'
+                            
+                        });
+                        // alertPopup.then(function (res) {
+                        //     $state.go(PageConfig.LOGIN);
+                        // });
             // BatsServices.deviceList(inputParam).success(function (response) {
             //     //console.log(JSON.stringify(response));
             //     $scope.deviceList = response

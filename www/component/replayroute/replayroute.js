@@ -24,7 +24,7 @@ angular.module('replayroute', [])
 
         function init(){
             var inputParam = {};
-            BatsServices.deviceList(inputParam).success(function (response) {
+            BatsServices.activeDeviceList(inputParam).success(function (response) {
                 //console.log(JSON.stringify(response));
                 $scope.deviceList = response
             }).error(function (error) {

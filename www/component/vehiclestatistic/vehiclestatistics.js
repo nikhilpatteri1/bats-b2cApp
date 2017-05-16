@@ -5,7 +5,7 @@ angular.module('vehiclestatistics', [])
         var inputParam = {};
         $scope.data={};
         console.log("sadsad");
-        BatsServices.deviceList(inputParam).success(function (response) {
+        BatsServices.activeDeviceList(inputParam).success(function (response) {
             //console.log(JSON.stringify(response));
             $scope.deviceList = response
         }).error(function (error) {
