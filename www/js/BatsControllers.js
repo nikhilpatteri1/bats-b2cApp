@@ -7,7 +7,7 @@ angular.module('batscontrollers', [
   'livetrackingdetails', 'report', 'addmember',
   'managemember', 'livetrackingdevices', 'eventhistoryfilter',
   'replayroutedetail', 'notification',
-  'ion-datetime-picker', 'ion-place-tools', 'ionic-toast',
+  'ion-datetime-picker', 'ion-place-tools', 'ionic-toast','geofence',
   'underscore', 'ngLoadingSpinner', 'gm', 'angular-svg-round-progressbar', 'ngCordova'
 ])
 
