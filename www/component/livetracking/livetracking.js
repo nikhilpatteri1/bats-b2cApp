@@ -37,6 +37,7 @@ angular.module('livetracking', [])
 	};
 
 	$scope.gotoLivetrackingDevice = function(){
+		$interval.cancel(singleDeviceInterval);
 		$state.go(PageConfig.LIVE_TRACKING_DEVICES)
 	};
 

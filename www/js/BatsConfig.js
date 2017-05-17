@@ -44,6 +44,17 @@ angular.module('batsconfig', [])
         }
       })
 
+       .state(PageConfig.GEOFENCE, {
+        url: '/geofence',
+        cache: false,
+        views: {
+          'menuContent': {
+            templateUrl: 'component/geofence/geofence.html',
+            controller: 'GeoFenceCtrl'
+          }
+        }
+      })
+
       .state(PageConfig.SIGNUP_STEP1, {
         url: '/signupstep1',
         cache: false,

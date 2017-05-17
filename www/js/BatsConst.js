@@ -41,7 +41,8 @@ batsconstants.constant('PageConfig', {
 	EVENT_FILTER:'bats.eventfilter',	
 	LIVE_TRACKING_DEVICES : 'bats.livetrackingdevices',
 	REPLAY_ROUTE_DETAILS : 'bats.replayroutedetail',
-	NOTIFICATION : 'bats.notification'
+	NOTIFICATION : 'bats.notification',
+	GEOFENCE:'bats.geofence'
 });
    
 

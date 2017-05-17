@@ -26,6 +26,9 @@ angular.module('updatemarkerdetails', [])
             }
         }
 
+    $scope.gotoGeofence=function(){
+        $state.go(PageConfig.GEOFENCE);
+    }
     $scope.updateTracker = function(data, form){
        if(form.$valid){
            var inputParam = data;

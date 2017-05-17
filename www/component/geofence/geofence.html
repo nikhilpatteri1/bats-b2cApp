@@ -1,0 +1,33 @@
+<ion-view view-title="Geo Fence">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-arrow-left-c" ng-click="backToUpdateTracker()"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <a class="button button-icon button-clear " href="#/bats/notification"><img class="filterWidth" src="img/notification.png">
+            <span class="badge badge-dark badgePosition" ng-class="{'badgePositionHide':count=='0','badgePosition':count!='0'}">{{count}}</span></a>
+    </ion-nav-buttons>
+    <ion-content class="hmCards" >
+       <div class="mapcotainer" ng-init="initMap()">
+            <div id="geoMap"></div>
+        </div>
+        <!--<span class="liveTrackreCenter" ng-click="reCenterDevice()" ng-hide="singleDeviceZoomed">
+                <i class="ion-android-send liveTrackRecenterA" ></i>Recenter</span>-->
+        <!--<span class="liveTrackreCenter liveTrackParking" >Parking<i class="ion-android-send liveTrackRecenterA"></i></span>-->
+        <div class="row liveTrackBelowbtn" >
+            <!--<div class="col col-30 col-center">
+                <div class="ltkmdetail">
+                    <span style="font-size:21px;">{{speedSpeedOmeter}}</span><span style="font-size:14px;padding-left:3px;">KmpH</span></div>
+            </div>
+            <div class="col col-60 col-center">
+                <div>
+                    <p class="ltstatusUpTxt">{{vehicleName}}</p>
+                    <span class="ltwrap_type" ng-style="{{getColorBack(divcolor)}}"></span>
+                    <p class="ltstatusTxt">{{barTxt}}</p>
+                </div>
+            </div>
+            <div class="col col-10 col-center">
+                <span ng-show="showArrow"><i class="ion-chevron-right"></i></span>
+            </div>-->
+        </div>
+    </ion-content>
+</ion-view>
