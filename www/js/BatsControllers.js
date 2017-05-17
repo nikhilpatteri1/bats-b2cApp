@@ -12,7 +12,7 @@ angular.module('batscontrollers', [
 ])
 
   .controller('BatsCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $state, PageConfig, Constants,
-    $ionicPopup, $interval, BatsServices, ionicToast, UtilsFactory) {
+    $ionicPopup, $interval, BatsServices, ionicToast, UtilsFactory, $cordovaLocalNotification, $ionicPlatform) {
 
     $scope.openSetting = false;
     $scope.openSettingBar = function () {
@@ -44,6 +44,23 @@ angular.module('batscontrollers', [
           // console.log($rootScope.count);
           UtilsFactory.setNotificationDetails(response);
           UtilsFactory.setNotificationCount($scope.count);
+          if(response[0].data!='Notification not found'){
+            sendNotification(response[0]);
+          }
+          // $ionicPlatform.ready(function () {
+              // function sendNotification(){
+              //     var alarmTime = new Date();
+              //     alarmTime.setMinutes(alarmTime.getMinutes() + 1);
+              //     $cordovaLocalNotification.schedule({
+              //         id: 1,
+              //         title: 'Warning',
+              //         text: 'Hello new notification!',
+              //         every: 'minute'
+              //     }).then(function (result) {
+              //         console.log('Notification 1 triggered');
+              //     });
+              // };
+          // });
         //  console.log("count in ctrl " + $scope.count);
 
           //broadcasting notification count
@@ -111,4 +128,40 @@ angular.module('batscontrollers', [
         }
       });
     }
+
+    function sendNotification(response){
+        var notify_heading;
+        console.log("inside notification"+angular.toJson(response));
+        if(response.alarm_type == '0'){
+          notify_heading = 'Panic';
+        }else if(response.alarm_type == '1'){
+          notify_heading = 'Tamper Sim';
+        }else if(response.alarm_type == '2'){
+          notify_heading = 'Tamper Top';
+        }else if(response.alarm_type == '3'){
+          notify_heading = 'Battery';
+        }else if(response.alarm_type == '4'){
+          notify_heading = 'Overspeed';
+        }else if(response.alarm_type == '5'){
+          notify_heading = 'Geofence';
+        }else if(response.alarm_type == '6'){
+          notify_heading = 'Sanity alarm';
+        }else if(response.alarm_type == '7'){
+          notify_heading = 'CONNECTION TO TRACKER INTERRUPTED';
+        }else if(response.alarm_type == '8'){
+          notify_heading = 'Robbery / Theft alarm';
+        }else if(response.alarm_type == '9'){
+          notify_heading = 'Undefined alarm_type';
+        }
+
+        console.log("id: "+response.devid+" title: "+response.vehicle_num);
+
+        $cordovaLocalNotification.schedule({
+            id: response.devid,
+            title: response.vehicle_num,
+            text: notify_heading,
+        }).then(function (result) {
+            console.log('Notification triggered');
+        });
+    };
   })
