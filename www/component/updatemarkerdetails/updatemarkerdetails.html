@@ -61,7 +61,7 @@
                     ng-class="{'umdFilledInputBox' : updatemarkerdetialsForm.form.vehicle_num.$invalid}">
             </div>
             <div class="umdHeaderIconsVehicle acSmallFonts">Maximum Speed limit</div>
-            <div class="umdInputDiv umdFlex" style="margin-bottom:50px;">
+            <div class="umdInputDiv umdFlex" >
                 <input type="text" name="speed_limit" class="umdInputBoxes umdSpeedLimit" required 
                     placeholder="Set Speed Limit" ng-model="data.speed_limit"
                     ng-class="{'umdFilledInputBox' : updatemarkerdetialsForm.form.speed_limit.$invalid}">
@@ -69,7 +69,7 @@
                 <span class="umdSpeedLimitSpan acGreyFont">Example:60Kmph you will be notified when vehicle crosses the speed limit</span>
             </div>
 
-              <button  ng-click="gotoGeofence()" class="button button-balanced  ">Draw GEofence</button>
+              <button  ng-click="gotoGeofence()" class="button button-balanced  " style="margin-bottom:50px;">Draw GEofence</button>
         </form>
     </ion-content>
     <div class="bar bar-footer bar-balanced" ng-class="{'disableDiv': updatemarkerdetialsForm.form.$invalid}" 

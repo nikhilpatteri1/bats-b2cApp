@@ -1,33 +1,176 @@
 angular.module('geofence', [])
     .controller('GeoFenceCtrl', function ($scope, $ionicModal, $timeout, UtilsFactory, $state, PageConfig, BatsServices,
-        ionicToast, $interval, Constants) {
-var directionsDisplay = new google.maps.DirectionsRenderer;
-        $scope.initMap = function () {
-            navigator.geolocation.getCurrentPosition(onSuccess, onError, {
-                enableHighAccuracy: true,
-                maximumAge: 3600000
-            });
+        ionicToast, $interval, Constants, $cordovaGeolocation) {
+        // var options = { timeout: 10000, enableHighAccuracy: true };
 
-            function onSuccess(position) {
-                lat = position.coords.latitude;
-                lng = position.coords.longitude;
-                latLng = new google.maps.LatLng(lat, lng);
+        // $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
 
-                //load map when the page is ready
-                angular.element(document).ready(function () {
-                    var map = new google.maps.Map(document.getElementById('geoMap'), {
-                        zoom: 7,
-                        center: latLng,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                    });
-                    directionsDisplay.setMap(map);
-                });
-            };
+        //     var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-            function onError(error) {
-              //  alert("Unable to get device location");
-            };
-        };
+        //     var mapOptions = {
+        //         center: latLng,
+        //         zoom: 15,
+        //         mapTypeId: google.maps.MapTypeId.ROADMAP
+        //     };
+
+        //     $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        // }, function (error) {
+        //     console.log("Could not get location");
+        // });
+
+console.log("inside geofence");
+var div = document.getElementById("map");
+var map = window.plugin.google.maps.Map.getMap(div, {
+  'mapType': window.plugin.google.maps.MapTypeId.ROADMAP,
+  'controls': {
+    'compass': true,
+    //'myLocationButton': true,
+    'indoorPicker': true,
+    'zoom': true
+  },
+  'gestures': {
+    'scroll': true,
+    'tilt': true,
+    'rotate': true,
+    'zoom': true
+  },
+  'styles': [
+    {
+      featureType: "all",
+      stylers: [
+        { saturation: -80 }
+      ]
+    },{
+      featureType: "road.arterial",
+      elementType: "geometry",
+      stylers: [
+        { hue: "#00ffee" },
+        { saturation: 50 }
+      ]
+    },{
+      featureType: "poi.business",
+      elementType: "labels",
+      stylers: [
+        { visibility: "off" }
+      ]
+    }
+  ],
+  'camera' : {
+    target: {
+      lat: 37.422375,
+      lng: -122.084207
+    },
+    zoom: 10
+  },
+  'preferences': {
+    'zoom': {
+      'minZoom': 10,
+      'maxZoom': 18
+    },
+    'building': false
+  }
+});
+map.one(window.plugin.google.maps.event.MAP_READY, function() {
+  console.log("--> map_canvas2 : ready.");
+});
+
+//   map.one(window.plugin.google.maps.event.MAP_READY, function() {
+// console.log("--> map_canvas1 : ready.");
+//     // const GORYOKAKU_POINTS = [
+//     //   {"lat": 41.79883, "lng": 140.75675},
+//     //   {"lat": 41.799240000000005, "lng": 140.75875000000002},
+//     //   {"lat": 41.797650000000004, "lng": 140.75905},
+//     //   {"lat": 41.79637, "lng": 140.76018000000002},
+//     //   {"lat": 41.79567, "lng": 140.75845},
+//     //   {"lat": 41.794470000000004, "lng": 140.75714000000002},
+//     //   {"lat": 41.795010000000005, "lng": 140.75611},
+//     //   {"lat": 41.79477000000001, "lng": 140.75484},
+//     //   {"lat": 41.79576, "lng": 140.75475},
+//     //   {"lat": 41.796150000000004, "lng": 140.75364000000002},
+//     //   {"lat": 41.79744, "lng": 140.75454000000002},
+//     //   {"lat": 41.79909000000001, "lng": 140.75465},
+//     //   {"lat": 41.79883, "lng": 140.75673}
+//     // ];
+//     // map.addPolygon({
+//     //   'points': GORYOKAKU_POINTS,
+//     //   'strokeColor' : '#AA00FF',
+//     //   'strokeWidth': 5,
+//     //   'fillColor' : '#880000'
+//     // }, function(polygon) {
+//     //   map.animateCamera({
+//     //     'target': polygon.getPoints()
+//     //   });
+//     // });
+
+//   });
+//});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // var directionsDisplay = new google.maps.DirectionsRenderer;
+        // $scope.initMap = function () {
+        //     navigator.geolocation.getCurrentPosition(onSuccess, onError, {
+        //         enableHighAccuracy: true,
+        //         maximumAge: 3600000
+        //     });
+
+        //     function onSuccess(position) {
+        //         lat = position.coords.latitude;
+        //         lng = position.coords.longitude;
+        //         latLng = new google.maps.LatLng(lat, lng);
+
+        //         //load map when the page is ready
+        //         angular.element(document).ready(function () {
+        //             var map = new google.maps.Map(document.getElementById('geoMap'), {
+        //                 zoom: 7,
+        //                 center: latLng,
+        //                 mapTypeId: google.maps.MapTypeId.ROADMAP
+        //             });
+        //             directionsDisplay.setMap(map);
+        //         });
+        //     };
+
+        //     function onError(error) {
+        //       //  alert("Unable to get device location");
+        //     };
+        // };
 
 
 

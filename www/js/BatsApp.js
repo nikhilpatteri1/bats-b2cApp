@@ -5,19 +5,10 @@ angular.module('bats', ['ionic', 'batsconstants', 'batsconfig', 'batsinterceptor
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
-        document.addEventListener("deviceready", function () {
-          window.plugin.notification.local.onadd = app.onReminderAdd;
-          window.plugin.notification.local.onclick = app.onReminderClick;
-          window.plugin.notification.local.oncancel = app.onReminderCancel;
-          window.plugin.notification.local.ontrigger = app.onReminderTrigger;
-        }, false);
+        
       }
 
-      onReminderAdd = function (id, state, json) {
-        $timeout(function () {
-          $rootScope.$broadcast('onReminderAdded', id, state, json);
-        }, 100);
-      }
+     
       if (window.StatusBar) {
         StatusBar.styleDefault();
       }
