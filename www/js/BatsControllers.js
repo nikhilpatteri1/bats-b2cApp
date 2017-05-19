@@ -24,13 +24,13 @@ angular.module('batscontrollers', [
       $scope.menuLink = selectedMenuPageNumber;
     }
     var notificationCall;
-    $rootScope.callNotification = function () {
-      notificationCall = $interval(callNotificationinterval, 20000);
-    }
+    // $rootScope.callNotification = function () {
+    //   notificationCall = $interval(callNotificationinterval, 20000);
+    // }
 
-    if (notificationCall == undefined) {
-      $rootScope.callNotification();
-    }
+    // if (notificationCall == undefined) {
+    //   $rootScope.callNotification();
+    // }
 
     function callNotificationinterval() {
     //  console.log(localStorage.getItem(Constants.accessToken));

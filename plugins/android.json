@@ -9,6 +9,12 @@
     "installed_plugins": {
         "de.appplant.cordova.plugin.local-notification": {
             "PACKAGE_NAME": "com.ionicframework.bats940165"
+        },
+        "com.googlemaps.ios": {
+            "PACKAGE_NAME": "com.ionicframework.bats940165"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.ionicframework.bats940165"
         }
     },
     "dependent_plugins": {

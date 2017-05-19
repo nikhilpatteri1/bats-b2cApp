@@ -1,17 +1,20 @@
-angular.module('bats', ['ionic', 'batsconstants', 'batsconfig', 'batsinterceptor', 'batsservices', 'batsdirective',
-  'batscontrollers', 'batsfilters', 'batsfactory'])
-  .run(function ($ionicPlatform, Constants, $rootScope, $state, ionicToast, PageConfig, Messages, $ionicPopup, $cordovaLocalNotification) {
+  var db = null;
+  angular.module('bats', ['ionic', 'batsconstants', 'batsconfig', 'batsinterceptor', 'batsservices', 'batsdirective',
+  'batscontrollers', 'batsfilters', 'batsfactory', 'ngCordova'])
+  .run(function ($ionicPlatform, Constants, $rootScope, $state, ionicToast, PageConfig, Messages, $ionicPopup, $cordovaSQLite, $cordovaLocalNotification) {
+  
     $ionicPlatform.ready(function () {
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
         
       }
-
-     
+    
       if (window.StatusBar) {
         StatusBar.styleDefault();
       }
+      db = $cordovaSQLite.openDB({name:"BATS.db",iosDatabaseLocation:'default'});
+	 	 $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Token (token varchar)");
     });
 
     $rootScope.$on("400", function (event, message) {

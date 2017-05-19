@@ -34,5 +34,23 @@
             "API_KEY_FOR_ANDROID": "AIzaSyDUVJyvR_7N7TNGEKZAHSZkfOXUZo0Wuk4",
             "API_KEY_FOR_IOS": "AIzaSyB6gEJ_T3ihlU5wCuJS2BN3z4k5XGjj9Tg"
         }
+    },
+    "com.googlemaps.ios": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-sqlite-storage": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/brodysoft/Cordova-SQLitePlugin.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
