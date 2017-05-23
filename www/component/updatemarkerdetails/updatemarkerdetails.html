@@ -13,7 +13,7 @@
                 <div class="umdcolPadding umdHeading">
                     <b>{{tracker.devid}}</b>
                     <div class="row">
-                        <div class="umdFontDiv acGreyFont">Carrear name</div>
+                        <div class="umdFontDiv acGreyFont">Carrier name</div>
                         <div class="umdFontDiv acGreyFont">{{tracker.device_sim_cn}}</div>
                     </div>
                 </div>
@@ -68,8 +68,13 @@
                 <div class="umdLabelBorder">KMPH</div>
                 <span class="umdSpeedLimitSpan acGreyFont">Example:60Kmph you will be notified when vehicle crosses the speed limit</span>
             </div>
-
-              <button  ng-click="gotoGeofence()" class="button button-balanced  " style="margin-bottom:50px;">Draw GEofence</button>
+            
+            <!--<ion-list>
+                <ion-checkbox class="checkbox checkbox-balanced" ng-model="filter.red">Add GeoFence</ion-checkbox>
+            </ion-list>-->
+            <div class="umdInputDiv umdFlex" >
+                <button  ng-click="gotoGeofence()" class="button button-balanced" style="margin-bottom:50px;">Draw GEofence</button>
+            </div>
         </form>
     </ion-content>
     <div class="bar bar-footer bar-balanced" ng-class="{'disableDiv': updatemarkerdetialsForm.form.$invalid}" 

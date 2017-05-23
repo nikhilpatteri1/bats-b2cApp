@@ -7,27 +7,9 @@
             <span class="badge badge-dark badgePosition" ng-class="{'badgePositionHide':count=='0','badgePosition':count!='0'}">{{count}}</span></a>
     </ion-nav-buttons>
     <ion-content class="hmCards" ng-init="init()">
-       <!--<div class="mapcotainer" >-->
-            <div style="width:100%;height:100%" id="geoMap" data-tap-disabled="true"></div>
-        <!--</div>-->
-        <!--<span class="liveTrackreCenter" ng-click="reCenterDevice()" ng-hide="singleDeviceZoomed">
-                <i class="ion-android-send liveTrackRecenterA" ></i>Recenter</span>-->
-        <!--<span class="liveTrackreCenter liveTrackParking" >Parking<i class="ion-android-send liveTrackRecenterA"></i></span>-->
-        <div class="row liveTrackBelowbtn" >
-            <!--<div class="col col-30 col-center">
-                <div class="ltkmdetail">
-                    <span style="font-size:21px;">{{speedSpeedOmeter}}</span><span style="font-size:14px;padding-left:3px;">KmpH</span></div>
-            </div>
-            <div class="col col-60 col-center">
-                <div>
-                    <p class="ltstatusUpTxt">{{vehicleName}}</p>
-                    <span class="ltwrap_type" ng-style="{{getColorBack(divcolor)}}"></span>
-                    <p class="ltstatusTxt">{{barTxt}}</p>
-                </div>
-            </div>
-            <div class="col col-10 col-center">
-                <span ng-show="showArrow"><i class="ion-chevron-right"></i></span>
-            </div>-->
-        </div>
+            <div style="width:100%;height:100%;bottom:44px;top:0px;" id="geoMap" data-tap-disabled="true"></div>
     </ion-content>
+    <div class="bar bar-footer bar-balanced" ng-click="updateGeoFence()">
+        <div class="title">Done</div>
+    </div>
 </ion-view>
