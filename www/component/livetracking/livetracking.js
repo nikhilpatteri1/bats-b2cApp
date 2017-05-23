@@ -236,7 +236,7 @@ angular.module('livetracking', [])
 		for(var i in svg){
 			icons[i] = {path : svg[i].path, 
 					fillColor : svg[i].fillColor, 
-					scale: .9, 
+					scale: .7, 
 					strokeColor: 'white', 
 				strokeWeight: .10, 
 				fillOpacity: 1, 

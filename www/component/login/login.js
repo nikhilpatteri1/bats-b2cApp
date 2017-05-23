@@ -25,7 +25,7 @@ angular.module('login', [])
                 if (type == 0) { type = "factory"; }
                 else if (type == 1) { type = "admin"; }
                 else if (type == 2) { type = "member"; }
-                $rootScope.callNotification();
+               // $rootScope.callNotification();
                 localStorage.setItem(Constants.ACCESS_TYPE, type);
                 localStorage.setItem(Constants.USER_VO, JSON.stringify(response));
                 if (localStorage.getItem(Constants.ACCESS_TYPE) != null) {
@@ -38,7 +38,7 @@ angular.module('login', [])
                 token_login = window.localStorage.getItem("token");
                 var query_insert = "INSERT INTO Token (token) VALUES (?)";
                 $cordovaSQLite.execute(db, query_insert, [token_login]).then(function (res) {
-                    console.log("inserting token into db");
+                    console.log("inserting token into db from login.js");
                     $state.go(PageConfig.MANAGE_TRACKER);
                 }, function (err) {
                     // alert("Insert Token in DB err -> " +
