@@ -68,17 +68,20 @@
                 <div class="umdLabelBorder">KMPH</div>
                 <span class="umdSpeedLimitSpan acGreyFont">Example:60Kmph you will be notified when vehicle crosses the speed limit</span>
             </div>
-            
-            <!--<ion-list>
-                <ion-checkbox class="checkbox checkbox-balanced" ng-model="filter.red">Add GeoFence</ion-checkbox>
-            </ion-list>-->
-            <div class="umdInputDiv umdFlex" >
-                <button  ng-click="gotoGeofence()" class="button button-balanced" style="margin-bottom:50px;">Draw GEofence</button>
+            <div class="umdInputDiv" >
+                <ion-list>
+                    <ion-checkbox class="checkbox checkbox-balanced" ng-model="geofence.checked">Add GeoFence</ion-checkbox>
+                </ion-list>
             </div>
+            {{geofenceCheck}}
+            <!--<div class="umdInputDiv umdFlex" >
+                <button  ng-click="gotoGeofence()" class="button button-balanced" style="margin-bottom:50px;">Draw GEofence</button>
+            </div>-->
         </form>
     </ion-content>
     <div class="bar bar-footer bar-balanced" ng-class="{'disableDiv': updatemarkerdetialsForm.form.$invalid}" 
-        ng-click="updateTracker(data, updatemarkerdetialsForm.form)">
-        <div class="title">Update</div>
+        ng-click="updateTracker(data, updatemarkerdetialsForm.form, geofence.checked)">
+        <div class="title">{{geofence.checked ?  'Next' : 'Update'}}</div>
+        <!--<div class="title" ng-if="geofenceCheck=='false'">Update</div>-->
     </div>
 </ion-view>

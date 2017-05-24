@@ -13,6 +13,7 @@ angular.module('utilsfactory', [])
          var historyFilterList = [];
          var notificationCount;
          var polygonPath = [];
+         var updateTrackerDetails = [];
         return {
             setSignUpData: function (data) {
                 signUpData = data;
@@ -95,6 +96,12 @@ angular.module('utilsfactory', [])
             },
             setPolygonPath : function(data){
                 polygonPath = data;
+            },
+            getUpdateTrackerDetails : function(){
+                return updateTrackerDetails;
+            },
+            setUpdateTrackerDetails : function(data){
+                updateTrackerDetails = data;
             }
 
         }
