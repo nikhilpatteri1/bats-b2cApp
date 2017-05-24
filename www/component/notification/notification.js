@@ -25,7 +25,7 @@ angular.module('notification', [])
       UtilsFactory.setNotificationCount(undefined);
       UtilsFactory.setNotificationDetails([]);
     }
- $scope.speed;
+     $scope.speed;
     $scope.chexkAlarmType = function (alarm_type, velocity) {
       console.log("gdgj" +$scope.speed);
       if ( $scope.speed< velocity) {

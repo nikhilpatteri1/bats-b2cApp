@@ -131,10 +131,16 @@ a:focus, a:hover {
 }
 
 .badgePosition{
-    background-color: chocolate !important;
+    /*background-color: chocolate !important;
     top: -34px !important;
     left: 8px;
-    /*width: 18px;*/
+    /*width: 18px;
+    padding-left: 6px !important;*/
+    background-color: chocolate !important;
+    /* top: -34px !important; */
+    left: -25px;
+    top: -10px !important;
+    /* width: 18px; */
     padding-left: 6px !important;
 }
 

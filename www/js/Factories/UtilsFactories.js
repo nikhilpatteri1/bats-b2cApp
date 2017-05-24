@@ -14,6 +14,7 @@ angular.module('utilsfactory', [])
          var notificationCount;
          var polygonPath = [];
          var updateTrackerDetails = [];
+         var notificationcallFirst=[];
         return {
             setSignUpData: function (data) {
                 signUpData = data;
@@ -102,6 +103,14 @@ angular.module('utilsfactory', [])
             },
             setUpdateTrackerDetails : function(data){
                 updateTrackerDetails = data;
+            }
+
+            ,
+            getNotificationcallFirst : function(){
+                return notificationcallFirst;
+            },
+            setNotificationcallFirst : function(data){
+                notificationcallFirst = data;
             }
 
         }

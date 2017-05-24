@@ -46,7 +46,7 @@ angular.module('managetracker', [])
             console.log("inside manage " + $scope.time);
 
         }
-        $scope.count = 0;
+       // $scope.count = 0;
         function devlist() {
             $scope.time++;
             if ($state.current.name == PageConfig.MANAGE_TRACKER) {

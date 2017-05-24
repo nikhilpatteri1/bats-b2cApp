@@ -8,7 +8,7 @@ angular.module('batscontrollers', [
   'managemember', 'livetrackingdevices', 'eventhistoryfilter',
   'replayroutedetail', 'notification',
   'ion-datetime-picker', 'ion-place-tools', 'ionic-toast', 'geofence',
-  'underscore', 'ngLoadingSpinner', 'gm', 'angular-svg-round-progressbar', 'ngCordova'
+  'underscore', 'ngLoadingSpinner', 'gm', 'angular-svg-round-progressbar', 'ngCordova', 'notificationbell'
 ])
 
   .controller('BatsCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $state, PageConfig, Constants,
@@ -31,25 +31,25 @@ angular.module('batscontrollers', [
     // if (notificationCall == undefined) {
     //   $rootScope.callNotification();
     // }
-    document.addEventListener("deviceready", onDeviceReady, false);
-    function onDeviceReady() {
-      console.log("result = INSIDE CONTROLLER FOR NOTIFICATION ");
-      dbOperation(function () {
-                //setTimeout(function () { callForToken(); }, 5 * 1000);
-      });
-    }
+    // document.addEventListener("deviceready", onDeviceReady, false);
+    // function onDeviceReady() {
+    //   console.log("result = INSIDE CONTROLLER FOR NOTIFICATION ");
+    //   dbOperation(function () {
+    //             //setTimeout(function () { callForToken(); }, 5 * 1000);
+    //   });
+    // }
 
     //App Initialization Ends........................................................
 	
 	//DB Operation Starts............................................................
 	
-	function dbOperation(cb) {
-		console.log("==========================>>>>>>>>>>>>>>> DB Operation <<<<<<<<<<<<<<================================================");
-		db = $cordovaSQLite.openDB({name:"BATS.db",iosDatabaseLocation:'default'});
-	  //  $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Device_IMEI (imei varchar)");
-	    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Token (token varchar)");
-	  		cb();
-	}
+	// function dbOperation(cb) {
+	// 	console.log("==========================>>>>>>>>>>>>>>> DB Operation <<<<<<<<<<<<<<================================================");
+	// 	db = $cordovaSQLite.openDB({name:"BATS.db",iosDatabaseLocation:'default'});
+	//   //  $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Device_IMEI (imei varchar)");
+	//     $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Token (token varchar)");
+	//   		cb();
+	// }
 	
     function callNotificationinterval() {
       //  console.log(localStorage.getItem(Constants.accessToken));
