@@ -7,43 +7,21 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-googlemaps": {
-            "API_KEY_FOR_ANDROID": "AIzaSyDUVJyvR_7N7TNGEKZAHSZkfOXUZo0Wuk4",
+        "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "com.ionicframework.bats940165"
+        },
+        "com.googlemaps.ios": {
             "PACKAGE_NAME": "com.ionicframework.bats940165"
         },
         "cordova-sqlite-storage": {
             "PACKAGE_NAME": "com.ionicframework.bats940165"
-        },
-        "de.appplant.cordova.plugin.local-notification": {
-            "PACKAGE_NAME": "com.ionicframework.bats940165"
         }
     },
     "dependent_plugins": {
-        "cordova-plugin-app-event": {
-            "PACKAGE_NAME": "com.ionicframework.bats940165"
-        },
-        "cordova-plugin-compat": {
-            "PACKAGE_NAME": "com.ionicframework.bats940165"
-        },
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.ionicframework.bats940165"
-        },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.bats940165"
         },
-        "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.ionicframework.bats940165"
-        },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.ionicframework.bats940165"
-        },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.ionicframework.bats940165"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.ionicframework.bats940165"
-        },
-        "ionic-plugin-keyboard": {
+        "cordova-plugin-app-event": {
             "PACKAGE_NAME": "com.ionicframework.bats940165"
         }
     }
