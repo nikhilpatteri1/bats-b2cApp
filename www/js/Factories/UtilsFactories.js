@@ -13,6 +13,7 @@ angular.module('utilsfactory', [])
          var historyFilterList = [];
          var notificationCount;
          var polygonPath = [];
+         var notificationcallFirst=[];
         return {
             setSignUpData: function (data) {
                 signUpData = data;
@@ -95,6 +96,14 @@ angular.module('utilsfactory', [])
             },
             setPolygonPath : function(data){
                 polygonPath = data;
+            }
+
+            ,
+            getNotificationcallFirst : function(){
+                return notificationcallFirst;
+            },
+            setNotificationcallFirst : function(data){
+                notificationcallFirst = data;
             }
 
         }
