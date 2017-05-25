@@ -14,7 +14,8 @@
         StatusBar.styleDefault();
       }
       db = $cordovaSQLite.openDB({name:"BATS.db",iosDatabaseLocation:'default'});
-	 	 $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Token (token varchar)");
+	 	  $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Token (token varchar)");
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Notification (data text)");
     });
 
     $rootScope.$on("400", function (event, message) {
