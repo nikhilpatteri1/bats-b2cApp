@@ -115,5 +115,13 @@ angular.module('geofence', [])
 
     $scope.showInfo = function(){
         console.log("showing info");
+        var alertPopup = $ionicPopup.alert({
+                            cssClass: 'info-popup',
+                            template: '<div class="info-popup"><img width="100%" height="100%" src="img/geofence-info.gif"></div>',
+                            buttons: [{
+                                text: 'Close',
+                                type: 'button-balanced'
+                            }]
+                        });
     };
 });
