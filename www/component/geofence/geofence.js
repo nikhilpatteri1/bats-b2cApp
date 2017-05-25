@@ -10,8 +10,8 @@ angular.module('geofence', [])
             drawingMode: '',
             drawingControl: true,
             drawingControlOptions: {
-            position: google.maps.ControlPosition.TOP_CENTER,
-            drawingModes: ['polygon']
+                position: google.maps.ControlPosition.TOP_CENTER,
+                drawingModes: ['polygon']
             }
         });
     var polygonDrawing = new google.maps.Polygon({

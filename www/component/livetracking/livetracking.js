@@ -1,10 +1,19 @@
 angular.module('livetracking', [])
-.controller('LiveTrackingCtrl', function($scope, $ionicModal, $timeout, UtilsFactory, $state, PageConfig, BatsServices,
-	ionicToast,$interval, Constants) {
+.controller('LiveTrackingCtrl', function($scope, $timeout, UtilsFactory, $state, PageConfig, BatsServices, ionicToast,
+	$interval, Constants) {
     
 	var reqTime=12;
 	var singleDeviceInterval;
 	$scope.singleDeviceZoomLevel=16;
+	var drawingManager = new google.maps.drawing.DrawingManager({
+            drawingMode: '',
+            drawingControl: true,
+            drawingControlOptions: {
+            position: google.maps.ControlPosition.TOP_CENTER,
+            drawingModes: ['polygon']
+            }
+        });
+	var polyPaths = [];
 
 	if (UtilsFactory.getNotificationDetails()) {
 		// console.log(UtilsFactory.getNotificationDetails());
@@ -21,18 +30,12 @@ angular.module('livetracking', [])
 		$scope.initialize(); 
 		var dynamicMapHeight=window.screen.availHeight;
 		$scope.mapHeight={height:parseInt(dynamicMapHeight)-43+"px"};
-		// console.log($scope.mapHeight, localStorage.getItem("choice"));
-
 		if(localStorage.getItem("choice")==undefined || localStorage.getItem("choice")==null){
 			$state.go(PageConfig.LIVE_TRACKING_DEVICES);
 		}else{
-			// console.log("Dtrue");
 			$scope.selectedDevice =  localStorage.getItem("choice");
-			
-			
 			getTracker();
 			singleDeviceInterval = $interval(getTracker,reqTime * 1000);
-			
 		}
 	};
 
@@ -48,7 +51,6 @@ angular.module('livetracking', [])
 	
     // $scope.token = $localStorage.data;
     $scope.deviceloaded=true;
-   
     $scope.showTrafficLayerBtn = false;
     $scope.hideTrafficLayerBtn = true;
 	$scope.singleDeviceZoomed = true;
@@ -157,17 +159,8 @@ angular.module('livetracking', [])
 				$scope.zoomlevel = map.getZoom();
 			}, 80);
 			if ($scope.zoomlevel < 16 || $scope.zoomlevel > 17) {
-					// console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ZOOM & DEVICEID<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-					// console.log($scope.zoomlevel);
-					$scope.singleDeviceZoomed = false;
-					$interval.cancel(singleDeviceInterval);
-
-					// if (angular.isDefined(singleDeviceInterval)) {
-					// 	$interval.cancel(singleDeviceInterval);
-					// } 
-					//else if (angular.isDefined(multiDeviceInterval)) {
-					// 	$interval.cancel(multiDeviceInterval);
-					// }
+				$scope.singleDeviceZoomed = false;
+				$interval.cancel(singleDeviceInterval);
 			}
 		});
 	};
@@ -198,16 +191,9 @@ angular.module('livetracking', [])
     };
 
 	$scope.reCenterDevice = function() {
-		// console.log("Single Device Re Center");
 		map.setZoom(16);
-		// console.log(marker[0].getPosition());
 		map.panTo(marker[0].getPosition());
-		$scope.singleDeviceZoomed = true;
-		// if (angular.isDefined(singleDeviceInterval)) {
-		// 	$interval.cancel(singleDeviceInterval);
-		// } else if (angular.isDefined(multiDeviceInterval)) {
-		// 	$interval.cancel(multiDeviceInterval);
-		// }		
+		$scope.singleDeviceZoomed = true;	
 		singleDeviceInterval = $interval(getTracker, reqTime * 1000);
 	};
 	
@@ -316,19 +302,10 @@ angular.module('livetracking', [])
 		 * for both start and end
 		 */
 		if(typeof storedltlng.lat!='undefined'){
-			// console.log(storedltlng.lat);
 			if(storedltlng.lat!=dataVal[0].values.lat){
-				// console.log(dataVal[0].values.type);
 				if(dataVal[0].values.type == 4){
-					
-					// console.log("--------------------Different lat lng of "+dataVal[0].values.type+" ------------------------------");
-				    // console.log("start : ",storedltlng.lat,"end :",dataVal[0].values.lat);
 					vehichleRouting(dataVal,storedltlng.lat,storedltlng.lng,storedltlng.lat,storedltlng.lng);
-				}
-				
-				else{
-//					console.log("--------------------Different lat lng------------------------------");
-//					console.log("start : ",storedltlng.lat,"end :",dataVal[0].values.lat);
+				}else{
 					vehichleRouting(dataVal,storedltlng.lat,storedltlng.lng,dataVal[0].values.lat,dataVal[0].values.long);
 			        storedltlng.lat=dataVal[0].values.lat;
 					storedltlng.lng=dataVal[0].values.long;
@@ -340,8 +317,6 @@ angular.module('livetracking', [])
 				var endLat=dataVal[0].values.lat;
 				var endLng=dataVal[0].values.long;
 				vehichleRouting(dataVal,startLat,startLng,endLat,endLng);
-				// console.log("-----------------EQUAL / SAME LAT------------------------")
-				// console.log("start : ",storedltlng.lat,"end :",dataVal[0].values.lat);
 			}
 		}		
 		else{
@@ -364,88 +339,81 @@ angular.module('livetracking', [])
 	    setMapOnAll(null);
 //		setMapOnAll(null);
 		angular.element(document).ready(function(){
-		map.setZoom($scope.singleDeviceZoomLevel); 
+			map.setZoom($scope.singleDeviceZoomLevel); 
+			polyline.setMap(null);
+			poly2.setMap(null);
+			directionsDisplay.setMap(null);
+			polyline = new google.maps.Polyline({
+			path: [],
+			strokeColor: '#FFFFFF',
+			strokeWeight: 0
+			});
+			poly2 = new google.maps.Polyline({
+			path: [],
+			strokeColor: '#FFFFFF',
+			strokeWeight: 0
+			});
+			// Create a renderer for directions and bind it to the map.
+			var rendererOptions = {
+				map: map
+			};
+			directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
 
-		// console.log(polyline);
-		// if(polyline != undefined && poly2 != undefined)
-		// {
-		
-	    polyline.setMap(null);
-	    poly2.setMap(null);
-	    directionsDisplay.setMap(null);
-	    polyline = new google.maps.Polyline({
-		path: [],
-		strokeColor: '#FFFFFF',
-		strokeWeight: 0
-	    });
-	    poly2 = new google.maps.Polyline({
-		path: [],
-		strokeColor: '#FFFFFF',
-		strokeWeight: 0
-	    });
-        // Create a renderer for directions and bind it to the map.
-        var rendererOptions = {
-            map: map
-        };
-        directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+			var start = new google.maps.LatLng({lat: Number(startLat), lng: Number(startLng)}); // document.getElementById("start").value;
+			var end = new google.maps.LatLng({lat: Number(endLat), lng: Number(endLng)}); // document.getElementById("end").value;
+			var travelMode = google.maps.DirectionsTravelMode.DRIVING;
+			// console.log("inside this- start: "+start+" end: "+end);
+			var request = {
+				origin: start,
+				destination: end,
+				travelMode: travelMode
+			};
 
-        var start = new google.maps.LatLng({lat: Number(startLat), lng: Number(startLng)}); // document.getElementById("start").value;
-        var end = new google.maps.LatLng({lat: Number(endLat), lng: Number(endLng)}); // document.getElementById("end").value;
-        var travelMode = google.maps.DirectionsTravelMode.DRIVING;
-		// console.log("inside this- start: "+start+" end: "+end);
-        var request = {
-            origin: start,
-            destination: end,
-            travelMode: travelMode
-        };
+			// Route the directions and pass the response to a
+			// function to create markers for each step.
+			directionsService.route(request, function (response, status) {
+				if (status == google.maps.DirectionsStatus.OK) {
+					var bounds = new google.maps.LatLngBounds();
+					var route = response.routes[0];
+					startLocation = new Object();
+					endLocation = new Object();
 
-        // Route the directions and pass the response to a
-        // function to create markers for each step.
-        directionsService.route(request, function (response, status) {
-            // console.log(response);
-			// console.log(status);
-            if (status == google.maps.DirectionsStatus.OK) {
-                // directionsDisplay.setDirections(response);
+					// For each route, display summary information.
+					var path = response.routes[0].overview_path;
+					var legs = response.routes[0].legs;
+					for (i = 0; i < legs.length; i++) {
+						if (i === 0) {
+							startLocation.latlng = legs[i].start_location;
+							startLocation.address = legs[i].start_address;												   
+							createMarker(legs[i].start_location,dataVal[i].devid,dataVal[i].vehicle_num,dataVal[i].vehicle_model,legs[i].start_address,dataVal[i].values.type,dataVal[i].devtype);
+						}
+						endLocation.latlng = legs[i].end_location;
+						endLocation.address = legs[i].end_address;
+						var steps = legs[i].steps;
+						for (j = 0; j < steps.length; j++) {
+							var nextSegment = steps[j].path;
+							for (k = 0; k < nextSegment.length; k++) {
+								polyline.getPath().push(nextSegment[k]);
+								bounds.extend(nextSegment[k]);
+							}
+						}
+					}
+					polyline.setMap(map);
+					map.fitBounds(bounds);
+					map.setZoom($scope.singleDeviceZoomLevel); 
+					startAnimation();                
+				}
+			});
 
-                var bounds = new google.maps.LatLngBounds();
-                var route = response.routes[0];
-                startLocation = new Object();
-                endLocation = new Object();
-
-                // For each route, display summary information.
-                var path = response.routes[0].overview_path;
-                var legs = response.routes[0].legs;
-                for (i = 0; i < legs.length; i++) {
-                    if (i === 0) {
-						// console.log("create marker");
-                        startLocation.latlng = legs[i].start_location;
-                        startLocation.address = legs[i].start_address;												   
-                          createMarker(legs[i].start_location,dataVal[i].devid,dataVal[i].vehicle_num,dataVal[i].vehicle_model,legs[i].start_address,dataVal[i].values.type,dataVal[i].devtype);
-                      }
-                      endLocation.latlng = legs[i].end_location;
-                      endLocation.address = legs[i].end_address;
-                      var steps = legs[i].steps;
-                    // console.log(JSON.stringify(steps));
-                    for (j = 0; j < steps.length; j++) {
-                        var nextSegment = steps[j].path;
-                        for (k = 0; k < nextSegment.length; k++) {
-                            polyline.getPath().push(nextSegment[k]);
-                            bounds.extend(nextSegment[k]);
-                        }
-                    }
-                }
-                polyline.setMap(map);
-                map.fitBounds(bounds);
-                map.setZoom($scope.singleDeviceZoomLevel); 
-                startAnimation();                
-            }
-        });
-		
+			if(dataVal[0].geofence!=''){
+				console.log("geofence data: "+angular.toJson(dataVal[0].geofence));
+				polyPaths = dataVal[0].geofence;
+				polygonDrawing = new google.maps.Polygon({
+					paths: polyPaths
+				});
+				polygonDrawing.setMap(map);
+			}
 		});
-		// }
-		// else{
-		// 	//nothing
-		// }
 	}
 
 
@@ -654,7 +622,7 @@ angular.module('livetracking', [])
 			var inputParam = {"devlist" : [$scope.selectedDevice]};
 			BatsServices.currentData(inputParam).success(function (response) {
 				// console.log(response.length);
-				// console.log(response);
+				console.log("current data: "+angular.toJson(response));
 				UtilsFactory.setLivetrackingDetails(response);
 				$scope.multiDevice = false;
 				if(response[0].values !=""){
@@ -747,7 +715,6 @@ angular.module('livetracking', [])
 				+ d.getFullYear();
 	};
 
-	
 	$scope.getColorBack =function(div){
 		if(div=="0"){
 			setTimeout(function() {
