@@ -1,8 +1,5 @@
-/*.scroll {
-    height: 100%;
-}*/
- 
-#map {
+
+#geoMap {
     width: 100%;
     height: 100%;
 }
@@ -13,12 +10,10 @@
     position: fixed;
     background: #fff;    
     font-size: 1.2em;
-    /*border-radius: 5px;*/
-    /*padding: 10px;*/ 
     box-shadow: 1px 1px 1px 0px grey;
 }
 .info-div{
-    top: 86%;
+    top: 80%;
     position: absolute;
     padding-left: 10px;
 }
@@ -27,4 +22,8 @@
     width: 40px;
     background : url('../../img/i.png');
     background-size: 100%;
+}
+.info-popup{
+    width:100%;
+    height:100%;
 }
