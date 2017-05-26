@@ -40,7 +40,7 @@ angular.module('geofence', [])
 
     $ionicModal.fromTemplateUrl('templates/popup/updateMarker.html', function(modal) {
         $scope.updateMarkerModal = modal;
-        }, {
+    },{
         scope: $scope,
         animation: 'slide-in-up'
     });

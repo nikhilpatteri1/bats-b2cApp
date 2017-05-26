@@ -367,14 +367,17 @@ angular.module('livetracking', [])
 				}
 			});
 
-			if(dataVal[0].geofence!=''){
-				polygonDrawing.setMap(null);
-				console.log("geofence data: "+angular.toJson(dataVal[0].geofence));
-				polyPaths = dataVal[0].geofence;
-				polygonDrawing = new google.maps.Polygon({
-					paths: polyPaths
-				});
-				polygonDrawing.setMap(map);
+			/* geofence: polygon drawing on map */
+			if(dataVal[0].geofence!=null){
+				if(dataVal[0].geofence!=''){
+					polygonDrawing.setMap(null);
+					console.log("geofence data: "+angular.toJson(dataVal[0].geofence));
+					polyPaths = dataVal[0].geofence;
+					polygonDrawing = new google.maps.Polygon({
+						paths: polyPaths
+					});
+					polygonDrawing.setMap(map);
+				}
 			}
 		});
 	}

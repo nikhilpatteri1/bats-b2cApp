@@ -10,12 +10,16 @@ angular.module('updatemarkerdetails', [])
             $state.go(PageConfig.MANAGE_TRACKER);
         }
         $scope.tracker = UtilsFactory.getManageTrackerDetails();
-        if($scope.tracker.geofence.length!=0){
-            $scope.geofence.checked = true;
-            UtilsFactory.setPolygonPath($scope.tracker.geofence);
+        if($scope.tracker.geofence!=null){
+            if($scope.tracker.geofence.length!=0){
+                $scope.geofence.checked = true;
+                UtilsFactory.setPolygonPath($scope.tracker.geofence);
+            }else{
+                $scope.geofence.checked = false;
+                UtilsFactory.setPolygonPath([]);
+            }
         }else{
             $scope.geofence.checked = false;
-            UtilsFactory.setPolygonPath([]);
         }
         $scope.data = $scope.tracker;
         $ionicModal.fromTemplateUrl('templates/popup/updateMarker.html', function(modal) {
