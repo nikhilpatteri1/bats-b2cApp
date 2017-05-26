@@ -127,16 +127,16 @@ angular.module('batscontrollers', [
       var token = localStorage.getItem("token");
       var query = "DELETE FROM Token WHERE token = (?)";
       $cordovaSQLite.execute(db, query, [token]).then(function (res) {
-        alert("Token Deleted");
+        //alert("Token Deleted");
       }, function (err) {
-        alert(err);
+       // alert(err);
       });
 
       var query_eventdelete = "DELETE FROM Notification";
       $cordovaSQLite.execute(db, query_eventdelete, []).then(function (res) {
-        alert("notifi Deleted");
+        //alert("notifi Deleted");
       }, function (err) {
-        alert(err);
+       // alert(err);
       });
     }
 

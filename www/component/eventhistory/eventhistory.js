@@ -13,16 +13,16 @@ angular.module('eventhistory', [])
         })
         // ***************** end of fetching devices *****************************
 
-        if (UtilsFactory.getNotificationDetails()) {
-            console.log(UtilsFactory.getNotificationDetails());
-            $scope.notificationData = UtilsFactory.getNotificationDetails();
-            $rootScope.count = UtilsFactory.getNotificationCount();
-            console.log($rootScope.count);
-            if($rootScope.count==undefined){
-                $rootScope.count=0;
-                $scope.notificationData=[];
-            }
-        }
+        // if (UtilsFactory.getNotificationDetails()) {
+        //     console.log(UtilsFactory.getNotificationDetails());
+        //     $scope.notificationData = UtilsFactory.getNotificationDetails();
+        //     $rootScope.count = UtilsFactory.getNotificationCount();
+        //     console.log($rootScope.count);
+        //     if($rootScope.count==undefined){
+        //         $rootScope.count=0;
+        //         $scope.notificationData=[];
+        //     }
+        // }
         // $scope.resetCount=function(){
         //      alert("alert");
         //      UtilsFactory.setNotificationCount(0);

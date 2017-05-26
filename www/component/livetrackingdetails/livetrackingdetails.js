@@ -1,16 +1,16 @@
 angular.module('livetrackingdetails', [])
 	.controller('LiveTrackingDetailsCtrl', function ($scope, $ionicModal, UtilsFactory, $timeout, BatsServices, $state, PageConfig, ChartFactory) {
 
-		if (UtilsFactory.getNotificationDetails()) {
-			console.log(UtilsFactory.getNotificationDetails());
-			$scope.notificationData = UtilsFactory.getNotificationDetails();
-			$scope.count = UtilsFactory.getNotificationCount();
-			console.log($scope.count);
-			if ($scope.count == undefined) {
-				$scope.count = 0;
-				$scope.notificationData=[];
-			}
-		}
+		// if (UtilsFactory.getNotificationDetails()) {
+		// 	console.log(UtilsFactory.getNotificationDetails());
+		// 	$scope.notificationData = UtilsFactory.getNotificationDetails();
+		// 	$scope.count = UtilsFactory.getNotificationCount();
+		// 	console.log($scope.count);
+		// 	if ($scope.count == undefined) {
+		// 		$scope.count = 0;
+		// 		$scope.notificationData=[];
+		// 	}
+		// }
 
 		$scope.init = function () {
 			var inputParam = {};

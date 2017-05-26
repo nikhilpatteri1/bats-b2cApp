@@ -14,16 +14,16 @@ angular.module('vehiclestatistics', [])
         // ***************** end of fetching devices *****************************
        // $rootScope.dateValue = new Date();
 
- if (UtilsFactory.getNotificationDetails()) {
-            console.log(UtilsFactory.getNotificationDetails());
-            $scope.notificationData = UtilsFactory.getNotificationDetails();
-            $scope.count = UtilsFactory.getNotificationCount();
-            console.log($scope.count);
-            if($scope.count==undefined){
-                $scope.count=0;
-                $scope.notificationData=[];
-            }
-        }
+//  if (UtilsFactory.getNotificationDetails()) {
+//             console.log(UtilsFactory.getNotificationDetails());
+//             $scope.notificationData = UtilsFactory.getNotificationDetails();
+//             $scope.count = UtilsFactory.getNotificationCount();
+//             console.log($scope.count);
+//             if($scope.count==undefined){
+//                 $scope.count=0;
+//                 $scope.notificationData=[];
+//             }
+//         }
 
 
 

@@ -22,7 +22,7 @@ angular.module('notificationbell', [])
         } else {
             UtilsFactory.setNotificationcallFirst(1);
             $rootScope.count = 0;
-            $rootScope.notificationCall = $interval(callNotificationinterval, 20000);
+            $rootScope.notificationCall = $interval(callNotificationinterval, 15000);
         }
 
         function callNotificationinterval() {
@@ -55,11 +55,11 @@ angular.module('notificationbell', [])
                     UtilsFactory.setNotificationCount($rootScope.count);
                 }
             }, function (err) {
-                console.log("somthing went wrong woth fetching notification\n" + err);
+                console.log("somthing went wrong with fetching notification\n" + err);
                
             });
 
-            console.log($rootScope.countt);
+            console.log($rootScope.count);
             
             //   $scope.$apply();
         }

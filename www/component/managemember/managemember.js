@@ -3,16 +3,16 @@ angular.module('managemember', [])
          Constants, $state, PageConfig, $rootScope) {
         
         $scope.data = {};
-         if (UtilsFactory.getNotificationDetails()) {
-            console.log(UtilsFactory.getNotificationDetails());
-            $scope.notificationData = UtilsFactory.getNotificationDetails();
-            $scope.count = UtilsFactory.getNotificationCount();
-            console.log($scope.count);
-            if($scope.count==undefined){
-                $scope.count=0;
-                $scope.notificationData=[];
-            }
-        }
+        //  if (UtilsFactory.getNotificationDetails()) {
+        //     console.log(UtilsFactory.getNotificationDetails());
+        //     $scope.notificationData = UtilsFactory.getNotificationDetails();
+        //     $scope.count = UtilsFactory.getNotificationCount();
+        //     console.log($scope.count);
+        //     if($scope.count==undefined){
+        //         $scope.count=0;
+        //         $scope.notificationData=[];
+        //     }
+        // }
 
         $scope.init = function(){
             BatsServices.userList({}).success(function (response) {

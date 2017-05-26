@@ -29,14 +29,14 @@ angular.module('updatemarkerdetails', [])
             animation: 'slide-in-up'
         });
 
-   if (UtilsFactory.getNotificationDetails()) {
-            $scope.notificationData = UtilsFactory.getNotificationDetails();
-            $scope.count = UtilsFactory.getNotificationCount();
-            if($scope.count==undefined){
-                $scope.count=0;
-                $scope.notificationData=[];
-            }
-        }
+//    if (UtilsFactory.getNotificationDetails()) {
+//             $scope.notificationData = UtilsFactory.getNotificationDetails();
+//             $scope.count = UtilsFactory.getNotificationCount();
+//             if($scope.count==undefined){
+//                 $scope.count=0;
+//                 $scope.notificationData=[];
+//             }
+//         }
 
     $scope.gotoGeofence=function(){
         $state.go(PageConfig.GEOFENCE);

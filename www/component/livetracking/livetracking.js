@@ -15,14 +15,14 @@ angular.module('livetracking', [])
         });
 	var polyPaths = [];
 
-	if (UtilsFactory.getNotificationDetails()) {
-		$scope.notificationData = UtilsFactory.getNotificationDetails();
-		$scope.count = UtilsFactory.getNotificationCount();
-		if ($scope.count == undefined) {
-			$scope.count = 0;
-			$scope.notificationData = [];
-		}
-	}
+	// if (UtilsFactory.getNotificationDetails()) {
+	// 	//$scope.notificationData = UtilsFactory.getNotificationDetails();
+	// 	$scope.count = UtilsFactory.getNotificationCount();
+	// 	if ($scope.count == undefined) {
+	// 		$scope.count = 0;
+	// 		$scope.notificationData = [];
+	// 	}
+	// }
 
 	$scope.init = function(){
 		$scope.initialize(); 

@@ -19,16 +19,16 @@ angular.module('replayroutedetail', [])
    	];
    	$scope.data = {selectedOption : $scope.availableOptions[0].value};
 
- 	if (UtilsFactory.getNotificationDetails()) {
-		console.log(UtilsFactory.getNotificationDetails());
-		$scope.notificationData = UtilsFactory.getNotificationDetails();
-		$scope.count = UtilsFactory.getNotificationCount();
-		console.log($scope.count);
-		if($scope.count==undefined){
-			$scope.count=0;
-			$scope.notificationData=[];
-		}
-	}
+ 	// if (UtilsFactory.getNotificationDetails()) {
+	// 	console.log(UtilsFactory.getNotificationDetails());
+	// 	$scope.notificationData = UtilsFactory.getNotificationDetails();
+	// 	$scope.count = UtilsFactory.getNotificationCount();
+	// 	console.log($scope.count);
+	// 	if($scope.count==undefined){
+	// 		$scope.count=0;
+	// 		$scope.notificationData=[];
+	// 	}
+	// }
 
     $scope.showDatepicker=true;
 	$scope.showTimeSlot=false;

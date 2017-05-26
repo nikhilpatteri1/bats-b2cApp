@@ -15,23 +15,21 @@ angular.module('notification', [])
       $scope.noData = false;
       $scope.speed=$scope.notificationData.speed_limit;
       console.log($rootScope.count +" util factory  "+UtilsFactory.getNotificationCount());
-      if ($rootScope.count == undefined || $rootScope.count == 0) {
-        $rootScope.count = 0;
-        $scope.notificationData = [];
-        $scope.noData = true;
-      }
+      // if ($rootScope.count == undefined || $rootScope.count == 0) {
+      //   $rootScope.count = 0;
+      //   $scope.notificationData = [];
+      //   $scope.noData = true;
+      // }
       $scope.temp = 0;
       UtilsFactory.setNotificationCount(undefined);
       UtilsFactory.setNotificationDetails([]);
       var query_eventdelete = "DELETE FROM Notification";
       $cordovaSQLite.execute(db, query_eventdelete, []).then(function (res) {
-        alert("notifi Deleted");
+        //alert("notifi Deleted");
       }, function (err) {
-        alert(err);
+        alert("hing went wrong");
       });
     }
-
-
 
 
 
