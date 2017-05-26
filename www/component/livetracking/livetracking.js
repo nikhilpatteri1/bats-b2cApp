@@ -145,8 +145,10 @@ angular.module('livetracking', [])
 			}
 		});
 	};
+
 	angular.element(document).ready(function(){
-	google.maps.event.addDomListener(window, 'load', $scope.initialize);
+		google.maps.event.addDomListener(window, 'load', $scope.initialize);
+
 	});
 	$scope.resizeMap = function(){
     	$("#map_canvas").css("position", 'fixed').

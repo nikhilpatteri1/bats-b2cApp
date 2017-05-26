@@ -10,14 +10,14 @@
                     <form name="AddMemberForm.form">
                         <div class="space">
                             <label ng-if="data.firstname" class="floatlabeltxt show-hide inputFieldFontSize">First Name</label>
-                            <input placeholder="Enter First Name" type="text" ng-model="data.firstname" required 
+                            <input placeholder="Enter First Name" type="text" ng-model="data.firstname" required maxlength="20"
                                 name="firstname" ng-class="{error: AddMemberForm.form.firstname.$invalid && Validate}"/>
                         </div>
 
                         <div class="space">
                             <label ng-if="data.lastname" class="floatlabeltxt show-hide inputFieldFontSize">Second Name</label>
                             <input placeholder="Enter Second Name" type="text" name=" lastname" ng-model="data.lastname" required
-                                 ng-class="{error: AddMemberForm.form.lastname.$invalid && Validate}"/>
+                                 ng-class="{error: AddMemberForm.form.lastname.$invalid && Validate}" maxlength="20"/>
                         </div>
                         <div class="space">
                             <label ng-if="data.email" class="floatlabeltxt show-hide inputFieldFontSize">Email</label>
@@ -36,7 +36,7 @@
                         <div class="space">
                             <label ng-if="data.desc" class="floatlabeltxt show-hide inputFieldFontSize">Description</label>
                             <input placeholder="Description" type="text" name="desc" ng-model="data.desc" required 
-                                ng-class="{error: AddMemberForm.form.desc.$invalid && Validate}"/>
+                                ng-class="{error: AddMemberForm.form.desc.$invalid && Validate}" maxlength="200"/>
                         </div>
                         <div class="space" ng-if="!passwordHide">
                             <label ng-if="data.password" class="floatlabeltxt show-hide inputFieldFontSize">Create Member Password</label>
@@ -52,6 +52,6 @@
     <div class="bar bar-footer bar-balanced" ng-class="{'disableDiv': AddMemberForm.form.$invalid}" 
         ng-click="gotoCreate(data,AddMemberForm.form)">
         <div ng-if="!passwordHide" class="title">Create</div>
-         <div ng-if="passwordHide" class="title">Update</div>
+        <div ng-if="passwordHide" class="title">Update</div>
     </div>
 </ion-view>
