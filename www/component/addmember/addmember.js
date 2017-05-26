@@ -1,5 +1,5 @@
 angular.module('addmember', [])
-.controller('AddmemberCtrl', function ($scope, $ionicModal, $timeout,BatsServices, PageConfig, $state, Constants, 
+.controller('AddmemberCtrl', function ($scope, BatsServices, PageConfig, $state, Constants, 
     ionicToast, UtilsFactory, $rootScope) {
     
     $scope.AddMemberForm = {};
@@ -43,7 +43,6 @@ angular.module('addmember', [])
             }).error(function (error) {
                     ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
             })
-        }
-        
+        }  
     }
 })
