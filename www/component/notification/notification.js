@@ -6,15 +6,16 @@ angular.module('notification', [])
       console.log(navigator)
       navigator.app.backHistory();
     }
+    
     $scope.noData = true;
-    console.log("inside noti check "+UtilsFactory.getNotificationDetails()+UtilsFactory.getNotificationDetails().length);
-    if (UtilsFactory.getNotificationDetails().length !=0) {
-      console.log("notification data "+UtilsFactory.getNotificationDetails());
+    console.log("inside noti check " + UtilsFactory.getNotificationDetails() + UtilsFactory.getNotificationDetails().length);
+    if (UtilsFactory.getNotificationDetails().length != 0) {
+      console.log("notification data " + UtilsFactory.getNotificationDetails());
       $scope.notificationData = UtilsFactory.getNotificationDetails();
       //$rootScope.count = UtilsFactory.getNotificationCount();
       $scope.noData = false;
-      $scope.speed=$scope.notificationData.speed_limit;
-     // console.log($rootScope.count +" util factory  "+UtilsFactory.getNotificationCount());
+      $scope.speed = $scope.notificationData.speed_limit;
+      // console.log($rootScope.count +" util factory  "+UtilsFactory.getNotificationCount());
       // if ($rootScope.count == undefined || $rootScope.count == 0) {
       //   $rootScope.count = 0;
       //   $scope.notificationData = [];
@@ -23,31 +24,37 @@ angular.module('notification', [])
       $scope.temp = 0;
       UtilsFactory.setNotificationCount(0);
       UtilsFactory.setNotificationDetails("");
+
+
+      // *************** DELETING NOTIFICATION FROM DATA BASE***********************************
       var query_eventdelete = "DELETE FROM Notification";
       $cordovaSQLite.execute(db, query_eventdelete, []).then(function (res) {
-        //alert("notifi Deleted");
       }, function (err) {
         alert("hing went wrong");
       });
+      // *********************** REMOVING NOTIFICATION FROM NOTIFICATION BAR***************************
+      cordova.plugins.notification.local.cancelAll(function () {
+       // alert("done");
+      }, this);
     }
-    else{
-        $rootScope.count = 0;
-        $scope.notificationData = [];
-        $scope.noData = true;
+    else {
+      $rootScope.count = 0;
+      $scope.notificationData = [];
+      $scope.noData = true;
     }
 
 
 
-    
-     $scope.speed;
+
+    $scope.speed;
     $scope.chexkAlarmType = function (alarm_type, velocity) {
-      console.log("gdgj" +$scope.speed);
-      if ( $scope.speed< velocity) {
+      console.log("gdgj" + $scope.speed);
+      if ($scope.speed < velocity) {
         $scope.redSpeed = 1;
         console.log("red style applying " + $scope.redSpeed);
       }
-      else{
-         $scope.redSpeed = 0;
+      else {
+        $scope.redSpeed = 0;
       }
       // console.log("geeta its me alarm type" + alarm_type);
       if (alarm_type == 0) {
@@ -90,7 +97,7 @@ angular.module('notification', [])
         $scope.alarmType = "Warning";
         $scope.imageSrc = 'img/eventH/invalid.png';
       }
-     // console.log(alarm_type + $scope.alarmType);
+      // console.log(alarm_type + $scope.alarmType);
     }
 
 

@@ -144,7 +144,7 @@ angular.module('batscontrollers', [
       BatsServices.logout({}).success(function (response) {
         deleteDatabase();
         cordova.plugins.notification.local.cancelAll(function () {
-          alert("done");
+          //alert("done");
         }, this);
         $rootScope.interlogout();
       }).error(function (error) {
