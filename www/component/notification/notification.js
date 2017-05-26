@@ -1,6 +1,6 @@
 angular.module('notification', [])
   .controller('NotificationCtrl', function ($scope, $rootScope, $ionicPopup, $state, $ionicModal, $timeout, PageConfig, UtilsFactory, _,
-    BatsServices, ionicToast, Constants) {
+    BatsServices, ionicToast, Constants, $cordovaSQLite) {
 
     $scope.backToHistory = function () {
       console.log(navigator)
@@ -21,10 +21,21 @@ angular.module('notification', [])
         $scope.noData = true;
       }
       $scope.temp = 0;
-      
       UtilsFactory.setNotificationCount(undefined);
       UtilsFactory.setNotificationDetails([]);
+      var query_eventdelete = "DELETE FROM Notification";
+      $cordovaSQLite.execute(db, query_eventdelete, []).then(function (res) {
+        alert("notifi Deleted");
+      }, function (err) {
+        alert(err);
+      });
     }
+
+
+
+
+
+    
      $scope.speed;
     $scope.chexkAlarmType = function (alarm_type, velocity) {
       console.log("gdgj" +$scope.speed);

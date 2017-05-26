@@ -9,10 +9,11 @@
         cordova.plugins.Keyboard.disableScroll(true);
         
       }
-    
+         
       if (window.StatusBar) {
         StatusBar.styleDefault();
       }
+      
       db = $cordovaSQLite.openDB({name:"BATS.db",iosDatabaseLocation:'default'});
 	 	  $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Token (token varchar)");
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Notification (data text)");

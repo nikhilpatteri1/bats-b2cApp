@@ -11,7 +11,7 @@ batsconstants.constant('Constants', {
                                "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh"," Uttarakhand", "West Bengal"],
     OPERATOR: ["Aircel","Airtel","BSNL","Idea","Jio","MTNL","MTS","Reliance GSM","Reliance Mobile","T24","Tata Docomo","Tata Indicom","Telenor","Vodafone","Videocon"],
 	TIME_INTERVAL:  3000,
-	TOST_POSITION : "top",
+	TOST_POSITION : "bottom",
 	accessToken : "token",
 	ACCESS_TYPE : "accessType",
 	USER_VO : "user_vo",

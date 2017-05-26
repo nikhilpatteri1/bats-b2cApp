@@ -40,17 +40,17 @@ angular.module('batscontrollers', [
     // }
 
     //App Initialization Ends........................................................
-	
-	//DB Operation Starts............................................................
-	
-	// function dbOperation(cb) {
-	// 	console.log("==========================>>>>>>>>>>>>>>> DB Operation <<<<<<<<<<<<<<================================================");
-	// 	db = $cordovaSQLite.openDB({name:"BATS.db",iosDatabaseLocation:'default'});
-	//   //  $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Device_IMEI (imei varchar)");
-	//     $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Token (token varchar)");
-	//   		cb();
-	// }
-	
+
+    //DB Operation Starts............................................................
+
+    // function dbOperation(cb) {
+    // 	console.log("==========================>>>>>>>>>>>>>>> DB Operation <<<<<<<<<<<<<<================================================");
+    // 	db = $cordovaSQLite.openDB({name:"BATS.db",iosDatabaseLocation:'default'});
+    //   //  $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Device_IMEI (imei varchar)");
+    //     $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Token (token varchar)");
+    //   		cb();
+    // }
+
     function callNotificationinterval() {
       //  console.log(localStorage.getItem(Constants.accessToken));
       if (localStorage.getItem(Constants.accessToken) != null) {
@@ -120,13 +120,36 @@ angular.module('batscontrollers', [
       $state.go(PageConfig.LOGIN);
     }
 
+    function deleteDatabase() {
+      // if (angular.isDefined($rootScope.notificationCall)) {
+      //   $interval.cancel($rootScope.notificationCall);
+      // }
+      var token = localStorage.getItem("token");
+      var query = "DELETE FROM Token WHERE token = (?)";
+      $cordovaSQLite.execute(db, query, [token]).then(function (res) {
+        alert("Token Deleted");
+      }, function (err) {
+        alert(err);
+      });
+
+      var query_eventdelete = "DELETE FROM Notification";
+      $cordovaSQLite.execute(db, query_eventdelete, []).then(function (res) {
+        alert("notifi Deleted");
+      }, function (err) {
+        alert(err);
+      });
+    }
+
     function removeLogin() {
       BatsServices.logout({}).success(function (response) {
+        deleteDatabase();
+        cordova.plugins.notification.local.cancelAll(function () {
+          alert("done");
+        }, this);
         $rootScope.interlogout();
       }).error(function (error) {
         ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
       })
-
     }
 
     $scope.$on('onReminderAdded', function (event, id, state, json) {

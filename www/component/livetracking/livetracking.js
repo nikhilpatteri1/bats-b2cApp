@@ -113,7 +113,7 @@ angular.module('livetracking', [])
 		};
 		
 		map = new google.maps.Map(document.getElementById("map"), myOptions);  
-
+		
 		// Instantiate a directions service.
 		directionsService = new google.maps.DirectionsService();
 		// Create a renderer for directions and bind it to the map.
@@ -145,9 +145,9 @@ angular.module('livetracking', [])
 			}
 		});
 	};
-
+	angular.element(document).ready(function(){
 	google.maps.event.addDomListener(window, 'load', $scope.initialize);
-
+	});
 	$scope.resizeMap = function(){
     	$("#map_canvas").css("position", 'fixed').
         css('top', 0).
