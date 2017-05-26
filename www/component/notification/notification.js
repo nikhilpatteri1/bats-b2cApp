@@ -7,28 +7,33 @@ angular.module('notification', [])
       navigator.app.backHistory();
     }
     $scope.noData = true;
-    console.log(UtilsFactory.getNotificationDetails());
-    if (UtilsFactory.getNotificationDetails()) {
+    console.log("inside noti check "+UtilsFactory.getNotificationDetails()+UtilsFactory.getNotificationDetails().length);
+    if (UtilsFactory.getNotificationDetails().length !=0) {
       console.log("notification data "+UtilsFactory.getNotificationDetails());
       $scope.notificationData = UtilsFactory.getNotificationDetails();
-      $rootScope.count = UtilsFactory.getNotificationCount();
+      //$rootScope.count = UtilsFactory.getNotificationCount();
       $scope.noData = false;
       $scope.speed=$scope.notificationData.speed_limit;
-      console.log($rootScope.count +" util factory  "+UtilsFactory.getNotificationCount());
+     // console.log($rootScope.count +" util factory  "+UtilsFactory.getNotificationCount());
       // if ($rootScope.count == undefined || $rootScope.count == 0) {
       //   $rootScope.count = 0;
       //   $scope.notificationData = [];
       //   $scope.noData = true;
       // }
       $scope.temp = 0;
-      UtilsFactory.setNotificationCount(undefined);
-      UtilsFactory.setNotificationDetails([]);
+      UtilsFactory.setNotificationCount(0);
+      UtilsFactory.setNotificationDetails("");
       var query_eventdelete = "DELETE FROM Notification";
       $cordovaSQLite.execute(db, query_eventdelete, []).then(function (res) {
         //alert("notifi Deleted");
       }, function (err) {
         alert("hing went wrong");
       });
+    }
+    else{
+        $rootScope.count = 0;
+        $scope.notificationData = [];
+        $scope.noData = true;
     }
 
 
