@@ -19,31 +19,37 @@
           <i class="icon bats-icon menu-icon" ng-class="{'bats-livetracking-icon' : menuLink!=1, 
             'bats-livetracking-icon-active' : menuLink==1}"></i><div>Live Tracking</div>
         </ion-item>
+
         <ion-item class="item-icon-right" ng-class='{"selected":menuLink==2}' ng-click='sidebarLinkColor(2)' 
           menu-toggle="left" direction="left" href="#/bats/navigation" ng-if="accessType!='member'">
           <i class="icon bats-icon menu-icon " ng-class="{'bats-navigation-icon' : menuLink!=2, 
             'bats-navigation-icon-active' : menuLink==2}"></i><div>Navigation</div>
         </ion-item>
+        
         <ion-item class="item-icon-right" ng-class='{"selected":menuLink==3}' ng-click='sidebarLinkColor(3)' 
           menu-toggle="left" direction="left" href="#/bats/replayroute" ng-if="accessType!='member'">
           <i class="icon bats-icon menu-icon menu-iconWidthForReplay" ng-class="{'bats-replay-icon' : menuLink!=3, 
             'bats-replay-icon-active' : menuLink==3}"></i><div>Replay Route</div>
         </ion-item>
+
         <ion-item class="item-icon-right" ng-class='{"selected":menuLink==4}' ng-click='sidebarLinkColor(4)' 
           menu-toggle="left" direction="left" href="#/bats/eventhistory">
           <i class="icon bats-icon menu-icon" ng-class="{'bats-eventhistory-icon' : menuLink!=4, 
             'bats-eventhistory-icon-active' : menuLink==4}"></i><div>Events History</div>
         </ion-item>
+
         <ion-item class="item-icon-right" direction="left" href="#/bats/vehiclestatistics" ng-if="accessType!='member'"
           menu-toggle="left" ng-click="sidebarLinkColor(5)" ng-class='{"selected":menuLink==5}'> 
           <i class="icon bats-icon menu-icon" ng-class="{'bats-vehiclestatitics-icon' : menuLink!=5, 
             'bats-vehiclestatitics-icon-active' : menuLink==5}"></i><div>Vehicle Statitics</div>
         </ion-item>
+
         <ion-item class="item-icon-right" direction="left" href="#/bats/report" menu-toggle="left" 
           ng-click="sidebarLinkColor(6)" ng-class='{"selected":menuLink==6}' ng-if="accessType!='member'">
           <i class="icon bats-icon menu-icon menu-iconWidthForReport" ng-class="{'bats-reports-icon' : menuLink!=6, 
             'bats-reports-icon-active' : menuLink==6}"></i><div>Reports</div>
         </ion-item>
+
         <ion-item class="item-icon-right" direction="left" ng-class='{"selected":menuLink==7}'
           ng-click="sidebarLinkColor(7);openSettingBar()">
           <i class="icon bats-icon menu-icon" ng-class="{'bats-settings-icon' : menuLink!=7, 
@@ -57,19 +63,34 @@
             <i class="icon bats-icon menu-icon" ng-class="{'bats-managemember-icon' : menuLink!=8, 
               'bats-managemember-icon-active' : menuLink==8}"></i><div>Manage Member</div>
           </ion-item>
+
           <ion-item class="item-icon-right" ng-class='{"selected":menuLink==9}' ng-click='sidebarLinkColor(9)' 
             menu-toggle="left" direction="left" href="#/bats/managetracker" ng-if="accessType!='member'">
             <i class="icon bats-icon menu-icon" ng-class="{'bats-managedevice-icon' : menuLink!=9, 
               'bats-managedevice-icon-active' : menuLink==9}"></i><div>Manage Device</div>
           </ion-item>
+
           <ion-item class="item-icon-right" direction="left" href="#/bats/changepassword" 
             menu-toggle="left" ng-click="sidebarLinkColor(10)" ng-class='{"selected":menuLink==10}'> 
             <i class="icon bats-icon menu-icon" ng-class="{'bats-changepassword-icon' : menuLink!=10, 
               'bats-changepassword-icon-active' : menuLink==10}"></i><div>Change Password</div>
           </ion-item>
+          <!--<ion-item class="item-icon-right" direction="left" href="#/bats/changepassword" 
+            menu-toggle="left" ng-click="sidebarLinkColor(10)" ng-class='{"selected":menuLink==10}'> 
+            <i class="icon bats-icon menu-icon" ng-class="{'bats-changepassword-icon' : menuLink!=10, 
+              'bats-changepassword-icon-active' : menuLink==10}"></i><div>Change Password</div>
+          </ion-item>-->
+
+          <!--<ion-item class="item-icon-right" direction="left" href="#/bats/addmember" 
+            menu-toggle="left" ng-click="sidebarLinkColor(11)" ng-class='{"selected":menuLink==11}'> 
+            <i class="icon bats-icon menu-icon" ng-class="{'bats-editprofile-icon' : menuLink!=11, 
+              'bats-editprofile-icon-active' : menuLink==11}"></i><div>Edit Profile</div>
+          </ion-item>-->
+
           <ion-item class="item-icon-right" direction="left" menu-toggle="left" ng-click="logout()">
             <i class="icon bats-icon menu-icon bats-logout-icon"></i><div>Logout</div>
           </ion-item>
+
         </div>
         <div class="logoAndVersion">
           <div class="row">

@@ -34,7 +34,7 @@ angular.module('notificationbell', [])
                 var select = [];
                 console.log("fetching notification " + angular.toJson(res));
                 for (var i = 0; i < res.rows.length; i++) {
-                    console.log()
+                  //  console.log(JSON.parse(res.rows));
                     select = JSON.parse(res.rows.item(i).data);
                     console.log("select" + JSON.stringify(select));
                     $scope.oldcount = $scope.oldcount + select.length;
@@ -56,8 +56,7 @@ angular.module('notificationbell', [])
                 }
             }, function (err) {
                 console.log("somthing went wrong with fetching notification\n" + err);
-               
-            });
+                           });
 
             console.log($rootScope.count);
             
