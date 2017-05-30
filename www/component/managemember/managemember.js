@@ -24,23 +24,35 @@ angular.module('managemember', [])
 
     $scope.deleteUser = function(member){
         $scope.popover.hide();
-        var inputParam = {'uid': member.uid};
-        BatsServices.deleteUser(inputParam).success(function(response){
-            var alertPopup = $ionicPopup.alert({
-                title: 'Member Deleted',
-                template: '<div class="pwdSuccessPopup">Member has been successfully deleted</div>'
+
+        var confirmPopup = $ionicPopup.confirm({
+                title: 'Cofirm',
+                template: 'Are you sure you want to delete this member?',
+                cancelText: 'No',
+                scope: $scope,
+                okText: 'Yes',
             });
-            alertPopup.then(function (res) {
-                $state.go(PageConfig.MANAGE_MEMBER);
-            });
-            BatsServices.userList({}).success(function (response) {
-                $scope.memberList = response;
-            }).error(function (error) {
-                ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
-            });
-        }).error(function(){
-            console.log("error while deleting user");
-        })
+        confirmPopup.then(function (res) {
+            if (res) {
+                var inputParam = {'uid': member.uid};
+                BatsServices.deleteUser(inputParam).success(function(response){
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Member Deleted',
+                        template: '<div class="pwdSuccessPopup">Member has been successfully deleted</div>'
+                    });
+                    alertPopup.then(function (res) {
+                        $state.go(PageConfig.MANAGE_MEMBER);
+                    });
+                    BatsServices.userList({}).success(function (response) {
+                        $scope.memberList = response;
+                    }).error(function (error) {
+                        ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                    });
+                }).error(function(){
+                    console.log("error while deleting user");
+                })
+            }
+        });
     }
 
     $scope.addNewMember = function () {
