@@ -1,5 +1,5 @@
 angular.module('livetrackingdevices', [])
-.controller('LiveTrackingDevicesCtrl', function ($scope, $ionicModal, $timeout, BatsServices, PageConfig, 
+.controller('LiveTrackingDevicesCtrl', function ($scope, $ionicModal, $timeout, BatsServices, PageConfig, Constants,
     UtilsFactory, $state, _, ionicToast) {
 
     var inputParam = {};
