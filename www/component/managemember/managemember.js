@@ -1,38 +1,61 @@
 angular.module('managemember', [])
-.controller('ManageMemberCtrl', function ($scope, $ionicModal, UtilsFactory, $timeout, BatsServices, ionicToast,
-         Constants, $state, PageConfig, $rootScope) {
+.controller('ManageMemberCtrl', function ($scope, $ionicModal, UtilsFactory, $timeout, BatsServices, ionicToast, $ionicPopup,
+         Constants, $state, PageConfig, $rootScope, $ionicPopover) {
         
-        $scope.data = {};
-        //  if (UtilsFactory.getNotificationDetails()) {
-        //     console.log(UtilsFactory.getNotificationDetails());
-        //     $scope.notificationData = UtilsFactory.getNotificationDetails();
-        //     $scope.count = UtilsFactory.getNotificationCount();
-        //     console.log($scope.count);
-        //     if($scope.count==undefined){
-        //         $scope.count=0;
-        //         $scope.notificationData=[];
-        //     }
-        // }
+    $scope.data = {};
 
-        $scope.init = function(){
+    $scope.init = function(){
+        BatsServices.userList({}).success(function (response) {
+            $scope.memberList = response;
+        }).error(function (error) {
+            ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+        });
+    }
+
+    $rootScope.$on('addMemberDone', function(event){
+        $scope.init();
+    })
+    
+    $scope.updateUser = function (member) {
+        $scope.popover.hide();
+        UtilsFactory.setEditMemberDetails(member);
+        $state.go(PageConfig.ADD_MEMBER);
+    }
+
+    $scope.deleteUser = function(member){
+        $scope.popover.hide();
+        var inputParam = {'uid': member.uid};
+        BatsServices.deleteUser(inputParam).success(function(response){
+            var alertPopup = $ionicPopup.alert({
+                title: 'Member Deleted',
+                template: '<div class="pwdSuccessPopup">Member has been successfully deleted</div>'
+            });
+            alertPopup.then(function (res) {
+                $state.go(PageConfig.MANAGE_MEMBER);
+            });
             BatsServices.userList({}).success(function (response) {
                 $scope.memberList = response;
             }).error(function (error) {
                 ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
             });
-        }
-
-        $rootScope.$on('addMemberDone', function(event){
-            $scope.init();
+        }).error(function(){
+            console.log("error while deleting user");
         })
-        
-        $scope.updateUser = function (member) {
-            UtilsFactory.setEditMemberDetails(member);
-            $state.go(PageConfig.ADD_MEMBER);
-        }
+    }
 
-        $scope.addNewMember = function () {
-            $state.go(PageConfig.ADD_MEMBER);
-        }
+    $scope.addNewMember = function () {
+        $state.go(PageConfig.ADD_MEMBER);
+    }
+
+    $ionicPopover.fromTemplateUrl('templates/popover/edit_member.html', {
+        scope: $scope
+    }).then(function(popover) {
+        $scope.popover = popover;
+    });
+
+    $scope.openPopover = function($event, member) {
+        $scope.selectedMember = member;
+        $scope.popover.show($event);
+    };
 
 })

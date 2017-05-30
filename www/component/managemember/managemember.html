@@ -12,7 +12,8 @@
             <div class="row mmMargin acGreyFont">
               <div class="col col-90"> Member {{$index+1}}</div>
               <div class="col col-10 acSmallFonts acVehicleCompany ">
-                    <img class="batsIcon acEditIcon alignRight" src="img/pencil.png" ng-click="updateUser(member)" /></div>
+                    <!--<img class="batsIcon acEditIcon alignRight" src="img/pencil.png" ng-click="openPopover($event, member)" /></div>-->
+                    <i class="ion-android-more-vertical edit-member-icon" ng-click="openPopover($event, member)"></i></div>
             </div>
             <div class="row acRemoveMargin leftMargin ">
                 <div class="leftMargin" ><b>{{member.firstname}} {{member.lastname}}</b></div>

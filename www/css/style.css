@@ -115,6 +115,21 @@ a:focus, a:hover {
     text-decoration: none !important;
 }
 
+.popover{
+    display: block !important;
+}
+
+.edit-member-icon{
+    font-size: x-large;
+}
+
+.popover-list-padding{
+    padding: 10px;
+}
+
+.redFont{
+    color: red !important;
+}
 
 /****************************** CSS for loader**********************/
 
