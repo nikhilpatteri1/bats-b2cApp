@@ -87,6 +87,10 @@
     margin-left: -4px;
 }
 
+.center-text{
+    text-align: center;
+}
+
 .removeMarginLeftRight{
     margin-right: 0px !important;
     margin-left: 0px !important;

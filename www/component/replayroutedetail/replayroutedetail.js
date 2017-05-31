@@ -1,13 +1,14 @@
 angular.module('replayroutedetail', [])
     .controller('ReplayRouteDetailCtrl', function ($scope, $rootScope, $state, $ionicModal, $timeout, PageConfig, UtilsFactory, BatsServices,
      Constants, ionicToast) {
-         var dynamicMapHeight=window.screen.availHeight;
-    $scope.mapHeight={height:parseInt(
-        dynamicMapHeight)-133+"px"};
-	console.log($scope.mapHeight);
+    
+	var dynamicMapHeight=window.screen.availHeight;
+    $scope.mapHeight={
+		height:parseInt(dynamicMapHeight)-133+"px"
+	};
 
 	$scope.backToReplayRoute=function(){
-			$state.go(PageConfig.REPLAY_ROUTE);
+		$state.go(PageConfig.REPLAY_ROUTE);
 	};
 
 	$scope.showReplayMenu = false;
@@ -18,17 +19,6 @@ angular.module('replayroutedetail', [])
      { name: 'high', value: '2' }
    	];
    	$scope.data = {selectedOption : $scope.availableOptions[0].value};
-
- 	// if (UtilsFactory.getNotificationDetails()) {
-	// 	console.log(UtilsFactory.getNotificationDetails());
-	// 	$scope.notificationData = UtilsFactory.getNotificationDetails();
-	// 	$scope.count = UtilsFactory.getNotificationCount();
-	// 	console.log($scope.count);
-	// 	if($scope.count==undefined){
-	// 		$scope.count=0;
-	// 		$scope.notificationData=[];
-	// 	}
-	// }
 
     $scope.showDatepicker=true;
 	$scope.showTimeSlot=false;
@@ -68,50 +58,37 @@ angular.module('replayroutedetail', [])
 	for(i in svg){
 		icons[i] = {path : svg[i].path, fillColor : svg[i].fillColor, scale: .7, strokeColor: 'white', strokeWeight: .10, fillOpacity: 1, offset: '5%',
 			anchor: new google.maps.Point(10, 25) // orig 10,50 back of
-								// car, 10,0 front of
-								// car, 10,25 center of
-								// car
 		};
 	}
   	var oldStep;
   // To Change Replay Speed level
 	$scope.updateSpeed=function(choice){
 		choice = parseInt(choice);
-		console.log(choice);
 		switch (choice) {
 			case 0:
-			//console.log(oldStep)
 				oldStep = {step: 1,tick:100};
 				step=5;
 				tick=100;
-				console.log("0");
 				break;
 			case 1:
-				//console.log(oldStep)
 				oldStep = {step: 10,tick:50};
 				step=10;
 				tick=50;
-				console.log("1");
 				break;
 			case 2:
-				//console.log(oldStep)
 				oldStep = {step: 50,tick:10};
 				step=50;
 				tick=10;
-				console.log("2");
 				break;	
 			case 3:
 				step=0;
 				tick=1000;
 				$scope.play = true;
-				console.log("3");
 				break;
 			case 4:
-				//console.log(oldStep)
 				step=oldStep.step;
 				tick=oldStep.tick;
 				$scope.play = false;
-				console.log("4");
 				break;
 		}
 	};
@@ -120,48 +97,26 @@ angular.module('replayroutedetail', [])
 		$scope.initialize(); 
 	});
 
-	//var latLng = { lat: 12.850167, lng: 77.660329 };
-	//$scope.initialize();
-	// function initialize() {
 	$scope.initialize=function () {
     	console.log("map");
 		var styleMap = [{"featureType":"administrative","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#bee4f4"},{"visibility":"on"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"on"},{"hue":"#ff0000"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"on"},{"hue":"#ff0000"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"transit","elementType":"labels","stylers":[{"visibility":"on"},{"hue":"#ff0000"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#46bcec"},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"color":"#000000"}]}];
 	    var myOptions = {
-           
 	        zoom: 20,
-	        /*maxZoom : 20,*/
 	        mapTypeId: google.maps.MapTypeId.ROADMAP
 	    };
 	    address = 'India';
-	    // address = 'Trinidad and Tobago'
 	    geocoder = new google.maps.Geocoder();
 	    geocoder.geocode( { 'address': address}, function(results, status) {
-	    map.fitBounds(results[0].geometry.viewport);
-
+	    	map.fitBounds(results[0].geometry.viewport);
 	    });	
 	    map = new google.maps.Map(document.getElementById("replay_map"), myOptions);
-	    google.maps.event.addListenerOnce(map, 'idle', function(){
-	        // do something only the first time the map is loaded
-	    	// console.log("map loaded");
+	    google.maps.event.addListenerOnce(map, 'idle', function(){});
+	    
+		google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
+	        google.maps.event.addListenerOnce(map, 'tilesloaded', function(){});
 	    });
-	    google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
-	        // this part runs when the mapobject is created and rendered
-	    	// console.log("Map Loaded");
-	        google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
-	            // this part runs when the mapobject shown for the first
-		    // time
-	        	// console.log("Map with tiles and polylines loaded one
-			// time");
-	        	
-	        	// console.log("Hide Loading");
-	        });
-	    });
-	    google.maps.event.addListener(map, 'tilesloaded', function() {
-	    	  // Visible tiles loaded!
-	    	// console.log("map loaded with tiles every time");
-	    	// $("#loading_icon").hide();
-	    	// $scope.httpLoading=true;
-	    	});
+
+	    google.maps.event.addListener(map, 'tilesloaded', function() {});
 	    poly = new google.maps.Polyline({
 	        path: [],
 	        strokeColor: '#97dcc9',
@@ -176,29 +131,22 @@ angular.module('replayroutedetail', [])
 	}
 	
     google.maps.event.addDomListener(window, 'load', $scope.initialize);
-	console.log(map);
+	
 	var dataFromReplay = UtilsFactory.getDataForReplay();
-    console.log(dataFromReplay);
-        
-        //$scope.speedSlot = ["Slow", "Medium", "High"];
 	$scope.timeSlots = dataFromReplay.values;
-	console.log($scope.timeSlots);
 
 	$scope.getHistory = function (timeSlot) {
-		console.log("timeslot: "+timeSlot);
 		$scope.showReplayMenu = true;
 		oldStep = {step: 1,tick:100};
 		$scope.initialize();
 		$scope.end = false;
 		$scope.replaySlot = timeSlot;
-		console.log("timeslot: "+angular.toJson(timeSlot)+""+timeSlot.sts);
 		var inputParam = { 'devid': dataFromReplay.devid, 'sts': timeSlot.sts, 'ets': timeSlot.ets };
 		BatsServices.history(inputParam).success(function (response) {
 			$scope.historyVal = response;
 			if($scope.historyVal.values != "" ){
 				displayHistory();
-			}
-			else{
+			}else{
 				ionicToast.show('No history avilable for this Vehicle');
 				clearMap();
 				for(i in svg){marker[i].setMap(null);}
@@ -211,25 +159,17 @@ angular.module('replayroutedetail', [])
 		})
 	};
 	
-	/**
-	 * 1) Plot on Map History Path 2) Display on Table
-	 */
 	function displayHistory() {
-		console.log(map);
 		$scope.yoData=true;
 		$scope.noData=false;
 		var lat_tot = 0, lg_tot = 0, lat_avg = 0, lg_avg = 0;
-		var histData = $scope.historyVal.values; 
-		//console.log(histData);
-		//histData=histData.sort(SortByts);
+		var histData = $scope.historyVal.values;
 		var hist_len = histData.length;
-		//console.log(histData.length);
 		var polyPathArray = [];
 		$scope.plottedData=[];
 		var coordinates = [];		
 		for(var inc = 0; inc < hist_len; inc++){
 		  	executeHisory(histData[inc].lat,histData[inc].long,histData[inc].Velocity,histData[inc].ts,function(historyStatus){
-                // console.log(JSON.stringify(historyStatus));
                 var arr = {};
     			var plottedObj={};
     			arr.lat = Number(historyStatus.latitude);
@@ -251,21 +191,16 @@ angular.module('replayroutedetail', [])
 		
 		if(polyPathArray.length == 0){
 			$scope.yoData=false;
-		}
-		else{
-			console.log(map);
+		}else{
 			clearMap();
-//			console.log(JSON.stringify(polyPathArray));
 			bounds = new google.maps.LatLngBounds();
 			var pts=[];
     	    var length = 0;
             var point = null;
-			var myLatLng = {"lat":polyPathArray[0].lng,"lng":polyPathArray[0].lat};
+			var myLatLng = {"lat":polyPathArray[0].lat,"lng":polyPathArray[0].lng};
 			var icon1 = {
 				url: 'img/startFlag.png', // url
 				scaledSize: new google.maps.Size(38, 38), // scaled size
-				// origin: new google.maps.Point(0,0), // origin
-				// anchor: new google.maps.Point(0, 0) // anchor
 			};
 
 			var marker = new google.maps.Marker({
@@ -279,9 +214,8 @@ angular.module('replayroutedetail', [])
 				url: 'img/finishFlag.png', // url
 				scaledSize: new google.maps.Size(38, 38), // scaled size
 			};
-		
 
-			var myLatLng = {"lat":polyPathArray[polyPathArray.length-1].lng,"lng":polyPathArray[polyPathArray.length-1].lat};
+			var myLatLng = {"lat":polyPathArray[polyPathArray.length-1].lat,"lng":polyPathArray[polyPathArray.length-1].lng};
 			var marker = new google.maps.Marker({
 				position: myLatLng,
 				map: map,
@@ -289,11 +223,10 @@ angular.module('replayroutedetail', [])
 			});
 
             for(var i=0;i<polyPathArray.length;i++){
-            	pts[i]=new google.maps.LatLng(polyPathArray[i].lng,polyPathArray[i].lat)
+            	pts[i]=new google.maps.LatLng(polyPathArray[i].lat,polyPathArray[i].lng)
             	if(i>0){
             		length += pts[i-1].distanceFrom(pts[i]);
-            		if (isNaN(length)) {
-						// console.log("["+i+"] length="+length+" segment="+pts[i-1].distanceFrom(pts[i]));
+            		if(isNaN(length)) {
 					};
             	}
             	bounds.extend(pts[i]);
@@ -308,7 +241,6 @@ angular.module('replayroutedetail', [])
     	    map.setZoom(16);
             map.fitBounds(bounds);
             startAnimation();  
-			console.log(map);
 		}
 	};
 
@@ -323,7 +255,6 @@ angular.module('replayroutedetail', [])
 	    }
         eol=poly.Distance();
         map.setCenter(poly.getPath().getAt(0));
-		console.log(map);
         if (marker[0]) {
         	for(i in svg){marker[i].setMap(null);}
         }
@@ -335,24 +266,14 @@ angular.module('replayroutedetail', [])
 				icon: icons[i]
 			});
     	}
-         // map.addOverlay(marker);
-        poly2 = new google.maps.Polyline({path: [poly.getPath().getAt(0)], strokeColor:"#0000FF",strokeOpacity: 0.0, strokeWeight:0});
-         // map.addOverlay(poly2);
-         // setTimeout("animate(50)",2000); // Allow time for the initial map
-	    // display
-         
+        poly2 = new google.maps.Polyline({path: [poly.getPath().getAt(0)], strokeColor:"#0000FF",strokeOpacity: 0.0, strokeWeight:0}); 
     	setinterval = setTimeout(function() {
 			$scope.animate(50);
  		}, 2000);
 	};
 	function updatePoly(d) {
-		// Spawn a new polyline every 20 vertices, because updating a
-		// 100-vertex poly is too slow
 		if (poly2.getPath().getLength() > 20) {
 			poly2= new google.maps.Polyline([poly.getPath().getAt(lastVertex - 1)]);
-			/* console.log(poly.getPath().getAt(lastVertex - 1).lat); */
-			// map.addOverlay(poly2)
-			//poly2.setMap(map);
 			poly2.setMap(null);
 		}
 
@@ -360,10 +281,8 @@ angular.module('replayroutedetail', [])
 			if (poly2.getPath().getLength()>1) {
 				poly2.getPath().removeAt(poly2.getPath().getLength() - 1);
 			}
-			/* poly2.insertVertex(poly2.getVertexCount(),poly.GetPointAtDistance(d)); */
 			poly2.getPath().insertAt(poly2.getPath().getLength(), poly.GetPointAtDistance(d));
-		} else {
-			/* poly2.insertVertex(poly2.getPath().getLength(),poly.getVertex(lastVertex++)); */         
+		} else {     
 			poly2.getPath().insertAt(poly2.getPath().getLength(), poly.getPath().getAt(lastVertex++));
 		}
 	};
@@ -371,223 +290,148 @@ angular.module('replayroutedetail', [])
 	$scope.animate = function(d) {
 		if (d>eol) {	
 			$scope.end = true;
-			// console.log(poly.getPath().getAt(lastVertex++))
-			// for(i in svg){marker[i].setPosition(poly.getPath().getAt(lastVertex++));}
 			return;
 		}
 		var p = poly.GetPointAtDistance(d);
-		// if (k++>=180/step) {
 		map.panTo(p);
-		/*
-		* k=0; }
-		*/ 
-		/*
-		* var lastPosn = marker.getPosition(); marker.setPosition(p);
-		* var heading =
-		* google.maps.geometry.spherical.computeHeading(lastPosn, p);
-		* icon.rotation = heading; marker.setIcon(icon);
-		*/     
 		var lastPosn = marker[0].getPosition();
 		for(i in svg){marker[i].setPosition(p);}
 		var heading = google.maps.geometry.spherical.computeHeading(lastPosn, p);
 		for(i in svg){icons[i].rotation = heading;}
 		for(i in svg){marker[i].setIcon(icons[i]);}
 		updatePoly(d);
-		// timerHandle = setTimeout("animate("+(d+step)+")", tick);
 		timerHandle = setTimeout(function() {
 			$scope.animate(d + step);
 		}, tick);
 	};
-	 // ----------------------------------------------------------------------------
-		// =============== ~animation funcitons =====================
-		/***************************************************************
-		 * *******************************************************************\ *
-		 * epolys.js by Mike Williams * updated to API v3 by Larry Ross * *
-		 * A Google Maps API Extension * * Adds various Methods to
-		 * google.maps.Polygon and google.maps.Polyline * *
-		 * .Contains(latlng) returns true is the poly contains the
-		 * specified * GLatLng * * .Area() returns the approximate area
-		 * of a poly that is * not self-intersecting * * .Distance()
-		 * returns the length of the poly path * * .Bounds() returns a
-		 * GLatLngBounds that bounds the poly * * .GetPointAtDistance()
-		 * returns a GLatLng at the specified distance * along the path. *
-		 * The distance is specified in metres * Reurns null if the path
-		 * is shorter than that * * .GetPointsAtDistance() returns an
-		 * array of GLatLngs at the * specified interval along the path. *
-		 * The distance is specified in metres * * .GetIndexAtDistance()
-		 * returns the vertex number at the specified * distance along
-		 * the path. * The distance is specified in metres * Returns
-		 * null if the path is shorter than that * * .Bearing(v1?,v2?)
-		 * returns the bearing between two vertices * if v1 is null,
-		 * returns bearing from first to last * if v2 is null, returns
-		 * bearing from v1 to next * * *
-		 * ********************************************************************** *
-		 * This Javascript is provided by Mike Williams * Blackpool
-		 * Community Church Javascript Team *
-		 * http://www.blackpoolchurch.org/ * http://econym.org.uk/gmap/ * *
-		 * This work is licenced under a Creative Commons Licence *
-		 * http://creativecommons.org/licenses/by/2.0/uk/ * *
-		 * ********************************************************************** *
-		 * Version 1.1 6-Jun-2007 * Version 1.2 1-Jul-2007 - fix: Bounds
-		 * was omitting vertex zero * add: Bearing * Version 1.3
-		 * 28-Nov-2008 add: GetPointsAtDistance() * Version 1.4
-		 * 12-Jan-2009 fix: GetPointsAtDistance() * Version 3.0
-		 * 11-Aug-2010 update to v3 * * \
-		 **************************************************************/
 
-		// === first support methods that don't (yet) exist in v3
-		google.maps.LatLng.prototype.distanceFrom = function (newLatLng) {
-		    var EarthRadiusMeters = 6378137.0; // meters
-		    var lat1 = this.lat();
-		    var lon1 = this.lng();
-		    var lat2 = newLatLng.lat();
-		    var lon2 = newLatLng.lng();
-		    var dLat = (lat2 - lat1) * Math.PI / 180;
-		    var dLon = (lon2 - lon1) * Math.PI / 180;
-		    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-		    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-		    var d = EarthRadiusMeters * c;
-		    return d;
-		}
+	// === first support methods that don't (yet) exist in v3
+	google.maps.LatLng.prototype.distanceFrom = function (newLatLng) {
+		var EarthRadiusMeters = 6378137.0; // meters
+		var lat1 = this.lat();
+		var lon1 = this.lng();
+		var lat2 = newLatLng.lat();
+		var lon2 = newLatLng.lng();
+		var dLat = (lat2 - lat1) * Math.PI / 180;
+		var dLon = (lon2 - lon1) * Math.PI / 180;
+		var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+		var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+		var d = EarthRadiusMeters * c;
+		return d;
+	}
 
-		google.maps.LatLng.prototype.latRadians = function () {
-		    return this.lat() * Math.PI / 180;
-		}
+	google.maps.LatLng.prototype.latRadians = function () {
+		return this.lat() * Math.PI / 180;
+	}
 
-		google.maps.LatLng.prototype.lngRadians = function () {
-		    return this.lng() * Math.PI / 180;
-		}
+	google.maps.LatLng.prototype.lngRadians = function () {
+		return this.lng() * Math.PI / 180;
+	}
 
-		// === A method which returns the length of a path in metres ===
-		google.maps.Polygon.prototype.Distance = function () {
-		    var dist = 0;
-		    for (var i = 1; i < this.getPath().getLength(); i++) {
-		        dist += this.getPath().getAt(i).distanceFrom(this.getPath().getAt(i - 1));
-		    }
-		    return dist;
+	// === A method which returns the length of a path in metres ===
+	google.maps.Polygon.prototype.Distance = function () {
+		var dist = 0;
+		for (var i = 1; i < this.getPath().getLength(); i++) {
+			dist += this.getPath().getAt(i).distanceFrom(this.getPath().getAt(i - 1));
 		}
+		return dist;
+	}
 
-		// === A method which returns a GLatLng of a point a given
-		// distance along
-		// the path ===
-		// === Returns null if the path is shorter than the specified
-		// distance ===
-		google.maps.Polygon.prototype.GetPointAtDistance = function (metres) {
-		    // some awkward special cases
-		    if (metres == 0) return this.getPath().getAt(0);
-		    if (metres < 0) return null;
-		    if (this.getPath().getLength() < 2) return null;
-		    var dist = 0;
-		    var olddist = 0;
-		    for (var i = 1;
-		    (i < this.getPath().getLength() && dist < metres); i++) {
-		        olddist = dist;
-		        dist += this.getPath().getAt(i).distanceFrom(this.getPath().getAt(i - 1));
-		    }
-		    if (dist < metres) {
-		        return null;
-		    }
-		    var p1 = this.getPath().getAt(i - 2);
-		    var p2 = this.getPath().getAt(i - 1);
-		    var m = (metres - olddist) / (dist - olddist);
-		    return new google.maps.LatLng(p1.lat() + (p2.lat() - p1.lat()) * m, p1.lng() + (p2.lng() - p1.lng()) * m);
+	google.maps.Polygon.prototype.GetPointAtDistance = function (metres) {
+		if (metres == 0) return this.getPath().getAt(0);
+		if (metres < 0) return null;
+		if (this.getPath().getLength() < 2) return null;
+		var dist = 0;
+		var olddist = 0;
+		for (var i = 1;
+		(i < this.getPath().getLength() && dist < metres); i++) {
+			olddist = dist;
+			dist += this.getPath().getAt(i).distanceFrom(this.getPath().getAt(i - 1));
 		}
+		if (dist < metres) {
+			return null;
+		}
+		var p1 = this.getPath().getAt(i - 2);
+		var p2 = this.getPath().getAt(i - 1);
+		var m = (metres - olddist) / (dist - olddist);
+		return new google.maps.LatLng(p1.lat() + (p2.lat() - p1.lat()) * m, p1.lng() + (p2.lng() - p1.lng()) * m);
+	}
 
-		// === A method which returns an array of GLatLngs of points a
-		// given
-		// interval along the path ===
-		google.maps.Polygon.prototype.GetPointsAtDistance = function (metres) {
-		    var next = metres;
-		    var points = [];
-		    // some awkward special cases
-		    if (metres <= 0) return points;
-		    var dist = 0;
-		    var olddist = 0;
-		    for (var i = 1;
-		    (i < this.getPath().getLength()); i++) {
-		        olddist = dist;
-		        dist += this.getPath().getAt(i).distanceFrom(this.getPath().getAt(i - 1));
-		        while (dist > next) {
-		            var p1 = this.getPath().getAt(i - 1);
-		            var p2 = this.getPath().getAt(i);
-		            var m = (next - olddist) / (dist - olddist);
-		            points.push(new google.maps.LatLng(p1.lat() + (p2.lat() - p1.lat()) * m, p1.lng() + (p2.lng() - p1.lng()) * m));
-		            next += metres;
-		        }
-		    }
-		    return points;
+	// === A method which returns an array of GLatLngs of points a
+	// given
+	// interval along the path ===
+	google.maps.Polygon.prototype.GetPointsAtDistance = function (metres) {
+		var next = metres;
+		var points = [];
+		if (metres <= 0) return points;
+		var dist = 0;
+		var olddist = 0;
+		for (var i = 1;
+		(i < this.getPath().getLength()); i++) {
+			olddist = dist;
+			dist += this.getPath().getAt(i).distanceFrom(this.getPath().getAt(i - 1));
+			while (dist > next) {
+				var p1 = this.getPath().getAt(i - 1);
+				var p2 = this.getPath().getAt(i);
+				var m = (next - olddist) / (dist - olddist);
+				points.push(new google.maps.LatLng(p1.lat() + (p2.lat() - p1.lat()) * m, p1.lng() + (p2.lng() - p1.lng()) * m));
+				next += metres;
+			}
 		}
+		return points;
+	}
 
-		// === A method which returns the Vertex number at a given
-		// distance along
-		// the path ===
-		// === Returns null if the path is shorter than the specified
-		// distance ===
-		google.maps.Polygon.prototype.GetIndexAtDistance = function (metres) {
-		    // some awkward special cases
-		    if (metres == 0) return this.getPath().getAt(0);
-		    if (metres < 0) return null;
-		    var dist = 0;
-		    var olddist = 0;
-		    for (var i = 1;
-		    (i < this.getPath().getLength() && dist < metres); i++) {
-		        olddist = dist;
-		        dist += this.getPath().getAt(i).distanceFrom(this.getPath().getAt(i - 1));
-		    }
-		    if (dist < metres) {
-		        return null;
-		    }
-		    return i;
+	// === A method which returns the Vertex number at a given
+	// distance along
+	// the path ===
+	// === Returns null if the path is shorter than the specified
+	// distance ===
+	google.maps.Polygon.prototype.GetIndexAtDistance = function (metres) {
+		// some awkward special cases
+		if (metres == 0) return this.getPath().getAt(0);
+		if (metres < 0) return null;
+		var dist = 0;
+		var olddist = 0;
+		for (var i = 1;
+		(i < this.getPath().getLength() && dist < metres); i++) {
+			olddist = dist;
+			dist += this.getPath().getAt(i).distanceFrom(this.getPath().getAt(i - 1));
 		}
-		// === Copy all the above functions to GPolyline ===
-		google.maps.Polyline.prototype.Distance = google.maps.Polygon.prototype.Distance;
-		google.maps.Polyline.prototype.GetPointAtDistance = google.maps.Polygon.prototype.GetPointAtDistance;
-		google.maps.Polyline.prototype.GetPointsAtDistance = google.maps.Polygon.prototype.GetPointsAtDistance;
-		google.maps.Polyline.prototype.GetIndexAtDistance = google.maps.Polygon.prototype.GetIndexAtDistance;
-		
-		/*
-		 * -----------------------------------------the end for vehicle
-		 * icon
-		 * movement---------------------------------------------------------------
-		 * 
-		 */
+		if (dist < metres) {
+			return null;
+		}
+		return i;
+	}
+	
+	// === Copy all the above functions to GPolyline ===
+	google.maps.Polyline.prototype.Distance = google.maps.Polygon.prototype.Distance;
+	google.maps.Polyline.prototype.GetPointAtDistance = google.maps.Polygon.prototype.GetPointAtDistance;
+	google.maps.Polyline.prototype.GetPointsAtDistance = google.maps.Polygon.prototype.GetPointsAtDistance;
+	google.maps.Polyline.prototype.GetIndexAtDistance = google.maps.Polygon.prototype.GetIndexAtDistance;
+	/*------------------------------end of vehicle icon movement------------------------------*/
+
 	function SortByts(x,y) {
-		// console.log(x);
-		// console.log(y);
 		return ((x.ts == y.ts) ? 0 : ((x.ts > y.ts) ? 1 : -1 ));
 	}
 	
-	/**
-	 * get Date formatted date based on TIMESTAMP
-	 * -----------------------------------------------------------------------
-	 */
-	
-	
-	
-	$scope.givelt=function(lt,lg){
-		// alert("success");
+	$scope.givelt = function(lt,lg){
 		var geocoder = new google.maps.Geocoder();
 		var latLng = new google.maps.LatLng(lt,lg);
-		geocoder.geocode({       
-		        latLng: latLng     
-		        }, 
-		        function(responses) 
-		        {     
-		           if (responses && responses.length > 0) 
-		           {        
-		               swal(responses[0].formatted_address);     
-		           } 
-		           else 
-		           {       
-		             swal('Not getting Any address for given latitude and longitude.');     
-		           }   
-		        }
+		geocoder.geocode({
+				latLng: latLng
+			}, 
+			function(responses){     
+				if (responses && responses.length > 0){        
+					swal(responses[0].formatted_address);     
+				}else{       
+					swal('Not getting Any address for given latitude and longitude.');     
+				}   
+			}
 		);
 	}
 	$(".spdCtrl").click(function() {
 		$(".spdCtrl").removeClass("activeCtrl");
-		// $(".tab").addClass("active"); // instead of this do the below
 		$(this).addClass("activeCtrl");
 	});
 
-    })
+})

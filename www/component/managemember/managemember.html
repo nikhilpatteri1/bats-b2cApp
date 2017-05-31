@@ -10,10 +10,10 @@
     <ion-content class="hmCards" scroll="true" ng-init="init();">
         <div class="card md-list" ng-repeat="member in memberList">
             <div class="row mmMargin acGreyFont">
-              <div class="col col-90"> Member {{$index+1}}</div>
-              <div class="col col-10 acSmallFonts acVehicleCompany ">
-                    <!--<img class="batsIcon acEditIcon alignRight" src="img/pencil.png" ng-click="openPopover($event, member)" /></div>-->
-                    <i class="ion-android-more-vertical edit-member-icon" ng-click="openPopover($event, member)"></i></div>
+                <div class="col col-90"> Member {{$index+1}}</div>
+                <div class="col col-10 center-text acSmallFonts acVehicleCompany" ng-click="openPopover($event, member)">
+                    <i class="ion-android-more-vertical edit-member-icon"></i>
+                </div>
             </div>
             <div class="row acRemoveMargin leftMargin ">
                 <div class="leftMargin" ><b>{{member.firstname}} {{member.lastname}}</b></div>
