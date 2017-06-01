@@ -171,6 +171,9 @@ angular.module('batscontrollers', [
       });
     }
 
+
+
+
     // function sendNotification(response) {
     //   var notify_heading;
     //   console.log("inside notification" + angular.toJson(response));
