@@ -13,7 +13,7 @@
                     if(loading && !$state.is(PageConfig.LIVE_TRACKING)){
                     		$ionicLoading.show({
                         		noBackdrop: false,
-                        	    template: "<img src='img/newLoading.gif' />",
+                        	    template: "<img src='img/ring.gif' />",
                         	    hideOnStageChange: false
                         	});
                     }else{
