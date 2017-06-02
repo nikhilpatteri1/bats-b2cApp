@@ -40,6 +40,9 @@ angular.module('batscontrollers', [
       if (localStorage.getItem(Constants.ACCESS_TYPE)) {
         localStorage.removeItem(Constants.ACCESS_TYPE)
       }
+       deleteDatabase();
+        cordova.plugins.notification.local.cancelAll(function () {
+        }, this);
       $scope.menuLink = 1;
       $state.go(PageConfig.LOGIN);
     }
@@ -63,19 +66,15 @@ angular.module('batscontrollers', [
 
     function removeLogin() {
       BatsServices.logout({}).success(function (response) {
-        deleteDatabase();
-        cordova.plugins.notification.local.cancelAll(function () {
-          //alert("done");
-        }, this);
-        $rootScope.interlogout();
+       $rootScope.interlogout();
       }).error(function (error) {
         ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
       })
     }
 
-    $scope.$on('onReminderAdded', function (event, id, state, json) {
-      // console.log('notification ADDED, id: ' + id + ' state:' + state + ' json:' + json);
-    });
+    // $scope.$on('onReminderAdded', function (event, id, state, json) {
+    //   // console.log('notification ADDED, id: ' + id + ' state:' + state + ' json:' + json);
+    // });
 
     $scope.logout = function () {
       var confirmPopup = $ionicPopup.confirm({
