@@ -44,6 +44,8 @@ angular.module('batscontrollers', [
         cordova.plugins.notification.local.cancelAll(function () {
         }, this);
       $scope.menuLink = 1;
+      $interval.cancel($rootScope.notificationCall);
+      UtilsFactory.setNotificationcallFirst(0);
       $state.go(PageConfig.LOGIN);
     }
 
