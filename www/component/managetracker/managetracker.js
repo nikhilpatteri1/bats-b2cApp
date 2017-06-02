@@ -56,7 +56,9 @@ angular.module('managetracker', [])
                     console.log("inside " + $scope.time+" interval lenght "+$interval.length);
                     if ($scope.time === 15) {
                         console.log("inside manage tracker interval end ");
+                        init();
                         $interval.cancel(deviceListAPi);
+                        $scope.countingForActivation=0;
                     }
                 }).error(function (error) {
                     ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
