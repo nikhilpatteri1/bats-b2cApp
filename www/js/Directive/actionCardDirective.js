@@ -11,7 +11,6 @@ angular.module('actioncarddirective', [])
             return getTemplate();
         }
         
-       
         $scope.updatemarker = function(tracker){
             UtilsFactory.setManageTrackerDetails(tracker);
             $state.go(PageConfig.UPDATE_MARKER_DETAILS);
