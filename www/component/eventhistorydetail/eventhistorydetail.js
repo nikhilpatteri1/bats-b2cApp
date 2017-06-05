@@ -82,7 +82,7 @@ angular.module('eventhistorydetail', [])
         $scope.imageSrc = 'img/eventH/sanity.png';
       }
       else if (alarm_type == 7) {
-        $scope.alarmType = "CONNECTION TO TRACKER INTERRUPTED";
+        $scope.alarmType = "Connection to tracker interrupted";
         $scope.imageSrc = 'img/eventH/warning.png';
       }
       else if (alarm_type == 8) {
