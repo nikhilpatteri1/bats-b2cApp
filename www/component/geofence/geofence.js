@@ -6,6 +6,8 @@ angular.module('geofence', [])
     var directionsDisplay = new google.maps.DirectionsRenderer;
     var latLng = new google.maps.LatLng(12.8501040, 77.6585636);
     var radius = [];
+    var all_polygons = [];
+    var polygon_completed = false;
     var drawingManager = new google.maps.drawing.DrawingManager({
             drawingMode: '',
             drawingControl: true,
@@ -59,24 +61,50 @@ angular.module('geofence', [])
             drawingManager.setMap(map);
 
             google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
+                drawingManager.setOptions({
+                    drawingControl: false
+                });
                 var pathObj = polygon.getPaths();
                 radius = pathObj.b[0].b;
                 UtilsFactory.setPolygonPath(radius);
+            });
+
+            google.maps.event.addListener(drawingManager, 'overlaycomplete', function(polygon) {
+                all_polygons.push(polygon);
+                polygon_completed = true;
+                drawingManager.setDrawingMode(null);
+            });
+
+            map.addListener('click', function(){
+                $scope.clearMap();
+                polygon_completed = false;
             });
 
             if(UtilsFactory.getPolygonPath().length!=0){
                 var polyPaths = UtilsFactory.getPolygonPath();
                 radius = polyPaths;
                 polygonDrawing = new google.maps.Polygon({
-                paths: polyPaths
+                    paths: polyPaths
                 });
                 polygonDrawing.setMap(map);
+                drawingManager.setOptions({
+                    drawingControl: false
+                });
             }
 
             $scope.clearMap = function(){
                 radius = [];
-                console.log("inside clear");
-                polygonDrawing.setMap(null);
+                for(var i=0;i<all_polygons.length;i++){
+                    all_polygons[i].overlay.setMap(null);
+                }
+                all_polygons = [];
+                if(polygonDrawing){
+                    polygonDrawing.setMap(null);
+                    polygonDrawing = null;
+                }
+                drawingManager.setOptions({
+                    drawingControl: true
+                });
             }
         });
     }
@@ -91,7 +119,6 @@ angular.module('geofence', [])
             }).error(function (error) {
                 ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
             })
-            // $state.go(PageConfig.UPDATE_MARKER_DETAILS);
         }else{
             var confirmPopup = $ionicPopup.confirm({
                 title: 'Cofirm',
@@ -114,7 +141,6 @@ angular.module('geofence', [])
     };
 
     $scope.showInfo = function(){
-        console.log("showing info");
         var alertPopup = $ionicPopup.alert({
                             cssClass: 'info-popup',
                             template: '<div class="info-popup"><img width="100%" height="100%" src="img/geofence-info.gif"></div>',
