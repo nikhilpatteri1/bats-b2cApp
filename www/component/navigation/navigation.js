@@ -10,14 +10,14 @@ angular.module('navigation', [])
   var distanceMatrixService = new google.maps.DistanceMatrixService;
   var lat, lng, latLng;
   $scope.initMap = function() {
-    navigator.geolocation.getCurrentPosition(onSuccess, onError, {
-      enableHighAccuracy: true,
-      maximumAge: 3600000
-    });
+    // navigator.geolocation.getCurrentPosition(onSuccess, onError, {
+    //   enableHighAccuracy: true,
+    //   maximumAge: 3600000
+    // });
 
-    function onSuccess(position){
-      lat = position.coords.latitude;
-      lng = position.coords.longitude;
+    // function onSuccess(position){
+      lat = 12.8501040;
+      lng = 77.6585636;
       latLng = new google.maps.LatLng(lat, lng);
 
       //load map when the page is ready
@@ -29,11 +29,11 @@ angular.module('navigation', [])
           });
           directionsDisplay.setMap(map);
       });
-    };
+    // };
 
-    function onError(error){
-      alert("Unable to get device location");
-    };
+    // function onError(error){
+    //   alert("Unable to get device location");
+    // };
 
     $scope.onChangeHandler = function() {
       calculateAndDisplayRoute(directionsService, directionsDisplay, distanceMatrixService);
