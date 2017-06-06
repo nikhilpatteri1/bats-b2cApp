@@ -24,7 +24,7 @@
                     <form name="loginForm" novalidate ng-submit="gotoHome(data, loginForm)">
                         <label ng-if="data.userid" class="floatlabeltxt show-hide inputFieldFontSize">User Id</label>
                         <input placeholder="User Id" type="number" ng-model="data.userid" required class="inputTextField"
-                            maxlength="20" oninput="if(value.length>20)value=value.slice(0,20)" name="user" ng-class="{error: loginForm.user.$invalid && Validate}">
+                            maxlength="10" oninput="if(value.length>10)value=value.slice(0,10)" name="user" ng-class="{error: loginForm.user.$invalid && Validate}">
                         </input>
                         <!--<span class="red" ng-if="loginForm.email.$dirty && loginForm.user.$invalid">
                                 <span ng-if="loginForm.user.$error.required">Email is required</span>
