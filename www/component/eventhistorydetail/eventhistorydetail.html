@@ -14,16 +14,36 @@
             <div class="row ehdRow ehdRowCol">
 
                 <div class="col col-20 marginLeft">
-                    <img class="ehdimage" ng-src="{{imageSrc}}">
+                    <img class="ehdimage" ng-src="{{event.alarm_type=='0' ? 'img/eventH/panic.png' :
+                                                    (event.alarm_type=='1' ? 'img/eventH/sim-tamper.png' :
+                                                    (event.alarm_type=='2' ? 'img/eventH/tamper-top.png' :
+                                                    (event.alarm_type=='3' ? 'img/eventH/battery.png' :
+                                                    (event.alarm_type=='4' ? 'img/eventH/overspeed.png' :
+                                                    (event.alarm_type=='5' ? 'img/eventH/geofence.png' :
+                                                    (event.alarm_type=='6' ? 'img/eventH/sanity.png' :
+                                                    (event.alarm_type=='7' ? 'img/eventH/warning.png' :
+                                                    (event.alarm_type=='8' ? 'img/eventH/theft.png' :
+                                                    (event.alarm_type=='9' ? 'img/eventH/invalid.png' : 'img/eventH/invalid.png')))))))))}}">
                 </div>
                 <div class="col col-55">
-                    <div class="row" ng-class="[chexkAlarmType(event.alarm_type,event.Velocity)]">{{alarmType}}
+                    <!--<div class="row" ng-class="[chexkAlarmType(event.alarm_type,event.Velocity)]">{{alarmType}}-->
+                        <div class="row" >
+                            <span ng-if="event.alarm_type=='0'">Panic</span>
+                            <span ng-if="event.alarm_type=='1'">Tamper Sim</span>
+                             <span ng-if="event.alarm_type=='2'">Tamper Top</span>
+                             <span ng-if="event.alarm_type=='3'">Battery Low</span>
+                            <span ng-if="event.alarm_type=='4'">Overspeed</span>
+                            <span ng-if="event.alarm_type=='5'">Geofence</span>
+                             <span ng-if="event.alarm_type=='6'">Sanity alarm</span>
+                            <span ng-if="event.alarm_type=='7'">Connection to tracker interrupted</span>
+                             <span ng-if="event.alarm_type=='8'">Vehicle Moved / Theft</span>
+                            <span ng-if="event.alarm_type=='9'">Waring</span>
                         <!--<div class="row latlongStyle" ng-click="showAlert(event.lat,event.long)">
                             {{event.lat}} , {{event.long}}-->
                     </div>
                     <div class="row ">
                         <!--<div class="" ng-class="[chexkAlarmType(event.alarm_type)]">{{alarmType}}</div>-->
-                        <div class="leftPaddingZero" ng-class="{'redSpeed':redSpeed==1}">{{event.Velocity}} KmpH</div>
+                        <div class="leftPaddingZero" ng-class="{'redSpeed':event.alarm_type=='4'}">{{event.Velocity}} KmpH</div>
                     </div>
                 </div>
                 <div class="col col-25">

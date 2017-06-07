@@ -54,8 +54,6 @@ angular.module('eventhistory', [])
                 UtilsFactory.setEventHistoryList(inputParam);
                 $state.go(PageConfig.EVENT_HISTORY_DETAIL);
             }
-
         }
-
 
     })

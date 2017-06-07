@@ -145,6 +145,8 @@ angular.module('replayroutedetail', [])
 		BatsServices.history(inputParam).success(function (response) {
 			$scope.historyVal = response;
 			if($scope.historyVal.values != "" ){
+				clearMap();
+				map.setZoom(16);
 				displayHistory();
 			}else{
 				ionicToast.show('No history avilable for this Vehicle');
@@ -184,6 +186,13 @@ angular.module('replayroutedetail', [])
 				lg_tot += Number(historyStatus.longitude);
 		  	});
 		}
+		if($scope.plottedData.length <= 1){
+			ionicToast.show("Stationary Vehicle", Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+			//swal({title:"Stationary Vehicle"});
+		}
+		else{
+			// nothing
+		}
 		function executeHisory(latitude,longitude,velocity,timestamp,mapHistory){
 			var historyStatus={"latitude":latitude,"longitude":longitude,"velocity":velocity,"timestamp":timestamp};
 			mapHistory(historyStatus);
@@ -193,6 +202,7 @@ angular.module('replayroutedetail', [])
 			$scope.yoData=false;
 		}else{
 			clearMap();
+		//	map.setZoom(16);
 			bounds = new google.maps.LatLngBounds();
 			var pts=[];
     	    var length = 0;
@@ -221,6 +231,7 @@ angular.module('replayroutedetail', [])
 				map: map,
 				icon: icon2
 			});
+			//map.setZoom(16);
 
             for(var i=0;i<polyPathArray.length;i++){
             	pts[i]=new google.maps.LatLng(polyPathArray[i].lat,polyPathArray[i].lng)
@@ -293,7 +304,7 @@ angular.module('replayroutedetail', [])
 			return;
 		}
 		var p = poly.GetPointAtDistance(d);
-		map.panTo(p);
+		//map.panTo(p);
 		var lastPosn = marker[0].getPosition();
 		for(i in svg){marker[i].setPosition(p);}
 		var heading = google.maps.geometry.spherical.computeHeading(lastPosn, p);
