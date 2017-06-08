@@ -52,22 +52,25 @@
             <div class="umdHeaderIconsVehicle acSmallFonts">Vehicle Name</div>
             <div class="umdInputDiv">
                 <input type="text" name="vehicle_name" class="umdInputBoxes" required maxlength="20"
-                    placeholder="Please enter the Vehicle name" ng-model="data.vehicle_name"
+                    placeholder="Please enter the Vehicle name" ng-model="data.vehicle_name" oninput="if(value.length>20)value=value.slice(0,20)"
                     ng-class="{'umdFilledInputBox' : updatemarkerdetialsForm.form.vehicle_name.$invalid}">
             </div>
             <div class="umdHeaderIconsVehicle acSmallFonts">Vehicle Number</div>
             <div class="umdInputDiv">
                 <input type="text" name="vehicle_num" class="umdInputBoxes" required maxlength="20"
-                    placeholder="Please enter the Vehicle number" ng-model="data.vehicle_num"
+                    placeholder="Please enter the Vehicle number" ng-model="data.vehicle_num" oninput="if(value.length>20)value=value.slice(0,20)"
                     ng-class="{'umdFilledInputBox' : updatemarkerdetialsForm.form.vehicle_num.$invalid}">
             </div>
             <div class="umdHeaderIconsVehicle acSmallFonts">Maximum Speed limit</div>
             <div class="umdInputDiv umdFlex" >
-                <input type="text" name="speed_limit" class="umdInputBoxes umdSpeedLimit" required 
-                    placeholder="Set Speed Limit" ng-model="data.speed_limit" maxlength="3"
+                <input type="number" name="speed_limit" class="umdInputBoxes umdSpeedLimit" required 
+                    placeholder="Set Speed Limit" ng-model="data.speed_limit" maxlength="3" oninput="if(value.length>3)value=value.slice(0,3)"
                     ng-class="{'umdFilledInputBox' : updatemarkerdetialsForm.form.speed_limit.$invalid}">
+                   
                 <div class="umdLabelBorder">KMPH</div>
                 <span class="umdSpeedLimitSpan acGreyFont">Example:60Kmph you will be notified when vehicle crosses the speed limit</span>
+                 <!--<span class="red" ng-if="speed_limit =>'201'">
+                            Max Speed 200 </span>-->
             </div>
             <div class="umdInputDiv" >
                 <ion-list>

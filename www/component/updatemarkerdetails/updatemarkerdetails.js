@@ -2,6 +2,8 @@ angular.module('updatemarkerdetails', [])
     .controller('UpdateMarkerDetailsCtrl', function ($scope, $state, $ionicModal, $timeout, PageConfig, Constants,
         $ionicPopup, UtilsFactory, ionicToast, BatsServices) {
         $scope.updatemarkerdetialsForm = {};
+        $scope.speedlimintcheck=0;
+        
         $scope.data = {};
         $scope.geofence = {
             checked: false
@@ -22,6 +24,9 @@ angular.module('updatemarkerdetails', [])
             $scope.geofence.checked = false;
         }
         $scope.data = $scope.tracker;
+        if($scope.data.speed_limit>200){
+            $scope.speedlimintcheck=1;
+        }
         $ionicModal.fromTemplateUrl('templates/popup/updateMarker.html', function (modal) {
             $scope.updateMarkerModal = modal;
         }, {

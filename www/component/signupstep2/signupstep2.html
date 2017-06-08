@@ -32,7 +32,9 @@
                             <input type="text" name="devid" required ng-minimum="5" oninput="if(value.length>15)value=value.slice(0,15)"
                                 placeholder="Please enter the Tracker id" ng-model="data[$index].devid" 
                                 ng-class="{'umdFilledInputBox' : signupStep2Form.form.devid.$invalid}">
-                                <!--<span class="errorMsg" ng-if="signupStep2Form.form.devid.$dirty && signupStep2Form.form.devid.$invalid">
+                               <span class="red" ng-if="signupStep2Form.form.devid.$dirty && signupStep2Form.form.devid.$invalid">
+                            Min length is 5 character
+                            </span> <!--<span class="errorMsg" ng-if="signupStep2Form.form.devid.$dirty && signupStep2Form.form.devid.$invalid">
                                 <span class="errorMsg" ng-if="signupStep2Form.form.devid.$error.minlength">
                                     Min length is 5 character 
                                 </span>-->
