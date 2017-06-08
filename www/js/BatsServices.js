@@ -97,4 +97,12 @@ angular.module('batsservices', [])
      this.deviceInfo = function (inputData) {
         return $http.post(baseUrl + 'b2capp/device/info', inputData);
     }
+
+    this.isUserNameExist = function(inputData){
+        return $http.post(baseUrl + 'b2capp/user/contact_no_is_in_use', inputData);
+    }
+
+    this.isEmailExist = function(inputData){
+        return $http.post(baseUrl + 'b2capp/user/email_is_in_use', inputData)
+    }
 })
