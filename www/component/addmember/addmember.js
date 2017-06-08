@@ -1,5 +1,5 @@
 angular.module('addmember', [])
-.controller('AddmemberCtrl', function ($scope, BatsServices, PageConfig, $state, Constants, 
+.controller('AddmemberCtrl', function ($scope, BatsServices, PageConfig, $state, Constants, $ionicPopup,
     ionicToast, UtilsFactory, $rootScope) {
     
     $scope.AddMemberForm = {};
@@ -25,6 +25,10 @@ angular.module('addmember', [])
         if(!$scope.passwordHide){
             BatsServices.createUser(inputParam).success(function (response) {
                 $rootScope.$emit('addMemberDone', response);
+                var createdPopup = $ionicPopup.alert({
+                    title: 'Member Created',
+                    template: '<div class="pwdSuccessPopup">New Member has been successfully created.</div>'
+                });
                 $state.go(PageConfig.MANAGE_MEMBER);
                 if( UtilsFactory.getEditMemberDetails().length!=0){
                     UtilsFactory.setEditMemberDetails([]);
@@ -42,6 +46,10 @@ angular.module('addmember', [])
         else{
             BatsServices.updateUser(inputParam).success(function (response) {
                 $rootScope.$emit('addMemberDone', response);
+                var updatedPopup = $ionicPopup.alert({
+                    title: 'Member Details Updated',
+                    template: '<div class="pwdSuccessPopup">Member details has been successfully updated.</div>'
+                });
                 $state.go(PageConfig.MANAGE_MEMBER); 
                 if( UtilsFactory.getEditMemberDetails().length!=0){
                     UtilsFactory.setEditMemberDetails([]);

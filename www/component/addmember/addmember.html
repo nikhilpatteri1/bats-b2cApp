@@ -11,18 +11,21 @@
                         <div class="space">
                             <label ng-if="data.firstname" class="floatlabeltxt show-hide inputFieldFontSize">First Name</label>
                             <input placeholder="Enter First Name" type="text" ng-model="data.firstname" required maxlength="20"
-                                name="firstname" ng-class="{error: AddMemberForm.form.firstname.$invalid && Validate}"/>
+                                name="firstname" ng-class="{error: AddMemberForm.form.firstname.$invalid && Validate}"
+                                oninput="if(value.length>20)value=value.slice(0,20)"/>
                         </div>
 
                         <div class="space">
                             <label ng-if="data.lastname" class="floatlabeltxt show-hide inputFieldFontSize">Second Name</label>
                             <input placeholder="Enter Second Name" type="text" name=" lastname" ng-model="data.lastname" required
-                                 ng-class="{error: AddMemberForm.form.lastname.$invalid && Validate}" maxlength="20"/>
+                                 ng-class="{error: AddMemberForm.form.lastname.$invalid && Validate}" maxlength="20"
+                                 oninput="if(value.length>20)value=value.slice(0,20)"/>
                         </div>
                         <div class="space">
                             <label ng-if="data.email" class="floatlabeltxt show-hide inputFieldFontSize">Email</label>
                             <input placeholder="Enter Email" type="email" name="email" ng-model="data.email" required 
-                                ng-class="{error: AddMemberForm.form.email.$invalid && Validate}"/>
+                                ng-class="{error: AddMemberForm.form.email.$invalid && Validate}" maxlength="35"
+                                oninput="if(value.length>35)value=value.slice(0,35)"/>
                             <span class="red" ng-if="AddMemberForm.form.email.$dirty && AddMemberForm.form.email.$invalid">
                             <span ng-if="AddMemberForm.form.email.$error.email">Invalid email address</span>
                             </span>
@@ -36,12 +39,17 @@
                         <div class="space">
                             <label ng-if="data.desc" class="floatlabeltxt show-hide inputFieldFontSize">Description</label>
                             <input placeholder="Description" type="text" name="desc" ng-model="data.desc" required 
-                                ng-class="{error: AddMemberForm.form.desc.$invalid && Validate}" maxlength="200"/>
+                                ng-class="{error: AddMemberForm.form.desc.$invalid && Validate}" maxlength="200"
+                                oninput="if(value.length>200)value=value.slice(0,200)"/>
                         </div>
                         <div class="space" ng-if="!passwordHide">
                             <label ng-if="data.password" class="floatlabeltxt show-hide inputFieldFontSize">Create Member Password</label>
                             <input placeholder="Create Password" type="password" name="password" ng-model="data.password" required
-                                 ng-class="{error: AddMemberForm.form.password.$invalid && Validate}"/>
+                                 ng-class="{error: AddMemberForm.form.password.$invalid && Validate}" maxlength="20"
+                                 oninput="if(value.length>20)value=value.slice(0,20)" ng-pattern="/^(?=.*\d+)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%]{8,25}$/"/>
+                            <span class="red" ng-if="AddMemberForm.form.password.$dirty && AddMemberForm.form.password.$invalid">
+                            Password should be atleast 8 characters with a number
+                            </span>
                         </div>
                     </form>
                 </div>

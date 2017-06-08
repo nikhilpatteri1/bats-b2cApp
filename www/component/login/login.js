@@ -49,10 +49,10 @@ angular.module('login', [])
                         // alert("Insert Token in DB err -> " +
                         // JSON.stringify(err));
                     });
-                    console.log("response: "+response);
+                    // console.log("response: "+response);
                     // $state.go(PageConfig.MANAGE_TRACKER);
                 }).error(function (error) {
-                    console.log("resposne in error: "+error);
+                    // console.log("resposne in error: "+error);
                     if(error=='Unauthorized'){
                         ionicToast.show(error , Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
                     }else if(error.err == 'Origin Server returned 504 Status') {
