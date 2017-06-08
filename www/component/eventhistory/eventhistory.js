@@ -13,11 +13,14 @@ angular.module('eventhistory', [])
         })
         // ***************** end of fetching devices *****************************
 
-     
+
         $scope.data = {};
-        $scope.data.startdatetimeValue = new Date();
+        if($scope.data.startdatetimeValue==undefined){
+             $scope.data.startdatetimeValue = new Date();
+        }
+      //  $scope.data.startdatetimeValue = new Date();
         $scope.data.enddatetimeValue = new Date();
-             $scope.gotoEventHistory = function (data, form) {
+        $scope.gotoEventHistory = function (data, form) {
             if (form.$valid) {
                 if (data.startdatetimeValue == undefined) {
                     data.startdatetimeValue = new Date();
@@ -25,13 +28,35 @@ angular.module('eventhistory', [])
                 if (data.enddatetimeValue == undefined) {
                     data.enddatetimeValue = new Date();
                 }
-
                 var startDate = moment(data.startdatetimeValue).valueOf();
                 var endDate = moment(data.enddatetimeValue).valueOf();
                 var inputParam = { 'devid': data.selectedvehicle.devid, 'sts': startDate, 'ets': endDate }
-                UtilsFactory.setEventHistoryList(inputParam);
-                $state.go(PageConfig.EVENT_HISTORY_DETAIL);
+                BatsServices.eventHistory(inputParam).success(function (response) {
+                    // $scope.eventHistoryValues = response.values;
+                    // $scope.speed = response.speed_limit;
+                    UtilsFactory.setEventHistoryList(response);
+                    $state.go(PageConfig.EVENT_HISTORY_DETAIL);
+                    //console.log("\n gdgj" +$scope.speed+$scope.eventHistoryValues);
+                    // if ($scope.eventHistoryValues.length == 0) {
+                    //     $scope.noData = true;
+                    // }
+                }).error(function (error) {
+                    if (error.err == 'Origin Server returned 504 Status') {
+                        ionicToast.show('Internet is very slow', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                    }
+                    else {
+                        ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                    }
+                    //ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                })
             }
+
+            // var startDate = moment(data.startdatetimeValue).valueOf();
+            // var endDate = moment(data.enddatetimeValue).valueOf();
+            // var inputParam = { 'devid': data.selectedvehicle.devid, 'sts': startDate, 'ets': endDate }
+            // UtilsFactory.setEventHistoryList(inputParam);
+            // $state.go(PageConfig.EVENT_HISTORY_DETAIL);
         }
+
 
     })

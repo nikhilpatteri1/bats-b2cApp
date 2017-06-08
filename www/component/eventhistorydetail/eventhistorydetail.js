@@ -8,12 +8,11 @@ angular.module('eventhistorydetail', [])
     $scope.gotoFilter = function () {
       $state.go(PageConfig.EVENT_FILTER);
     }
-
     if (UtilsFactory.getNotificationDetails()) {
-    //  console.log(UtilsFactory.getNotificationDetails());
+      //  console.log(UtilsFactory.getNotificationDetails());
       $scope.notificationData = UtilsFactory.getNotificationDetails();
       $scope.count = UtilsFactory.getNotificationCount();
-    //  console.log($scope.count);
+      //  console.log($scope.count);
       if ($scope.count == undefined) {
         $scope.count = 0;
         $scope.notificationData = [];
@@ -23,33 +22,31 @@ angular.module('eventhistorydetail', [])
     $scope.noData = false;
     // $scope.filterList = UtilsFactory.getHistoryFilterList();
     $scope.init = function () {
+      // *********************** filter checking *****************************
       if (UtilsFactory.getHistoryFilterList().length != 0) {
         $scope.filterList = UtilsFactory.getHistoryFilterList();
       } else {
         $scope.filterList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
       }
-      var inputParam = UtilsFactory.getEventHistoryList();
-      BatsServices.eventHistory(inputParam).success(function (response) {
-        $scope.eventHistoryValues = response.values;
-        $scope.speed=response.speed_limit;
-         //console.log("\n gdgj" +$scope.speed+$scope.eventHistoryValues);
-        if ($scope.eventHistoryValues.length == 0) {
-          $scope.noData = true;
-        }
-      }).error(function (error) {
-         if(error.err=='Origin Server returned 504 Status'){
-                     ionicToast.show('Internet is very slow', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
-                }
-                else{
-                    ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
-                }
-        //ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
-      })
+ // ***********************end  filter checking *****************************
+
+      $scope.eventHistoryValueslist = UtilsFactory.getEventHistoryList();
+      console.log($scope.eventHistoryValueslist);
+      $scope.eventHistoryValues=$scope.eventHistoryValueslist.values;
+       if ($scope.eventHistoryValues.length==0) {
+        $scope.noData = true;
+        
+      }else{
+        $scope.noData = false;
+        // $scope.eventHistoryValues = UtilsFactory.setEventHistoryList();
+         $scope.speed = $scope.eventHistoryValues.speed_limit;
+      }
+     
     }
 
-
     $scope.chexkAlarmType = function (alarm_type, velocity) {
-     // console.log("gdgj" +$scope.speed);
+
+      // console.log("gdgj" +$scope.speed);
       // if ( $scope.speed< velocity) {
       //   $scope.redSpeed = 1;
       // //  console.log("red style applying " + $scope.redSpeed);
@@ -59,12 +56,12 @@ angular.module('eventhistorydetail', [])
 
       // }
 
-       console.log("geeta its me alarm type" + alarm_type);
-      if (alarm_type =='0' ) {
+      console.log("geeta its me alarm type" + alarm_type);
+      if (alarm_type == '0') {
         $scope.alarmType = "Panic";
         $scope.imageSrc = 'img/eventH/panic.png';
       }
-      else if (alarm_type =='1') {
+      else if (alarm_type == '1') {
         $scope.alarmType = "Tamper Sim";
         $scope.imageSrc = 'img/eventH/sim-tamper.png';
       }
@@ -100,7 +97,7 @@ angular.module('eventhistorydetail', [])
         $scope.alarmType = "Warning";
         $scope.imageSrc = 'img/eventH/invalid.png';
       }
-      console.log(alarm_type + $scope.alarmType );
+      console.log(alarm_type + $scope.alarmType);
     }
 
 
