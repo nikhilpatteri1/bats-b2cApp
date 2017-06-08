@@ -22,7 +22,8 @@ angular.module('login', [])
             if (connectionType != 'none') {
                 console.log("connection type: " + connectionType);
                 $scope.Validate = true;
-                var inputParam = { 'user_id': data.userid, 'password': data.password }
+                var userId = new String(data.userid);
+                var inputParam = { 'user_id': userId, 'password': data.password }
                 BatsServices.login(inputParam).success(function (response) {
                     localStorage.setItem(Constants.accessToken, response.token);
                     var type = response.token.charAt(9);
@@ -48,13 +49,17 @@ angular.module('login', [])
                         // alert("Insert Token in DB err -> " +
                         // JSON.stringify(err));
                     });
+                    console.log("response: "+response);
                     // $state.go(PageConfig.MANAGE_TRACKER);
                 }).error(function (error) {
-                    if (error.err == 'Origin Server returned 504 Status') {
+                    console.log("resposne in error: "+error);
+                    if(error=='Unauthorized'){
+                        ionicToast.show(error , Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                    }else if(error.err == 'Origin Server returned 504 Status') {
                         ionicToast.show('Internet is very slow', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
                     }
                     else {
-                        ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                        ionicToast.show(error.err , Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
                     }// ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
                 })
             } else {
