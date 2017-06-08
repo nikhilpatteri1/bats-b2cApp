@@ -9,7 +9,12 @@ angular.module('vehiclestatistics', [])
             //console.log(JSON.stringify(response));
             $scope.deviceList = response
         }).error(function (error) {
-            ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+            if(error.err=='Origin Server returned 504 Status'){
+                     ionicToast.show('Internet is very slow', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                }
+                else{
+                    ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                }// ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
         })
         // ***************** end of fetching devices *****************************
        // $rootScope.dateValue = new Date();
@@ -49,7 +54,12 @@ angular.module('vehiclestatistics', [])
                 $state.go(PageConfig.VEHICLE_STATISTICS_DETAIL);
             }).error(function (error) {
                 // console.log(error);
-                ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                if(error.err=='Origin Server returned 504 Status'){
+                     ionicToast.show('Internet is very slow', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                }
+                else{
+                    ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                } //ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
             })
         }
     })

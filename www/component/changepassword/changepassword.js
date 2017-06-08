@@ -14,7 +14,13 @@ angular.module('changepassword', [])
                 $state.go(PageConfig.LIVE_TRACKING);
             });
         }).error(function (error) {
-            ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+             if(error.err=='Origin Server returned 504 Status'){
+                     ionicToast.show('Internet is very slow', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                }
+                else{
+                    ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                }
+          //  ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
         })
     }
     $scope.result = angular.equals($scope.currentPass, $scope.newPassword);

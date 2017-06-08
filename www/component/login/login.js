@@ -1,5 +1,5 @@
 angular.module('login', [])
-    .controller('LoginCtrl', function ($scope, $state, $ionicModal, BatsServices, ionicToast, Constants, $ionicPopup,$cordovaSQLite,
+    .controller('LoginCtrl', function ($scope, $state, $ionicModal, BatsServices, ionicToast, Constants, $ionicPopup, $cordovaSQLite,
         $timeout, PageConfig, $rootScope, $cordovaNetwork) {
 
         if (localStorage.getItem(Constants.accessToken)) {
@@ -19,8 +19,8 @@ angular.module('login', [])
         $scope.gotoHome = function (data, form) {
 
             var connectionType = $cordovaNetwork.getNetwork();
-            if(connectionType!='none'){
-                console.log("connection type: "+connectionType);
+            if (connectionType != 'none') {
+                console.log("connection type: " + connectionType);
                 $scope.Validate = true;
                 var inputParam = { 'user_id': data.userid, 'password': data.password }
                 BatsServices.login(inputParam).success(function (response) {
@@ -48,11 +48,16 @@ angular.module('login', [])
                         // alert("Insert Token in DB err -> " +
                         // JSON.stringify(err));
                     });
-                // $state.go(PageConfig.MANAGE_TRACKER);
+                    // $state.go(PageConfig.MANAGE_TRACKER);
                 }).error(function (error) {
-                    ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                    if (error.err == 'Origin Server returned 504 Status') {
+                        ionicToast.show('Internet is very slow', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                    }
+                    else {
+                        ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                    }// ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
                 })
-            }else{
+            } else {
                 var alertPopup = $ionicPopup.alert({
                     title: 'No Internet Connection',
                     template: '<div class="pwdSuccessPopup">Sorry, no Internet connectivity detected. Please reconnect and try again.</div>'

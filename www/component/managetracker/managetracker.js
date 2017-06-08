@@ -17,23 +17,28 @@ angular.module('managetracker', [])
             BatsServices.deviceList(inputParam).success(function (response) {
                 $scope.trackerList = response
             }).error(function (error) {
-                ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                if(error.err=='Origin Server returned 504 Status'){
+                     ionicToast.show('Internet is very slow', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                }
+                else{
+                    ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                }// ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
             });
         }
         init();
 
-        $scope.countingForActivation=0;
+        $scope.countingForActivation = 0;
         $scope.$on('manageTrackerList', function () {
-             console.log("im redirection from activation"+$scope.countingForActivation);
-           // $scope.countingForActivation=1;
+            console.log("im redirection from activation" + $scope.countingForActivation);
+            // $scope.countingForActivation=1;
             init();
-            if($scope.countingForActivation>0){
+            if ($scope.countingForActivation > 0) {
 
-            }else{
-                 callDeviceLIstAPI();//  init();
+            } else {
+                callDeviceLIstAPI();//  init();
             }
             $scope.countingForActivation++;
-           
+
         })
 
         //function for keep calling devicelist api after activate device and page is manage tracker
@@ -41,27 +46,32 @@ angular.module('managetracker', [])
         $scope.time = 0;
         function callDeviceLIstAPI() {
             $scope.time = 0;
-            console.log("inside manage tracker"+$scope.time);
+            console.log("inside manage tracker" + $scope.time);
             deviceListAPi = $interval(devlist, 20000);
             console.log("inside manage " + $scope.time);
 
         }
-       // $scope.count = 0;
+        // $scope.count = 0;
         function devlist() {
             $scope.time++;
             if ($state.current.name == PageConfig.MANAGE_TRACKER) {
                 var inputParam = {};
                 BatsServices.deviceList(inputParam).success(function (response) {
                     $scope.trackerList = response
-                    console.log("inside " + $scope.time+" interval lenght "+$interval.length);
+                    console.log("inside " + $scope.time + " interval lenght " + $interval.length);
                     if ($scope.time === 15) {
                         console.log("inside manage tracker interval end ");
                         init();
                         $interval.cancel(deviceListAPi);
-                        $scope.countingForActivation=0;
+                        $scope.countingForActivation = 0;
                     }
                 }).error(function (error) {
-                    ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                    if (error.err == 'Origin Server returned 504 Status') {
+                        ionicToast.show('Internet is very slow', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                    }
+                    else {
+                        ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                    }// ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
                 });
             } else {
                 console.log("inside manage tracker interval end ");

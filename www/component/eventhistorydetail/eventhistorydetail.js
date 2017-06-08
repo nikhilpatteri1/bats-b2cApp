@@ -37,7 +37,13 @@ angular.module('eventhistorydetail', [])
           $scope.noData = true;
         }
       }).error(function (error) {
-        ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+         if(error.err=='Origin Server returned 504 Status'){
+                     ionicToast.show('Internet is very slow', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                }
+                else{
+                    ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                }
+        //ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
       })
     }
 

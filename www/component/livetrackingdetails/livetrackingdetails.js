@@ -25,7 +25,13 @@ angular.module('livetrackingdetails', [])
                   $scope.deviceInfo = response
 				  console.log("device info "+angular.toJson($scope.deviceInfo));
             }).error(function (error) {
-                ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+				 if(error.err=='Origin Server returned 504 Status'){
+                     ionicToast.show('Internet is very slow', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                }
+                else{
+                    ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                }
+               // ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
             })
 			$scope.values = $scope.data[0];
 			console.log("vehicle data: " + angular.toJson($scope.values.speed_limit));

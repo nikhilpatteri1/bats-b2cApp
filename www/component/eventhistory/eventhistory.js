@@ -13,33 +13,11 @@ angular.module('eventhistory', [])
         })
         // ***************** end of fetching devices *****************************
 
-        // if (UtilsFactory.getNotificationDetails()) {
-        //     console.log(UtilsFactory.getNotificationDetails());
-        //     $scope.notificationData = UtilsFactory.getNotificationDetails();
-        //     $rootScope.count = UtilsFactory.getNotificationCount();
-        //     console.log($rootScope.count);
-        //     if($rootScope.count==undefined){
-        //         $rootScope.count=0;
-        //         $scope.notificationData=[];
-        //     }
-        // }
-        // $scope.resetCount=function(){
-        //      alert("alert");
-        //      UtilsFactory.setNotificationCount(0);
-        //      UtilsFactory.setNotificationDetails();
-        // }
-
+     
         $scope.data = {};
-        // $rootScope.dateValue = new Date();
-        // $rootScope.timeValue = new Date();
         $scope.data.startdatetimeValue = new Date();
         $scope.data.enddatetimeValue = new Date();
-        // $scope.startDatetimeValue = new Date();
-
-        //  { "token" :<token>, "devid": <devid>, "sts" : <time in msec>, "ets" : <time in msec> }
-
-
-        $scope.gotoEventHistory = function (data, form) {
+             $scope.gotoEventHistory = function (data, form) {
             if (form.$valid) {
                 if (data.startdatetimeValue == undefined) {
                     data.startdatetimeValue = new Date();
