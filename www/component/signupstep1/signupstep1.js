@@ -1,11 +1,13 @@
 angular.module('signupstep1', [])
 .controller('SignupStep1Ctrl', function ($scope, $state, $ionicModal, $timeout, PageConfig, Constants, BatsServices,
-		UtilsFactory, $ionicPopup) {
+		UtilsFactory, $ionicPopup, ionicToast) {
 		
 		$scope.countries = Constants.COUNTRIES;
 		$scope.states = Constants.STATES;
 		$scope.signupStep1Form = {};
 		$scope.data = {};
+		var usernameValidated = false;
+		var emailValidated = false;
 
 		if(UtilsFactory.getSignUpData().length!=0){
 			var userDetails = UtilsFactory.getSignUpData();
@@ -26,10 +28,48 @@ angular.module('signupstep1', [])
 		$scope.gotoNext = function (data, form) {
 			$scope.Validate = true;	
 			if(form.$valid){
-				var inputparam = {"firstname":data.fName, "lastname":data.lName, "email":data.email,
-    				"contact_no": data.phonenumber, "password":data.password,"country":data.country, "state":data.state}
-				UtilsFactory.setSignUpData(inputparam);
-				$state.go(PageConfig.SIGNUP_STEP2);
+
+				var phone_no = new String(data.phonenumber);
+				var inputContact = {"contact_no":phone_no};
+				var inputEmail = {"email":data.email};
+				validateEmail();
+				function validateEmail(){
+						BatsServices.isEmailExist(inputEmail).success(function(response){
+							if(!response.status){
+								emailValidated = false;
+								ionicToast.show(response.msg, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+							}else{
+								emailValidated = true;
+								validateUsername();
+							}
+						}).error(function(error){
+							ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+						});
+				}
+				function validateUsername(){
+						BatsServices.isUserNameExist(inputContact).success(function(response){
+							if(!response.status){
+								usernameValidated = false;
+								ionicToast.show(response.msg, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+							}else{
+								usernameValidated = true;
+								callSecondPage();
+							}
+						}).error(function(error){
+							ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+						});
+				}
+
+				function callSecondPage(){
+					// console.log("values are: "+usernameValidated+" & "+emailValidated)
+					if(usernameValidated && emailValidated){
+						// console.log("inside goto");
+						var inputparam = {"firstname":data.fName, "lastname":data.lName, "email":data.email,
+							"contact_no": data.phonenumber, "password":data.password,"country":data.country, "state":data.state}
+						UtilsFactory.setSignUpData(inputparam);
+						$state.go(PageConfig.SIGNUP_STEP2);
+					}
+				}
 			}
 		}
 	})
