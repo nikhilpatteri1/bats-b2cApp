@@ -181,17 +181,18 @@ angular.module('livetracking', [])
 
 		var iconImg;
 		function createMarker(latlng, deviceID, vehNo, vehModel, html, type, devtype) {
+			console.log("devtype: "+devtype);
 			svg = new Array();
 			icons = new Array();
-			if (devtype == "car") {
+			if(devtype == "car"){
 				svg = car;
-			} else if (devtype == "truck") {
+			}else if(devtype == "truck"){
 				svg = truck;
-			} else if (devtype == "bike") {
+			}else if(devtype == "bike"){
 				svg = bike;
-			} else if (devtype == "bus") {
+			}else if(devtype == "bus"){
 				svg = bus;
-			} else {
+			}else{
 				svg = car;
 			}
 			var contentString;
@@ -273,9 +274,9 @@ angular.module('livetracking', [])
 			if (typeof storedltlng.lat != 'undefined') {
 				if (storedltlng.lat != dataVal[0].values.lat) {
 					if (dataVal[0].values.type == 4) {
-						vehichleRouting(dataVal, storedltlng.lat, storedltlng.lng, storedltlng.lat, storedltlng.lng);
+						vehichleRouting(dataVal, storedltlng.lat, storedltlng.lng, storedltlng.lat, storedltlng.lng, dataVal[0].vehicle_model);
 					} else {
-						vehichleRouting(dataVal, storedltlng.lat, storedltlng.lng, dataVal[0].values.lat, dataVal[0].values.long);
+						vehichleRouting(dataVal, storedltlng.lat, storedltlng.lng, dataVal[0].values.lat, dataVal[0].values.long, dataVal[0].vehicle_model);
 						storedltlng.lat = dataVal[0].values.lat;
 						storedltlng.lng = dataVal[0].values.long;
 					}
@@ -284,7 +285,7 @@ angular.module('livetracking', [])
 					startLng = dataVal[0].values.long;
 					endLat = dataVal[0].values.lat;
 					endLng = dataVal[0].values.long;
-					vehichleRouting(dataVal, startLat, startLng, endLat, endLng);
+					vehichleRouting(dataVal, startLat, startLng, endLat, endLng, dataVal[0].vehicle_model);
 				}
 			} else {
 				storedltlng.lat = dataVal[0].values.lat;
@@ -293,11 +294,11 @@ angular.module('livetracking', [])
 				startLng = dataVal[0].values.long;
 				endLat = dataVal[0].values.lat;
 				endLng = dataVal[0].values.long;
-				vehichleRouting(dataVal, startLat, startLng, endLat, endLng);
+				vehichleRouting(dataVal, startLat, startLng, endLat, endLng, dataVal[0].vehicle_model);
 			}
 		};
 
-		function vehichleRouting(dataVal, startLat, startLng, endLat, endLng) {
+		function vehichleRouting(dataVal, startLat, startLng, endLat, endLng, devtype) {
 			if (timerHandle) {
 				clearTimeout(timerHandle);
 			}
@@ -349,7 +350,7 @@ angular.module('livetracking', [])
 							if (i === 0) {
 								startLocation.latlng = legs[i].start_location;
 								startLocation.address = legs[i].start_address;
-								createMarker(legs[i].start_location, dataVal[i].devid, dataVal[i].vehicle_num, dataVal[i].vehicle_model, legs[i].start_address, dataVal[i].values.type, dataVal[i].devtype);
+								createMarker(legs[i].start_location, dataVal[i].devid, dataVal[i].vehicle_num, dataVal[i].vehicle_model, legs[i].start_address, dataVal[i].values.type, devtype);
 							}
 							endLocation.latlng = legs[i].end_location;
 							endLocation.address = legs[i].end_address;
@@ -365,20 +366,23 @@ angular.module('livetracking', [])
 						polyline.setMap(map);
 						map.fitBounds(bounds);
 						map.setZoom($scope.singleDeviceZoomLevel);
+						drawPolygon();
 						startAnimation();
 					}
 				});
 
 				/* geofence: polygon drawing on map */
-				if (dataVal[0].geofence != null) {
-					if (dataVal[0].geofence != '') {
-						polygonDrawing.setMap(null);
-						console.log("geofence data: " + angular.toJson(dataVal[0].geofence));
-						polyPaths = dataVal[0].geofence;
-						polygonDrawing = new google.maps.Polygon({
-							paths: polyPaths
-						});
-						polygonDrawing.setMap(map);
+				function drawPolygon(){
+					if (dataVal[0].geofence != null) {
+						if (dataVal[0].geofence != '') {
+							polygonDrawing.setMap(null);
+							console.log("geofence data: " + angular.toJson(dataVal[0].geofence));
+							polyPaths = dataVal[0].geofence;
+							polygonDrawing = new google.maps.Polygon({
+								paths: polyPaths
+							});
+							polygonDrawing.setMap(map);
+						}
 					}
 				}
 			});
