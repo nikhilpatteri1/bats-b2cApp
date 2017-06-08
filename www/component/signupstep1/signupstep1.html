@@ -23,29 +23,28 @@
                         <div class="space">
                             <div ng-show="data.fName" class="floatlabeltxt show-hide inputFieldFontSize">First Name</div>
                             <input placeholder="First Name" type="text" ng-model="data.fName" required name="fName" 
-                            ng-class="{error: signupStep1Form.form.fName.$invalid && Validate}" maxlength="20"
-                            />
+                            ng-class="{error: signupStep1Form.form.fName.$invalid && Validate}" minlength="2" maxlength="20"
+                            oninput="if(value.length>20)value=value.slice(0,20)"/>
                         </div>
                         <div class="space">
                             <div ng-if="data.lName" class="floatlabeltxt show-hide inputFieldFontSize">Last Name</div>
-                            <input placeholder="Last Name" type="text" name=" lName" ng-model="data.lName" 
-                            required ng-class="{error: signupStep1Form.form.lName.$invalid && Validate}" maxlength="20"
-                            />
+                            <input placeholder="Last Name" type="text" name="lName" ng-model="data.lName" maxlength="20"
+                            required ng-class="{error: signupStep1Form.form.lName.$invalid && Validate}" minlength="2"
+                            oninput="if(value.length>20)value=value.slice(0,20)"/>
                         </div>
                         <div class="space">
                             <div ng-if="data.email" class="floatlabeltxt show-hide inputFieldFontSize">Email</div>
                             <input placeholder="Email" type="email" name="email" ng-model="data.email" required 
-                            ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
-                                ng-class="{error: signupStep1Form.form.email.$invalid && Validate}" />
+                            ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" oninput="if(value.length>35)value=value.slice(0,35)"
+                                ng-class="{error: signupStep1Form.form.email.$invalid && Validate}" maxlength="35" />
                             <span class="red" ng-if="signupStep1Form.form.email.$dirty && signupStep1Form.form.email.$invalid">
                             Invalid email address
                             </span>
                         </div>
                         <div class="space">
                             <div ng-show="data.phonenumber" class="floatlabeltxt show-hide inputFieldFontSize">Phone Number</div>
-                            <input placeholder="Phone Number" oninput="if(value.length>10)value=value.slice(0,10)" ng-minlength="10" 
-                                ng-maxlength="10"  type="number"
-                                name="phonenumber" ng-model="data.phonenumber"
+                            <input placeholder="Phone Number" oninput="if(value.length>10)value=value.slice(0,10)" 
+                                type="number" name="phonenumber" ng-model="data.phonenumber" minlength="10"
                                 required ng-class="{error: signupStep1Form.form.phonenumber.$invalid && Validate }" />
                                  <span class="red" ng-if="signupStep1Form.form.phonenumber.$dirty && signupStep1Form.form.phonenumber.$invalid">
                             Phone number should be 10 digits
@@ -54,8 +53,8 @@
                         <div class="space">
                             <div ng-show="data.password" class="floatlabeltxt show-hide inputFieldFontSize">Password</div>
                             <input placeholder="Password"  type="password" autocomplete="new-password" ng-pattern="/^(?=.*\d+)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%]{8,25}$/"
-                             name="password" ng-model="data.password"
-                                required ng-class="{error: signupStep1Form.form.password.$invalid && Validate }" />
+                             name="password" ng-model="data.password" oninput="if(value.length>25)value=value.slice(0,25)"
+                                required ng-class="{error: signupStep1Form.form.password.$invalid && Validate }"/>
                                  <span class="red" ng-if="signupStep1Form.form.password.$dirty && signupStep1Form.form.password.$invalid">
                             Password should be atleast 8 characters with a number
                             </span>

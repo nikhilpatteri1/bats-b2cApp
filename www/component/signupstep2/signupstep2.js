@@ -11,10 +11,11 @@ angular.module('signupstep2', [])
         }
         if (UtilsFactory.getEditMarkerDetails().length != 0) {
             $scope.editMarkerData = UtilsFactory.getEditMarkerDetails();
-            $scope.data = [{
-                'devid': $scope.editMarkerData.devid, 't_sim_provider': $scope.editMarkerData.sim_service_provider,
-                't_sim_cn': parseInt($scope.editMarkerData.device_sim_cn)
-            }]
+            // $scope.data = [{
+            //     'devid': $scope.editMarkerData.devid, 't_sim_provider': $scope.editMarkerData.sim_service_provider,
+            //     't_sim_cn': parseInt($scope.editMarkerData.device_sim_cn)
+            // }]
+            $scope.data = $scope.editMarkerData;
         }
         $scope.trackers = [{ id: 1 }];
         $scope.addTracker = function () {
@@ -28,6 +29,8 @@ angular.module('signupstep2', [])
         }
 
         $scope.backToStep1 = function () {
+            console.log("data: "+angular.toJson($scope.data));
+            UtilsFactory.setEditMarkerDetails($scope.data);
             $state.go(PageConfig.SIGNUP_STEP1);
         }
 

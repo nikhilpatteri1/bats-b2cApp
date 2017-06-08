@@ -8,6 +8,7 @@ angular.module('signupstep1', [])
 		$scope.data = {};
 		var usernameValidated = false;
 		var emailValidated = false;
+		// var max_length = 20;
 
 		if(UtilsFactory.getSignUpData().length!=0){
 			var userDetails = UtilsFactory.getSignUpData();
@@ -72,4 +73,10 @@ angular.module('signupstep1', [])
 				}
 			}
 		}
+
+		// $scope.$watch('data.fName', function(newVal, oldVal){
+		// 	if(newVal.length>max_length){
+		// 		$scope.data.fName = oldVal;
+		// 	}
+		// });
 	})
