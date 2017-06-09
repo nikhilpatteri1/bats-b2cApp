@@ -32,7 +32,7 @@ angular.module('eventhistory', [])
                 var startDate = moment(data.startdatetimeValue).valueOf();
                 var endDate = moment(data.enddatetimeValue).valueOf();
                 var inputParam = { 'devid': data.selectedvehicle.devid, 'sts': startDate, 'ets': endDate }
-                UtilsFactory.setSelectedEventHistoryDetails(inputParam);
+                // UtilsFactory.setSelectedEventHistoryDetails(inputParam);
                 BatsServices.eventHistory(inputParam).success(function (response) {
                     // $scope.eventHistoryValues = response.values;
                     // $scope.speed = response.speed_limit;
