@@ -20,7 +20,7 @@ angular.module('batsservices', [])
     
     // TBD
     this.report = function (inputData) {
-        return $http.post(baseUrl + 'b2capp/device/report_download', inputData); 
+        return $http.post(baseUrl + 'b2capp/device/report_download', inputData,{responseType: 'arraybuffer' }); 
     }
 
     this.history = function (inputData) {
