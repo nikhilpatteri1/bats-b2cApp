@@ -4,6 +4,7 @@ angular.module('signupstep2', [])
 
         $scope.simCarriers = Constants.OPERATOR;
         $scope.data = [];
+        var newArray = [];
         $scope.signupStep2Form = {};
         $scope._token = localStorage.getItem(Constants.accessToken);
         if (UtilsFactory.getSignUpData().length == 0 && $scope._token == undefined) {
@@ -11,12 +12,21 @@ angular.module('signupstep2', [])
         }
         if (UtilsFactory.getEditMarkerDetails().length != 0) {
             $scope.editMarkerData = UtilsFactory.getEditMarkerDetails();
+            // console.log("isObject: "+angular.isObject($scope.editMarkerData));
+            // console.log("isArray: "+angular.isArray($scope.editMarkerData));
+            if(!angular.isArray($scope.editMarkerData)){
+                $scope.editMarkerData.t_sim_cn = Number($scope.editMarkerData.device_sim_cn);
+                $scope.editMarkerData.t_sim_provider = $scope.editMarkerData.sim_service_provider;
+                newArray.push($scope.editMarkerData);
+                $scope.data = newArray;
+                // console.log("data array: "+angular.toJson($scope.data));
+            }else{
             // $scope.data = [{
             //     'devid': $scope.editMarkerData.devid, 't_sim_provider': $scope.editMarkerData.sim_service_provider,
             //     't_sim_cn': parseInt($scope.editMarkerData.device_sim_cn)
             // }]
-            $scope.data = $scope.editMarkerData;
-            // console.log("data: "+angular.toJson($scope.data));
+                $scope.data = $scope.editMarkerData;
+            }
         }
         $scope.trackers = [{ id: 1 }];
         $scope.addTracker = function () {
@@ -58,7 +68,7 @@ angular.module('signupstep2', [])
                             }
                             else {
                                 ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
-                            }
+                            }// ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
                         })
 
                     }
@@ -72,7 +82,7 @@ angular.module('signupstep2', [])
                             }
                             else {
                                 ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
-                            }
+                            }// ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
                         })
                     }
                 }
@@ -94,7 +104,7 @@ angular.module('signupstep2', [])
                         }
                         else {
                             ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
-                        }
+                        }// ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
                     })
                 }
             }
