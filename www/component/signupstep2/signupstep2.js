@@ -16,6 +16,7 @@ angular.module('signupstep2', [])
             //     't_sim_cn': parseInt($scope.editMarkerData.device_sim_cn)
             // }]
             $scope.data = $scope.editMarkerData;
+            // console.log("data: "+angular.toJson($scope.data));
         }
         $scope.trackers = [{ id: 1 }];
         $scope.addTracker = function () {
@@ -57,7 +58,7 @@ angular.module('signupstep2', [])
                             }
                             else {
                                 ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
-                            }// ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                            }
                         })
 
                     }
@@ -71,7 +72,7 @@ angular.module('signupstep2', [])
                             }
                             else {
                                 ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
-                            }// ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                            }
                         })
                     }
                 }
@@ -93,7 +94,7 @@ angular.module('signupstep2', [])
                         }
                         else {
                             ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
-                        }// ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                        }
                     })
                 }
             }

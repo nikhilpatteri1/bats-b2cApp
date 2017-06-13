@@ -1,7 +1,7 @@
 angular.module('report', [])
     .controller('ReportCtrl', function ($scope, $rootScope, $ionicModal, $timeout,$ionicPopup, BatsServices, ionicToast, PageConfig, Constants, $state,
         UtilsFactory, $cordovaFileTransfer, $cordovaFileOpener2) {
-        //***************************** for fetching device list*****************************
+
         var storagePath;
         var reportParam = {};
         var options = {
@@ -21,9 +21,8 @@ angular.module('report', [])
                             {'id':'11','month':'November'},
                             {'id':'12','month':'December'}];
         var inputParam = {};
-        // console.log("sadsad");
+        //***************************** for fetching device list******************
         BatsServices.activeDeviceList(inputParam).success(function (response) {
-            //console.log(JSON.stringify(response));
             $scope.deviceList = response;
         }).error(function (error) {
             ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
@@ -35,77 +34,38 @@ angular.module('report', [])
         }else if(ionic.Platform.isAndroid()){
             storagePath = cordova.file.externalRootDirectory + "/yourapp/temp";
         }
-        // console.log("path is: "+storagePath);
 
-        document.addEventListener("deviceready", onDeviceReady, false);
-        function onDeviceReady() {
-            // console.log(cordova.file);
-        }
-
-        // $rootScope.dateValue = new Date();
-        // $rootScope.timeValue = new Date();
-        // $rootScope.datetimeValue = new Date();
         $scope.gotoReport = function (data, form) {
-            // console.log("inside click: "+angular.toJson(data));
             reportParam = {
                 devid: data.selectedvehicle.devid,
                 year: data.year,
                 month: data.month.id
             }
-
-            // console.log("report param is: "+angular.toJson(reportParam));
             BatsServices.report(reportParam).success(function (response){
-                // console.log("report donwloaded"+angular.toJson(response));
-                // var responseFile = new Blob([response], { type: 'application/pdf' });
-                // console.log("response: "+response);
                 if(!response.err){
                     downloadFile(response);
                 }
-
             }).error(function(error){
-                console.log("error found:");
-                ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                ionicToast.show('Please select a different date.', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
             })
-            // var alertPopup = $ionicPopup.alert({
-            //                 title: '',
-            //                 template: '<div class="suPopupContent">This feature not implemented </div>'
-                            
-            //             });
-                        // alertPopup.then(function (res) {
-                        //     $state.go(PageConfig.LOGIN);
-                        // });
         }
-        // $scope.setMonth = function(value){
-        //     console.log("changed month: "+value);
-        // }
 
+        /* get access to the file & download file */
         function downloadFile(fileEntryContent){
-            // console.log("file downloaded");
             window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
-                // console.log('file system open: ' + fs.name);
                 fs.root.getFile(reportParam.devid, { create: true, exclusive: false }, function (fileEntry) {
-                    // console.log("fileEntry is file?" + fileEntry.isFile.toString());
                     writeFile(fileEntry, fileEntryContent);
                 }, function(error){
                     // console.log("error on 1");
                 });
-
             }, function(error){
                 // console.log("error on 2nd");
             });
         }
 
-        function writeFile(fileEntry, dataObj) {
-            // console.log("write called:");
-            // Create a FileWriter object for our FileEntry (log.txt).
+        function writeFile(fileEntry, dataObj){
             fileEntry.createWriter(function (fileWriter) {
-
                 fileWriter.onwriteend = function() {
-                    // console.log("Successful file write...");
-                    // console.log("Location is: "+angular.toJson(fileEntry));
-                    // readFile(fileEntry);
-                    // window.open(fileEntry.nativeURL, '_system', 'location=yes,enableViewportScale=yes,hidden=no');
-                    // console.log("ref variable: "+ref);
                     $cordovaFileOpener2.open(
                         fileEntry.nativeURL,
                         'application/pdf'
@@ -120,12 +80,10 @@ angular.module('report', [])
                     // console.log("Failed file write: " + e.toString());
                 };
 
-                // If data object is not passed in,
-                // create a new Blob instead.
+                // If data object is not passed in, create a new Blob instead.
                 if (!dataObj) {
                     dataObj = new Blob(['some file data'], { type: 'application/pdf' });
                 }
-
                 fileWriter.write(dataObj);
             });
         }
