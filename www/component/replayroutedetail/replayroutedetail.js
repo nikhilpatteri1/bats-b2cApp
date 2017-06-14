@@ -96,16 +96,19 @@ angular.module('replayroutedetail', [])
 				oldStep = {step: 1,tick:100};
 				step=5;
 				tick=100;
+				$scope.play = false;
 				break;
 			case 1:
 				oldStep = {step: 10,tick:50};
 				step=10;
 				tick=50;
+				$scope.play = false;
 				break;
 			case 2:
 				oldStep = {step: 50,tick:10};
 				step=50;
 				tick=10;
+				$scope.play = false;
 				break;	
 			case 3:
 				step=0;
@@ -335,6 +338,7 @@ angular.module('replayroutedetail', [])
 			clearTimeout(timerHandle);
 	    }
 		map.setZoom(16);
+		console.log("inside animation function");
 		// console.log("zoom level1: "+map.getZoom());
         eol=poly.Distance();
         map.setCenter(poly.getPath().getAt(0));
@@ -379,6 +383,7 @@ angular.module('replayroutedetail', [])
 			$scope.end = true;
 			return;
 		}
+		console.log("inside animate function");
 		// console.log("zoom level2: "+map.getZoom());
 		map.setZoom(16);
 		var p = poly.GetPointAtDistance(d);

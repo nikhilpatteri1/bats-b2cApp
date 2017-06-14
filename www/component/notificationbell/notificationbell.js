@@ -1,6 +1,6 @@
 angular.module('notificationbell', [])
     .controller('notificationbellCtrl', function ($scope, $ionicModal, $timeout, UtilsFactory, $state, PageConfig, BatsServices,
-        ionicToast, $interval, Constants, $cordovaSQLite, $rootScope) {
+        ionicToast, $interval, Constants, $cordovaSQLite, $rootScope, $ionicPlatform) {
         // console.log("inside notification bell");
         //$scope.count;
         //  $scope.fristTime = 0;
@@ -15,7 +15,16 @@ angular.module('notificationbell', [])
         $scope.hidecount = function () {
             $rootScope.count = 0;
         }
+        console.log("inside noti controller");
 
+
+
+        $rootScope.count = 0;
+
+        $ionicPlatform.ready(function(){
+            callNotificationinterval();
+        });
+        
 
         if (UtilsFactory.getNotificationcallFirst() >= 1) {
             // console.log("im not calling again");
@@ -34,7 +43,7 @@ angular.module('notificationbell', [])
                 var select = [];
                 // console.log("fetching notification " + angular.toJson(res));
                 for (var i = 0; i < res.rows.length; i++) {
-                  //  console.log(JSON.parse(res.rows));
+                    //  console.log(JSON.parse(res.rows));
                     select = JSON.parse(res.rows.item(i).data);
                     // console.log("select" + JSON.stringify(select));
                     $scope.oldcount = $scope.oldcount + select.length;
@@ -56,10 +65,10 @@ angular.module('notificationbell', [])
                 }
             }, function (err) {
                 // console.log("somthing went wrong with fetching notification\n" + err);
-                           });
+            });
 
             // console.log($rootScope.count);
-            
+
             //   $scope.$apply();
         }
     });

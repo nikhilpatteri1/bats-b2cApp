@@ -14,6 +14,7 @@ angular.module('livetracking', [])
 			zIndex: 1
 		});
 		var polyPaths = [];
+		$scope.lastUpdated = false;
 
 		// if (UtilsFactory.getNotificationDetails()) {
 		// 	//$scope.notificationData = UtilsFactory.getNotificationDetails();
@@ -676,24 +677,29 @@ angular.module('livetracking', [])
 					$scope.singleImg_url = "../images/mapIcon/geofenceStatus.png";
 					//$(".barStyleSingle").css("background-color", "#f44336");
 					$scope.barTxt = "Crossed Geofence";
+					$scope.lastUpdated = false;
 					$(".ltwrap_type").css("background-color", "#710e9f");
 				}, 7000);
 			} else if (div == "1") {
+				$scope.lastUpdated = false;
 				$scope.singleImg_url = "../images/mapIcon/speed-limit.png";
 				$scope.barTxt = "Crossed Speed";
 				$(".ltwrap_type").css("background-color", "#ffd500");
 				//$(".barStyleSingle").css("background-color", "#ffde01");
 			} else if (div == "2") {
+				$scope.lastUpdated = false;
 				$scope.singleImg_url = "../images/mapIcon/warning.png";
 				$scope.barTxt = "Crossed Geofence and Speed";
 				$(".ltwrap_type").css("background-color", "#ff0000");
 				//$(".barStyleSingle").css("background-color", "#e59305");
 			} else if (div == "3") {
+				$scope.lastUpdated = false;
 				$scope.singleImg_url = "../images/mapIcon/normal.png";
 				$scope.barTxt = "Normal State";
 				$(".ltwrap_type").css("background-color", "#7fbb01");
 				//$(".barStyleSingle").css("background-color", "#000000");
 			} else if (div == "4") {
+				$scope.lastUpdated = true;
 				$scope.singleImg_url = "../images/mapIcon/no-response.png";
 				$scope.barTxt = "No-Response State";
 				$(".ltwrap_type").css("background-color", "#2d2d2d");

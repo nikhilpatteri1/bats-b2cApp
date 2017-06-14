@@ -347,6 +347,13 @@ right: 70%;
     align-content: center;
     align-items: center;
 }
+
+.last-updated{
+    position: fixed;
+    top: 94%;
+    font-size: 10px;
+    padding-left: 5%;
+}
     
 
 /***************************************CSS for All Modals Design********************************/

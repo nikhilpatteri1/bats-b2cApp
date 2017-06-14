@@ -4,7 +4,7 @@
         <div>
         </div>
     </ion-nav-buttons>
-    <ion-nav-title ng-click="gotoLivetrackingDevice()">{{selectedDevice}}<i class="ion-chevron-down ltSelectDevArr"></i></ion-nav-title>
+    <ion-nav-title ng-click="gotoLivetrackingDevice()">Select Device<i class="ion-chevron-down ltSelectDevArr"></i></ion-nav-title>
     <ion-nav-buttons side="right">
          <div  ng-include="'component/notificationbell/notificationbell.html'"></div>
         <!--<button class="button button-icon button-clear " ng-click="gotoFilter()" ><img class="filterWidth" src="img/filter.png"></button> -->
@@ -33,5 +33,6 @@
                 <span ng-show="showArrow"><i class="ion-chevron-right"></i></span>
             </div>
         </div>
+        <div ng-if="lastUpdated" class="last-updated">Latest Updated Speed</div>
     </ion-content>
 </ion-view>
