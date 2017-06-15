@@ -14,9 +14,9 @@ angular.module('replayroutedetail', [])
 	$scope.showReplayMenu = false;
 
 	$scope.availableOptions = [
-     { name: 'slow', value: '0' }, 
-     { name: 'medium', value: '1' }, 
-     { name: 'high', value: '2' }
+     { name: 'Slow', value: '0' }, 
+     { name: 'Medium', value: '1' }, 
+     { name: 'High', value: '2' }
    	];
    	$scope.data = {selectedOption : $scope.availableOptions[0].value};
 
@@ -383,7 +383,7 @@ angular.module('replayroutedetail', [])
 			$scope.end = true;
 			return;
 		}
-		console.log("inside animate function");
+		// console.log("inside animate function");
 		// console.log("zoom level2: "+map.getZoom());
 		map.setZoom(16);
 		var p = poly.GetPointAtDistance(d);
