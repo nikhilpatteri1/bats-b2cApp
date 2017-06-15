@@ -1,12 +1,10 @@
 angular.module('report', [])
     .controller('ReportCtrl', function ($scope, $rootScope, $ionicModal, $timeout,$ionicPopup, BatsServices, ionicToast, PageConfig, Constants, $state,
-        UtilsFactory, $cordovaFileTransfer, $cordovaFileOpener2) {
+        UtilsFactory) {
 
-        var storagePath;
         var reportParam = {};
-        var options = {
-            'Content-type' : 'application/pdf'
-        };
+        var bytes;
+        var fileName;
         $scope.years = ['2017'];
         $scope.months = [{'id':'1','month':'January'},
                             {'id':'2','month':'February'},
@@ -29,11 +27,6 @@ angular.module('report', [])
         })
         // ***************** end of fetching devices *****************************
 
-        if (ionic.Platform.isIOS()){
-            storagePath = cordova.file.cacheDirectory + "/temp";
-        }else if(ionic.Platform.isAndroid()){
-            storagePath = cordova.file.externalRootDirectory + "/yourapp/temp";
-        }
 
         $scope.gotoReport = function (data, form) {
             reportParam = {
@@ -41,50 +34,53 @@ angular.module('report', [])
                 year: data.year,
                 month: data.month.id
             }
+            fileName = reportParam.devid+'.pdf';
             BatsServices.report(reportParam).success(function (response){
                 if(!response.err){
-                    downloadFile(response);
+                    bytes = new Uint8Array(response);
+                    writePDFToFile(fileName, bytes);
                 }
             }).error(function(error){
                 ionicToast.show('Please select a different date.', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
             })
         }
 
-        /* get access to the file & download file */
-        function downloadFile(fileEntryContent){
-            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
-                fs.root.getFile(reportParam.devid, { create: true, exclusive: false }, function (fileEntry) {
-                    writeFile(fileEntry, fileEntryContent);
-                }, function(error){
-                    // console.log("error on 1");
-                });
-            }, function(error){
-                // console.log("error on 2nd");
-            });
-        }
 
-        function writeFile(fileEntry, dataObj){
-            fileEntry.createWriter(function (fileWriter) {
-                fileWriter.onwriteend = function() {
-                    $cordovaFileOpener2.open(
-                        fileEntry.nativeURL,
-                        'application/pdf'
-                    ).then(function() {
-                        // file opened successfully
-                    }, function(err) {
-                        // An error occurred. Show a message to the user
+        function writePDFToFile(fileName, data){
+            try{
+                window.resolveLocalFileSystemURL(cordova.file.externalApplicationStorageDirectory, function(directoryEntry){
+                    directoryEntry.getFile(fileName, { create: true }, function(fileEntry){
+                        fileEntry.createWriter(function(fileWriter){
+                            fileWriter.onwriteend = function(e){
+                                cordova.plugins.fileOpener2.open(cordova.file.externalApplicationStorageDirectory + fileName, 'application/pdf',{
+                                    error: function(e){
+                                        console.log('Error status: ' + e.status + ' - Error message: ' + e.message);
+                                    },
+                                    success: function () {
+                                        console.log('file opened successfully');
+                                    }
+                                });
+                            };
+
+                            fileWriter.onerror = function(e){
+                                alert(e);
+                            };
+
+                            var blob = new Blob([data], { type: 'application/pdf' });
+                            fileWriter.write(blob);
+
+                        }, function onerror(e){
+                            alert(e);
+                        });
+                    }, function onerror(e){
+
+                        alert(e);
                     });
-                };
-
-                fileWriter.onerror = function (e) {
-                    // console.log("Failed file write: " + e.toString());
-                };
-
-                // If data object is not passed in, create a new Blob instead.
-                if (!dataObj) {
-                    dataObj = new Blob(['some file data'], { type: 'application/pdf' });
-                }
-                fileWriter.write(dataObj);
-            });
+                },function onerror(e){            
+                    alert(e);
+                });
+            }catch(e){
+                alert(e);
+            }
         }
 })
