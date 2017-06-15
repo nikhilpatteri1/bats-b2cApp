@@ -4,7 +4,7 @@ angular.module('eventhistory', [])
 
         // $scope.dummyVehicle = ["BDT_LT_17-001", "BDT_LT_17-002","BDT_LT_17-003", "BDT_LT_17-004"];
         var inputParam = {};
-        console.log("sadsad");
+        // console.log("sadsad");
         BatsServices.activeDeviceList(inputParam).success(function (response) {
             //console.log(JSON.stringify(response));
             $scope.deviceList = response

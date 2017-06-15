@@ -5,17 +5,18 @@ angular.module('eventhistoryfilter', [])
             {'name' : 'Tamper Top','type' : '2','value' : true},{'name' : 'Battery','type' : '3','value' : true},
             {'name' : 'Overspeed','type' : '4','value' : true},{'name' : 'Geofence','type' : '5','value' : true},
             {'name' : 'Sanity alarm','type' : '6','value' : true},{'name' : 'Connection to tracker interrupted','type' : '7','value' : true},
-            {'name' : 'Robbery / theft alarm','type' : '8','value' : true},{'name' : 'Undefined','type' : '9','value' : true}];
+            {'name' : 'Robbery / theft alarm','type' : '8','value' : true},{'name' : 'Tracker sim changed','type' : '9','value' : true},
+            {'name' : 'Warning','type' : '10','value' : true}];
         $scope.formVal = {
             allCheck: true
         };
 
         if(UtilsFactory.getHistoryFilterList().length!=0){
             $scope.selectedFilters = UtilsFactory.getHistoryFilterList();
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < 11; i++) {
                 $scope.filter[i].value = false;
             }
-            if($scope.selectedFilters.length<10){
+            if($scope.selectedFilters.length<11){
                 $scope.formVal = {
                     allCheck : false
                 };
@@ -30,7 +31,7 @@ angular.module('eventhistoryfilter', [])
                 }
             }
         }else{
-            $scope.selectedFilters = [0,1,2,3,4,5,6,7,8,9];
+            $scope.selectedFilters = [0,1,2,3,4,5,6,7,8,9,10];
         }
 
         $scope.gotoApplyFilter = function (data, form) {
@@ -43,10 +44,10 @@ angular.module('eventhistoryfilter', [])
         }
 
          if (UtilsFactory.getNotificationDetails()) {
-            console.log(UtilsFactory.getNotificationDetails());
+            // console.log(UtilsFactory.getNotificationDetails());
             $scope.notificationData = UtilsFactory.getNotificationDetails();
             $scope.count =UtilsFactory.getNotificationCount();
-            console.log($scope.count);
+            // console.log($scope.count);
             if($scope.count==undefined){
                 $scope.count=0;
                 $scope.notificationData=[];

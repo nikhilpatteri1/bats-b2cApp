@@ -26,12 +26,12 @@ angular.module('eventhistorydetail', [])
       if (UtilsFactory.getHistoryFilterList().length != 0) {
         $scope.filterList = UtilsFactory.getHistoryFilterList();
       } else {
-        $scope.filterList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        $scope.filterList = [0,1,2,3,4,5,6,7,8,9,10];
       }
  // ***********************end  filter checking *****************************
 
       $scope.eventHistoryValueslist = UtilsFactory.getEventHistoryList();
-      console.log($scope.eventHistoryValueslist);
+      // console.log($scope.eventHistoryValueslist);
       $scope.eventHistoryValues=$scope.eventHistoryValueslist.values;
        if ($scope.eventHistoryValues.length==0) {
         $scope.noData = true;
@@ -56,48 +56,42 @@ angular.module('eventhistorydetail', [])
 
       // }
 
-      console.log("geeta its me alarm type" + alarm_type);
+      // console.log("geeta its me alarm type" + alarm_type);
       if (alarm_type == '0') {
         $scope.alarmType = "Panic";
         $scope.imageSrc = 'img/eventH/panic.png';
-      }
-      else if (alarm_type == '1') {
+      }else if (alarm_type == '1') {
         $scope.alarmType = "Tamper Sim";
         $scope.imageSrc = 'img/eventH/sim-tamper.png';
-      }
-      else if (alarm_type == '2') {
+      }else if (alarm_type == '2') {
         $scope.alarmType = "Tamper Top";
         $scope.imageSrc = 'img/eventH/tamper-top.png';
-      }
-      else if (alarm_type == '3') {
+      }else if (alarm_type == '3') {
         $scope.alarmType = "Battery Low";
         $scope.imageSrc = 'img/eventH/battery.png';
-      }
-      else if (alarm_type == '4') {
+      }else if (alarm_type == '4') {
         $scope.alarmType = "Overspeed";
         $scope.imageSrc = 'img/eventH/overspeed.png';
-      }
-      else if (alarm_type == '5') {
+      }else if (alarm_type == '5') {
         $scope.alarmType = "Geofence";
         $scope.imageSrc = 'img/eventH/geofence.png';
-      }
-      else if (alarm_type == '6') {
+      }else if (alarm_type == '6') {
         $scope.alarmType = "Sanity alarm";
         $scope.imageSrc = 'img/eventH/sanity.png';
-      }
-      else if (alarm_type == '7') {
+      }else if (alarm_type == '7') {
         $scope.alarmType = "Connection to tracker interrupted";
         $scope.imageSrc = 'img/eventH/warning.png';
-      }
-      else if (alarm_type == '8') {
+      }else if (alarm_type == '8') {
         $scope.alarmType = "Vehicle Moved / Theft ";
         $scope.imageSrc = 'img/eventH/theft.png';
-      }
-      else if (alarm_type == '9') {
+      }else if (alarm_type == '9') {
+        $scope.alarmType = "Tracker sim changed";
+        $scope.imageSrc = 'img/eventH/sim-tamper.png';
+      }else if (alarm_type == '10') {
         $scope.alarmType = "Warning";
         $scope.imageSrc = 'img/eventH/invalid.png';
       }
-      console.log(alarm_type + $scope.alarmType);
+      // console.log(alarm_type + $scope.alarmType);
     }
 
 

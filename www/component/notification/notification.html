@@ -20,7 +20,8 @@
                                                     (notif.alarm_type=='6' ? 'img/eventH/sanity.png' :
                                                     (notif.alarm_type=='7' ? 'img/eventH/warning.png' :
                                                     (notif.alarm_type=='8' ? 'img/eventH/theft.png' :
-                                                    (notif.alarm_type=='9' ? 'img/eventH/invalid.png' : 'img/eventH/invalid.png')))))))))}}">
+                                                    (notif.alarm_type=='9' ? 'img/eventH/sim-tamper.png' :
+                                                    (notif.alarm_type=='10' ? 'img/eventH/invalid.png' : 'img/eventH/invalid.png'))))))))))}}">
                 </div>
                 <div class="col col-50">
                     <!--<div class="row" ng-class="[chexkAlarmType(notif.alarm_type,notif.Velocity)]">{{alarmType}}-->
@@ -34,7 +35,8 @@
                         <span ng-if="notif.alarm_type=='6'">Sanity alarm</span>
                         <span ng-if="notif.alarm_type=='7'">Connection to tracker interrupted</span>
                         <span ng-if="notif.alarm_type=='8'">Vehicle Moved / Theft</span>
-                        <span ng-if="notif.alarm_type=='9'">Waring</span>
+                        <span ng-if="notif.alarm_type=='9'">Tracker sim changed</span>
+                        <span ng-if="notif.alarm_type=='10'">Warning</span>
                         <!--<div class="row latlongStyle" ng-click="showAlert(event.lat,event.long)">
                             {{event.lat}} , {{event.long}}-->
                     </div>

@@ -15,7 +15,7 @@ angular.module('notificationbell', [])
         $scope.hidecount = function () {
             $rootScope.count = 0;
         }
-        console.log("inside noti controller");
+        // console.log("inside noti controller");
 
 
 
