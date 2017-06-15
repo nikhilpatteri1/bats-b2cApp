@@ -1,6 +1,7 @@
 angular.module('batsservices', [])
 .service('BatsServices', function ($http, Constants) {
-    var baseUrl = "http://220.227.124.134:8054/";
+    var baseUrl = "http://220.227.124.134:8054/"; //dev server
+    // var baseUrl = "http://45.114.245.79:8068/"; //test server
 
     this.login = function (inputData) {
         return $http.post(baseUrl + 'b2c/app/login', inputData);
