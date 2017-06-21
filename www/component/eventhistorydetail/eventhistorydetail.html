@@ -49,8 +49,8 @@
                     </div>
                 </div>
                 <div class="col col-25">
-                    <div class=" acSmallFonts acGreyFont ehDateFormat">
-                        {{event.ts | eventTime}}
+                    <div class=" acSmallFonts acGreyFont ehDateFormat" ng-class="[fetchTime(event.ts)]">{{event.ts | date:' HH:mm, d MMMM '}}
+                        
                     </div>
                     <div class="">
                         <button ng-click="showAlert(event.lat,event.long)" class="buttonForHistor ">Location</button>

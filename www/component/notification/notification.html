@@ -51,7 +51,7 @@
                 </div>
                 <div class="col col-30">
                     <div class=" acSmallFonts acGreyFont ehDateFormat">
-                        {{notif.ts | eventTime}}
+                        {{notif.ts | date:' HH:mm, d MMMM '}}
                     </div>
                     <div class="">
                         <button ng-click="showAlert(notif.lat,notif.long)" class="buttonForHistor ">Location</button>

@@ -35,7 +35,7 @@
                     <span>{{statusType}} </span>
                 </div>
                 <div class="col col-35 lvdDivWidth">
-                    <div class="lvdalignRight acGreyFont acSmallFonts"> Last Update<br> {{data[0].values.ts | eventTimeDate}}
+                    <div class="lvdalignRight acGreyFont acSmallFonts"> Last Update<br> {{data[0].values.ts | date:' HH:mm:ss,d MMMM yyyy'}}
                     </div>
                 </div>
             </div>

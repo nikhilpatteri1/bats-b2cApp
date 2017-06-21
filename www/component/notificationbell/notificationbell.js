@@ -53,7 +53,7 @@ angular.module('notificationbell', [])
                         notificationArrray.push(select[j]);
                     }
                 }
-                // console.log("its notification array" + JSON.stringify(notificationArrray));
+                 console.log("its notification array" + JSON.stringify(notificationArrray));
                 if ($rootScope.count < $scope.oldcount) {
                     $rootScope.count = $scope.oldcount;
                     UtilsFactory.setNotificationDetails(notificationArrray);

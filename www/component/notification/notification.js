@@ -49,13 +49,13 @@ angular.module('notification', [])
     $scope.speed;
     $scope.chexkAlarmType = function (alarm_type, velocity) {
       // console.log("gdgj" + $scope.speed);
-      if ($scope.speed < velocity) {
-        $scope.redSpeed = 1;
-        // console.log("red style applying " + $scope.redSpeed);
-      }
-      else {
-        $scope.redSpeed = 0;
-      }
+      // if ($scope.speed < velocity) {
+      //   $scope.redSpeed = 1;
+      //   // console.log("red style applying " + $scope.redSpeed);
+      // }
+      // else {
+      //   $scope.redSpeed = 0;
+      // }
       // console.log("geeta its me alarm type" + alarm_type);
       if (alarm_type == '0') {
         $scope.alarmType = "Panic";
