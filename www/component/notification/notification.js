@@ -47,52 +47,52 @@ angular.module('notification', [])
 
 
     $scope.speed;
-    $scope.chexkAlarmType = function (alarm_type, velocity) {
-      // console.log("gdgj" + $scope.speed);
-      // if ($scope.speed < velocity) {
-      //   $scope.redSpeed = 1;
-      //   // console.log("red style applying " + $scope.redSpeed);
-      // }
-      // else {
-      //   $scope.redSpeed = 0;
-      // }
-      // console.log("geeta its me alarm type" + alarm_type);
-      if (alarm_type == '0') {
-        $scope.alarmType = "Panic";
-        $scope.imageSrc = 'img/eventH/panic.png';
-      }else if (alarm_type == '1') {
-        $scope.alarmType = "Tamper Sim";
-        $scope.imageSrc = 'img/eventH/sim-tamper.png';
-      }else if (alarm_type == '2') {
-        $scope.alarmType = "Tamper Top";
-        $scope.imageSrc = 'img/eventH/tamper-top.png';
-      }else if (alarm_type == '3') {
-        $scope.alarmType = "Battery Low";
-        $scope.imageSrc = 'img/eventH/battery.png';
-      }else if (alarm_type == '4') {
-        $scope.alarmType = "Overspeed";
-        $scope.imageSrc = 'img/eventH/overspeed.png';
-      }else if (alarm_type == '5') {
-        $scope.alarmType = "Geofence";
-        $scope.imageSrc = 'img/eventH/geofence.png';
-      }else if (alarm_type == '6') {
-        $scope.alarmType = "Sanity alarm";
-        $scope.imageSrc = 'img/eventH/sanity.png';
-      }else if (alarm_type == '7') {
-        $scope.alarmType = "CONNECTION TO TRACKER INTERRUPTED";
-        $scope.imageSrc = 'img/eventH/warning.png';
-      }else if (alarm_type == '8') {
-        $scope.alarmType = "Vehicle Moved / Theft ";
-        $scope.imageSrc = 'img/eventH/theft.png';
-      }else if (alarm_type == '9') {
-        $scope.alarmType = "Tracker sim changed";
-        $scope.imageSrc = 'img/eventH/sim-tamper.png';
-      }else if (alarm_type == '10') {
-        $scope.alarmType = "Warning";
-        $scope.imageSrc = 'img/eventH/invalid.png';
-      }
-      // console.log(alarm_type + $scope.alarmType);
-    }
+    // $scope.chexkAlarmType = function (alarm_type, velocity) {
+    //   // console.log("gdgj" + $scope.speed);
+    //   // if ($scope.speed < velocity) {
+    //   //   $scope.redSpeed = 1;
+    //   //   // console.log("red style applying " + $scope.redSpeed);
+    //   // }
+    //   // else {
+    //   //   $scope.redSpeed = 0;
+    //   // }
+    //   // console.log("geeta its me alarm type" + alarm_type);
+    //   if (alarm_type == '0') {
+    //     $scope.alarmType = "Panic";
+    //     $scope.imageSrc = 'img/eventH/panic.png';
+    //   }else if (alarm_type == '1') {
+    //     $scope.alarmType = "Tamper Sim";
+    //     $scope.imageSrc = 'img/eventH/sim-tamper.png';
+    //   }else if (alarm_type == '2') {
+    //     $scope.alarmType = "Tamper Top";
+    //     $scope.imageSrc = 'img/eventH/tamper-top.png';
+    //   }else if (alarm_type == '3') {
+    //     $scope.alarmType = "Battery Low";
+    //     $scope.imageSrc = 'img/eventH/battery.png';
+    //   }else if (alarm_type == '4') {
+    //     $scope.alarmType = "Overspeed";
+    //     $scope.imageSrc = 'img/eventH/overspeed.png';
+    //   }else if (alarm_type == '5') {
+    //     $scope.alarmType = "Geofence";
+    //     $scope.imageSrc = 'img/eventH/geofence.png';
+    //   }else if (alarm_type == '6') {
+    //     $scope.alarmType = "Sanity alarm";
+    //     $scope.imageSrc = 'img/eventH/sanity.png';
+    //   }else if (alarm_type == '7') {
+    //     $scope.alarmType = "CONNECTION TO TRACKER INTERRUPTED";
+    //     $scope.imageSrc = 'img/eventH/warning.png';
+    //   }else if (alarm_type == '8') {
+    //     $scope.alarmType = "Vehicle Moved / Theft ";
+    //     $scope.imageSrc = 'img/eventH/theft.png';
+    //   }else if (alarm_type == '9') {
+    //     $scope.alarmType = "Tracker sim changed";
+    //     $scope.imageSrc = 'img/eventH/sim-tamper.png';
+    //   }else if (alarm_type == '10') {
+    //     $scope.alarmType = "Warning";
+    //     $scope.imageSrc = 'img/eventH/invalid.png';
+    //   }
+    //   // console.log(alarm_type + $scope.alarmType);
+    // }
 
 
 

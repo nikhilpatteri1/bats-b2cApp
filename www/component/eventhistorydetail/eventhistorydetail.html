@@ -44,12 +44,12 @@
                             {{event.lat}} , {{event.long}}-->
                     </div>
                     <div class="row ">
-                        <!--<div class="" ng-class="[chexkAlarmType(event.alarm_type)]">{{alarmType}}</div>-->
+                        <!--<div class="" ng-class="[chexkAlarmType(event.alarm_type)]">{{alarmType}}</div>ng-class="[fetchTime(event.ts)]"-->
                         <div class="leftPaddingZero" ng-class="{'redSpeed':event.alarm_type=='4'}">{{event.Velocity}} KmpH</div>
                     </div>
                 </div>
                 <div class="col col-25">
-                    <div class=" acSmallFonts acGreyFont ehDateFormat" ng-class="[fetchTime(event.ts)]">{{event.ts | date:' HH:mm, d MMMM '}}
+                    <div class=" acSmallFonts acGreyFont ehDateFormat">{{event.ts | date:' HH:mm, d MMMM '}}
                         
                     </div>
                     <div class="">
