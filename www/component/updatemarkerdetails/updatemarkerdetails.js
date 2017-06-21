@@ -47,24 +47,29 @@ angular.module('updatemarkerdetails', [])
             $state.go(PageConfig.GEOFENCE);
         }
         $scope.updateTracker = function (data, form, geofence) {
+            console.log("data for device: "+angular.toJson(data));
             if (geofence) {
                 UtilsFactory.setUpdateTrackerDetails(data);
                 $state.go(PageConfig.GEOFENCE);
             } else {
-                if (form.$valid) {
-                    var inputParam = data;
-                    inputParam.geofence = [];
-                    inputParam.devtype = data.vehicle_model;
-                    BatsServices.modifyMarker(inputParam).success(function (response) {
-                        $scope.updateMarkerModal.show();
-                    }).error(function (error) {
-                        if (error.err == 'Origin Server returned 504 Status') {
-                            ionicToast.show('Internet is very slow', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
-                        }
-                        else {
-                            ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
-                        }// ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
-                    })
+                if(data.vehicle_model!=''){
+                    if (form.$valid) {
+                        var inputParam = data;
+                        inputParam.geofence = [];
+                        inputParam.devtype = data.vehicle_model;
+                        BatsServices.modifyMarker(inputParam).success(function (response) {
+                            $scope.updateMarkerModal.show();
+                        }).error(function (error) {
+                            if (error.err == 'Origin Server returned 504 Status') {
+                                ionicToast.show('Internet is very slow', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                            }
+                            else {
+                                ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                            }// ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                        })
+                    }
+                }else{
+                    ionicToast.show('Please select Vehicle type.', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
                 }
             }
         }

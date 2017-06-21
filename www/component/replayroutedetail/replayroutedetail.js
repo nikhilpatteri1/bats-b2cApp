@@ -223,7 +223,9 @@ angular.module('replayroutedetail', [])
 		// console.log("zoom leve7: "+map.getZoom());
 		map.setZoom(16);
 		var lat_tot = 0, lg_tot = 0, lat_avg = 0, lg_avg = 0;
-		var histData = $scope.historyVal.values;
+		var reverseArray = $scope.historyVal.values
+		// var histData = $scope.historyVal.values;
+		var histData = reverseArray.reverse();
 		var hist_len = histData.length;
 		var polyPathArray = [];
 		$scope.plottedData=[];
@@ -321,7 +323,7 @@ angular.module('replayroutedetail', [])
 			// console.log("zoom changed: "+map.getZoom());
 			if(map.getZoom()<16){
 				map.setZoom(16);
-				map.setCenter(poly.getPath().getAt(0));
+				// map.setCenter(poly.getPath().getAt(0));
 			}
 		});
 	};
@@ -389,6 +391,7 @@ angular.module('replayroutedetail', [])
 		var p = poly.GetPointAtDistance(d);
 		//map.panTo(p);
 		var lastPosn = marker[0].getPosition();
+		map.setCenter(lastPosn);
 		// console.log("last position: "+lastPosn);
 		for(i in svg){marker[i].setPosition(p);}
 		var heading = google.maps.geometry.spherical.computeHeading(lastPosn, p);
