@@ -340,7 +340,7 @@ angular.module('replayroutedetail', [])
 			clearTimeout(timerHandle);
 	    }
 		map.setZoom(16);
-		console.log("inside animation function");
+		// console.log("inside animation function");
 		// console.log("zoom level1: "+map.getZoom());
         eol=poly.Distance();
         map.setCenter(poly.getPath().getAt(0));
@@ -389,11 +389,13 @@ angular.module('replayroutedetail', [])
 		// console.log("zoom level2: "+map.getZoom());
 		map.setZoom(16);
 		var p = poly.GetPointAtDistance(d);
+		// console.log("p value inside animate: "+p);
 		//map.panTo(p);
 		var lastPosn = marker[0].getPosition();
-		map.setCenter(lastPosn);
+		map.panTo(lastPosn);
 		// console.log("last position: "+lastPosn);
 		for(i in svg){marker[i].setPosition(p);}
+		// console.log("marker: "+marker);
 		var heading = google.maps.geometry.spherical.computeHeading(lastPosn, p);
 		for(i in svg){icons[i].rotation = heading;}
 		for(i in svg){marker[i].setIcon(icons[i]);}
