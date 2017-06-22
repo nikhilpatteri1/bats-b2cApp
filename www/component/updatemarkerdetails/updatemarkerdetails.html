@@ -1,14 +1,13 @@
 <ion-view view-title="Update Details">
     <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-arrow-left-c"
-                ng-click="backToManageTracker()"></button>
+        <button class="button button-icon button-clear ion-arrow-left-c" ng-click="backToManageTracker()"></button>
     </ion-nav-buttons>
-     <ion-nav-buttons side="right">
-          <div  ng-include="'component/notificationbell/notificationbell.html'"></div>
-       <!--<a class="button button-icon button-clear " href="#/bats/notification" ><img class="filterWidth" src="img/notification.png">
+    <ion-nav-buttons side="right">
+        <div ng-include="'component/notificationbell/notificationbell.html'"></div>
+        <!--<a class="button button-icon button-clear " href="#/bats/notification" ><img class="filterWidth" src="img/notification.png">
        <span class="badge badge-dark badgePosition"  ng-class="{'badgePositionHide':count=='0','badgePosition':count!='0'}">{{count}}</span></a>-->
     </ion-nav-buttons>
-    <ion-content >
+    <ion-content>
         <form name="updatemarkerdetialsForm.form" novalidate>
             <div class="umdBackground">
                 <div class="umdcolPadding umdHeading">
@@ -18,16 +17,16 @@
                         <div class="umdFontDiv acGreyFont">{{tracker.device_sim_cn}}</div>
                     </div>
                 </div>
-                
+
             </div>
             <div>
                 <div class="umdHeaderIconsVehicle acSmallFonts">Please select your vehicle type</div>
                 <ion-list class="umdIonList">
                     <ion-radio class="umdRadioLabels" ng-model="data.vehicle_model" ng-value="'car'">
-                    <div class="umdIconsmargin">
-                        <img class="umdIcons" src="img/car.png" />
-                    </div>
-                    <div class="acSmallFonts acGreyFont">CAR</div>
+                        <div class="umdIconsmargin">
+                            <img class="umdIcons" src="img/car.png" />
+                        </div>
+                        <div class="acSmallFonts acGreyFont">CAR</div>
                     </ion-radio>
                     <ion-radio class="umdRadioLabels" ng-model="data.vehicle_model" ng-value="'bike'">
                         <div class="umdIconsmargin">
@@ -51,28 +50,31 @@
             </div>
             <div class="umdHeaderIconsVehicle acSmallFonts">Vehicle Name</div>
             <div class="umdInputDiv">
-                <input type="text" name="vehicle_name" class="umdInputBoxes" required maxlength="20"
-                    placeholder="Please enter the Vehicle name" ng-model="data.vehicle_name" oninput="if(value.length>20)value=value.slice(0,20)"
-                    ng-class="{'umdFilledInputBox' : updatemarkerdetialsForm.form.vehicle_name.$invalid}">
+                <input type="text" name="vehicle_name" class="umdInputBoxes" required maxlength="20" placeholder="Please enter the Vehicle name"
+                    ng-model="data.vehicle_name" oninput="if(value.length>20)value=value.slice(0,20)" ng-class="{'umdFilledInputBox' : updatemarkerdetialsForm.form.vehicle_name.$invalid}">
             </div>
             <div class="umdHeaderIconsVehicle acSmallFonts">Vehicle Number</div>
             <div class="umdInputDiv">
-                <input type="text" name="vehicle_num" class="umdInputBoxes" required maxlength="20"
-                    placeholder="Please enter the Vehicle number" ng-model="data.vehicle_num" oninput="if(value.length>20)value=value.slice(0,20)"
-                    ng-class="{'umdFilledInputBox' : updatemarkerdetialsForm.form.vehicle_num.$invalid}">
+                <input type="text" name="vehicle_num" class="umdInputBoxes" required maxlength="20" placeholder="Please enter the Vehicle number"
+                    ng-model="data.vehicle_num" oninput="if(value.length>20)value=value.slice(0,20)" ng-class="{'umdFilledInputBox' : updatemarkerdetialsForm.form.vehicle_num.$invalid}">
             </div>
             <div class="umdHeaderIconsVehicle acSmallFonts">Maximum Speed limit</div>
-            <div class="umdInputDiv umdFlex" >
-                <input type="number" name="speed_limit" class="umdInputBoxes umdSpeedLimit" required 
-                    placeholder="Set Speed Limit" ng-model="data.speed_limit" maxlength="3" oninput="if(value.length>3)value=value.slice(0,3)"
-                    ng-class="{'umdFilledInputBox' : updatemarkerdetialsForm.form.speed_limit.$invalid}">
-                   
-                <div class="umdLabelBorder">KMPH</div>
+            <div class="umdInputDiv umdFlex">
+                <!--<div class="row">
+                    <div class="col col-40">
+                         <input type="text" name="vehicle_num" class="umdInputBoxes" required maxlength="3" placeholder="Set Speed Limit"
+                    ng-model="data.speed_limit"  ng-class="{'umdFilledInputBox' : updatemarkerdetialsForm.form.vehicle_num.$invalid}">
+           
+                    </div>-->
+                    <input type="tel" name="speed_limit" class="umdInputBoxes umdSpeedLimit" required placeholder="Set Speed Limit" ng-model="data.speed_limit"
+                    oninput="if(value.length>3)value=value.slice(0,3)" ng-class="{'umdFilledInputBox' : updatemarkerdetialsForm.form.speed_limit.$invalid}">
+                   <div class="umdLabelBorder">KMPH</div>
                 <span class="umdSpeedLimitSpan acGreyFont">Example:60Kmph you will be notified when vehicle crosses the speed limit</span>
-                 <!--<span class="red" ng-if="speed_limit =>'201'">
+                <!--<span class="red" ng-if="speed_limit =>'201'">
                             Max Speed 200 </span>-->
+                <!--</div>-->
             </div>
-            <div class="umdInputDiv" >
+            <div class="umdInputDiv">
                 <ion-list>
                     <ion-checkbox class="checkbox checkbox-balanced" ng-model="geofence.checked">Add GeoFence</ion-checkbox>
                 </ion-list>
@@ -83,9 +85,8 @@
             </div>-->
         </form>
     </ion-content>
-    <div class="bar bar-footer bar-balanced" ng-class="{'disableDiv': updatemarkerdetialsForm.form.$invalid}" 
-        ng-click="updateTracker(data, updatemarkerdetialsForm.form, geofence.checked)">
-        <div class="title">{{geofence.checked ?  'Next' : 'Update'}}</div>
+    <div class="bar bar-footer bar-balanced" ng-class="{'disableDiv': updatemarkerdetialsForm.form.$invalid}" ng-click="updateTracker(data, updatemarkerdetialsForm.form, geofence.checked)">
+        <div class="title">{{geofence.checked ? 'Next' : 'Update'}}</div>
         <!--<div class="title" ng-if="geofenceCheck=='false'">Update</div>-->
     </div>
 </ion-view>
