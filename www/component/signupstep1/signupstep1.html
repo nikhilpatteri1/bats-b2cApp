@@ -72,7 +72,7 @@
                         <div class="space" style="margin-bottom:15px;">
                             <div ng-show="data.state" class="floatlabeltxt show-hide inputFieldFontSize">State</div>
                             <select ng-model="data.state" class="dropdown" name="selectedstate" required placeholder="State" 
-                            ng-options="x for x in states" ng-disabled="!data.country"
+                            ng-options="x for x in states"
                                 ng-class="{error: signupStep1Form.form.selectedstate.$invalid && Validate}">
                            <option value=""disabled selected>States</option> </select>
                         </div>

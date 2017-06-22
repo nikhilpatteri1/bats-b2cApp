@@ -5,7 +5,9 @@ angular.module('signupstep1', [])
 		$scope.countries = Constants.COUNTRIES;
 		$scope.states = Constants.STATES;
 		$scope.signupStep1Form = {};
-		$scope.data = {};
+		$scope.data = {
+			country : 'India'
+		};
 		var usernameValidated = false;
 		var emailValidated = false;
 		// var max_length = 20;
