@@ -419,16 +419,19 @@ angular.module('livetracking', [])
 
 		$scope.animate = function (d) {
 			if (d > eol) {
+				console.log("inside if of animate");
 				map.panTo(endLocation.latlng);
 				for (i in svg) { marker[i].setPosition(endLocation.latlng); }
 				return;
 			}
+			console.log("inside animation");
 			var p = polyline.GetPointAtDistance(d);
 			map.panTo(p);
 			var lastPosn = marker[0].getPosition();
 			for (var i in svg) { marker[i].setPosition(p); }
 			var heading = google.maps.geometry.spherical.computeHeading(lastPosn, p);
 			$scope.headings = heading;
+			console.log("inside heading: "+heading);
 			//localStorage.setItem("heading",heading);
 			for (var i in svg) { icons[i].rotation = heading; }
 			for (var i in svg) { marker[i].setIcon(icons[i]); }
@@ -446,7 +449,7 @@ angular.module('livetracking', [])
 				strokeColor: "#0000FF",
 				strokeWeight: 0
 			});
-
+			console.log("inside animation function");
 			setTimeout(function () {
 				$scope.animate(50);
 			}, 2000);
