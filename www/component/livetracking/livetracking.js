@@ -110,7 +110,8 @@ angular.module('livetracking', [])
 			var myOptions = {
 				zoom: 16,
 				mapTypeId: google.maps.MapTypeId.ROADMAP,
-				zoomControl: false
+				zoomControl: false,
+				fullscreenControl: true
 			};
 
 			map = new google.maps.Map(document.getElementById("map"), myOptions);

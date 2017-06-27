@@ -133,28 +133,49 @@
     margin-left: 105px;
 }
 .chart{
-    height: 150px;
+    /*height: 150px;
     padding-top: 40px;
     position: relative;
     margin: 20px auto;
     font-size: 40px;
+    text-align: center;*/
+
+        height: 150px;
+    /* padding-top: 40px; */
+    position: relative;
+    margin: 20px auto;
+    /* font-size: 40px; */
+    left: 30;
+    margin-left: 30dp;
     text-align: center;
 }
 .speed-limit-text{
     text-align: center;
 }
 .progress{
-    height: 30px !important;
+    /*height: 30px !important;
     background-color: white !important;
     position: absolute;
     color: #bbb;
     font-weight: 100;
+    line-height: 1;*/
+     height: 30px !important;
+    background-color: white !important;
+    position: absolute;
+    color: #bbb;
+    /* font-weight: 100; */
     line-height: 1;
 }
 .speed-text{
-    top: auto;
+    /*top: auto;
     bottom: 0%;
     left: 50%;
     transform: translateX(-50%);
+    font-size: 35.7143px;*/
+    text-align: center !important;
+    top: 52px;
+    /* bottom: 0%; */
+    left: 30%;
+    /* transform: translateX(-50%); */
     font-size: 35.7143px;
 }

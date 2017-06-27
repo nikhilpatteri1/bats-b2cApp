@@ -30,7 +30,7 @@
                         <div class="umdHeaderIconsVehicle acSmallFonts">Tracker Id</div>
                         <div class="umdInputDiv">
                             <input type="text" name="devid" required minlength="5" oninput="if(value.length>15)value=value.slice(0,15)"
-                                placeholder="Please enter the Tracker id" ng-model="data[$index].devid" maxlength="15"
+                                placeholder="Please enter the Tracker id" ng-model="data[$index].devid" maxlength="15" ng-disabled="editMarkerData.devid"
                                 ng-class="{'umdFilledInputBox' : signupStep2Form.form.devid.$invalid}">
                                <span class="red" ng-if="signupStep2Form.form.devid.$dirty && signupStep2Form.form.devid.$invalid">
                                   Min length is 5 character </span> <!--<span class="errorMsg" ng-if="signupStep2Form.form.devid.$dirty && signupStep2Form.form.devid.$invalid">
