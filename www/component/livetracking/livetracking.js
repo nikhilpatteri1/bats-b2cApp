@@ -1,5 +1,5 @@
 angular.module('livetracking', [])
-	.controller('LiveTrackingCtrl', function ($scope, $timeout, UtilsFactory, $state, PageConfig, BatsServices, ionicToast,
+	.controller('LiveTrackingCtrl', function ($scope, $rootScope, $timeout, UtilsFactory, $state, PageConfig, BatsServices, ionicToast,
 		$interval, Constants) {
 
 		var reqTime = 12;
@@ -48,7 +48,6 @@ angular.module('livetracking', [])
 		});
 
 		$scope.singleDeviceZoomed = true;
-		$scope.headings;
 		var map;
 		var directionsService;
 		var markers = [];
@@ -207,7 +206,7 @@ angular.module('livetracking', [])
 					strokeWeight: .10,
 					fillOpacity: 1,
 					offset: '5%',
-					rotation: Number($scope.headings),
+					rotation: Number($rootScope.headings),
 					anchor: new google.maps.Point(16, 16) // orig 10,50 back of car, 10,0 front of car, 10,25 center of car
 				};
 			}
@@ -329,7 +328,6 @@ angular.module('livetracking', [])
 				var start = new google.maps.LatLng({ lat: Number(startLat), lng: Number(startLng) }); // document.getElementById("start").value;
 				var end = new google.maps.LatLng({ lat: Number(endLat), lng: Number(endLng) }); // document.getElementById("end").value;
 				var travelMode = google.maps.DirectionsTravelMode.DRIVING;
-				// console.log("inside this- start: "+start+" end: "+end);
 				var request = {
 					origin: start,
 					destination: end,
@@ -378,7 +376,6 @@ angular.module('livetracking', [])
 					if (dataVal[0].geofence != null) {
 						if (dataVal[0].geofence != '') {
 							polygonDrawing.setMap(null);
-							console.log("geofence data: " + angular.toJson(dataVal[0].geofence));
 							polyPaths = dataVal[0].geofence;
 							polygonDrawing = new google.maps.Polygon({
 								paths: polyPaths
@@ -419,19 +416,16 @@ angular.module('livetracking', [])
 
 		$scope.animate = function (d) {
 			if (d > eol) {
-				console.log("inside if of animate");
 				map.panTo(endLocation.latlng);
 				for (i in svg) { marker[i].setPosition(endLocation.latlng); }
 				return;
 			}
-			console.log("inside animation");
 			var p = polyline.GetPointAtDistance(d);
 			map.panTo(p);
 			var lastPosn = marker[0].getPosition();
 			for (var i in svg) { marker[i].setPosition(p); }
 			var heading = google.maps.geometry.spherical.computeHeading(lastPosn, p);
-			$scope.headings = heading;
-			console.log("inside heading: "+heading);
+			$rootScope.headings = heading;
 			//localStorage.setItem("heading",heading);
 			for (var i in svg) { icons[i].rotation = heading; }
 			for (var i in svg) { marker[i].setIcon(icons[i]); }
@@ -449,7 +443,6 @@ angular.module('livetracking', [])
 				strokeColor: "#0000FF",
 				strokeWeight: 0
 			});
-			console.log("inside animation function");
 			setTimeout(function () {
 				$scope.animate(50);
 			}, 2000);
@@ -591,8 +584,6 @@ angular.module('livetracking', [])
 				var obj = [];
 				var inputParam = { "devlist": [$scope.selectedDevice] };
 				BatsServices.currentData(inputParam).success(function (response) {
-					// console.log(response.length);
-					console.log("current data: " + angular.toJson(response));
 					UtilsFactory.setLivetrackingDetails(response);
 					$scope.multiDevice = false;
 					if (response[0].values != "") {
@@ -625,7 +616,6 @@ angular.module('livetracking', [])
 							$scope.truckCount = 0;
 						}
 						$scope.speedSpeedOmeter = speedValue;
-						// console.log("speed: "+$scope.speedSpeedOmeter);
 						$scope.vehnoSpeedOmeter = response[0].vehicle_num;
 						$scope.speedlimitSpeedOmeter = speedlimit;
 						$scope.dateTimeSpeedOmeter = getDateTime(response[0].values.ts);
@@ -658,7 +648,6 @@ angular.module('livetracking', [])
 
 		function getDateTime(ts) {
 			var d = new Date(Number(ts));
-			// console.log(d.getDate()+"-"+d.getMonth()+"-"+d.getFullYear());
 			var monthVal = d.getMonth() + 1;
 			// Hours part from the timestamp
 			var hours = d.getHours();
