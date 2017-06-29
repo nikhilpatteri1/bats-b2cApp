@@ -5,43 +5,13 @@ angular.module('replayroute', [])
 
         $scope.data = {};
         $scope.data.startdatetimeValue = new Date();
-        // if (UtilsFactory.getNotificationDetails()) {
-        //     // console.log(UtilsFactory.getNotificationDetails());
-        //     $scope.notificationData = UtilsFactory.getNotificationDetails();
-        //     $scope.count = UtilsFactory.getNotificationCount();
-        //     // console.log($scope.count);
-        //     if ($scope.count == undefined) {
-        //         $scope.count = 0;
-        //         $scope.notificationData = [];
-        //     }
-        // }
-        // $scope.$watch('count', function (newValue, oldValue) {
-        //    console.log("new value "+newValue+" old value "+oldValue);
-        // });
-
-        //  if (UtilsFactory.getNotificationDetails()) {
-        //     console.log(UtilsFactory.getNotificationDetails());
-        //     $scope.notificationData = UtilsFactory.getNotificationDetails();
-        //     $rootScope.count = UtilsFactory.getNotificationCount();
-        //     $scope.count1=$rootScope.count;
-        //     console.log($rootScope.count+" util factory "+UtilsFactory.getNotificationCount());
-        //     if($rootScope.count==undefined){
-        //         $rootScope.count=0;
-        //         $scope.notificationData=[];
-        //     }
-        // }
-
-        // $rootScope.$on('counted', function(event, obj){
-        //     console.log("obj: "+obj+" event: "+event);
-        //     $scope.count = obj;
-        // });
-
+      
         function init() {
             var inputParam = {};
             BatsServices.activeDeviceList(inputParam).success(function (response) {
                 //console.log(JSON.stringify(response));
                 $scope.deviceList = response;
-                if (response) {
+                if (response.length==0) {
                     console.log("inside if for no device");
                     ionicToast.show('Active devices are not available', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
                 }

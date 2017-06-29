@@ -5,7 +5,7 @@ angular.module('livetrackingdevices', [])
         var inputParam = {};
         BatsServices.activeDeviceList(inputParam).success(function (response) {
             $scope.trackerList = response;
-             if (response) {
+             if (response.length==0) {
                 console.log("inside if for no device");
                 ionicToast.show('Active devices are not available', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
             }
