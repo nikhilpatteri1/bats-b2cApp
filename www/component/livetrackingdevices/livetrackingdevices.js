@@ -5,6 +5,10 @@ angular.module('livetrackingdevices', [])
         var inputParam = {};
         BatsServices.activeDeviceList(inputParam).success(function (response) {
             $scope.trackerList = response;
+             if (response) {
+                console.log("inside if for no device");
+                ionicToast.show('Active devices are not available', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+            }
             _.each($scope.trackerList, function (tracker, i) {
                 if (tracker.alarm_type == '0') {
                     $scope.trackerList[i].statusType = "Geofence";
@@ -26,7 +30,7 @@ angular.module('livetrackingdevices', [])
                 }
             })
 
-            console.log($scope.trackerList);
+           // console.log($scope.trackerList);
 
         }).error(function (error) {
             if (error.err == 'Origin Server returned 504 Status') {

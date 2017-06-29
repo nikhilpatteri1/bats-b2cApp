@@ -8,6 +8,10 @@ angular.module('eventhistory', [])
         BatsServices.activeDeviceList(inputParam).success(function (response) {
             //console.log(JSON.stringify(response));
             $scope.deviceList = response
+             if (response) {
+                console.log("inside if for no device");
+                ionicToast.show('Active devices are not available', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+            }
         }).error(function (error) {
             ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
         })
