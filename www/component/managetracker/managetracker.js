@@ -1,17 +1,7 @@
 angular.module('managetracker', [])
     .controller('ManageTrackerCtrl', function ($scope, $state, $ionicModal, $timeout, PageConfig, BatsServices, ionicToast, $interval,
         Constants, UtilsFactory) {
-        // if (UtilsFactory.getNotificationDetails()) {
-        //     console.log(UtilsFactory.getNotificationDetails());
-        //     $scope.notificationData = UtilsFactory.getNotificationDetails();
-        //     $scope.count = UtilsFactory.getNotificationCount();
-        //     console.log($scope.count);
-        //     if ($scope.count == undefined) {
-        //         $scope.count = 0;
-        //         $scope.notificationData = [];
-        //     }
-        // }
-
+     
         function init() {
             var inputParam = {};
             BatsServices.deviceList(inputParam).success(function (response) {
