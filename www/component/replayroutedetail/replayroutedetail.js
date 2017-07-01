@@ -86,26 +86,26 @@ angular.module('replayroutedetail', [])
 	// 		anchor: new google.maps.Point(10, 25) // orig 10,50 back of
 	// 	};
 	// }
-  	var oldStep;
+  	// var oldStep;
   // To Change Replay Speed level
 	$scope.updateSpeed=function(choice){
 		console.log("speed updated: "+choice);
 		choice = parseInt(choice);
 		switch (choice) {
 			case 0:
-				oldStep = {step: 1,tick:100};
+				// oldStep = {step: 1,tick:100};
 				step=5;
 				tick=100;
 				$scope.play = false;
 				break;
 			case 1:
-				oldStep = {step: 10,tick:50};
+				// oldStep = {step: 10,tick:50};
 				step=10;
 				tick=50;
 				$scope.play = false;
 				break;
 			case 2:
-				oldStep = {step: 50,tick:10};
+				// oldStep = {step: 50,tick:10};
 				step=50;
 				tick=10;
 				$scope.play = false;
@@ -116,10 +116,17 @@ angular.module('replayroutedetail', [])
 				$scope.play = true;
 				break;
 			case 4:
-				step=oldStep.step;
-				tick=oldStep.tick;
+				// step=oldStep.step;
+				// tick=oldStep.tick;
+				step = $rootScope.stepVal;
+				tick = $rootScope.tickVal;
 				$scope.play = false;
 				break;
+		}
+		if(step!=0){
+			// console.log("inside if of choice:"+step);
+			$rootScope.stepVal = step;
+			$rootScope.tickVal = tick;
 		}
 	};
 
@@ -171,7 +178,7 @@ angular.module('replayroutedetail', [])
 
 	$scope.getHistory = function (timeSlot) {
 		$scope.showReplayMenu = true;
-		oldStep = {step: 1,tick:100};
+		// oldStep = {step: 1,tick:100};
 		$scope.initialize();
 		$scope.end = false;
 		$scope.replaySlot = timeSlot;
@@ -391,6 +398,7 @@ angular.module('replayroutedetail', [])
 		// console.log("inside animate function");
 		// console.log("zoom level2: "+map.getZoom());
 		map.setZoom(16);
+		// console.log("lat value: "+d);
 		var p = poly.GetPointAtDistance(d);
 		// console.log("p value inside animate: "+p);
 		//map.panTo(p);
@@ -403,6 +411,7 @@ angular.module('replayroutedetail', [])
 		for(i in svg){icons[i].rotation = heading;}
 		for(i in svg){marker[i].setIcon(icons[i]);}
 		updatePoly(d);
+		// console.log("inside animate tick: "+tick+" & step: "+step);
 		timerHandle = setTimeout(function() {
 			$scope.animate(d + step);
 		}, tick);
