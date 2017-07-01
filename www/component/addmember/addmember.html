@@ -13,27 +13,33 @@
                             <input placeholder="Enter First Name" type="text" ng-model="data.firstname" required maxlength="20"
                                 name="firstname" ng-class="{error: AddMemberForm.form.firstname.$invalid && Validate}"
                                 oninput="if(value.length>20)value=value.slice(0,20)" minlength="2"/>
+                            <span class="red" ng-if="AddMemberForm.form.firstname.$dirty && AddMemberForm.form.firstname.$invalid">Please enter minimum 2 characters</span>
+                            </span>
                         </div>
 
                         <div class="space">
                             <label ng-if="data.lastname" class="floatlabeltxt show-hide inputFieldFontSize">Second Name</label>
-                            <input placeholder="Enter Second Name" type="text" name=" lastname" ng-model="data.lastname" required
+                            <input placeholder="Enter Second Name" type="text" name="lastname" ng-model="data.lastname" required
                                  ng-class="{error: AddMemberForm.form.lastname.$invalid && Validate}" maxlength="20"
-                                 oninput="if(value.length>20)value=value.slice(0,20)" minlength="2"/>
+                                 oninput="if(value.length>20)value=value.slice(0,20)" minlength="1"/>
+                            <span class="red" ng-if="AddMemberForm.form.lastname.$dirty && AddMemberForm.form.lastname.$invalid">Please enter minimum 1 character</span>
+                            </span>
                         </div>
                         <div class="space">
                             <label ng-if="data.email" class="floatlabeltxt show-hide inputFieldFontSize">Email</label>
                             <input placeholder="Enter Email" type="email" name="email" ng-model="data.email" required 
                                 ng-class="{error: AddMemberForm.form.email.$invalid && Validate}" maxlength="35"
                                 oninput="if(value.length>35)value=value.slice(0,35)"/>
-                            <span class="red" ng-if="AddMemberForm.form.email.$dirty && AddMemberForm.form.email.$invalid">
-                            <span ng-if="AddMemberForm.form.email.$error.email">Invalid email address</span>
+                            <span class="red" ng-if="AddMemberForm.form.email.$dirty && AddMemberForm.form.email.$invalid">Invalid email address
+                            <!--<span class="red" ng-if="AddMemberForm.form.email.$error.email">Invalid email address</span>-->
                             </span>
                         </div>
                         <div class="space">
                             <label ng-if="data.contact_no" class="floatlabeltxt show-hide inputFieldFontSize">Phone Number</label>
                             <input placeholder="Enter Phone Number" oninput="if(value.length>10)value=value.slice(0,10)" type="number" name="contact_no"
-                                ng-model="data.contact_no" required ng-class="{error: AddMemberForm.form.contact_no.$invalid && Validate }" />
+                                ng-model="data.contact_no" maxlength="10" minlength="10" required ng-class="{error: AddMemberForm.form.contact_no.$invalid && Validate }" />
+                            <span class="red" ng-if="AddMemberForm.form.contact_no.$dirty && AddMemberForm.form.contact_no.$invalid">Please enter valid phone number</span>
+                            </span>
 
                         </div>
                         <div class="space">
@@ -41,6 +47,8 @@
                             <input placeholder="Description" type="text" name="desc" ng-model="data.desc" required 
                                 ng-class="{error: AddMemberForm.form.desc.$invalid && Validate}" maxlength="200"
                                 oninput="if(value.length>200)value=value.slice(0,200)"/>
+                            <span class="red" ng-if="AddMemberForm.form.desc.$dirty && AddMemberForm.form.desc.$invalid">Please enter description</span>
+                            </span>
                         </div>
                         <div class="space" ng-if="!passwordHide">
                             <label ng-if="data.password" class="floatlabeltxt show-hide inputFieldFontSize">Create Member Password</label>

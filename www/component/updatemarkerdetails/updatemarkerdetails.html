@@ -52,11 +52,15 @@
             <div class="umdInputDiv">
                 <input type="text" name="vehicle_name" class="umdInputBoxes" required maxlength="20" placeholder="Please enter the Vehicle name"
                     ng-model="data.vehicle_name" oninput="if(value.length>20)value=value.slice(0,20)" ng-class="{'umdFilledInputBox' : updatemarkerdetialsForm.form.vehicle_name.$invalid}">
+                <span class="red" ng-if="updatemarkerdetialsForm.form.vehicle_name.$dirty && updatemarkerdetialsForm.form.vehicle_name.$invalid">Please enter vehicle name</span>
+                            </span>
             </div>
             <div class="umdHeaderIconsVehicle acSmallFonts">Vehicle Number</div>
             <div class="umdInputDiv">
                 <input type="text" name="vehicle_num" class="umdInputBoxes" required maxlength="20" placeholder="Please enter the Vehicle number"
                     ng-model="data.vehicle_num" oninput="if(value.length>20)value=value.slice(0,20)" ng-class="{'umdFilledInputBox' : updatemarkerdetialsForm.form.vehicle_num.$invalid}">
+                <span class="red" ng-if="updatemarkerdetialsForm.form.vehicle_num.$dirty && updatemarkerdetialsForm.form.vehicle_num.$invalid">Please enter vehicle number</span>
+                            </span>
             </div>
             <div class="umdHeaderIconsVehicle acSmallFonts">Maximum Speed limit</div>
             <div class="umdInputDiv umdFlex">
@@ -74,6 +78,8 @@
                             Max Speed 200 </span>-->
                 <!--</div>-->
             </div>
+            <span class="red umdcolPadding" ng-if="updatemarkerdetialsForm.form.speed_limit.$dirty && updatemarkerdetialsForm.form.speed_limit.$invalid">Please enter maximum speed limit</span>
+                            </span>
             <div class="umdInputDiv">
                 <ion-list>
                     <ion-checkbox class="checkbox checkbox-balanced" ng-model="geofence.checked">Add GeoFence</ion-checkbox>

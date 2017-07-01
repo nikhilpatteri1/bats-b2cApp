@@ -25,12 +25,18 @@
                             <input placeholder="First Name" type="text" ng-model="data.fName" required name="fName" 
                             ng-class="{error: signupStep1Form.form.fName.$invalid && Validate}" minlength="2" maxlength="20"
                             oninput="if(value.length>20)value=value.slice(0,20)"/>
+                            <span class="red" ng-if="signupStep1Form.form.fName.$dirty && signupStep1Form.form.email.$invalid">
+                            Please enter minimum 2 characters
+                            </span>
                         </div>
                         <div class="space">
                             <div ng-if="data.lName" class="floatlabeltxt show-hide inputFieldFontSize">Last Name</div>
                             <input placeholder="Last Name" type="text" name="lName" ng-model="data.lName" maxlength="20"
-                            required ng-class="{error: signupStep1Form.form.lName.$invalid && Validate}" minlength="2"
+                            required ng-class="{error: signupStep1Form.form.lName.$invalid && Validate}" minlength="1"
                             oninput="if(value.length>20)value=value.slice(0,20)"/>
+                            <span class="red" ng-if="signupStep1Form.form.lName.$dirty && signupStep1Form.form.lName.$invalid">
+                            Please enter minimum 1 character
+                            </span>
                         </div>
                         <div class="space">
                             <div ng-if="data.email" class="floatlabeltxt show-hide inputFieldFontSize">Email</div>
