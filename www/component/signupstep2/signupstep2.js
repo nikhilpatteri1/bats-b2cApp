@@ -14,17 +14,17 @@ angular.module('signupstep2', [])
             $scope.editMarkerData = UtilsFactory.getEditMarkerDetails();
             // console.log("isObject: "+angular.isObject($scope.editMarkerData));
             // console.log("isArray: "+angular.isArray($scope.editMarkerData));
-            if(!angular.isArray($scope.editMarkerData)){
+            if (!angular.isArray($scope.editMarkerData)) {
                 $scope.editMarkerData.t_sim_cn = Number($scope.editMarkerData.device_sim_cn);
                 $scope.editMarkerData.t_sim_provider = $scope.editMarkerData.sim_service_provider;
                 newArray.push($scope.editMarkerData);
                 $scope.data = newArray;
                 // console.log("data array: "+angular.toJson($scope.data));
-            }else{
-            // $scope.data = [{
-            //     'devid': $scope.editMarkerData.devid, 't_sim_provider': $scope.editMarkerData.sim_service_provider,
-            //     't_sim_cn': parseInt($scope.editMarkerData.device_sim_cn)
-            // }]
+            } else {
+                // $scope.data = [{
+                //     'devid': $scope.editMarkerData.devid, 't_sim_provider': $scope.editMarkerData.sim_service_provider,
+                //     't_sim_cn': parseInt($scope.editMarkerData.device_sim_cn)
+                // }]
                 $scope.data = $scope.editMarkerData;
             }
         }
@@ -40,7 +40,7 @@ angular.module('signupstep2', [])
         }
 
         $scope.backToStep1 = function () {
-            console.log("data: "+angular.toJson($scope.data));
+            console.log("data: " + angular.toJson($scope.data));
             UtilsFactory.setEditMarkerDetails($scope.data);
             $state.go(PageConfig.SIGNUP_STEP1);
         }
@@ -65,6 +65,9 @@ angular.module('signupstep2', [])
                         }).error(function (error) {
                             if (error.err == 'Origin Server returned 504 Status') {
                                 ionicToast.show('Internet is very slow', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                            }
+                            else if (error.err == "Found invalid devid's") {
+                                ionicToast.show('Tracker id is already registered', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
                             }
                             else {
                                 ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
