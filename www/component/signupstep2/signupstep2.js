@@ -67,6 +67,9 @@ angular.module('signupstep2', [])
                                 ionicToast.show('Internet is very slow', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
                             }
                             else if (error.err == "Found invalid devid's") {
+                                ionicToast.show('Tracker id is Invalid', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                            }
+                             else if (error.err == "Device not found in factory stock") {
                                 ionicToast.show('Tracker id is already registered', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
                             }
                             else {
