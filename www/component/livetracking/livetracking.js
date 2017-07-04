@@ -110,6 +110,7 @@ angular.module('livetracking', [])
 				zoom: 16,
 				mapTypeId: google.maps.MapTypeId.ROADMAP,
 				zoomControl: false,
+				clickableIcons: false,
 				fullscreenControl: true
 			};
 
