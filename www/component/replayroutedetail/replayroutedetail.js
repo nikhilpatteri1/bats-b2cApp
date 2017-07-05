@@ -40,6 +40,8 @@ angular.module('replayroutedetail', [])
 	var timerHandle = null;
 	var step = 5; // metres
 	var tick = 100; // milliseconds
+	$rootScope.lastStep = step;
+	$rootScope.lastTick = tick;
 	var poly;
 	var poly2;
 	var lastVertex = 0;
@@ -80,7 +82,7 @@ angular.module('replayroutedetail', [])
 
 	var svg = new Array();
 	
-	var icons = new Array();;
+	var icons = new Array();
 	// for(i in svg){
 	// 	icons[i] = {path : svg[i].path, fillColor : svg[i].fillColor, scale: .7, strokeColor: 'white', strokeWeight: .10, fillOpacity: 1, offset: '5%',
 	// 		anchor: new google.maps.Point(10, 25) // orig 10,50 back of
@@ -97,37 +99,46 @@ angular.module('replayroutedetail', [])
 				step=5;
 				tick=100;
 				$scope.play = false;
+				$rootScope.lastStep = step;
+				$rootScope.lastTick = tick;
 				break;
 			case 1:
 				// oldStep = {step: 10,tick:50};
 				step=10;
 				tick=50;
 				$scope.play = false;
+				$rootScope.lastStep = step;
+				$rootScope.lastTick = tick;
 				break;
 			case 2:
 				// oldStep = {step: 50,tick:10};
 				step=50;
 				tick=10;
 				$scope.play = false;
+				$rootScope.lastStep = step;
+				$rootScope.lastTick = tick;
 				break;	
 			case 3:
 				step=0;
 				tick=1000;
 				$scope.play = true;
+				// console.log("inside case 3 scope:"+$rootScope.stepVal);
 				break;
 			case 4:
 				// step=oldStep.step;
 				// tick=oldStep.tick;
-				step = $rootScope.stepVal;
-				tick = $rootScope.tickVal;
+				console.log("inside 4 case: "+step);
+				step = $rootScope.lastStep;
+				tick = $rootScope.lastTick;
 				$scope.play = false;
+				// console.log("inside 4 case: "+step);
 				break;
 		}
-		if(step!=0){
-			// console.log("inside if of choice:"+step);
-			$rootScope.stepVal = step;
-			$rootScope.tickVal = tick;
-		}
+		// if(step!=0){
+		// 	console.log("inside if of choice:"+step);
+		// 	$rootScope.stepVal = step;
+		// 	$rootScope.tickVal = tick;
+		// }
 	};
 
 	angular.element(document).ready(function () {
@@ -141,7 +152,7 @@ angular.module('replayroutedetail', [])
 	        zoom: 16,
 	        mapTypeId: google.maps.MapTypeId.ROADMAP,
 			zoomControl: false,
-           streetViewControl: false
+            streetViewControl: false
 	    };
 
 	    address = 'India';
@@ -345,7 +356,7 @@ angular.module('replayroutedetail', [])
 		poly2.setMap(null);
 	};
 
-	function startAnimation() {  	  
+	function startAnimation() {
     	if (timerHandle) {
 			clearTimeout(timerHandle);
 	    }
@@ -404,14 +415,13 @@ angular.module('replayroutedetail', [])
 		//map.panTo(p);
 		var lastPosn = marker[0].getPosition();
 		map.panTo(lastPosn);
-		// console.log("last position: "+lastPosn);
+		console.log("last position: "+lastPosn+" p value: "+p);
 		for(i in svg){marker[i].setPosition(p);}
 		// console.log("marker: "+marker);
-		var heading = google.maps.geometry.spherical.computeHeading(lastPosn, p);
-		for(i in svg){icons[i].rotation = heading;}
+		$scope.heading = google.maps.geometry.spherical.computeHeading(lastPosn, p);
+		for(i in svg){icons[i].rotation = $scope.heading;}
 		for(i in svg){marker[i].setIcon(icons[i]);}
 		updatePoly(d);
-		// console.log("inside animate tick: "+tick+" & step: "+step);
 		timerHandle = setTimeout(function() {
 			$scope.animate(d + step);
 		}, tick);
