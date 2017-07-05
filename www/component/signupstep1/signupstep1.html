@@ -24,7 +24,7 @@
                             <div ng-show="data.fName" class="floatlabeltxt show-hide inputFieldFontSize">First Name</div>
                             <input placeholder="First Name" type="text" ng-model="data.fName" required name="fName" 
                             ng-class="{error: signupStep1Form.form.fName.$invalid && Validate}" minlength="2" maxlength="20"
-                            oninput="if(value.length>20)value=value.slice(0,20)"/>
+                              oninput="if(value.length>20)value=value.slice(0,20)"/>
                             <span class="red" ng-if="signupStep1Form.form.fName.$dirty && signupStep1Form.form.email.$invalid">
                             Please enter minimum 2 characters
                             </span>
