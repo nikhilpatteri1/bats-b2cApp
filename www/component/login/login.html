@@ -23,13 +23,14 @@
                 <div class="LoginHeading">
                     <form name="loginForm" novalidate ng-submit="gotoHome(data, loginForm)">
                         <label ng-if="data.userid" class="floatlabeltxt show-hide inputFieldFontSize">User Id</label>
-                        <input placeholder="User Id" type="number" ng-model="data.userid" required class="inputTextField"
+                        <input placeholder="User Id" type="number" ng-model="data.userid" required class="inputTextField" minlength="10"
                             maxlength="10" oninput="if(value.length>10)value=value.slice(0,10)" name="user" ng-class="{error: loginForm.user.$invalid && Validate}">
                         </input>
-                        <!--<span class="red" ng-if="loginForm.email.$dirty && loginForm.user.$invalid">
-                                <span ng-if="loginForm.user.$error.required">Email is required</span>
-                                <span ng-if="loginForm.user.$invalid">Invalid email address</span>
-                            </span>-->
+                        <span class="red" ng-if="loginForm.user.$dirty && loginForm.user.$invalid">
+                                Invalid User ID
+                                <!--<span ng-if="loginForm.user.$error.required">Email is required</span>-->
+                            <!--<span ng-if="loginForm.password.$invalid">Invalid Password</span>-->
+                        </span>
                         <div class="space">
                             <label ng-if="data.password" class="floatlabeltxt show-hide inputFieldFontSize">Password</label>
                             <input placeholder="Password" autocomplete="new-password" type="password" ng-model="data.password" name="password"
