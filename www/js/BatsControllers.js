@@ -12,7 +12,7 @@ angular.module('batscontrollers', [
 ])
 
   .controller('BatsCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $state, PageConfig, Constants, $cordovaNetwork,
-    $ionicPopup, $interval, BatsServices, ionicToast, UtilsFactory, $cordovaLocalNotification, $ionicPlatform, $cordovaSQLite) {
+    $ionicPopup,  $interval, BatsServices, ionicToast, UtilsFactory, $cordovaLocalNotification, $ionicPlatform, $cordovaSQLite) {
 
     $scope.openSetting = false;
     $scope.openSettingBar = function () {
@@ -24,6 +24,54 @@ angular.module('batscontrollers', [
       $scope.menuLink = selectedMenuPageNumber;
     }
     var notificationCall;
+
+    /************************* internet checking *************************** */
+     $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
+        var onlineState = networkState;
+        pingNetConnection();
+      })
+      // listen for Offline event
+      $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
+        var offlineState = networkState;
+        $ionicPopup.confirm({
+            title: 'No Internet Connection',
+            content: 'Sorry, no Internet connectivity detected. Please reconnect and try again.'
+          })
+          .then(function(result) {
+              ionic.Platform.exitApp();
+          });
+      })
+
+
+       function pingNetConnection() {
+         alret("ping network calling");
+      var xhr = new XMLHttpRequest();
+      var file = 'http://220.227.124.134:8054/images/404.png';
+      var r = Math.round(Math.random() * 10000);
+      xhr.open('HEAD', file + "?subins=" + r, false);
+      try {
+        xhr.send();
+        if (xhr.status >= 200 && xhr.status < 304) {
+          //alert("true");
+        } else {
+          $ionicPopup.confirm({
+            title: 'No Internet Connection',
+            content: 'Sorry, no Internet connectivity detected. Please reconnect and try again.'
+          })
+            .then(function (result) {
+              ionic.Platform.exitApp();
+            });
+        }
+      } catch (e) {
+        $ionicPopup.confirm({
+          title: 'No Internet Connection',
+          content: 'Sorry, no Internet connectivity detected. Please reconnect and try again.'
+        })
+          .then(function (result) {
+            ionic.Platform.exitApp();
+          });
+      }
+    }
     /*........................... App Initialization Ends ...........................*/
 
     $rootScope.interlogout = function () {
@@ -93,10 +141,10 @@ angular.module('batscontrollers', [
       });
     }
 
-    $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
-        var alertPopup = $ionicPopup.alert({
-            title: 'No Internet Connection',
-            template: '<div class="pwdSuccessPopup">Sorry, no Internet connectivity detected. Please reconnect and try again.</div>'
-        });
-    })
+    // $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
+    //     var alertPopup = $ionicPopup.alert({
+    //         title: 'No Internet Connection',
+    //         template: '<div class="pwdSuccessPopup">Sorry, no Internet connectivity detected. Please reconnect and try again.</div>'
+    //     });
+    // })
 })

@@ -1,22 +1,61 @@
-  var db = null;
-  angular.module('bats', ['ionic', 'batsconstants', 'batsconfig', 'batsinterceptor', 'batsservices', 'batsdirective',
+var db = null;
+angular.module('bats', ['ionic', 'batsconstants', 'batsconfig', 'batsinterceptor', 'batsservices', 'batsdirective',
   'batscontrollers', 'batsfilters', 'batsfactory', 'ngCordova'])
-  .run(function ($ionicPlatform, Constants, $rootScope, $state, ionicToast, PageConfig,  Messages, $ionicPopup, $cordovaSQLite, $cordovaLocalNotification) {
-  
+  .run(function ($ionicPlatform, Constants, $rootScope, $cordovaNetwork, $state, ionicToast, PageConfig, Messages, $ionicPopup, $cordovaSQLite, $cordovaLocalNotification) {
+
     $ionicPlatform.ready(function () {
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
-        
+
       }
-         
+
       if (window.StatusBar) {
         StatusBar.styleDefault();
       }
+      // window.addEventListener("online", function (e) {
+      //   alert("onlie");
+      //  // doSomething();
+      // }, false);
 
-      db = $cordovaSQLite.openDB({name:"BATS.db",iosDatabaseLocation:'default'});
-	 	  $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Token (token varchar)");
+      // window.addEventListener("offline", function (e) {
+      //  // doSomething();
+      //  alert(" ofline");
+      // }, false);
+      // Check for network connection
+      // if (window.Connection) {
+
+      //   if (navigator.connection.type == Connection.NONE) {
+      //     $ionicPopup.confirm({
+      //       title: 'No Internet Connection',
+      //       content: 'Sorry, no Internet connectivity detected. Please reconnect and try again.'
+      //     })
+      //       .then(function (result) {
+      //         if (!result) {
+      //           ionic.Platform.exitApp();
+      //         }
+      //       });
+      //   }
+      // }
+      db = $cordovaSQLite.openDB({ name: "BATS.db", iosDatabaseLocation: 'default' });
+      $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Token (token varchar)");
       $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Notification (data text)");
+
+      // $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
+      //   var onlineState = networkState;
+      //   pingNetConnection();
+      // })
+      // // listen for Offline event
+      // $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
+      //   var offlineState = networkState;
+      //   $ionicPopup.confirm({
+      //       title: 'No Internet Connection',
+      //       content: 'Sorry, no Internet connectivity detected. Please reconnect and try again.'
+      //     })
+      //     .then(function(result) {
+      //         ionic.Platform.exitApp();
+      //     });
+      // })
     });
 
     $rootScope.$on("400", function (event, message) {
@@ -58,12 +97,41 @@
             next.name == PageConfig.REPORT || next.name == PageConfig.MANAGE_MEMBER ||
             next.name == PageConfig.ADD_MEMBER || next.name == PageConfig.REPLAY_ROUTE_DETAILS) {
             event.preventDefault();
-           // ionicToast.show(Messages.MEMBER_NOT_AUTHORIZED_MESSAGE, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+            // ionicToast.show(Messages.MEMBER_NOT_AUTHORIZED_MESSAGE, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
             $state.go(PageConfig.LIVE_TRACKING);
           }
         }
       }
     });
+
+    function pingNetConnection() {
+      var xhr = new XMLHttpRequest();
+      var file = 'http://220.227.124.134:8054/images/404.png';
+      var r = Math.round(Math.random() * 10000);
+      xhr.open('HEAD', file + "?subins=" + r, false);
+      try {
+        xhr.send();
+        if (xhr.status >= 200 && xhr.status < 304) {
+          //alert("true");
+        } else {
+          $ionicPopup.confirm({
+            title: 'No Internet Connection',
+            content: 'Sorry, no Internet connectivity detected. Please reconnect and try again.'
+          })
+            .then(function (result) {
+              ionic.Platform.exitApp();
+            });
+        }
+      } catch (e) {
+        $ionicPopup.confirm({
+          title: 'No Internet Connection',
+          content: 'Sorry, no Internet connectivity detected. Please reconnect and try again.'
+        })
+          .then(function (result) {
+            ionic.Platform.exitApp();
+          });
+      }
+    }
 
     $ionicPlatform.registerBackButtonAction(function (event) {
       if ($state.current.name == PageConfig.START) {
