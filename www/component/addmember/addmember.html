@@ -12,16 +12,20 @@
                             <label ng-if="data.firstname" class="floatlabeltxt show-hide inputFieldFontSize">First Name</label>
                             <input placeholder="Enter First Name" type="text" ng-model="data.firstname" required maxlength="20"
                                 name="firstname" ng-class="{error: AddMemberForm.form.firstname.$invalid && Validate}"
+                                ng-pattern ="/^[a-zA-Z\s]*$/"
                                 oninput="if(value.length>20)value=value.slice(0,20)" minlength="2"/>
-                            <span class="red" ng-if="AddMemberForm.form.firstname.$dirty && AddMemberForm.form.firstname.$invalid">Please enter minimum 2 characters</span>
+                            <span class="red" ng-if="AddMemberForm.form.firstname.$dirty && AddMemberForm.form.firstname.$invalid">
+                                Please enter minimum 2 characters(only character)</span>
                             </span>
                         </div>
                         <div class="space">
                             <label ng-if="data.lastname" class="floatlabeltxt show-hide inputFieldFontSize">Second Name</label>
                             <input placeholder="Enter Second Name" type="text" name="lastname" ng-model="data.lastname" required
                                  ng-class="{error: AddMemberForm.form.lastname.$invalid && Validate}" maxlength="20"
+                                 ng-pattern ="/^[a-zA-Z\s]*$/"
                                  oninput="if(value.length>20)value=value.slice(0,20)" minlength="1"/>
-                            <span class="red" ng-if="AddMemberForm.form.lastname.$dirty && AddMemberForm.form.lastname.$invalid">Please enter minimum 1 character</span>
+                            <span class="red" ng-if="AddMemberForm.form.lastname.$dirty && AddMemberForm.form.lastname.$invalid">
+                                Please enter minimum 1 character(only character)</span>
                             </span>
                         </div>
                         <div class="space">
