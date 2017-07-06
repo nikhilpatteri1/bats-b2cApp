@@ -142,9 +142,18 @@ angular.module('livetracking', [])
 					$scope.zoomlevel = map.getZoom();
 				}, 80);
 				if ($scope.zoomlevel < 16 || $scope.zoomlevel > 17) {
-					$scope.singleDeviceZoomed = false;
+					// $scope.singleDeviceZoomed = false;
 					$interval.cancel(singleDeviceInterval);
 				}
+			});
+
+			google.maps.event.addListener(map, 'drag', function () {
+				console.log("inside drag event");
+				if($scope.singleDeviceZoomed){
+					$scope.singleDeviceZoomed = false;
+				}
+				$interval.cancel(singleDeviceInterval);
+				$scope.$apply();
 			});
 		};
 
@@ -176,6 +185,7 @@ angular.module('livetracking', [])
 
 		$scope.reCenterDevice = function () {
 			map.setZoom(16);
+			console.log("marker position:"+marker[0].getPosition());
 			map.panTo(marker[0].getPosition());
 			$scope.singleDeviceZoomed = true;
 			singleDeviceInterval = $interval(getTracker, reqTime * 1000);
