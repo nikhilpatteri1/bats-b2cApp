@@ -200,8 +200,9 @@ a:focus, a:hover {
     box-shadow: none !important;
 }
 
-
-
+.ion-datetime-picker .time .item-input input.ng-invalid {
+    background-color: red !important;
+}
 .bar.bar-balanced {
 	background-color: #00ba88;
 	border-color: #00ba88;
