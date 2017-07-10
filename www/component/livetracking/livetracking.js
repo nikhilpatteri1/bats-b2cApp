@@ -434,7 +434,14 @@ angular.module('livetracking', [])
 			var p = polyline.GetPointAtDistance(d);
 			map.panTo(p);
 			var lastPosn = marker[0].getPosition();
-			for (var i in svg) { marker[i].setPosition(p); }
+			var newLatLong = p.toString().replace('(', '');
+			// console.log("latlong: "+newLatLong);
+			newLatLong = newLatLong.toString().replace(')', '');
+			var inputLatLong = newLatLong.split(",",2);
+			var newLatitude = inputLatLong[0];
+			var newLongitude = inputLatLong[1];
+
+			for (var i in svg) { marker[i].setPosition(new google.maps.LatLng(parseFloat(inputLatLong[0]), parseFloat(inputLatLong[1]))); }
 			var heading = google.maps.geometry.spherical.computeHeading(lastPosn, p);
 			$rootScope.headings = heading;
 			//localStorage.setItem("heading",heading);

@@ -91,7 +91,6 @@ angular.module('replayroutedetail', [])
   	// var oldStep;
   // To Change Replay Speed level
 	$scope.updateSpeed=function(choice){
-		console.log("speed updated: "+choice);
 		choice = parseInt(choice);
 		switch (choice) {
 			case 0:
@@ -122,16 +121,13 @@ angular.module('replayroutedetail', [])
 				step=0;
 				tick=1000;
 				$scope.play = true;
-				// console.log("inside case 3 scope:"+$rootScope.stepVal);
 				break;
 			case 4:
 				// step=oldStep.step;
 				// tick=oldStep.tick;
-				console.log("inside 4 case: "+step);
 				step = $rootScope.lastStep;
 				tick = $rootScope.lastTick;
 				$scope.play = false;
-				// console.log("inside 4 case: "+step);
 				break;
 		}
 		// if(step!=0){
@@ -146,7 +142,6 @@ angular.module('replayroutedetail', [])
 	});
 
 	$scope.initialize=function () {
-    	// console.log("map");
 		var styleMap = [{"featureType":"administrative","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#bee4f4"},{"visibility":"on"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"on"},{"hue":"#ff0000"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"on"},{"hue":"#ff0000"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"transit","elementType":"labels","stylers":[{"visibility":"on"},{"hue":"#ff0000"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#46bcec"},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"color":"#000000"}]}];
 	    var myOptions = {
 	        zoom: 16,
@@ -197,7 +192,6 @@ angular.module('replayroutedetail', [])
 		BatsServices.history(inputParam).success(function (response) {
 			$scope.historyVal = response;
 			if($scope.historyVal.values != "" ){
-				// console.log("zoom level9: "+map.getZoom());
 				var devtype = $scope.historyVal.vehicle_model;
 				if(devtype=='car'){
 					svg = car;
@@ -241,7 +235,6 @@ angular.module('replayroutedetail', [])
 	function displayHistory() {
 		$scope.yoData=true;
 		$scope.noData=false;
-		// console.log("zoom leve7: "+map.getZoom());
 		map.setZoom(16);
 		var lat_tot = 0, lg_tot = 0, lat_avg = 0, lg_avg = 0;
 		var reverseArray = $scope.historyVal.values
@@ -284,7 +277,6 @@ angular.module('replayroutedetail', [])
 			$scope.yoData=false;
 		}else{
 			clearMap();
-			// console.log("zoom level8: "+map.getZoom());
 			map.setZoom(16);
 			bounds = new google.maps.LatLngBounds();
 			var pts=[];
@@ -302,13 +294,11 @@ angular.module('replayroutedetail', [])
 				icon: icon1,
 				scale:0.1
 			});
-			// console.log("zoom level: "+map.getZoom());
 
 			var icon2 = {
 				url: 'img/finishFlag.png', // url
 				scaledSize: new google.maps.Size(38, 38), // scaled size
 			};
-			// console.log("zoom level4: "+map.getZoom());
 
 			var myLatLng = {"lat":polyPathArray[polyPathArray.length-1].lat,"lng":polyPathArray[polyPathArray.length-1].lng};
 			var marker = new google.maps.Marker({
@@ -336,21 +326,22 @@ angular.module('replayroutedetail', [])
     	    });
     	    map.setZoom(16);
             map.fitBounds(bounds);
-			// console.log("history data: "+angular.toJson($scope.historyVal.vehicle_model));
             startAnimation();  
 		}
-		// console.log("zoom level5: "+map.getZoom());
 		google.maps.event.addListener(map, 'zoom_changed', function () {
-			// console.log("zoom changed: "+map.getZoom());
 			if(map.getZoom()<16){
 				map.setZoom(16);
 				// map.setCenter(poly.getPath().getAt(0));
 			}
 		});
+
+		// google.maps.event.addListener(map, 'drag', function () {
+		// 	console.log("dragged changed function");
+		// });
+
 	};
 
 	function clearMap(){
-		// console.log("zoom level6: "+map.getZoom());
 		map.setZoom(16);
 		poly.setMap(null);
 		poly2.setMap(null);
@@ -361,8 +352,6 @@ angular.module('replayroutedetail', [])
 			clearTimeout(timerHandle);
 	    }
 		map.setZoom(16);
-		// console.log("inside animation function");
-		// console.log("zoom level1: "+map.getZoom());
         eol=poly.Distance();
         map.setCenter(poly.getPath().getAt(0));
 		map.setZoom(16);
@@ -384,7 +373,6 @@ angular.module('replayroutedetail', [])
  		}, 2000);
 	};
 	function updatePoly(d) {
-		// console.log("zoom level3: "+map.getZoom());
 		map.setZoom(16);
 		if (poly2.getPath().getLength() > 20) {
 			poly2= new google.maps.Polyline([poly.getPath().getAt(lastVertex - 1)]);
@@ -406,18 +394,18 @@ angular.module('replayroutedetail', [])
 			$scope.end = true;
 			return;
 		}
-		// console.log("inside animate function");
-		// console.log("zoom level2: "+map.getZoom());
 		map.setZoom(16);
-		// console.log("lat value: "+d);
 		var p = poly.GetPointAtDistance(d);
-		// console.log("p value inside animate: "+p);
-		//map.panTo(p);
 		var lastPosn = marker[0].getPosition();
+		// console.log("lastPosn: "+lastPosn);
 		map.panTo(lastPosn);
-		console.log("last position: "+lastPosn+" p value: "+p);
-		for(i in svg){marker[i].setPosition(p);}
-		// console.log("marker: "+marker);
+		var newLatLong = p.toString().replace('(', '');
+		// console.log("latlong: "+newLatLong);
+		newLatLong = newLatLong.toString().replace(')', '');
+		var inputLatLong = newLatLong.split(",",2);
+		var newLatitude = inputLatLong[0];
+		var newLongitude = inputLatLong[1];
+		for(i in svg){marker[i].setPosition(new google.maps.LatLng(parseFloat(inputLatLong[0]), parseFloat(inputLatLong[1])));}
 		$scope.heading = google.maps.geometry.spherical.computeHeading(lastPosn, p);
 		for(i in svg){icons[i].rotation = $scope.heading;}
 		for(i in svg){marker[i].setIcon(icons[i]);}
