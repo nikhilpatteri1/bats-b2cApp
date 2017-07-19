@@ -214,6 +214,13 @@ a:focus, a:hover {
     box-shadow: none !important;
 }
 
+/* .spinner svg {
+  width: 280px;
+  height: 280px;
+  /* stroke: #FFF;
+  fill: #FFF;
+} } */
+
 .ion-datetime-picker .calendar .day.selected, 
 .ion-datetime-picker .calendar .day.selected:hover,
 .ion-datetime-picker .calendar .day.selected.activated {
@@ -359,7 +366,12 @@ right: 70%;
     font-size: 10px;
     padding-left: 5%;
 }
-    
+  .resume-updated{
+    font-weight: normal;
+       font-size: 10px;
+       padding-left: 5%;
+       margin-top: 0px;
+   }  
 
 /***************************************CSS for All Modals Design********************************/
 

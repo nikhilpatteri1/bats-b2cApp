@@ -13,8 +13,9 @@
                     if(loading && !$state.is(PageConfig.LIVE_TRACKING)){
                     		$ionicLoading.show({
                         		noBackdrop: false,
-                        	    template: "<img src='img/ring.gif' />",
-                        	    hideOnStageChange: false
+                        	    template: "<img src='img/waiting_spinner32.gif' width=60 height=40  />",
+                                hideOnStageChange: false
+                                 
                         	});
                     }else{
                     	 $ionicLoading.hide();
