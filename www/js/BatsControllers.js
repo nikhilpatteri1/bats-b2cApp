@@ -44,7 +44,7 @@ angular.module('batscontrollers', [
 
 
        function pingNetConnection() {
-         alret("ping network calling");
+        // alret("ping network calling");
       var xhr = new XMLHttpRequest();
       var file = 'http://220.227.124.134:8054/images/404.png';
       var r = Math.round(Math.random() * 10000);

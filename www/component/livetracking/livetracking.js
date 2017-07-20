@@ -1,6 +1,17 @@
 angular.module('livetracking', [])
 	.controller('LiveTrackingCtrl', function ($scope, $rootScope, $timeout, UtilsFactory, $state, PageConfig, BatsServices, ionicToast,
-		$interval, Constants) {
+		$interval, Constants, $cordovaSms) {
+
+		$scope.senSMS()=function(){
+			$cordovaSms
+				.send('7406545542', '​{”KEY”:”0123456789”,“ACTIVATE PARKING MODE”}', options)
+				.then(function () {
+					alert( 'Success! SMS was sent');
+				}, function (error) {
+					// An error occurred
+					alert( 'error'+error);
+				});
+		}
 
 		var reqTime = 12;
 		var singleDeviceInterval;
@@ -149,7 +160,7 @@ angular.module('livetracking', [])
 
 			google.maps.event.addListener(map, 'drag', function () {
 				console.log("inside drag event");
-				if($scope.singleDeviceZoomed){
+				if ($scope.singleDeviceZoomed) {
 					$scope.singleDeviceZoomed = false;
 				}
 				$interval.cancel(singleDeviceInterval);
@@ -185,7 +196,7 @@ angular.module('livetracking', [])
 
 		$scope.reCenterDevice = function () {
 			map.setZoom(16);
-			console.log("marker position:"+marker[0].getPosition());
+			console.log("marker position:" + marker[0].getPosition());
 			map.panTo(marker[0].getPosition());
 			$scope.singleDeviceZoomed = true;
 			singleDeviceInterval = $interval(getTracker, reqTime * 1000);
@@ -193,18 +204,18 @@ angular.module('livetracking', [])
 
 		var iconImg;
 		function createMarker(latlng, deviceID, vehNo, vehModel, html, type, devtype) {
-			console.log("devtype: "+devtype);
+			console.log("devtype: " + devtype);
 			svg = new Array();
 			icons = new Array();
-			if(devtype == "car"){
+			if (devtype == "car") {
 				svg = car;
-			}else if(devtype == "truck"){
+			} else if (devtype == "truck") {
 				svg = truck;
-			}else if(devtype == "bike"){
+			} else if (devtype == "bike") {
 				svg = bike;
-			}else if(devtype == "bus"){
+			} else if (devtype == "bus") {
 				svg = bus;
-			}else{
+			} else {
 				svg = car;
 			}
 			var contentString;
@@ -311,6 +322,7 @@ angular.module('livetracking', [])
 		};
 
 		function vehichleRouting(dataVal, startLat, startLng, endLat, endLng, devtype) {
+
 			if (timerHandle) {
 				clearTimeout(timerHandle);
 			}
@@ -374,6 +386,7 @@ angular.module('livetracking', [])
 								}
 							}
 						}
+						console.log("hi im going to call animation");
 						polyline.setMap(map);
 						map.fitBounds(bounds);
 						map.setZoom($scope.singleDeviceZoomLevel);
@@ -383,7 +396,7 @@ angular.module('livetracking', [])
 				});
 
 				/* geofence: polygon drawing on map */
-				function drawPolygon(){
+				function drawPolygon() {
 					if (dataVal[0].geofence != null) {
 						if (dataVal[0].geofence != '') {
 							polygonDrawing.setMap(null);
@@ -432,15 +445,18 @@ angular.module('livetracking', [])
 				return;
 			}
 			var p = polyline.GetPointAtDistance(d);
+			//	console.log("hello im p: "+p);
+			console.log("im p" + p);
 			map.panTo(p);
 			var lastPosn = marker[0].getPosition();
+			console.log("im last position" + lastPosn);
+			//console.log(" im last posion: "+lastPosn);
 			var newLatLong = p.toString().replace('(', '');
 			// console.log("latlong: "+newLatLong);
 			newLatLong = newLatLong.toString().replace(')', '');
-			var inputLatLong = newLatLong.split(",",2);
+			var inputLatLong = newLatLong.split(",", 2);
 			var newLatitude = inputLatLong[0];
 			var newLongitude = inputLatLong[1];
-
 			for (var i in svg) { marker[i].setPosition(new google.maps.LatLng(parseFloat(inputLatLong[0]), parseFloat(inputLatLong[1]))); }
 			var heading = google.maps.geometry.spherical.computeHeading(lastPosn, p);
 			$rootScope.headings = heading;
@@ -454,14 +470,17 @@ angular.module('livetracking', [])
 		};
 
 		function startAnimation() {
+			console.log("im startAnimation");
 			eol = polyline.Distance();
 			map.setCenter(polyline.getPath().getAt(0));
+			console.log("im startAnimation to check setCenter " + polyline.getPath().getAt(0));
 			poly2 = new google.maps.Polyline({
 				path: [polyline.getPath().getAt(0)],
 				strokeColor: "#0000FF",
 				strokeWeight: 0
 			});
 			setTimeout(function () {
+				console.log("im setTimeout inside startAnimation");
 				$scope.animate(50);
 			}, 2000);
 		};

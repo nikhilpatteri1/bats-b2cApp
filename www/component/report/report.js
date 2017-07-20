@@ -41,7 +41,7 @@ angular.module('report', [])
                     writePDFToFile(fileName, bytes);
                 }
             }).error(function(error){
-                ionicToast.show('Please select a different date.', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                ionicToast.show('Please select a different Month.', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
             })
         }
 
