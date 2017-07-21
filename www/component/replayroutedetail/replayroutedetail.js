@@ -49,6 +49,7 @@ angular.module('replayroutedetail', [])
 	var marker = new Array();
 	var k=0;
 	var setinterval;
+	var eventObj = [];
 
 	//bike
 	var bike = new Array();
@@ -147,6 +148,8 @@ angular.module('replayroutedetail', [])
 	        zoom: 16,
 	        mapTypeId: google.maps.MapTypeId.ROADMAP,
 			zoomControl: false,
+			clickableIcons: false,
+			fullscreenControl: false,
             streetViewControl: false
 	    };
 
@@ -174,7 +177,9 @@ angular.module('replayroutedetail', [])
 	        strokeColor: '#FF0000',
 	        strokeOpacity: 0.0,
 	        strokeWeight: 0
-	    });  
+	    });
+
+		// setEventMarkers();
 	}
 	
     google.maps.event.addDomListener(window, 'load', $scope.initialize);
@@ -193,6 +198,23 @@ angular.module('replayroutedetail', [])
 			$scope.historyVal = response;
 			if($scope.historyVal.values != "" ){
 				var devtype = $scope.historyVal.vehicle_model;
+
+				var newInputParam = { 'devid': dataFromReplay.devid, 'sts': timeSlot.sts, 'ets': timeSlot.ets }
+                BatsServices.eventHistory(newInputParam).success(function (response) {
+                    // console.log("Event History" +angular.toJson(response));
+					if(response.values!=''){
+						setEventMarkers(response.values);
+					}
+                }).error(function (error) {
+                    if (error.err == 'Origin Server returned 504 Status') {
+                        ionicToast.show('Internet is very slow', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                    }
+                    else {
+                        ionicToast.show(error.err, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+                    }
+                })
+
+
 				if(devtype=='car'){
 					svg = car;
 				}else if(devtype=='bike'){
@@ -231,6 +253,81 @@ angular.module('replayroutedetail', [])
                 }//ionicToast.show(error, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
 		})
 	};
+
+	/** function to plot markers for generated events **/
+	function setEventMarkers(values){
+		var infowindow = new google.maps.InfoWindow();
+		// console.log("inside marker creration:"+angular.toJson(eventObj));
+		for(var i=0;i<values.length;i++){
+			// console.log("drawing marker:"+event);
+			// var event = values[i];
+			var markerLat = Number(values[i].lat);
+			var markerLng = Number(values[i].long);
+			// console.log("drawing marker:"+angular.toJson(event));
+			// console.log("lat & long: "+event.lat);
+			var marker = new google.maps.Marker({
+				position: {lat: markerLat, lng: markerLng},
+				map: map,
+				icon: {
+					path: google.maps.SymbolPath.CIRCLE,
+					scale: 10,
+					strokeColor: '#393'
+				}
+			});
+			google.maps.event.addListener(marker,'click', (function(marker, i){
+				return function(){
+					// console.log("value of: ");
+					checkEventFilter(values[i].alarm_type)
+					infowindow.setContent($scope.eventValue);
+					infowindow.open(map, marker);
+					// console.log("content of marker is: "+values[i].alarm_type);
+				}
+			}) (marker, i));
+		}
+	}
+
+	/** function to convert eventtype to event name */
+	function checkEventFilter(type){
+		// console.log("inside checkfilter: "+type);
+		var eventType;
+		switch(type){
+			case 0:
+				eventType = 'Panic';
+				break;
+			case 1:
+				eventType = 'Tamper Sim';
+				break;
+			case 2:
+				eventType = 'Tamper Top';
+				break;
+			case 3:
+				eventType = 'Battery Low';
+				break;
+			case 4:
+				eventType = 'Overspeed';
+				break;
+			case 5:
+				eventType = 'Geofence';
+				break;
+			case 6:
+				eventType = 'Sanity alarm';
+				break;
+			case 7:
+				eventType = 'Connection to tracker interrupted';
+				break;
+			case 8:
+				eventType = 'Vehicle Moved / Theft';
+				break;
+			case 9:
+				eventType = 'Tracker sim changed';
+				break;
+			case 10:
+				eventType = 'Warning';
+				break;
+		}
+		$scope.eventValue = eventType;
+		// console.log("scope value: "+$scope.eventValue);
+	}
 	
 	function displayHistory() {
 		$scope.yoData=true;
