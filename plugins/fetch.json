@@ -35,7 +35,23 @@
     "cordova-plugin-sms-receiver": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-sms-receiver"
+            "id": "cordova-plugin-sms-receiver@~0.1.6"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-smsreceiver": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-smsreceiver"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-sms": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-sms"
         },
         "is_top_level": true,
         "variables": {}

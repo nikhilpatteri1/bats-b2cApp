@@ -1,10 +1,10 @@
 angular.module('livetracking', [])
 	.controller('LiveTrackingCtrl', function ($scope, $rootScope, $timeout, UtilsFactory, $state, PageConfig, BatsServices, ionicToast,
-		$interval, Constants, $cordovaSms, $ionicPopup) {
+		$interval, Constants, $cordovaSms, $ionicPopup, ) {
 		//"​{"KEY":"0123456789","ACTIVATE PARKING MODE"}" "\{"http://example.com\""
 		var active_parking = '​{KEY:0123456789,ACTIVATE PARKING MODE}';
 		//"\"{\"http://example.com\""
-		var s="\"{\"KEY\":\"0123456789\",\"ACTIVATE PARKING MODE\"}\"";
+		var s = "\"{\"KEY\":\"0123456789\",\"ACTIVATE PARKING MODE\"}\"";
 		$scope.sendSMS_Active = function () {
 
 			var confirmPopup = $ionicPopup.confirm({
@@ -24,18 +24,28 @@ angular.module('livetracking', [])
 							intent: '' // send SMS without open any other app
 						}
 					};
-					console.log("active parkign string " + active_parking);
-					$cordovaSms
-						.send('9513334624',"\"{\"KEY\":\"0123456789\",\"ACTIVATE PARKING MODE\"}\"", options)
-						.then(function () {
+					if (SMS) SMS.sendSMS('9513334624', "\"{\"KEY\":\"0123456789\",\"ACTIVATE PARKING MODE\"}\"",
+						function () {
 							alert('Success! SMS was sent');
-						}, function (error) {
-							// An error occurred
-							alert('error' + error);
+						},
+						function (str) {
+							alert(str);
 						});
+					//if(SMS) SMS.sendSMS('9513334624', "\"{\"KEY\":\"0123456789\",\"ACTIVATE PARKING MODE\"}\"", function(){}, function(){});
+					console.log("active parkign string " + active_parking);
+					// if (SMS) SMS.sendSMS('9513334624', "\"{\"KEY\":\"0123456789\",\"ACTIVATE PARKING MODE\"}\"", options)
+					// 	.then(function () {
+					// 		alert('Success! SMS was sent');
+					// 	}, function (error) {
+					// 		// An error occurred
+					// 		alert('error' + error);
+					// 	});
 				}
 				//read imcoming sms
-				readSMS();
+				//readsms1();
+				readsms();
+
+				//readSMS();
 				// delete sms from inbox 
 				//deleteSMS();
 			});
@@ -43,14 +53,14 @@ angular.module('livetracking', [])
 
 		function deleteSMS() {
 			var filter = {
-				box: 'inbox', // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all
+				//box: 'inbox', // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all
 				// the following 4 filters are OR relationship
 				_id: 1234, // given a sms id, recommend ONLY use this filter
-				read: 1, // delete all read SMS
+				//read: 1, // delete all read SMS
 				address: '9513334624', // delete all SMS from this phone number
-				body: 'Test is a test SMS' // delete SMS by content
+				//body: 'Test is a test SMS' // delete SMS by content
 			};
-			$cordovaSms.deleteSMS(filter, function (n) {
+			if (SMS) SMS.deleteSMS(filter, function (n) {
 				alert(n + ' sms messages deleted');
 			}, function (err) {
 				alert('error delete sms: ' + err);
@@ -76,7 +86,7 @@ angular.module('livetracking', [])
 					};
 					//"\"{\"KEY\":\"0123456789\",\"DEACTIVATE PARKING MODE\"}\""
 					$cordovaSms
-						.send('9513334624',"\"{\"KEY\":\"0123456789\",\"DEACTIVATE PARKING MODE\"}\"", options)
+						.send('9513334624', "\"{\"KEY\":\"0123456789\",\"DEACTIVATE PARKING MODE\"}\"", options)
 						.then(function () {
 							alert('Success! SMS was sent');
 						}, function (error) {
@@ -87,31 +97,65 @@ angular.module('livetracking', [])
 			});
 		}
 
-		function readSMS() {
-			var smsInboxPlugin = cordova.require('cordova/plugin/smsinboxplugin');
-			smsInboxPlugin.isSupported((function (supported) {
-				if (supported)
-					alert("SMS supported !");
-				else
-					alert("SMS not supported");
-			}), function () {
-				alert("Error while checking the SMS support");
+		function readsms() {
+			if (SMS) SMS.startWatch(function () {
+				console.log('watching started');
+			}, function () {
+				console.log('failed to start watching');
 			});
 
-			// start watching comming sms
-			smsInboxPlugin.startReception(function (msg) {
-				alert(msg);
-			}, function () {
-				alert("Error while receiving messages");
+			document.addEventListener('onSMSArrive', function (e) {
+				var sms = e.data;
+				console.log(sms);
+				alert(sms);
+				stopsms();
+				deleteSMS();
+				//if(sms.body=="")
+
 			});
-			
-			//stop watching comming sms
-			smsInboxPlugin.stopReception(function () {
-				alert("Correctly stopped");
+		}
+
+		// function readsms1() {
+		// 	window.sms.startReceiving(function (msg) {
+		// 		alert(msg); /* message received successfully */
+		// 	}, function () {
+		// 		alert("Error while receiving messages");
+		// 	});
+		// }
+
+		function stopsms() {
+			window.sms.stopReceiving(function () {
+				alert("has stopped receiver Correctly");
 			}, function () {
 				alert("Error while stopping the SMS receiver");
 			});
 		}
+
+		// function readSMS() {
+		// 	var smsInboxPlugin = cordova.require('cordova/plugin/smsinboxplugin');
+		// 	smsInboxPlugin.isSupported((function (supported) {
+		// 		if (supported)
+		// 			alert("SMS supported !");
+		// 		else
+		// 			alert("SMS not supported");
+		// 	}), function () {
+		// 		alert("Error while checking the SMS support");
+		// 	});
+
+		// 	// start watching comming sms
+		// 	smsInboxPlugin.startReception(function (msg) {
+		// 		alert(msg);
+		// 	}, function () {
+		// 		alert("Error while receiving messages");
+		// 	});
+
+		// 	//stop watching comming sms
+		// 	smsInboxPlugin.stopReception(function () {
+		// 		alert("Correctly stopped");
+		// 	}, function () {
+		// 		alert("Error while stopping the SMS receiver");
+		// 	});
+		// }
 
 		var reqTime = 12;
 		var singleDeviceInterval;
@@ -486,7 +530,7 @@ angular.module('livetracking', [])
 								}
 							}
 						}
-						console.log("hi im going to call animation");
+						//console.log("hi im going to call animation");
 						polyline.setMap(map);
 						map.fitBounds(bounds);
 						map.setZoom($scope.singleDeviceZoomLevel);
@@ -546,10 +590,10 @@ angular.module('livetracking', [])
 			}
 			var p = polyline.GetPointAtDistance(d);
 			//	console.log("hello im p: "+p);
-			console.log("im p" + p);
+			//	console.log("im p" + p);
 			map.panTo(p);
 			var lastPosn = marker[0].getPosition();
-			console.log("im last position" + lastPosn);
+			//	console.log("im last position" + lastPosn);
 			//console.log(" im last posion: "+lastPosn);
 			var newLatLong = p.toString().replace('(', '');
 			// console.log("latlong: "+newLatLong);
@@ -570,17 +614,17 @@ angular.module('livetracking', [])
 		};
 
 		function startAnimation() {
-			console.log("im startAnimation");
+			//	console.log("im startAnimation");
 			eol = polyline.Distance();
 			map.setCenter(polyline.getPath().getAt(0));
-			console.log("im startAnimation to check setCenter " + polyline.getPath().getAt(0));
+			//	console.log("im startAnimation to check setCenter " + polyline.getPath().getAt(0));
 			poly2 = new google.maps.Polyline({
 				path: [polyline.getPath().getAt(0)],
 				strokeColor: "#0000FF",
 				strokeWeight: 0
 			});
 			setTimeout(function () {
-				console.log("im setTimeout inside startAnimation");
+				//	console.log("im setTimeout inside startAnimation");
 				$scope.animate(50);
 			}, 2000);
 		};
