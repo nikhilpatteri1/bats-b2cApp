@@ -359,7 +359,11 @@ right: 70%;
     align-content: center;
     align-items: center;
 }
-
+.parkingStyle{
+    margin-top: 16px;
+    margin-left: 9px;
+    float: right;
+}
 .last-updated{
     position: fixed;
     top: 94%;
@@ -587,6 +591,13 @@ right: 70%;
 	background-image: url("../img/menu/navigation_active.png");
 }
 
+.bats-parking-icon {
+	background-image: url("../img/menu/parked_inactive.png");
+}
+
+.bats-parking-icon-active {
+	background-image: url("../img/menu/parked.png");
+}
 
 .bats-replay-icon {
 	background-image: url("../img/menu/replay.png");

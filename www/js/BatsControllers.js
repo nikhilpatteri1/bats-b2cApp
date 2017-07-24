@@ -23,6 +23,10 @@ angular.module('batscontrollers', [
     $scope.sidebarLinkColor = function (selectedMenuPageNumber) {
       $scope.menuLink = selectedMenuPageNumber;
     }
+
+    $rootScope.parking_inavtive=true;
+    $rootScope.parking_activate=false;
+    
     var notificationCall;
 
     /************************* internet checking *************************** */

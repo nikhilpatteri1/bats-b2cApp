@@ -1,5 +1,5 @@
 <ion-side-menus enable-menu-with-back-views="false">
-  <ion-side-menu-content >
+  <ion-side-menu-content>
     <ion-nav-bar class="bar-stable"></ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
@@ -7,73 +7,89 @@
   <ion-side-menu side="left">
     <ion-header-bar class="bar-stable sidemenubar-header" menu-toggle="left">
       <div class="menuFirstDivHeader">
-        <div class="menuHeaderDivFont">Hi</div>      
-        <div class="menuHeaderDivFont">{{userName}}</div>      
-        <div class="menuHeaderDivFont acSmallFonts">{{email}}</div>   
-      </div>   
+        <div class="menuHeaderDivFont">Hi</div>
+        <div class="menuHeaderDivFont">{{userName}}</div>
+        <div class="menuHeaderDivFont acSmallFonts">{{email}}</div>
+      </div>
+      <div class="parkingStyle" ng-if="accessType!='member'">
+        <!-- <ion-item class="item-icon-right"  menu-toggle="right"
+          direction="right" ng-if="accessType!='member'"> -->
+        <i class="icon bats-icon  " ng-if="parking_inavtive" ng-class="{'bats-parking-icon':parking_inavtive}"></i>
+        <i class="icon bats-icon  " ng-if="parking_activate" ng-class="{'bats-parking-icon-active':parking_activate}"></i>
+        <!-- // </ion-item> -->
+      </div>
     </ion-header-bar>
     <ion-content class="sidemenubar-content" scroll="true">
       <ion-list>
-        <ion-item class="item-icon-right" ng-class='{"selected":menuLink==1}' ng-click='sidebarLinkColor(1)' 
-          menu-toggle="left" direction="left" href="#/bats/livetracking">
+        <ion-item class="item-icon-right" ng-class='{"selected":menuLink==1}' ng-click='sidebarLinkColor(1)' menu-toggle="left" direction="left"
+          href="#/bats/livetracking">
           <i class="icon bats-icon menu-icon" ng-class="{'bats-livetracking-icon' : menuLink!=1, 
-            'bats-livetracking-icon-active' : menuLink==1}"></i><div>Live Tracking</div>
+            'bats-livetracking-icon-active' : menuLink==1}"></i>
+          <div>Live Tracking</div>
         </ion-item>
 
-        <ion-item class="item-icon-right" ng-class='{"selected":menuLink==2}' ng-click='sidebarLinkColor(2)' 
-          menu-toggle="left" direction="left" href="#/bats/navigation" ng-if="accessType!='member'">
+        <ion-item class="item-icon-right" ng-class='{"selected":menuLink==2}' ng-click='sidebarLinkColor(2)' menu-toggle="left" direction="left"
+          href="#/bats/navigation" ng-if="accessType!='member'">
           <i class="icon bats-icon menu-icon " ng-class="{'bats-navigation-icon' : menuLink!=2, 
-            'bats-navigation-icon-active' : menuLink==2}"></i><div>Navigation</div>
+            'bats-navigation-icon-active' : menuLink==2}"></i>
+          <div>Navigation</div>
         </ion-item>
-        
-        <ion-item class="item-icon-right" ng-class='{"selected":menuLink==3}' ng-click='sidebarLinkColor(3)' 
-          menu-toggle="left" direction="left" href="#/bats/replayroute" ng-if="accessType!='member'">
+
+        <ion-item class="item-icon-right" ng-class='{"selected":menuLink==3}' ng-click='sidebarLinkColor(3)' menu-toggle="left" direction="left"
+          href="#/bats/replayroute" ng-if="accessType!='member'">
           <i class="icon bats-icon menu-icon menu-iconWidthForReplay" ng-class="{'bats-replay-icon' : menuLink!=3, 
-            'bats-replay-icon-active' : menuLink==3}"></i><div>Replay Route</div>
+            'bats-replay-icon-active' : menuLink==3}"></i>
+          <div>Replay Route</div>
         </ion-item>
 
-        <ion-item class="item-icon-right" ng-class='{"selected":menuLink==4}' ng-click='sidebarLinkColor(4)' 
-          menu-toggle="left" direction="left" href="#/bats/eventhistory">
+        <ion-item class="item-icon-right" ng-class='{"selected":menuLink==4}' ng-click='sidebarLinkColor(4)' menu-toggle="left" direction="left"
+          href="#/bats/eventhistory">
           <i class="icon bats-icon menu-icon" ng-class="{'bats-eventhistory-icon' : menuLink!=4, 
-            'bats-eventhistory-icon-active' : menuLink==4}"></i><div>Events History</div>
+            'bats-eventhistory-icon-active' : menuLink==4}"></i>
+          <div>Events History</div>
         </ion-item>
 
-        <ion-item class="item-icon-right" direction="left" href="#/bats/vehiclestatistics" ng-if="accessType!='member'"
-          menu-toggle="left" ng-click="sidebarLinkColor(5)" ng-class='{"selected":menuLink==5}'> 
+        <ion-item class="item-icon-right" direction="left" href="#/bats/vehiclestatistics" ng-if="accessType!='member'" menu-toggle="left"
+          ng-click="sidebarLinkColor(5)" ng-class='{"selected":menuLink==5}'>
           <i class="icon bats-icon menu-icon" ng-class="{'bats-vehiclestatitics-icon' : menuLink!=5, 
-            'bats-vehiclestatitics-icon-active' : menuLink==5}"></i><div>Vehicle Statitics</div>
+            'bats-vehiclestatitics-icon-active' : menuLink==5}"></i>
+          <div>Vehicle Statitics</div>
         </ion-item>
 
-        <ion-item class="item-icon-right" direction="left" href="#/bats/report" menu-toggle="left" 
-          ng-click="sidebarLinkColor(6)" ng-class='{"selected":menuLink==6}' ng-if="accessType!='member'">
+        <ion-item class="item-icon-right" direction="left" href="#/bats/report" menu-toggle="left" ng-click="sidebarLinkColor(6)"
+          ng-class='{"selected":menuLink==6}' ng-if="accessType!='member'">
           <i class="icon bats-icon menu-icon menu-iconWidthForReport" ng-class="{'bats-reports-icon' : menuLink!=6, 
-            'bats-reports-icon-active' : menuLink==6}"></i><div>Reports</div>
+            'bats-reports-icon-active' : menuLink==6}"></i>
+          <div>Reports</div>
         </ion-item>
 
-        <ion-item class="item-icon-right" direction="left" ng-class='{"selected":menuLink==7}'
-          ng-click="sidebarLinkColor(7);openSettingBar()">
+        <ion-item class="item-icon-right" direction="left" ng-class='{"selected":menuLink==7}' ng-click="sidebarLinkColor(7);openSettingBar()">
           <i class="icon bats-icon menu-icon" ng-class="{'bats-settings-icon' : menuLink!=7, 
-            'bats-settings-icon-active' : menuLink==7}"></i><div>Settings</div>
-            <i class="icon bats-icon " ng-class="{'ion-ios-minus-empty':openSetting,'ion-ios-plus-empty':!openSetting}"></i>
+            'bats-settings-icon-active' : menuLink==7}"></i>
+          <div>Settings</div>
+          <i class="icon bats-icon " ng-class="{'ion-ios-minus-empty':openSetting,'ion-ios-plus-empty':!openSetting}"></i>
         </ion-item>
-        
-        <div class="settingMenu" ng-if="openSetting==true">        
-          <ion-item class="item-icon-right" ng-class='{"selected":menuLink==8}' ng-click='sidebarLinkColor(8)' 
-            menu-toggle="left" direction="left" href="#/bats/managemember" ng-if="accessType!='member'">
+
+        <div class="settingMenu" ng-if="openSetting==true">
+          <ion-item class="item-icon-right" ng-class='{"selected":menuLink==8}' ng-click='sidebarLinkColor(8)' menu-toggle="left" direction="left"
+            href="#/bats/managemember" ng-if="accessType!='member'">
             <i class="icon bats-icon menu-icon" ng-class="{'bats-managemember-icon' : menuLink!=8, 
-              'bats-managemember-icon-active' : menuLink==8}"></i><div>Manage Member</div>
+              'bats-managemember-icon-active' : menuLink==8}"></i>
+            <div>Manage Member</div>
           </ion-item>
 
-          <ion-item class="item-icon-right" ng-class='{"selected":menuLink==9}' ng-click='sidebarLinkColor(9)' 
-            menu-toggle="left" direction="left" href="#/bats/managetracker" ng-if="accessType!='member'">
+          <ion-item class="item-icon-right" ng-class='{"selected":menuLink==9}' ng-click='sidebarLinkColor(9)' menu-toggle="left" direction="left"
+            href="#/bats/managetracker" ng-if="accessType!='member'">
             <i class="icon bats-icon menu-icon" ng-class="{'bats-managedevice-icon' : menuLink!=9, 
-              'bats-managedevice-icon-active' : menuLink==9}"></i><div>Manage Tracker</div>
+              'bats-managedevice-icon-active' : menuLink==9}"></i>
+            <div>Manage Tracker</div>
           </ion-item>
 
-          <ion-item class="item-icon-right" direction="left" href="#/bats/changepassword" 
-            menu-toggle="left" ng-click="sidebarLinkColor(10)" ng-class='{"selected":menuLink==10}'> 
+          <ion-item class="item-icon-right" direction="left" href="#/bats/changepassword" menu-toggle="left" ng-click="sidebarLinkColor(10)"
+            ng-class='{"selected":menuLink==10}'>
             <i class="icon bats-icon menu-icon" ng-class="{'bats-changepassword-icon' : menuLink!=10, 
-              'bats-changepassword-icon-active' : menuLink==10}"></i><div>Change Password</div>
+              'bats-changepassword-icon-active' : menuLink==10}"></i>
+            <div>Change Password</div>
           </ion-item>
           <!--<ion-item class="item-icon-right" direction="left" href="#/bats/changepassword" 
             menu-toggle="left" ng-click="sidebarLinkColor(10)" ng-class='{"selected":menuLink==10}'> 
@@ -88,7 +104,8 @@
           </ion-item>-->
 
           <ion-item class="item-icon-right" direction="left" menu-toggle="left" ng-click="logout()">
-            <i class="icon bats-icon menu-icon bats-logout-icon"></i><div>Logout</div>
+            <i class="icon bats-icon menu-icon bats-logout-icon"></i>
+            <div>Logout</div>
           </ion-item>
 
         </div>
@@ -99,7 +116,6 @@
           </div>
         </div>
       </ion-list>
-    </ion-content>  
+    </ion-content>
   </ion-side-menu>
 </ion-side-menus>
-
