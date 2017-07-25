@@ -26,15 +26,6 @@
         "cordova-plugin-file-opener2": {
             "PACKAGE_NAME": "com.ionicframework.bats940165"
         },
-        "cordova-sms-plugin": {
-            "PACKAGE_NAME": "com.ionicframework.bats940165"
-        },
-        "cordova-plugin-sms-receiver": {
-            "PACKAGE_NAME": "com.ionicframework.bats940165"
-        },
-        "cordova-plugin-smsreceiver": {
-            "PACKAGE_NAME": "com.ionicframework.bats940165"
-        },
         "cordova-plugin-sms": {
             "PACKAGE_NAME": "com.ionicframework.bats940165"
         }
