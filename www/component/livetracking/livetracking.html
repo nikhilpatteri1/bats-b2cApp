@@ -6,8 +6,8 @@
     </ion-nav-buttons>
     <ion-nav-title ng-click="gotoLivetrackingDevice()">Select Device<i class="ion-chevron-down ltSelectDevArr"></i></ion-nav-title>
     <ion-nav-buttons side="right">
-        <img class="batsIcon acEditIcon"  ng-if="parking_inavtive" ng-click="sendSMS_Active()"  src="img/menu/parked_inactive.png" />
-         <img class="batsIcon acEditIcon" ng-if="parking_activate" ng-click="sendSMS_Deactive()"  src="img/menu/parked.png" />
+        <img class="batsIcon acEditIcon" ng-disabled="send_act_SMS" ng-if="parking_inavtive" ng-click="send_act_SMS || sendSMS_Active()"  src="img/menu/parked_inactive.png" />
+         <img class="batsIcon acEditIcon" ng-disabled="send_dact_SMS" ng-if="parking_activate" ng-click="send_dact_SMS || sendSMS_Deactive()"  src="img/menu/parked.png" />
          <div  ng-include="'component/notificationbell/notificationbell.html'"></div>
         <!--<button class="button button-icon button-clear " ng-click="gotoFilter()" ><img class="filterWidth" src="img/filter.png"></button> -->
         <!--<a class="button button-icon button-clear " href="#/bats/notification"><img class="filterWidth" src="img/notification.png">

@@ -2,12 +2,12 @@ angular.module('livetracking', []).controller('LiveTrackingCtrl', function ($sco
 	$interval, Constants, $cordovaSms, $ionicPopup, ) {
 	$scope.parking_inavtive = true;
 	$scope.parking_activate = false;
+	$scope.send_act_SMS=false;
 	//"​{"KEY":"0123456789","ACTIVATE PARKING MODE"}" "\{"http://example.com\""
 	//var active_parking = '​{KEY:0123456789,ACTIVATE PARKING MODE}';
 	//"\"{\"http://example.com\""
 	//var s = "\"{\"KEY\":\"0123456789\",\"ACTIVATE PARKING MODE\"}\"";
 	$scope.sendSMS_Active = function () {
-
 		var confirmPopup = $ionicPopup.confirm({
 			title: 'Activate Parking Mode',
 			template: 'Please make sure that you are sending SMS with your registered mobile number',
@@ -17,43 +17,21 @@ angular.module('livetracking', []).controller('LiveTrackingCtrl', function ($sco
 		});
 		confirmPopup.then(function (res) {
 			if (res) {
-				//send sms for active parking mode
-				var options = {
-					replaceLineBreaks: false, // true to replace \n by a new line, false by default
-					android: {
-						//intent: 'INTENT'  // send SMS with the native android SMS messaging
-						intent: '' // send SMS without open any other app
-					}
-				};
 				if (SMS) SMS.sendSMS('9513334624', "\"{\"KEY\":\"0123456789\",\"ACTIVATE PARKING MODE\"}\"",
 					function () {
 						console.log('Success! SMS was sent');
+						ionicToast.show('Activation request sent to Device \n ', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+						$scope.send_act_SMS=true;
+						$scope.send_dact_SMS=false;
 						readsms();
 					},
 					function (str) {
-						alert(str);
+						ionicToast.show('Deactivation request sent to Device \n ', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+						console.log(str);
 					});
-				//if(SMS) SMS.sendSMS('9513334624', "\"{\"KEY\":\"0123456789\",\"ACTIVATE PARKING MODE\"}\"", function(){}, function(){});
-				//console.log("active parkign string " + active_parking);
-				// if (SMS) SMS.sendSMS('9513334624', "\"{\"KEY\":\"0123456789\",\"ACTIVATE PARKING MODE\"}\"", options)
-				// 	.then(function () {
-				// 		alert('Success! SMS was sent');
-				// 	}, function (error) {
-				// 		// An error occurred
-				// 		alert('error' + error);
-				// 	});
 			}
-			//read imcoming sms
-			//readsms1();
-
-
-			//readSMS();
-			// delete sms from inbox 
-			//deleteSMS();
 		});
 	}
-
-
 	$scope.sendSMS_Deactive = function () {
 		var confirmPopup = $ionicPopup.confirm({
 			title: 'De_Activate Parking Mode',
@@ -64,30 +42,18 @@ angular.module('livetracking', []).controller('LiveTrackingCtrl', function ($sco
 		});
 		confirmPopup.then(function (res) {
 			if (res) {
-				// var options = {
-				// 	replaceLineBreaks: false, // true to replace \n by a new line, false by default
-				// 	android: {
-				// 		//intent: 'INTENT'  // send SMS with the native android SMS messaging
-				// 		intent: '' // send SMS without open any other app
-				// 	}
-				// };
 				if (SMS) SMS.sendSMS('9513334624', "\"{\"KEY\":\"0123456789\",\"DEACTIVATE PARKING MODE\"}\"",
 					function () {
+						ionicToast.show('Deactivation request sent to Device \n ', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
 						console.log('Success! SMS was sent');
+						$scope.send_dact_SMS=true;
+						$scope.send_act_SMS=false;
 						readsms();
 					},
 					function (str) {
-						alert(str);
+						ionicToast.show(str, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+						console.log(str);
 					});
-				//"\"{\"KEY\":\"0123456789\",\"DEACTIVATE PARKING MODE\"}\""
-				// $cordovaSms
-				// 	.send('9513334624', "\"{\"KEY\":\"0123456789\",\"DEACTIVATE PARKING MODE\"}\"", options)
-				// 	.then(function () {
-				// 		alert('Success! SMS was sent');
-				// 	}, function (error) {
-				// 		// An error occurred
-				// 		alert('error' + error);
-				// 	});
 			}
 		});
 	}
@@ -98,7 +64,6 @@ angular.module('livetracking', []).controller('LiveTrackingCtrl', function ($sco
 		}, function () {
 			console.log('failed to start watching');
 		});
-
 		document.addEventListener('onSMSArrive', function (e) {
 			var sms = e.data;
 			console.log(sms);
@@ -115,6 +80,7 @@ angular.module('livetracking', []).controller('LiveTrackingCtrl', function ($sco
 			if (a == '# PARKING MODE ACTIVATED #') {
 				$scope.parking_inavtive = false;
 				$scope.parking_activate = true;
+				$scope.send_dact_SMS=false;
 				stopsms();
 			} else if (a == '# PARKING MODE DEACTIVATED #') {
 				$scope.parking_inavtive = true;
@@ -127,14 +93,15 @@ angular.module('livetracking', []).controller('LiveTrackingCtrl', function ($sco
 		});
 	}
 	function deleteSMS() {
+		listSMS();
 		var filter = {
-			box: 'inbox', // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all
+			box: 'sent', // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all
 			// the following 4 filters are OR relationship
 			_id: 1234, // given a sms id, recommend ONLY use this filter
 			//read:0, // delete all UNread SMS
-			indexFrom : 0, // start from index 0
+			//indexFrom: 0, // start from index 0
 			address: '+919513334624', // delete all SMS from this phone number
-			//body: 'Test is a test SMS' // delete SMS by content
+			body: '# PARKING MODE ' // delete SMS by content
 		};
 		if (SMS) SMS.deleteSMS(filter, function (n) {
 			console.log(n + ' sms messages deleted');
@@ -150,13 +117,35 @@ angular.module('livetracking', []).controller('LiveTrackingCtrl', function ($sco
 		}, function (err) {
 			console.log(" faild  stopped receiver " + err);
 		});
-		// window.sms.stopReceiving(function () {
-		// 	alert("has stopped receiver Correctly");
-		// }, function () {
-		// 	alert("Error while stopping the SMS receiver");
-		// });
 	}
 
+	function listSMS(){
+		var filter = {
+        		box : 'inbox', // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all
+        		
+        		// following 4 filters should NOT be used together, they are OR relationship
+        		read : 0, // 0 for unread SMS, 1 for SMS already read
+        		_id : 1234, // specify the msg id
+        		address : '+919513334624', // sender's phone number
+        		body : '# PARKING MODE ', // content to match
+        		
+        		// following 2 filters can be used to list page up/down
+        		indexFrom : 0, // start from index 0
+        		//maxCount : 10, // count of SMS to return each time
+        	};
+        	if(SMS) SMS.listSMS(filter, function(data){
+    			console.log('sms listed as json array');
+    			console.log( JSON.stringify(data) );
+    			
+        		if(Array.isArray(data)) {
+        			for(var i in data) {
+        				var sms = data[i];
+        			}
+        		}
+        	}, function(err){
+        		console.log('error list sms: ' + err);
+        	});
+	}
 	// ***************************** PARKING MODULE END ***********************************************//
 	var reqTime = 12;
 	var singleDeviceInterval;
