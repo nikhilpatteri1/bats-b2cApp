@@ -506,7 +506,9 @@ angular.module('replayroutedetail', [])
 		var newLongitude = inputLatLong[1];
 		for(i in svg){marker[i].setPosition(new google.maps.LatLng(parseFloat(inputLatLong[0]), parseFloat(inputLatLong[1])));}
 		$scope.heading = google.maps.geometry.spherical.computeHeading(lastPosn, p);
-		for(i in svg){icons[i].rotation = $scope.heading;}
+		if($scope.heading!=0){
+			for(i in svg){icons[i].rotation = $scope.heading;}
+		}
 		for(i in svg){marker[i].setIcon(icons[i]);}
 		updatePoly(d);
 		timerHandle = setTimeout(function() {
