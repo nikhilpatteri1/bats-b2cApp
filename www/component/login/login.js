@@ -33,6 +33,8 @@ angular.module('login', [])
                     // $rootScope.callNotification();
                     localStorage.setItem(Constants.ACCESS_TYPE, type);
                     localStorage.setItem(Constants.USER_VO, JSON.stringify(response));
+                    localStorage.setItem(Constants.PARKING_MODE, true);
+
                     if (localStorage.getItem(Constants.ACCESS_TYPE) != null) {
                         $rootScope.accessType = localStorage.getItem(Constants.ACCESS_TYPE);
                     }

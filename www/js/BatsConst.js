@@ -15,6 +15,7 @@ batsconstants.constant('Constants', {
 	accessToken : "token",
 	ACCESS_TYPE : "accessType",
 	USER_VO : "user_vo",
+	PARKING_MODE: "parkingMode",
 });
    
 
