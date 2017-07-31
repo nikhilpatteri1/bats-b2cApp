@@ -218,6 +218,10 @@ angular.module('livetracking', []).controller('LiveTrackingCtrl', function ($sco
 	var svg = new Array();
 	var icons = new Array();
 	var startLat, startLng, endLat, endLng;
+	var firstLatLongValue = 0;
+	var secondLatLngValue = 0;
+	var newMarkerLatLng;
+	var oldMarkerLatLng;
 
 	//bike
 	var bike = new Array();
@@ -267,6 +271,7 @@ angular.module('livetracking', []).controller('LiveTrackingCtrl', function ($sco
 		};
 
 		map = new google.maps.Map(document.getElementById("map"), myOptions);
+		console.log("loading map");
 
 		// Instantiate a directions service.
 		directionsService = new google.maps.DirectionsService();
@@ -345,65 +350,71 @@ angular.module('livetracking', []).controller('LiveTrackingCtrl', function ($sco
 
 	var iconImg;
 	function createMarker(latlng, deviceID, vehNo, vehModel, html, type, devtype) {
-		console.log("devtype: " + devtype);
-		svg = new Array();
-		icons = new Array();
-		if (devtype == "car") {
-			svg = car;
-		} else if (devtype == "truck") {
-			svg = truck;
-		} else if (devtype == "bike") {
-			svg = bike;
-		} else if (devtype == "bus") {
-			svg = bus;
-		} else {
-			svg = car;
-		}
-		var contentString;
-		for (var i in svg) {
-			icons[i] = {
-				path: svg[i].path,
-				fillColor: svg[i].fillColor,
-				scale: .7,
-				strokeColor: 'white',
-				strokeWeight: .10,
-				fillOpacity: 1,
-				offset: '5%',
-				rotation: Number($rootScope.headings),
-				anchor: new google.maps.Point(16, 16) // orig 10,50 back of car, 10,0 front of car, 10,25 center of car
-			};
-		}
-		var geocoder = new google.maps.Geocoder();
-		geocoder.geocode({ latLng: latlng }, function (responses) {
-			if (responses && responses.length > 0) {
-				if (html.length == 0) {
-					html = responses[0].formatted_address;
-					contentString = '<b><label>Device ID:</label> ' + deviceID + '</b><br><br><b><label>Vehicle No:</label> ' + vehNo + '</b><br><br><b><label>Vehicle Model:</label> ' + vehModel + '</b><br><br>' + html + '<br><br>';
-				}
+		// newMarkerLatLng = latlng;
+		// if(String(newMarkerLatLng)!=String(oldMarkerLatLng)){
+			console.log("creating marker again"+latlng);
+			svg = new Array();
+			icons = new Array();
+			if (devtype == "car") {
+				svg = car;
+			} else if (devtype == "truck") {
+				svg = truck;
+			} else if (devtype == "bike") {
+				svg = bike;
+			} else if (devtype == "bus") {
+				svg = bus;
+			} else {
+				svg = car;
 			}
-		});
-		if (html.length != 0) {
-			contentString = '<b><label>Device ID:</label> ' + deviceID + '</b><br><br><b><label>Vehicle No:</label> ' + vehNo + '</b><br><br><b><label>Vehicle Model:</label> ' + vehModel + '</b><br><br>' + html + '<br><br>';
-		}
+			var contentString;
+			for (var i in svg) {
+				icons[i] = {
+					path: svg[i].path,
+					fillColor: svg[i].fillColor,
+					scale: .7,
+					strokeColor: 'white',
+					strokeWeight: .10,
+					fillOpacity: 1,
+					offset: '5%',
+					rotation: Number($rootScope.headings),
+					anchor: new google.maps.Point(16, 16) // orig 10,50 back of car, 10,0 front of car, 10,25 center of car
+				};
+			}
+			var geocoder = new google.maps.Geocoder();
+			geocoder.geocode({ latLng: latlng }, function (responses) {
+				if (responses && responses.length > 0) {
+					if (html.length == 0) {
+						html = responses[0].formatted_address;
+						contentString = '<b><label>Device ID:</label> ' + deviceID + '</b><br><br><b><label>Vehicle No:</label> ' + vehNo + '</b><br><br><b><label>Vehicle Model:</label> ' + vehModel + '</b><br><br>' + html + '<br><br>';
+					}
+				}
+			});
+			if (html.length != 0) {
+				contentString = '<b><label>Device ID:</label> ' + deviceID + '</b><br><br><b><label>Vehicle No:</label> ' + vehNo + '</b><br><br><b><label>Vehicle Model:</label> ' + vehModel + '</b><br><br>' + html + '<br><br>';
+			}
 
-		for (var i in svg) {
-			marker[i] = new google.maps.Marker({
-				position: latlng,
-				map: map,
-				title: deviceID,
-				icon: icons[i],
-				zIndex: Math.round(latlng.lat() * -100000) << 5,
-				myname: deviceID
-			});
-			markers.push(marker[i]);
-			var damymarker = marker[i];
-			google.maps.event.addListener(damymarker, 'click', function () {
-				infowindow.setContent(contentString);
-				//infowindow.setZIndex(1000000);
-				infowindow.open(map, damymarker);
-			});
-		}
-		return marker;
+			for (var i in svg) {
+				marker[i] = new google.maps.Marker({
+					position: latlng,
+					map: map,
+					title: deviceID,
+					icon: icons[i],
+					zIndex: Math.round(latlng.lat() * -100000) << 5,
+					myname: deviceID
+				});
+				markers.push(marker[i]);
+				var damymarker = marker[i];
+				google.maps.event.addListener(damymarker, 'click', function () {
+					infowindow.setContent(contentString);
+					//infowindow.setZIndex(1000000);
+					infowindow.open(map, damymarker);
+				});
+			}
+			oldMarkerLatLng = newMarkerLatLng;
+			return marker;
+		// }else{
+		// 	console.log("no need to create marker again");
+		// }
 	};
 	// Sets the map on all markers in the array.
 	function setMapOnAll(map) {
@@ -514,6 +525,7 @@ angular.module('livetracking', []).controller('LiveTrackingCtrl', function ($sco
 						if (i === 0) {
 							startLocation.latlng = legs[i].start_location;
 							startLocation.address = legs[i].start_address;
+							console.log("start address: "+startLocation.address);
 							createMarker(legs[i].start_location, dataVal[i].devid, dataVal[i].vehicle_num, dataVal[i].vehicle_model, legs[i].start_address, dataVal[i].values.type, devtype);
 						}
 						endLocation.latlng = legs[i].end_location;
@@ -528,24 +540,45 @@ angular.module('livetracking', []).controller('LiveTrackingCtrl', function ($sco
 						}
 					}
 					//console.log("hi im going to call animation");
-					polyline.setMap(map);
-					map.fitBounds(bounds);
-					map.setZoom($scope.singleDeviceZoomLevel);
-					drawPolygon();
-					startAnimation();
+					// polyline.setMap(map);
+					// map.fitBounds(bounds);
+					// map.setZoom($scope.singleDeviceZoomLevel);
+					// console.log("polyline value: "+angular.toJson(polyline));
+					// if(dataVal[0].device_update){
+					// 	drawPolygon();
+					// }
+					firstLatLongValue = endLocation.latlng;
+					if(firstLatLongValue!=null){
+						if(String(firstLatLongValue)==String(secondLatLngValue)){
+							console.log("same latlongs no need to call animate");
+						}else{
+							console.log("calling animate because latlng are different");
+							polyline.setMap(map);
+							map.fitBounds(bounds);
+							map.setZoom($scope.singleDeviceZoomLevel);
+							drawPolygon();
+							startAnimation();
+						}
+						secondLatLngValue = firstLatLongValue;
+					}
+					console.log("end location: "+endLocation.latlng);
+					// startAnimation();
 				}
 			});
 
 			/* geofence: polygon drawing on map */
 			function drawPolygon() {
+				console.log("drawing polygon");
 				if (dataVal[0].geofence != null) {
 					if (dataVal[0].geofence != '') {
-						polygonDrawing.setMap(null);
-						polyPaths = dataVal[0].geofence;
-						polygonDrawing = new google.maps.Polygon({
-							paths: polyPaths
-						});
-						polygonDrawing.setMap(map);
+						// if(dataVal[0].device_update){
+							polygonDrawing.setMap(null);
+							polyPaths = dataVal[0].geofence;
+							polygonDrawing = new google.maps.Polygon({
+								paths: polyPaths
+							});
+							polygonDrawing.setMap(map);
+						// }
 					}
 				}
 			}
@@ -611,8 +644,9 @@ angular.module('livetracking', []).controller('LiveTrackingCtrl', function ($sco
 	};
 
 	function startAnimation() {
-		//	console.log("im startAnimation");
+		console.log("im startAnimation");
 		eol = polyline.Distance();
+		console.log("eol value: "+eol);
 		map.setCenter(polyline.getPath().getAt(0));
 		//	console.log("im startAnimation to check setCenter " + polyline.getPath().getAt(0));
 		poly2 = new google.maps.Polyline({
@@ -762,6 +796,7 @@ angular.module('livetracking', []).controller('LiveTrackingCtrl', function ($sco
 			var obj = [];
 			var inputParam = { "devlist": [$scope.selectedDevice] };
 			BatsServices.currentData(inputParam).success(function (response) {
+				console.log("current data: "+angular.toJson(response));
 				UtilsFactory.setLivetrackingDetails(response);
 				$scope.multiDevice = false;
 				if (response[0].values != "") {
