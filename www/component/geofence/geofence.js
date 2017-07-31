@@ -55,7 +55,9 @@ angular.module('geofence', [])
                 center: latLng,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 zoomControl: false,
-                streetViewControl: false
+                streetViewControl: false,
+                clickableIcons: false,
+                fullscreenControl: false
             });
 
             drawingManager.setMap(map);
