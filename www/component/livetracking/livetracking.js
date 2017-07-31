@@ -29,6 +29,7 @@ angular.module('livetracking', []).controller('LiveTrackingCtrl', function ($sco
 		});
 		confirmPopup.then(function (res) {
 			if (res) {
+				
 				if (SMS) SMS.sendSMS('9513334624', "\"{\"KEY\":\"0123456789\",\"ACTIVATE PARKING MODE\"}\"",
 					function () {
 						console.log('Success! SMS was sent');
@@ -112,12 +113,12 @@ angular.module('livetracking', []).controller('LiveTrackingCtrl', function ($sco
 	function deleteSMS() {
 		listSMS();
 		var filter = {
-			box: 'sent', // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all
+			box: '', // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all
 			// the following 4 filters are OR relationship
 			_id: 1234, // given a sms id, recommend ONLY use this filter
 			//read:0, // delete all UNread SMS
 			//indexFrom: 0, // start from index 0
-			address: '+919513334624', // delete all SMS from this phone number
+			address: "+919513334624" // delete all SMS from this phone number
 			//body: '# PARKING MODE ' // delete SMS by content
 		};
 		if (SMS) SMS.deleteSMS(filter, function (n) {
@@ -138,25 +139,26 @@ angular.module('livetracking', []).controller('LiveTrackingCtrl', function ($sco
 
 	function listSMS() {
 		var filter = {
-			box: 'sent', // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all
+			box: '', // 'inbox' (default), 'sent', 'draft', 'outbox', 'failed', 'queued', and '' for all
 
 			// following 4 filters should NOT be used together, they are OR relationship
-			read: 0, // 0 for unread SMS, 1 for SMS already read
+			//read: 0, // 0 for unread SMS, 1 for SMS already read
 			_id: 1234, // specify the msg id
 			address: '+919513334624', // sender's phone number
-			//body : '# PARKING MODE ', // content to match
+		//	body : '', // content to match
 
 			// following 2 filters can be used to list page up/down
-			indexFrom: 0, // start from index 0
+			//indexFrom: 0, // start from index 0
 			//maxCount : 10, // count of SMS to return each time
 		};
-		if (SMS) SMS.listSMS(filter, function (data) {
+		if (SMS) SMS.listSMS({}, function (data) {
 			console.log('sms listed as json array');
 			console.log(JSON.stringify(data));
 
 			if (Array.isArray(data)) {
 				for (var i in data) {
 					var sms = data[i];
+					console.log(sms);
 				}
 			}
 		}, function (err) {
