@@ -40,7 +40,7 @@ angular.module('livetracking', []).controller('LiveTrackingCtrl', function ($sco
 						readsms();
 					},
 					function (str) {
-						ionicToast.show('Deactivation request sent to Device \n ', Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
+						ionicToast.show(str, Constants.TOST_POSITION, false, Constants.TIME_INTERVAL);
 						console.log(str);
 					});
 			}
